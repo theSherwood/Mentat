@@ -1,5 +1,7 @@
 # TiddlyWiki Plugin Skeleton for ThirdFlow
 
+[Watch the demo video](https://youtu.be/BFE6PFZ_uWQ).
+
 0. clone this repository:
    `git clone https://github.com/TheDiveO/TiddlyWikiPluginSkeleton.git`
 
