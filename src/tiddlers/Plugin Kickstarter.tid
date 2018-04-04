@@ -1,5 +1,5 @@
 created: 20141001162614812
-modified: 20180404103444056
+modified: 20180404103717769
 title: Plugin Kickstarter
 type: text/vnd.tiddlywiki
 
@@ -70,4 +70,4 @@ $:/plugins/$(plugin-publisher-and-name)$
 
 # use the <$button class=<<tv-config-toolbar-class>> >{{$:/core/images/down-arrow}}</$button> menu button sitting right next to your plugin in the "Plugin Sources" view to add tiddlers to your plugin.
 
-# remove this "Plugin Kickstarter" tiddler when you don't need it any longer: press <$button tooltip="remove this Kickstarter" class=<<tv-config-toolbar-class>> style=<<button-style>> >{{$:/core/images/delete-button}}<$action-deletetiddler $tiddler=<<currentTiddler>> /></$button> to remove the Kickstarter.
+# remove this "Plugin Kickstarter" tiddler when you don't need it any longer: press <$button tooltip="remove this Kickstarter" class=<<tv-config-toolbar-class>> style=<<button-style>> >{{$:/core/images/delete-button}}<$action-sendmessage $message="tm-close-tiddler" $param=<<currentTiddler>> /><$action-deletetiddler $tiddler=<<currentTiddler>> /></$button> to remove the Kickstarter.
