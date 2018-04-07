@@ -1,13 +1,16 @@
 {
   "name": "twpluginskeleton",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "You",
   "description": "TiddlyWiki Plugin Skeleton",
   "homepage": "...",
   "license": "...",
   "bugs": "...",
   "keywords": [
-    "tiddlywiki", "tiddlywiki5", "wiki", "plugin",
+    "tiddlywiki",
+    "tiddlywiki5",
+    "wiki",
+    "plugin",
     "ThirdFlow"
   ],
   "main": "main.js",

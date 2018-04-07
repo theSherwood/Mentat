@@ -1,2 +1,4 @@
 node_modules/
 npm-debug.log
+Thumbs.db
+src/tiddlers/system/StoryList.tid
