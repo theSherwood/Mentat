@@ -10,6 +10,11 @@ introduction, you may want to [watch the demo video](https://youtu.be/BFE6PFZ_uW
 
     0. clone this repository:
        `$ git clone https://github.com/TheDiveO/TiddlyWikiPluginSkeleton.git`.
+       Optionally specify a different directory to clone into other than
+       `TiddlyWikiPluginSkeleton`, by simply appending the new directory name to the
+       git clone command. For instance:
+       `$ git clone https://github.com/TheDiveO/TiddlyWikiPluginSkeleton.git NewPlugin`,
+       where `NewPlugin` is the directory to clone the plugin skeleton into.
 
     1. optionally edit `package.json` and fill in necessary data, such as `name`,
        `version`, `author`, `homepage`, `license`, et cetera; the impatient can skip
