@@ -1,6 +1,6 @@
 {
   "name": "twpluginskeleton",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "You",
   "description": "TiddlyWiki Plugin Skeleton",
   "homepage": "...",
@@ -14,6 +14,8 @@
   "scripts": {
     "start": "tiddlywiki editions/develop --verbose --server 8080 $:/core/save/all text/plain text/html & echo $! > tw.pid",
     "stop": "kill `cat tw.pid` && rm tw.pid",
+    "winstart": "start \"TW5 Plugin Develop\" cmd /c tiddlywiki editions/develop --verbose --server 8080 $:/core/save/all text/plain text/html",
+    "winstop": "taskkill /fi \"WINDOWTITLE eq TW5 Plugin Develop\"",
     "develop": "tiddlywiki editions/develop --verbose --server 8080 $:/core/save/all text/plain text/html",
     "release": "tiddlywiki editions/release --verbose --build release"
   },
