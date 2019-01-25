@@ -9,6 +9,14 @@ src/tiddlers/system/StoryList.tid
 # Uncomment this section for stream-lined github 
 # hosting of your plugin demo:
 # *
-# !*/
-# !index.html
+# !src
+# !src/tiddlers
+# !src/tiddlers/system
+# !src/tiddlers/system/**
+# !*index.html
 # !.gitignore
+
+# Run the following in the terminal after the change:
+# git rm -r --cached .
+# git add .
+# git commit -m "fixed untracked files"
