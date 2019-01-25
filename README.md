@@ -4,6 +4,9 @@ Use this plugin skeleton to easily develop TiddlyWiki5 plugins using the
 _[ThirdFlow](https://github.com/TheDiveO/ThirdFlow)_ plugin. For an easy
 introduction, you may want to [watch the demo video](https://youtu.be/BFE6PFZ_uWQ).
 
+This plugin skeleton has been modified from its original version to stream-line the
+process of hosting demo wikis of your plugins on github pages.
+
 # How To (Set Up and Release)
 
 1. Set Up...
@@ -48,8 +51,8 @@ introduction, you may want to [watch the demo video](https://youtu.be/BFE6PFZ_uW
        multiple plugins simultaneously from the same development TiddlyWiki.
 
     8. when you're ready to release, simply run `$ npm run release` to create the
-       release file(s) in `editions/release/output`. Rinse, then repeat as
-       necessary.
+       release file(s) directly in the root directory. Rinse, then repeat as
+       necessary. (See note 1)
 
 
 # Re-Initialize Plugin Git Repository
@@ -66,8 +69,7 @@ so, simple follow this receipe:
 
 3. Did you adjust `package.json`? If not, please do so now.
 
-4. `$ git add .` ... this adds back in all existing files (unless blocked, see
-   especially note #1 below).
+4. `$ git add .` ... this adds back in all existing files (unless blocked).
 
 5. `$ git commit -m "initializes and populates my plugin repository"` ...
    finally commits all files into your new plugin repository.
@@ -90,8 +92,11 @@ That's it!
 
 # Notes
 
-1. in the default setup, the release files inside `editions/release/output`
-   won't be under `git` source code control. The rationale is to keep generated
-   files out of the manged sources. However, if you want to **keep them
-   instead** under `git` control, simply remove the file `.gitignore` in
-   `editions/release/`.
+1. This skeleton plugin has been edited from its original version so that the released 
+   demo build of the wiki ends up in the root directory for ease in producing a github 
+   hosted page. This only works if the default release name of demowiki.html is used.
+   It will then appear as index.html in the root directory.
+
+2. The .gitignore files of this repository have been edited to reduce the number of
+   of files that appear in the github repository of your plugin. Go to the .gitignore
+   file in the root directory and follow the simple instructions to enable this.

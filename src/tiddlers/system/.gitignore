@@ -1,0 +1,5 @@
+# This directory will contain all the plugin files
+# and should not be ignored. Demo .tid files will 
+# not appear here.
+!.gitignore
+!*

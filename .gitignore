@@ -1,4 +1,14 @@
+# When turning this skeleton into a tiddlywiki plugin
+# for easy stream-lined github hosting, delete this
+# section:
 node_modules/
 npm-debug.log
 Thumbs.db
 src/tiddlers/system/StoryList.tid
+
+# Uncomment this section for stream-lined github 
+# hosting of your plugin demo:
+# *
+# !*/
+# !index.html
+# !.gitignore
