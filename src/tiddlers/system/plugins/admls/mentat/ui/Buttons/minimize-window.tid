@@ -1,9 +1,9 @@
 caption: {{$:/core/images/down-arrow}} minimize
 created: 20190111235001893
 description: Minimize this window
-modified: 20190126000507397
+modified: 20190126002116721
 tags: tampered $:/tags/WindowViewToolbar
-title: $:/core/ui/Buttons/minimize-window
+title: $:/plugins/admls/mentat/ui/Buttons/minimize-window
 type: text/vnd.tiddlywiki
 
 \whitespace trim

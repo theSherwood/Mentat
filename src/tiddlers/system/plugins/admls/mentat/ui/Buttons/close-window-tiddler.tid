@@ -1,9 +1,9 @@
 caption: {{$:/core/images/close-button}} close window
 created: 20190111232239606
 description: Close (delete) window instance
-modified: 20190125235638072
+modified: 20190126002244932
 tags: tampered $:/tags/WindowViewToolbar
-title: $:/core/ui/Buttons/close-window-tiddler
+title: $:/plugins/admls/mentat/ui/Buttons/close-window-tiddler
 type: text/vnd.tiddlywiki
 
 \define windowStoryList(currentTiddler) $(currentTiddler)$StoryList

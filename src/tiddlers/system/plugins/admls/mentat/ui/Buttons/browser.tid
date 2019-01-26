@@ -1,21 +1,21 @@
 caption: browser mode
 created: 20190111194307777
 description: Toggle browser mode
-modified: 20190126000444983
+modified: 20190126002628842
 tags: tampered $:/tags/PageControls
-title: $:/core/ui/Buttons/browser
+title: $:/plugins/admls/mentat/ui/Buttons/browser
 type: text/vnd.tiddlywiki
 
 <$button tooltip="Toggle browser mode" aria-label="browser mode" class=<<tv-config-toolbar-class>>>
 <$reveal type="match" state="$:/config/Browser!!toggle" text="on">
 <$action-setfield $tiddler="$:/config/Browser" toggle="off"/>
-<$fieldmangler tiddler="$:/core/ui/Buttons/new-window-tiddler">
+<$fieldmangler tiddler="$:/plugins/admls/mentat/ui/Buttons/new-window-tiddler">
 <$action-sendmessage $message="tm-remove-tag" $param="$:/tags/PageControls"/>
 </$fieldmangler>
 </$reveal>
 <$reveal type="nomatch" state="$:/config/Browser!!toggle" text="on">
 <$action-setfield $tiddler="$:/config/Browser" toggle="on"/>
-<$fieldmangler tiddler="$:/core/ui/Buttons/new-window-tiddler">
+<$fieldmangler tiddler="$:/plugins/admls/mentat/ui/Buttons/new-window-tiddler">
 <$action-sendmessage $message="tm-add-tag" $param="$:/tags/PageControls"/>
 </$fieldmangler>
 </$reveal>

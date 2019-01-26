@@ -1,5 +1,5 @@
 created: 20190111193210859
-modified: 20190125235603202
+modified: 20190126005207872
 tags: unfinished tampered $:/tags/PageTemplate
 title: $:/core/ui/PageTemplate/story
 type: text/vnd.tiddlywiki
@@ -17,7 +17,7 @@ type: text/vnd.tiddlywiki
 </section>
 
 <$reveal type="match" state="$:/config/Browser!!toggle" text="on">
-<$list filter="[list[$:/StoryList]tag[Window]]" template="WindowViewTemplate" editTemplate="$:/core/ui/EditTemplate" storyview={{$:/view}} emptyMessage={{$:/config/EmptyStoryMessage}}/>
+<$list filter="[list[$:/StoryList]tag[Window]]" template="$:/plugins/admls/mentat/ui/WindowViewTemplate" editTemplate="$:/core/ui/EditTemplate" storyview={{$:/view}} emptyMessage={{$:/config/EmptyStoryMessage}}/>
 </$reveal>
 
 <$reveal type="nomatch" state="$:/config/Browser!!toggle" text="on">
