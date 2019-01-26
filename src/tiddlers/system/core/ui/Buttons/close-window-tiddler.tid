@@ -1,0 +1,27 @@
+caption: {{$:/core/images/close-button}} close window
+created: 20190111232239606
+description: Close (delete) window instance
+modified: 20190125235638072
+tags: tampered $:/tags/WindowViewToolbar
+title: $:/core/ui/Buttons/close-window-tiddler
+type: text/vnd.tiddlywiki
+
+\define windowStoryList(currentTiddler) $(currentTiddler)$StoryList
+
+\define windowHistoryList(currentTiddler) $(currentTiddler)$HistoryList
+
+\define deleteWindowLists()
+<$action-deletetiddler $tiddler=<<windowStoryList>>/>
+<$action-sendmessage $message="tm-close-tiddler" $param=<<windowStoryList>>/>
+<$action-deletetiddler $tiddler=<<windowHistoryList>>/>
+<$action-sendmessage $message="tm-close-tiddler" $param=<<windowHistoryList>>/>
+\end
+
+<$button message="tm-delete-tiddler" actions=<<deleteWindowLists>> tooltip="Close window" aria-label="close window" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
+{{$:/core/images/close-button}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+<span class="tc-btn-text"><$text text="close window"/></span>
+</$list>
+</$button>

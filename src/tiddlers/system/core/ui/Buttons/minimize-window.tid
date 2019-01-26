@@ -1,0 +1,19 @@
+caption: {{$:/core/images/down-arrow}} minimize
+created: 20190111235001893
+description: Minimize this window
+modified: 20190126000507397
+tags: tampered $:/tags/WindowViewToolbar
+title: $:/core/ui/Buttons/minimize-window
+type: text/vnd.tiddlywiki
+
+\whitespace trim
+<$button message="tm-close-tiddler" tooltip="Minimize this window" aria-label="minimize" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
+{{$:/core/images/down-arrow}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+<span class="tc-btn-text">
+<$text text="minimize"}/>
+</span>
+</$list>
+</$button>

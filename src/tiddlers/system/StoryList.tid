@@ -1,6 +1,6 @@
 created: 20190125233532982
-list: $:/AdvancedSearch
-modified: 20190125233954498
+list: TaggedWindow $:/Import $:/core/ui/Buttons/fullscreen-window $:/core/ui/Buttons/minimize-window $:/tags/WindowViewToolbar $:/core/ui/Buttons/browser $:/core/ui/ControlPanel/Toolbars/WindowViewToolbar $:/ControlPanel TaggedUnfinished TaggedTampered browser-window [[$:/core/ui/Buttons/new-tiddler experiment]] $:/AdvancedSearch $:/DefaultTiddlers
+modified: 20190126000726940
 title: $:/StoryList
 type: text/vnd.tiddlywiki
 
