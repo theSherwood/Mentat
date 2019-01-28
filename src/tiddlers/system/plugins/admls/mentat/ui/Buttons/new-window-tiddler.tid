@@ -1,5 +1,5 @@
 created: 20190111210715655
-modified: 20190126010432128
+modified: 20190128231741382
 tags: tampered
 title: $:/plugins/admls/mentat/ui/Buttons/new-window-tiddler
 type: text/vnd.tiddlywiki
@@ -9,7 +9,7 @@ type: text/vnd.tiddlywiki
 \define actions()
 <$set name="timestamp" value=<<now YY0MM0DD0hh0mm0ss0XXX>>>
 <$set name="windowTitle" value=<<uniqueWindow>>>
-<$action-setfield $tiddler=<<windowTitle>> text={{Window Template}} tags="Window"/>
+<$action-setfield $tiddler=<<windowTitle>> tags="Window"/>
 <$action-navigate $to=<<windowTitle>>/>
 </$set>
 </$set>
@@ -23,6 +23,9 @@ type: text/vnd.tiddlywiki
 <span class="tc-btn-text"><$text text="new window tiddler"/></span>
 </$list>
 </$button>
+
+
+
 
 <$action-sendmessage $message="tm-new-tiddler" $param="Test Template"/>
 <$action-sendmessage $message="tm-save-tiddler" $param="Test Template"/>
