@@ -1,0 +1,19 @@
+created: 20190128231036010
+modified: 20190128231059889
+tags: tampered
+title: Contents of WindowViewTemplate/body
+type: text/vnd.tiddlywiki
+
+<$reveal tag="div" class="tc-tiddler-body" type="nomatch" stateTitle=<<folded-state>> text="hide" retain="yes" animate="yes">
+
+<$list filter="[all[current]!has[plugin-type]!field:hide-body[yes]]">
+
+<$transclude>
+
+<$transclude tiddler="$:/language/MissingTiddler/Hint"/>
+
+</$transclude>
+
+</$list>
+
+</$reveal>

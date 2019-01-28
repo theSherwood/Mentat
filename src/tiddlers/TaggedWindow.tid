@@ -1,0 +1,9 @@
+created: 20190126000535667
+modified: 20190126000717644
+tags: unfinished tampered
+title: TaggedWindow
+type: text/vnd.tiddlywiki
+
+<$list filter="[tag[Window]]">
+
+</$list>
