@@ -1,0 +1,9 @@
+created: 20190111194103939
+modified: 20190125235627331
+tags: tampered
+title: tagged with $:/tags/PageControls
+type: text/vnd.tiddlywiki
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/PageControls]!has[draft.of]]" variable="listItem">
+
+</$list>

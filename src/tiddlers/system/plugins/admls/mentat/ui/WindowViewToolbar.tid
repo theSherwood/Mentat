@@ -1,0 +1,22 @@
+caption: Window View
+created: 20190111233529635
+modified: 20190126000856103
+tags: tampered $:/tags/ControlPanel/Toolbars
+title: $:/plugins/admls/mentat/ui/WindowViewToolbar
+type: text/vnd.tiddlywiki
+
+\define lingo-base() $:/language/TiddlerInfo/
+
+\define config-base() $:/config/WindowViewToolbarButtons/Visibility/
+
+Choose which buttons are displayed for window tiddlers in view mode. Drag and drop to change the ordering
+
+<$set name="tv-config-toolbar-icons" value="yes">
+
+<$set name="tv-config-toolbar-text" value="yes">
+
+<$macrocall $name="list-tagged-draggable" tag="$:/tags/WindowViewToolbar" itemTemplate="$:/core/ui/ControlPanel/Toolbars/ItemTemplate"/>
+
+</$set>
+
+</$set>

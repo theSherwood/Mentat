@@ -1,0 +1,37 @@
+created: 20190111193210859
+modified: 20190126005207872
+tags: unfinished tampered $:/tags/PageTemplate
+title: $:/core/ui/PageTemplate/story
+type: text/vnd.tiddlywiki
+
+<section class="tc-story-river">
+
+<section class="story-backdrop">
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/AboveStory]!has[draft.of]]">
+
+<$transclude/>
+
+</$list>
+
+</section>
+
+<$reveal type="match" state="$:/config/Browser!!toggle" text="on">
+<$list filter="[list[$:/StoryList]tag[Window]]" template="$:/plugins/admls/mentat/ui/WindowViewTemplate" editTemplate="$:/core/ui/EditTemplate" storyview={{$:/view}} emptyMessage={{$:/config/EmptyStoryMessage}}/>
+</$reveal>
+
+<$reveal type="nomatch" state="$:/config/Browser!!toggle" text="on">
+<$list filter="[list[$:/StoryList]]" history="$:/HistoryList" template="$:/core/ui/ViewTemplate" editTemplate="$:/core/ui/EditTemplate" storyview={{$:/view}} emptyMessage={{$:/config/EmptyStoryMessage}}/>
+</$reveal>
+
+<section class="story-frontdrop">
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/BelowStory]!has[draft.of]]">
+
+<$transclude/>
+
+</$list>
+
+</section>
+
+</section>

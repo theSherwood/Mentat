@@ -1,0 +1,16 @@
+created: 20190111185656065
+modified: 20190125235753498
+tags: tampered $:/tags/WindowEditTemplate $:/tags/WindowViewTemplate
+title: WindowViewTemplate/classic
+type: text/vnd.tiddlywiki
+
+\define lingo-base() $:/language/ClassicWarning/
+<$list filter="[all[current]type[text/x-tiddlywiki]]">
+<div class="tc-message-box">
+
+<<lingo Hint>>
+
+<$button set="!!type" setTo="text/vnd.tiddlywiki"><<lingo Upgrade/Caption>></$button>
+
+</div>
+</$list>

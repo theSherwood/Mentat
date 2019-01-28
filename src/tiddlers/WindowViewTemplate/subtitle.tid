@@ -1,0 +1,13 @@
+created: 20190111185516513
+modified: 20190126001811253
+tags: tampered
+title: WindowViewTemplate/subtitle
+type: text/vnd.tiddlywiki
+
+<$reveal type="nomatch" stateTitle=<<folded-state>> text="hide" tag="div" retain="yes" animate="yes">
+<div class="tc-subtitle">
+<$link to={{!!modifier}}>
+<$view field="modifier"/>
+</$link> <$view field="modified" format="date" template={{$:/language/Tiddler/DateFormat}}/>
+</div>
+</$reveal>

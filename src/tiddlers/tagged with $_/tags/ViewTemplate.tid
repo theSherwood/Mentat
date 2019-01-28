@@ -1,0 +1,9 @@
+created: 20190111185036276
+modified: 20190125235726785
+tags: tampered
+title: tagged with $:/tags/ViewTemplate
+type: text/vnd.tiddlywiki
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/ViewTemplate]!has[draft.of]]" variable="listItem">
+
+</$list>

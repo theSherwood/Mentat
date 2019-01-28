@@ -11,8 +11,7 @@
 *
 !src
 !src/tiddlers
-!src/tiddlers/system
-!src/tiddlers/system/**
+!src/tiddlers/**
 !*index.html
 !.gitignore
 
