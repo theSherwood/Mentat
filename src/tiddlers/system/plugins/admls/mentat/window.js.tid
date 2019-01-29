@@ -1,42 +1,59 @@
 created: 20190128235608769
-modified: 20190128235748797
-tags: 
+modified: 20190129101327551
+tags: unfinished tampered
 title: $:/plugins/admls/mentat/window.js
 type: application/javascript
 
+/*\
+title: $:/plugins/admls/mentant/window.js
+type: application/javascript
+module-type: widget
+
+tiddlers tagged 'Window' can be dragged and resized
+like browser windows
+
+\*/
+(function () {
+
+"use strict";
+/*jslint node: true, browser: true */
+/*global $tw: false */
+
+var Widget = require("$:/core/modules/widgets/widget.js").widget;
+
+var WindowWidget = function(parseTreeNode,options) {
+    this.initialise(parseTreeNode,options);
+};
+
+/*
+Inherit from the base widget class
+*/
+WindowWidget.prototype = new Widget();
+
+/*
+Render this widget into the DOM
+*/
+WindowWidget.prototype.render = function(parent,nextSibling) {
+    var self = this;
+    var parentDomNode = parent;
+
+    // Compute attributes and execute state
+    this.computeAttributes();
+    this.execute();
+
 const zstack = []; // For assigning z-indices.
 
-document.querySelectorAll(".mydiv").forEach(elmnt => {
-  // log the dimension info to the .content div
-  function logDimensions() {
-    const content = elmnt.querySelector(".content");
-    content.querySelector(".top").innerHTML = elmnt.style.top.slice(0, -2) || elmnt.offsetTop;
-    content.querySelector(".left").innerHTML = elmnt.style.left.slice(0, -2)|| elmnt.offsetLeft;
-    content.querySelector(".height").innerHTML = elmnt.style.height.slice(0, -2) || elmnt.offsetHeight;
-    content.querySelector(".width").innerHTML = elmnt.style.width.slice(0, -2) || elmnt.offsetWidth;
-  }
-  
-  function queryLog(elmnt, styleAttribute) {
-    const content = elmnt.querySelector(".content");
-    return content.querySelector(`.${styleAttribute}`).innerHTML;
-  }
-  
-  function getSize() {
-    elmnt.style.width = queryLog(elmnt, "width") + 'px';
-    elmnt.style.height = queryLog(elmnt, "height") + 'px';
-  }
-  
-  function getPosition() {
-    elmnt.style.top = queryLog(elmnt, "top") + 'px';
-    elmnt.style.left = queryLog(elmnt, "left") + 'px';
-  }
-  
-  logDimensions();
-  getSize();
-  getPosition();
-  elmnt.addEventListener("mousedown", dragMouseDown, false);
-  elmnt.addEventListener("mousedown", zPosition, false);
+document.addEventListener("mousedown", function(e) {
+	
   let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    
+    if (!e.target.className.includes("tc-tagged-Window")) {
+      return;
+  }
+    
+  let elmnt = e.target;
+  dragMouseDown(e);
+  zPosition(e);
   
   function remove(array, element) {
     const index = array.indexOf(element);
@@ -56,8 +73,8 @@ document.querySelectorAll(".mydiv").forEach(elmnt => {
   }
   
   function dragMouseDown(e) {
-    // The dragging won't occur if the click is on some other element within mydiv.
-    if (!e.target.className.includes("mydiv")) {
+    // The dragging won't occur if the click is on some other element within window.
+    if (!e.target.className.includes("tc-tagged-Window")) {
       return;
     }
     // get the mouse cursor position at startup:
@@ -80,18 +97,14 @@ document.querySelectorAll(".mydiv").forEach(elmnt => {
     // running of the window (assumes fixed)
     if (elmnt.style.position = "fixed") {
     if (elmnt.offsetTop - pos2 >= 0 && window.innerHeight >= elmnt.offsetTop - pos2 + elmnt.offsetHeight) {
-      const top = queryLog(elmnt, "top");
-      elmnt.style.top = (top - pos2) + "px";
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
     };
     if (elmnt.offsetLeft - pos1 >= 0 && window.innerWidth >= elmnt.offsetLeft - pos1 + elmnt.offsetWidth) {
-      const left = queryLog(elmnt, "left");
-      elmnt.style.left = (left - pos1) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
     };
     } else {
-      const top = queryLog(elmnt, "top");
-      const left = queryLog(elmnt, "left");
-      elmnt.style.top = (top - pos2) + "px";
-      elmnt.style.left = (left - pos1) + "px";
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
     }
     logDimensions();
   }
@@ -102,22 +115,5 @@ document.querySelectorAll(".mydiv").forEach(elmnt => {
     window.removeEventListener('mouseup', closeDragElement, false);
   }
   
-  const resizer = elmnt.querySelector(".resizer");
-  resizer.addEventListener('mousedown', initResize, false);
-
-  function initResize(e) {
-     window.addEventListener('mousemove', Resize, false);
-     window.addEventListener('mouseup', stopResize, false);
-  }
-  function Resize(e) {
-    getSize();
-     elmnt.style.width = (e.clientX - elmnt.offsetLeft) + 'px';
-     elmnt.style.height = (e.clientY - elmnt.offsetTop) + 'px';
-     logDimensions();
-  }
-  function stopResize(e) {
-    window.removeEventListener('mousemove', Resize, false);
-    window.removeEventListener('mouseup', stopResize, false);
-  }
-
-  });
+  }, false);
+})();

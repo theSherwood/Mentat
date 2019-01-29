@@ -1,5 +1,5 @@
 created: 20190111190118060
-modified: 20190126004020410
+modified: 20190129200244955
 tags: tampered
 title: $:/plugins/admls/mentat/ui/WindowViewTemplate
 type: text/vnd.tiddlywiki
@@ -7,9 +7,6 @@ type: text/vnd.tiddlywiki
 \define frame-classes()
 tc-tiddler-frame tc-tiddler-view-frame $(missingTiddlerClass)$ $(shadowTiddlerClass)$ $(systemTiddlerClass)$ $(tiddlerTagClasses)$ $(userClass)$
 \end
-\define folded-state()
-$:/state/folded/$(currentTiddler)$
-\end
-<$vars storyTiddler=<<currentTiddler>> tiddlerInfoState=<<qualify "$:/state/popup/tiddler-info">> userClass={{!!class}}><$tiddler tiddler=<<currentTiddler>>><div data-tiddler-title=<<currentTiddler>> data-tags={{!!tags}} class=<<frame-classes>>><$list filter="[all[shadows+tiddlers]tag[$:/tags/WindowViewTemplate]!has[draft.of]]" variable="listItem"><$transclude tiddler=<<listItem>>/></$list>
+<$vars storyTiddler=<<currentTiddler>> tiddlerInfoState=<<qualify "$:/state/popup/tiddler-info">> userClass={{!!class}}><$tiddler tiddler=<<currentTiddler>>><div data-tiddler-title=<<currentTiddler>> data-tags={{!!tags}} class=<<frame-classes>>><$empty><$list filter="[all[shadows+tiddlers]tag[$:/tags/WindowViewTemplate]!has[draft.of]]" variable="listItem"><$transclude tiddler=<<listItem>>/></$list></$empty>
 </div>
 </$tiddler></$vars>
