@@ -3,7 +3,7 @@ created: 20190130100248791
 type: application/javascript
 title: $:/plugins/admls/mentat/utils/mentat.js
 tags: tampered
-modified: 20190130102954876
+modified: 20190130104830377
 module-type: utils
 
 Various static DOM-related utility functions.
@@ -15,20 +15,11 @@ Various static DOM-related utility functions.
 /*global $tw: false */
 "use strict";
 
+// Test eventListener for the window
 exports.dragListener = function(e) {
-	if(e.target.dataset.tags==="testingStyle"){	console.log($tw.utils.getBoundingPageRect(e.target));
+	const elmnt = e.target;
+	if(elmnt.dataset.tags==="testingStyle"){	console.log($tw.utils.getBoundingPageRect(elmnt));
 		}
-	};
-
-
-exports.dragDelegatorListener = function() {
-	$tw.utils.addEventListeners(document, [{
-    	name: "click", handlerFunction: function(e) {
-		if(e.target.dataset.tags==="testingStyle"){
-console.log($tw.utils.getBoundingPageRect(e.target));
-		}
-	}
-	}]);
 	};
 
 })();

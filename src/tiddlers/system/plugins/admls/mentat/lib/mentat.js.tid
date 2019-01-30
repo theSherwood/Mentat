@@ -1,5 +1,5 @@
 created: 20190130010029762
-modified: 20190130011123728
+modified: 20190130120512028
 tags: unfinished tampered
 title: $:/plugins/admls/mentat/lib/mentat.js
 type: application/javascript
@@ -13,41 +13,92 @@ Description...
 
 \*/
 
-// For assigning z-indices. I'm not sure it should go here.
-const zstack = []; 
-
 (function(elmnt){
 
 /*jslint node: true, browser: true */
 /*global $tw: false */
 "use strict";
     
-	const dimensions = $tw.utils.getBoundingPageRect(elmnt);
+function Window() {
 
-document.querySelectorAll(".mydiv").forEach(elmnt => {
-  // log the dimension info to the .content div
-  function logDimensions() {
-    const content = elmnt.querySelector(".content");
-    content.querySelector(".top").innerHTML = elmnt.style.top.slice(0, -2) || elmnt.offsetTop;
-    content.querySelector(".left").innerHTML = elmnt.style.left.slice(0, -2)|| elmnt.offsetLeft;
-    content.querySelector(".height").innerHTML = elmnt.style.height.slice(0, -2) || elmnt.offsetHeight;
-    content.querySelector(".width").innerHTML = elmnt.style.width.slice(0, -2) || elmnt.offsetWidth;
-  }
-  
-  function queryLog(elmnt, styleAttribute) {
-    const content = elmnt.querySelector(".content");
-    return content.querySelector(`.${styleAttribute}`).innerHTML;
-  }
-  
-  function getSize() {
-    elmnt.style.width = queryLog(elmnt, "width") + 'px';
-    elmnt.style.height = queryLog(elmnt, "height") + 'px';
-  }
-  
-  function getPosition() {
-    elmnt.style.top = queryLog(elmnt, "top") + 'px';
-    elmnt.style.left = queryLog(elmnt, "left") + 'px';
-  }
+}
+
+    // For assigning z-indices. I'm not sure it should go here.
+const zstack = []; 
+
+Window.prototype.getDimensions = function(elmnt) {
+	const title = elmnt.dataset.tiddlerTitle;
+	// Check that elmnt is a tiddler
+    if(!title) {
+    	return;
+    }
+	return = $tw.utils.getBoundingPageRect(elmnt);
+}
+
+Window.prototype.logDimensions = function(elmnt) {
+	const title = elmnt.dataset.tiddlerTitle;
+	// Check that elmnt is a tiddler
+    if(!title) {
+    	return;
+    }
+    // Replace getDimensions with the computed dimensions
+    const dimensions = this.getDimensions(elmnt);
+	Object.keys(dimensions).forEach(function(key) {
+    	$tw.wiki.setText(title,key,undefined,dimensions[key],undefined);
+    }
+}
+
+Window.prototype.dragMouseDown = function(e) {
+	const elmnt = e.target;
+    // The dragging won't occur if the click is on some other element than the tagged tiddler, either within or without.
+    if (!elmnt.dataset.tags.includes("testingStyle") {
+      return;
+    }
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // call a function whenever the cursor moves:
+    window.addEventListener('mousemove', this.elementDrag, false);
+    window.addEventListener('mouseup', this.closeDragElement, false);
+}
+
+Window.prototype.elementDrag = function(e) {
+    e = e || window.event;
+    const elmnt = e.target;
+    const title = elmnt.dataset.tiddlerTitle;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // get dimensions
+    const {top, left} = this.getDimensions(elmnt);
+    // set the element's new position: prevent them from
+    // running off the window (assumes fixed position)
+    if (elmnt.style.position = "fixed") {
+    if (elmnt.offsetTop - pos2 >= 0 && window.innerHeight >= elmnt.offsetTop - pos2 + elmnt.offsetHeight) {
+    	$tw.wiki.setText(title,top,undefined,(top - pos2),undefined);
+    };
+    if (elmnt.offsetLeft - pos1 >= 0 && window.innerWidth >= elmnt.offsetLeft - pos1 + elmnt.offsetWidth) {
+    	$tw.wiki.setText(title,left,undefined,(left - pos1),undefined);
+    };
+    } else {
+    	$tw.wiki.setText(title,top,undefined,(top - pos2),undefined);
+        $tw.wiki.setText(title,left,undefined,(left - pos1),undefined);
+    }
+}
+
+Window.prototype.closeDragElement = function() {
+    // stop moving when mouse button is released:
+    window.removeEventListener('mousemove', this.elementDrag, false);
+    window.removeEventListener('mouseup', this.closeDragElement, false);
+}
+
+
+
+
+
   
   logDimensions();
   getSize();
@@ -71,53 +122,6 @@ document.querySelectorAll(".mydiv").forEach(elmnt => {
     for (let i = 0; i < zstack.length; i++) {
       zstack[i].style.zIndex = i * 10;
     }
-  }
-  
-  function dragMouseDown(e) {
-    // The dragging won't occur if the click is on some other element within mydiv.
-    if (!e.target.className.includes("mydiv")) {
-      return;
-    }
-    // get the mouse cursor position at startup:
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    // call a function whenever the cursor moves:
-    window.addEventListener('mousemove', elementDrag, false);
-    window.addEventListener('mouseup', closeDragElement, false);
-  }
-    
-  function elementDrag(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // calculate the new cursor position:
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    // set the element's new position: prevent them from
-    // running of the window (assumes fixed)
-    if (elmnt.style.position = "fixed") {
-    if (elmnt.offsetTop - pos2 >= 0 && window.innerHeight >= elmnt.offsetTop - pos2 + elmnt.offsetHeight) {
-      const top = queryLog(elmnt, "top");
-      elmnt.style.top = (top - pos2) + "px";
-    };
-    if (elmnt.offsetLeft - pos1 >= 0 && window.innerWidth >= elmnt.offsetLeft - pos1 + elmnt.offsetWidth) {
-      const left = queryLog(elmnt, "left");
-      elmnt.style.left = (left - pos1) + "px";
-    };
-    } else {
-      const top = queryLog(elmnt, "top");
-      const left = queryLog(elmnt, "left");
-      elmnt.style.top = (top - pos2) + "px";
-      elmnt.style.left = (left - pos1) + "px";
-    }
-    logDimensions();
-  }
-
-  function closeDragElement() {
-    // stop moving when mouse button is released:
-    window.removeEventListener('mousemove', elementDrag, false);
-    window.removeEventListener('mouseup', closeDragElement, false);
   }
   
   const resizer = elmnt.querySelector(".resizer");
