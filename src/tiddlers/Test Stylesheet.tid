@@ -1,9 +1,10 @@
 created: 20190129234855069
-modified: 20190130000346029
+modified: 20190130174224866
 tags: $:/tags/Stylesheet
 title: Test Stylesheet
 type: text/vnd.tiddlywiki
 
+<$reveal type="match" state="$:/view" text="mentat">
 <$list filter="[tag[testingStyle]]">
 
 [data-tiddler-title="<<currentTiddler>>"] {
@@ -12,3 +13,4 @@ width: {{!!width}}px;
 }
 
 </$list>
+</$reveal>
