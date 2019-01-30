@@ -1,6 +1,6 @@
-created: 20190130005629321
-list: [[Test Tiddler 2]] [[Test Tiddler 1]] [[Test Tiddler]] [[Test Stylesheet]] $:/core/modules/storyviews/pop.js $:/plugins/admls/mentat/storyviews/mentat.js $:/core/modules/storyviews/classic.js $:/plugins/admls/mentat/ui/WindowViewTemplate [[test of empty widget]] [[empty widget test]] [[pan widget]] $:/plugins/admls/mentat/window.js [[$:/plugins/admls/mentat/new-tiddler experiment]] $:/plugins/admls/mentat/ui/Buttons/new-window-tiddler WindowViewTemplate/title WindowViewTemplate/body TaggedTampered
-modified: 20190130005629321
+created: 20190130103537537
+list: $:/plugins/admls/mentat/storyviews/mentat.js [[Plugin Kickstarter]] $:/plugins/admls/mentat/utils/mentat.js $:/plugins/admls/mentat/lib/mentat.js [[Test Tiddler 2]] [[Test Tiddler 1]] [[Test Tiddler]] [[Test Stylesheet]] $:/plugins/admls/mentat/ui/WindowViewTemplate [[test of empty widget]] [[empty widget test]] [[pan widget]] $:/plugins/admls/mentat/window.js [[$:/plugins/admls/mentat/new-tiddler experiment]] $:/plugins/admls/mentat/ui/Buttons/new-window-tiddler WindowViewTemplate/title WindowViewTemplate/body TaggedTampered
+modified: 20190130103537537
 title: $:/StoryList
 type: text/vnd.tiddlywiki
 
