@@ -1,0 +1,14 @@
+created: 20190129234855069
+modified: 20190130000346029
+tags: $:/tags/Stylesheet
+title: Test Stylesheet
+type: text/vnd.tiddlywiki
+
+<$list filter="[tag[testingStyle]]">
+
+[data-tiddler-title="<<currentTiddler>>"] {
+background-color: grey;
+width: {{!!width}}px;
+}
+
+</$list>
