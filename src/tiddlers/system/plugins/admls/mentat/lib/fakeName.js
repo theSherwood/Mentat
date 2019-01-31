@@ -3,14 +3,15 @@ created: 20190130010029762
 type: application/javascript
 title: $:/plugins/admls/mentat/lib/fakeName.js
 tags: unfinished tampered
-modified: 20190131215116180
+modified: 20190131220019884
 module-type: library
 
 Description...
 
 ToDo:
-- Prevent the dimension fields from becoming null
+- Fix stutter on mouseup
 - Manage empty dimension fields on startup
+- Adjust behavior when cursor gets ahead of the drag
 
 \*/
 
@@ -49,11 +50,7 @@ const Weird = {
     elementDrag: function(e) {
         const Weird = window.Weird;
         e = e || window.event;
-        const elmnt = e.target;
-        if (elmnt !== Weird.draggedTiddler) {
-        	Weird.closeDragElement();
-            return;
-        }
+        const elmnt = Weird.draggedTiddler
         const title = elmnt.dataset.tiddlerTitle;
         e.preventDefault();
         // calculate the new cursor position:
@@ -99,10 +96,14 @@ const Weird = {
     logNewDimensions: function() {
     	const elmnt = Weird.draggedTiddler;
     	const title = elmnt.dataset.tiddlerTitle;
+        // Log the dimensions to the appropriate field for pickup by CSS
         $tw.wiki.setText(title,'top',undefined,(elmnt.offsetTop),undefined);
         $tw.wiki.setText(title,'left',undefined,(elmnt.offsetLeft),undefined);
-        elmnt.style.top = null;
-        elmnt.style.left = null;
+        // Wait to get rid of element styles until the fields have been updated
+        setTimeout(function() {
+        	elmnt.style.top = null;
+        	elmnt.style.left = null;
+        }, 0);
         
     }
     
