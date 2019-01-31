@@ -3,10 +3,15 @@ created: 20190130010029762
 type: application/javascript
 title: $:/plugins/admls/mentat/lib/fakeName.js
 tags: unfinished tampered
-modified: 20190131113615245
+modified: 20190131212141182
 module-type: library
 
 Description...
+
+ToDo:
+- Only log dimensions to the fields once we are done dragging (on mouseup). While dragging, use elmnt.style. I think this will be more performant. I think it is the logging to the fields of the tiddler and the refresh that is producing that is killing us.
+- If cursor slips from the draggable element, trigger closeDrag
+- log dragging element
 
 \*/
 
@@ -16,7 +21,7 @@ Description...
 /*global $tw: false */
 "use strict";
 
-/*\
+
 const Weird = {
 	zStack: [],
     pos1: 0,
@@ -25,12 +30,13 @@ const Weird = {
     pos4: 0,
 
     dragMouseDown: function(e) {
-    	const Weird = Weird
+    	const Weird = window.Weird
         const elmnt = e.target;
         // The dragging won't occur if the click is on some other element than the tagged tiddler, either within or without.
         if (!elmnt.dataset.tags.includes("testingStyle")) {
           return;
         }
+        Weird.draggedTiddler = elmnt
         // get the mouse cursor position at startup:
         Weird.pos3 = e.clientX;
         Weird.pos4 = e.clientY;
@@ -42,9 +48,14 @@ const Weird = {
     },
 
     elementDrag: function(e) {
-        const Weird = Weird;
+        const Weird = window.Weird;
         e = e || window.event;
         const elmnt = e.target;
+        if (elmnt !== Weird.draggedTiddler) {
+        	Weird.closeDragElement();
+            Weird.draggedTiddler = undefined;
+            return;
+        }
         const title = elmnt.dataset.tiddlerTitle;
         e.preventDefault();
         // calculate the new cursor position:
@@ -53,7 +64,8 @@ const Weird = {
         Weird.pos3 = e.clientX;
         Weird.pos4 = e.clientY;
         // get dimensions
-        const {top, left} = $tw.utils.getBoundingPageRect(elmnt);
+        const top = elmnt.offsetTop;
+        const left = elmnt.offsetLeft;
         // set the element's new position: prevent them from
         // running off the window (assumes fixed position)
         if (elmnt.style.position === "fixed") {
@@ -72,27 +84,24 @@ const Weird = {
     },
 
     closeDragElement: function() {
-        const Weird = Weird;
+        const Weird = window.Weird;
         // stop moving when mouse button is released:
+        Weird.draggedTiddler = undefined;
         window.removeEventListener('mousemove', Weird.elementDrag, false);
         window.removeEventListener('mouseup', Weird.closeDragElement, false);
 
         console.log("closeDragElement THIS", this);
-    },
-};
-
-const Object = {
-key: "value"
+    }
 };
 
 exports.Weird = Weird;
 
 })();
-\*/
 
 
 
 
+/*\
 function Weird() {
 	this.zStack = [];
 };
@@ -139,7 +148,7 @@ Weird.prototype.elementDrag = function(e) {
     const Left = left ? left : 0;
     // set the element's new position: prevent them from
     // running off the window (assumes fixed position)
-    /*\
+
     if (elmnt.style.position === "fixed") {
     if (elmnt.offsetTop - self.pos2 >= 0 && window.innerHeight >= elmnt.offsetTop - self.pos2 + elmnt.offsetHeight) {
     	$tw.wiki.setText(title,'top',undefined,(Top - self.pos2),undefined);
@@ -148,7 +157,7 @@ Weird.prototype.elementDrag = function(e) {
     	$tw.wiki.setText(title,'left',undefined,(Left - self.pos1),undefined);
     };
     } else {
-    \*/
+
     	$tw.wiki.setText(title,'top',undefined,(Top - self.pos2),undefined);
         $tw.wiki.setText(title,'left',undefined,(Left - self.pos1),undefined);
     //}
@@ -169,7 +178,7 @@ const WeirdExport = new Weird();
 exports.Weird = WeirdExport;
 
 })();
-
+\*/
 
 
 
