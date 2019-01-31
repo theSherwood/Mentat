@@ -1,12 +1,13 @@
 created: 20190129234855069
-modified: 20190131223112670
+modified: 20190131224113592
 tags: tampered $:/tags/Stylesheet
 title: Test Stylesheet
 type: text/vnd.tiddlywiki
 
 \define backup(dimension)
 <$view field="""$dimension$""">
-	<$view tiddler="backupValues"></$view>
+	<$view tiddler="backupValues" field="""$dimension$""">
+    </$view>
 </$view>
 \end
 
