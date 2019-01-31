@@ -3,14 +3,14 @@ created: 20190130010029762
 type: application/javascript
 title: $:/plugins/admls/mentat/lib/fakeName.js
 tags: unfinished tampered
-modified: 20190131213359869
+modified: 20190131215116180
 module-type: library
 
 Description...
 
 ToDo:
-- Only log dimensions to the fields once we are done dragging (on mouseup). While dragging, use elmnt.style. I think this will be more performant. I think it is the logging to the fields of the tiddler and the refresh that is producing that is killing us.
-
+- Prevent the dimension fields from becoming null
+- Manage empty dimension fields on startup
 
 \*/
 
@@ -32,7 +32,7 @@ const Weird = {
     	const Weird = window.Weird
         const elmnt = e.target;
         // The dragging won't occur if the click is on some other element than the tagged tiddler, either within or without.
-        if (!elmnt.dataset.tags.includes("testingStyle")) {
+        if (!(elmnt.dataset.tags && elmnt.dataset.tags.includes("testingStyle"))) {
           return;
         }
         Weird.draggedTiddler = elmnt
@@ -52,7 +52,6 @@ const Weird = {
         const elmnt = e.target;
         if (elmnt !== Weird.draggedTiddler) {
         	Weird.closeDragElement();
-            Weird.draggedTiddler = undefined;
             return;
         }
         const title = elmnt.dataset.tiddlerTitle;
@@ -89,17 +88,58 @@ const Weird = {
     closeDragElement: function() {
         const Weird = window.Weird;
         // stop moving when mouse button is released:
+        Weird.logNewDimensions()
         Weird.draggedTiddler = undefined;
         window.removeEventListener('mousemove', Weird.elementDrag, false);
         window.removeEventListener('mouseup', Weird.closeDragElement, false);
 
         console.log("closeDragElement");
+    },
+    
+    logNewDimensions: function() {
+    	const elmnt = Weird.draggedTiddler;
+    	const title = elmnt.dataset.tiddlerTitle;
+        $tw.wiki.setText(title,'top',undefined,(elmnt.offsetTop),undefined);
+        $tw.wiki.setText(title,'left',undefined,(elmnt.offsetLeft),undefined);
+        elmnt.style.top = null;
+        elmnt.style.left = null;
+        
     }
+    
+    
 };
 
 exports.Weird = Weird;
 
 })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
