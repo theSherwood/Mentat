@@ -3,7 +3,7 @@ created: 20190129200505951
 type: application/javascript
 title: $:/plugins/admls/mentat/storyviews/mentat.js
 tags: 
-modified: 20190130103921766
+modified: 20190131112518262
 module-type: storyview
 
 Views the story as a collection of story-windows
@@ -37,9 +37,9 @@ ClassicStoryView.prototype.navigateTo = function(historyInfo) {
     
     console.log('This is a test navigation!');
 
-	// Test eventListener on window
-    $tw.utils.addEventListeners(window, [{
-    	name: "click", handlerFunction: $tw.utils.dragListener
+	// Test eventListener on document
+    $tw.utils.addEventListeners(document, [{
+    	name: "mousedown", handlerFunction: $tw.utils.dragListener
     }]);
    
 };

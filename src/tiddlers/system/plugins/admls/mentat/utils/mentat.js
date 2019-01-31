@@ -3,7 +3,7 @@ created: 20190130100248791
 type: application/javascript
 title: $:/plugins/admls/mentat/utils/mentat.js
 tags: tampered
-modified: 20190130104830377
+modified: 20190131113038963
 module-type: utils
 
 Various static DOM-related utility functions.
@@ -16,10 +16,36 @@ Various static DOM-related utility functions.
 "use strict";
 
 // Test eventListener for the window
-exports.dragListener = function(e) {
+function dragListener2(e) {
 	const elmnt = e.target;
-	if(elmnt.dataset.tags==="testingStyle"){	console.log($tw.utils.getBoundingPageRect(elmnt));
+	if(elmnt.dataset.tags && elmnt.dataset.tags.includes("testingStyle")) {	console.log($tw.utils.getBoundingPageRect(elmnt));
 		}
 	};
+    
+// Test eventListener for the window
+function dragListener(e) {
+
+    // Install CodeMirror
+    if($tw.browser && !window.Weird) {
+
+        var modules = $tw.modules.types["codemirror"];
+        var req = Object.getOwnPropertyNames(modules);
+
+        window.Weird = require("$:/plugins/admls/mentat/lib/fakeName.js").Weird;
+    }
+
+	const elmnt = e.target;
+	if(elmnt.dataset.tags && elmnt.dataset.tags.includes("testingStyle")) {	
+      	const Weird = require("$:/plugins/admls/mentat/lib/fakeName.js").Weird;
+        console.log(Weird);
+        //console.log(Weird.key);
+        //console.log(Weird.zStack);
+        //console.log(Weird.log(elmnt));
+    	Weird.dragMouseDown(e);
+    }  
+	};
+
+exports.dragListener = dragListener;
+
 
 })();

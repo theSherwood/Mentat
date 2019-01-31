@@ -1,5 +1,5 @@
 created: 20190129234855069
-modified: 20190130174224866
+modified: 20190131005434858
 tags: $:/tags/Stylesheet
 title: Test Stylesheet
 type: text/vnd.tiddlywiki
@@ -8,8 +8,12 @@ type: text/vnd.tiddlywiki
 <$list filter="[tag[testingStyle]]">
 
 [data-tiddler-title="<<currentTiddler>>"] {
+position: fixed;
 background-color: grey;
+top: {{!!top}}px;
+left: {{!!left}}px;
 width: {{!!width}}px;
+z-index: 1000;
 }
 
 </$list>
