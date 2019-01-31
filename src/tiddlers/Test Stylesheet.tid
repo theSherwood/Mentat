@@ -1,8 +1,14 @@
 created: 20190129234855069
-modified: 20190131005434858
-tags: $:/tags/Stylesheet
+modified: 20190131223112670
+tags: tampered $:/tags/Stylesheet
 title: Test Stylesheet
 type: text/vnd.tiddlywiki
+
+\define backup(dimension)
+<$view field="""$dimension$""">
+	<$view tiddler="backupValues"></$view>
+</$view>
+\end
 
 <$reveal type="match" state="$:/view" text="mentat">
 <$list filter="[tag[testingStyle]]">
@@ -10,11 +16,14 @@ type: text/vnd.tiddlywiki
 [data-tiddler-title="<<currentTiddler>>"] {
 position: fixed;
 background-color: grey;
-top: {{!!top}}px;
-left: {{!!left}}px;
-width: {{!!width}}px;
+top: <<backup top>>;
+left: <<backup left>>;
+width: <<backup width>>;
 z-index: 1000;
 }
 
 </$list>
+
+
+
 </$reveal>
