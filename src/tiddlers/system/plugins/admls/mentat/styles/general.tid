@@ -1,0 +1,26 @@
+created: 20190131224855059
+modified: 20190131234359301
+tags: $:/tags/Stylesheet
+title: $:/plugins/admls/mentat/styles/general
+type: text/vnd.tiddlywiki
+
+.tc-btn-invisible {
+outline: none;
+}
+
+.resizer-left, .resizer-right {
+position: absolute;
+width: 20px;
+height: 20px;
+background-color: rgba(200,0,0,1);
+color: white;
+bottom: 0px;
+}
+
+.resizer-left {
+left: 0px;
+}
+
+.resizer-right {
+right: 0px;
+}
