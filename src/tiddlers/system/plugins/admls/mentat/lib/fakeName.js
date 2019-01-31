@@ -3,15 +3,14 @@ created: 20190130010029762
 type: application/javascript
 title: $:/plugins/admls/mentat/lib/fakeName.js
 tags: unfinished tampered
-modified: 20190131212141182
+modified: 20190131213359869
 module-type: library
 
 Description...
 
 ToDo:
 - Only log dimensions to the fields once we are done dragging (on mouseup). While dragging, use elmnt.style. I think this will be more performant. I think it is the logging to the fields of the tiddler and the refresh that is producing that is killing us.
-- If cursor slips from the draggable element, trigger closeDrag
-- log dragging element
+
 
 \*/
 
@@ -44,7 +43,7 @@ const Weird = {
         window.addEventListener('mousemove', Weird.elementDrag, false);
         window.addEventListener('mouseup', Weird.closeDragElement, false);
 
-        console.log("dragMouseDown THIS", this);
+        console.log("dragMouseDown", elmnt);
     },
 
     elementDrag: function(e) {
@@ -70,17 +69,21 @@ const Weird = {
         // running off the window (assumes fixed position)
         if (elmnt.style.position === "fixed") {
         if (elmnt.offsetTop - Weird.pos2 >= 0 && window.innerHeight >= elmnt.offsetTop - Weird.pos2 + elmnt.offsetHeight) {
-            $tw.wiki.setText(title,'top',undefined,(top - Weird.pos2),undefined);
+        	elmnt.style.top = (top - Weird.pos2) + "px";
+            //$tw.wiki.setText(title,'top',undefined,(top - Weird.pos2),undefined);
         };
         if (elmnt.offsetLeft - Weird.pos1 >= 0 && window.innerWidth >= elmnt.offsetLeft - Weird.pos1 + elmnt.offsetWidth) {
-            $tw.wiki.setText(title,'left',undefined,(left - Weird.pos1),undefined);
+        	elmnt.style.left = (left - Weird.pos1) + "px";
+            //$tw.wiki.setText(title,'left',undefined,(left - Weird.pos1),undefined);
         };
         } else {
-            $tw.wiki.setText(title,'top',undefined,(top - Weird.pos2),undefined);
-            $tw.wiki.setText(title,'left',undefined,(left - Weird.pos1),undefined);
+        	elmnt.style.top = (top - Weird.pos2) + "px";
+            elmnt.style.left = (left - Weird.pos1) + "px";
+            //$tw.wiki.setText(title,'top',undefined,(top - Weird.pos2),undefined);
+            //$tw.wiki.setText(title,'left',undefined,(left - Weird.pos1),undefined);
         }
 
-        console.log("elementDrag THIS", this);
+        console.log("elementDrag", elmnt);
     },
 
     closeDragElement: function() {
@@ -90,7 +93,7 @@ const Weird = {
         window.removeEventListener('mousemove', Weird.elementDrag, false);
         window.removeEventListener('mouseup', Weird.closeDragElement, false);
 
-        console.log("closeDragElement THIS", this);
+        console.log("closeDragElement");
     }
 };
 
