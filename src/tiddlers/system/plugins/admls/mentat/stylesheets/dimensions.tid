@@ -1,12 +1,12 @@
 created: 20190129234855069
-modified: 20190131224113592
+modified: 20190131224703206
 tags: tampered $:/tags/Stylesheet
-title: Test Stylesheet
+title: $:/plugins/admls/mentat/stylesheets/dimensions
 type: text/vnd.tiddlywiki
 
 \define backup(dimension)
 <$view field="""$dimension$""">
-	<$view tiddler="backupValues" field="""$dimension$""">
+	<$view tiddler="$:/plugins/admls/mentat/config/backup-dimensions" field="""$dimension$""">
     </$view>
 </$view>
 \end
