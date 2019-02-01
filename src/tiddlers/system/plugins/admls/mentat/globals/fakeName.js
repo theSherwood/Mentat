@@ -1,24 +1,25 @@
 /*\
-created: 20190130010029762
+created: 20190201185751112
 type: application/javascript
-title: $:/plugins/admls/mentat/lib/fakeName.js
+title: $:/plugins/admls/mentat/globals/fakeName.js
 tags: unfinished tampered
-modified: 20190201023555654
-module-type: library
+modified: 20190201190238559
+module-type: global
 
 Description...
 
 ToDo:
 - Fix stutter on mouseup and fast dragging
 - make global $tw object and module?
-- zStack
+- fix zStack initialization
+- make macro and widget for calling rather than storyview and utils (must add the event listener to the the tiddlers themselves)
 
 \*/
 
 (function() {
 
 /*jslint node: true, browser: true */
-/*global $tw: false */
+/*global $tw: true */
 "use strict";
 
 
@@ -30,7 +31,7 @@ const Weird = {
     pos4: 0,
 
     dragMouseDown: function(e) {
-    	const Weird = window.Weird
+    	const Weird = $tw.Weird
         const elmnt = e.target;
         
         // Catch if the click happened on the tiddler or any element within it
@@ -71,7 +72,7 @@ const Weird = {
     },
 
     elementDrag: function(e) {
-        const Weird = window.Weird;
+        const Weird = $tw.Weird;
         e = e || window.event;
         const elmnt = Weird.movingTiddler
         const title = elmnt.dataset.tiddlerTitle;
@@ -101,7 +102,7 @@ const Weird = {
     },
 
     closeDragElement: function() {
-        const Weird = window.Weird;
+        const Weird = $tw.Weird;
         // stop moving when mouse button is released:
         Weird.logNewDimensions()
         window.removeEventListener('mousemove', Weird.elementDrag, false);
@@ -110,6 +111,7 @@ const Weird = {
     },
     
     logNewDimensions: function() {
+    	const Weird = $tw.Weird;
     	const elmnt = Weird.movingTiddler;
     	const title = elmnt.dataset.tiddlerTitle;
         // Log the dimensions to the appropriate field for pickup by CSS
@@ -128,7 +130,7 @@ const Weird = {
     },
     
     resizeLeft: function(e) {
-
+		const Weird = $tw.Weird;
     	const tiddler = Weird.movingTiddler;
         tiddler.style.width = (tiddler.offsetWidth + (tiddler.offsetLeft - e.clientX) + 5) + 'px';
         tiddler.style.left = (e.clientX - 5) + 'px';
@@ -136,12 +138,14 @@ const Weird = {
     },
     
     resizeRight: function(e) {
+    	const Weird = $tw.Weird;
     	const tiddler = Weird.movingTiddler;
        	tiddler.style.width = (e.clientX - tiddler.offsetLeft + 5) + 'px';
        	tiddler.style.height = (e.clientY - tiddler.offsetTop + 5) + 'px';      	
     },
     
     stopResize: function() {
+    	const Weird = $tw.Weird;
     	Weird.logNewDimensions();
 
         window.removeEventListener('mousemove', Weird.resizeLeft, false);
@@ -150,6 +154,7 @@ const Weird = {
     },
     
     toZStack: function(elmnt) {
+    	const Weird = $tw.Weird;
     	const zStack = Weird.zStack;
         const index = zStack.indexOf(elmnt);
         if (index !== -1) {
