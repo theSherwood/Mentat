@@ -3,14 +3,13 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/mentat/globals/fakeName.js
 tags: unfinished tampered
-modified: 20190201190238559
+modified: 20190201213413832
 module-type: global
 
 Description...
 
 ToDo:
 - Fix stutter on mouseup and fast dragging
-- make global $tw object and module?
 - fix zStack initialization
 - make macro and widget for calling rather than storyview and utils (must add the event listener to the the tiddlers themselves)
 
@@ -29,6 +28,71 @@ const Weird = {
     pos2: 0,
     pos3: 0,
     pos4: 0,
+
+	startDrag: function(e) {
+    	e.stopPropagation();
+		// Disable dragging if interior elements were target
+        if(!e.target.matches(".tc-tiddler-frame")) {
+          return;
+        }       
+        const Weird = $tw.Weird;
+        Weird.movingTiddler = this;
+
+        // get the mouse cursor position at startup:
+        Weird.pos3 = e.clientX;
+        Weird.pos4 = e.clientY;
+        // call a function whenever the cursor moves:
+        window.addEventListener('mousemove', Weird.tiddlerDrag, false);
+        window.addEventListener('mouseup', Weird.endDrag, false);        
+    },
+    
+    tiddlerDrag: function(e) {
+        const Weird = $tw.Weird;
+        const tiddler = Weird.movingTiddler
+        const title = tiddler.dataset.tiddlerTitle;
+        e.preventDefault();
+        // calculate the new cursor position:
+        Weird.pos1 = Weird.pos3 - e.clientX;
+        Weird.pos2 = Weird.pos4 - e.clientY;
+        Weird.pos3 = e.clientX;
+        Weird.pos4 = e.clientY;
+        // get dimensions
+        const top = tiddler.offsetTop;
+        const left = tiddler.offsetLeft;
+        
+        // set the element's new position: prevent them from
+        // running off the window (assumes fixed position)
+        if (tiddler.style.position === "fixed") {
+            if (tiddler.offsetTop - Weird.pos2 >= 0 && window.innerHeight >= tiddler.offsetTop - Weird.pos2 + tiddler.offsetHeight) {
+                tiddler.style.top = (top - Weird.pos2) + "px";
+            };
+            if (tiddler.offsetLeft - Weird.pos1 >= 0 && window.innerWidth >= tiddler.offsetLeft - Weird.pos1 + tiddler.offsetWidth) {
+                tiddler.style.left = (left - Weird.pos1) + "px";
+            };
+        
+        } else {
+        	tiddler.style.top = (top - Weird.pos2) + "px";
+            tiddler.style.left = (left - Weird.pos1) + "px";
+        }
+    },
+
+	endDrag: function() {
+        const Weird = $tw.Weird;
+        // stop moving when mouse button is released:
+        Weird.logNewDimensions()
+        window.removeEventListener('mousemove', Weird.tiddlerDrag, false);
+        window.removeEventListener('mouseup', Weird.endDrag, false);
+    },
+
+
+
+
+
+
+
+
+
+
 
     dragMouseDown: function(e) {
     	const Weird = $tw.Weird
@@ -112,19 +176,20 @@ const Weird = {
     
     logNewDimensions: function() {
     	const Weird = $tw.Weird;
-    	const elmnt = Weird.movingTiddler;
-    	const title = elmnt.dataset.tiddlerTitle;
+    	const tiddler = Weird.movingTiddler;
+    	const title = tiddler.dataset.tiddlerTitle;
         // Log the dimensions to the appropriate field for pickup by CSS
-        $tw.wiki.setText(title,'top',undefined,(elmnt.offsetTop)+"px",undefined);
-        $tw.wiki.setText(title,'left',undefined,(elmnt.offsetLeft)+"px",undefined);
-        $tw.wiki.setText(title,'width',undefined,(elmnt.offsetWidth)+"px",undefined);
-        $tw.wiki.setText(title,'height',undefined,(elmnt.offsetHeight)+"px",undefined);
+        const u = undefined;
+        $tw.wiki.setText(title,'top',u,(tiddler.offsetTop)+"px",u);
+        $tw.wiki.setText(title,'left',u,(tiddler.offsetLeft)+"px",u);
+        $tw.wiki.setText(title,'width',u,(tiddler.offsetWidth)+"px",u);
+        $tw.wiki.setText(title,'height',u,(tiddler.offsetHeight)+"px",u);
         // Wait to get rid of element styles until the fields have been updated
         setTimeout(function() {
-        	elmnt.style.top = "";
-        	elmnt.style.left = "";
-            elmnt.style.width = "";
-        	elmnt.style.height = "";
+        	tiddler.style.top = "";
+        	tiddler.style.left = "";
+            tiddler.style.width = "";
+        	tiddler.style.height = "";
         }, 1000);
         Weird.movingTiddler = undefined;
     },
