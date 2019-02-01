@@ -3,7 +3,7 @@ created: 20190130010029762
 type: application/javascript
 title: $:/plugins/admls/mentat/lib/fakeName.js
 tags: unfinished tampered
-modified: 20190201003616726
+modified: 20190201005814824
 module-type: library
 
 Description...
@@ -38,7 +38,11 @@ const Weird = {
         	console.log("RESIZE ME NOW, CAP'N");
         	// They two resizers are inside of a span produced by the reveal widget
         	Weird.movingTiddler = elmnt.parentElement.parentElement;
-        	window.addEventListener('mousemove', Weird.resize, false);
+            if (elmnt.classList.contains("resizer-left")) {
+            	window.addEventListener('mousemove', Weird.resizeLeft, false);
+            } else {
+        		window.addEventListener('mousemove', Weird.resizeRight, false);
+            }
      		window.addEventListener('mouseup', Weird.stopResize, false);
             return;
         }
@@ -76,17 +80,13 @@ const Weird = {
         if (elmnt.style.position === "fixed") {
         if (elmnt.offsetTop - Weird.pos2 >= 0 && window.innerHeight >= elmnt.offsetTop - Weird.pos2 + elmnt.offsetHeight) {
         	elmnt.style.top = (top - Weird.pos2) + "px";
-            //$tw.wiki.setText(title,'top',undefined,(top - Weird.pos2),undefined);
         };
         if (elmnt.offsetLeft - Weird.pos1 >= 0 && window.innerWidth >= elmnt.offsetLeft - Weird.pos1 + elmnt.offsetWidth) {
         	elmnt.style.left = (left - Weird.pos1) + "px";
-            //$tw.wiki.setText(title,'left',undefined,(left - Weird.pos1),undefined);
         };
         } else {
         	elmnt.style.top = (top - Weird.pos2) + "px";
             elmnt.style.left = (left - Weird.pos1) + "px";
-            //$tw.wiki.setText(title,'top',undefined,(top - Weird.pos2),undefined);
-            //$tw.wiki.setText(title,'left',undefined,(left - Weird.pos1),undefined);
         }
 
         console.log("elementDrag", elmnt);
@@ -96,7 +96,6 @@ const Weird = {
         const Weird = window.Weird;
         // stop moving when mouse button is released:
         Weird.logNewDimensions()
-        Weird.movingTiddler = undefined;
         window.removeEventListener('mousemove', Weird.elementDrag, false);
         window.removeEventListener('mouseup', Weird.closeDragElement, false);
 
@@ -113,34 +112,35 @@ const Weird = {
         $tw.wiki.setText(title,'height',undefined,(elmnt.offsetHeight)+"px",undefined);
         // Wait to get rid of element styles until the fields have been updated
         setTimeout(function() {
-        	elmnt.style.top = null;
-        	elmnt.style.left = null;
-            elmnt.style.width = null;
-        	elmnt.style.height = null;
-        }, 1000);    
+        	elmnt.style.top = "";
+        	elmnt.style.left = "";
+            elmnt.style.width = "";
+        	elmnt.style.height = "";
+        }, 1000);
+        Weird.movingTiddler = undefined;
     },
     
-    resize: function(e) {
-    	console.log('resize is HERE');
+    resizeLeft: function(e) {
+    	console.log('resize-left is HERE');
     	const tiddler = Weird.movingTiddler;
-        const resizer = e.target;
-      	if (resizer.classList.contains("resizer-left")) {
-        	tiddler.style.left = (e.clientX) + 'px';
-        	tiddler.style.top = (e.clientY) + 'px';
-        	tiddler.style.width = (e.clientX - tiddler.offsetLeft + 5) + 'px';
-       		tiddler.style.height = (e.clientY - tiddler.offsetTop + 5) + 'px';
-        } else if (resizer.classList.contains("resizer-right")) {
-       		tiddler.style.width = (e.clientX - tiddler.offsetLeft + 5) + 'px';
-       		tiddler.style.height = (e.clientY - tiddler.offsetTop + 5) + 'px';
-        }
-       	
+        tiddler.style.left = (e.clientX) + 'px';
+        tiddler.style.top = (e.clientY) + 'px';
+        tiddler.style.width = (e.clientX - tiddler.offsetLeft + 5) + 'px';
+       	tiddler.style.height = (e.clientY - tiddler.offsetTop + 5) + 'px';
+
     },
     
-    stopResize: function(e) {
-    	console.log('stopResize is HERE');
+    resizeRight: function(e) {
+    	const tiddler = Weird.movingTiddler;
+       	tiddler.style.width = (e.clientX - tiddler.offsetLeft + 5) + 'px';
+       	tiddler.style.height = (e.clientY - tiddler.offsetTop + 5) + 'px';      	
+    },
+    
+    stopResize: function() {
     	Weird.logNewDimensions();
-    	Weird.movingTiddler = undefined;
-        window.removeEventListener('mousemove', Weird.resize, false);
+        console.log('stopResize is HERE');
+        window.removeEventListener('mousemove', Weird.resizeLeft, false);
+        window.removeEventListener('mousemove', Weird.resizeRight, false);
         window.removeEventListener('mouseup', Weird.stopResize, false);
     }
     
