@@ -3,7 +3,7 @@ created: 20190201191521777
 type: application/javascript
 title: $:/plugins/admls/mentat/commands/macro.js
 tags: unfinished tampered
-modified: 20190201220753996
+modified: 20190201225803872
 module-type: macro
 \*/
 (function(){
@@ -26,8 +26,16 @@ exports.run = function() {
     	elmnt = elmnt.parentElement;
    	}
 
+	const cLog = function(e) {
+    	console.log(e.target.className);
+   }
+
 	elmnt.addEventListener("mousedown", $tw.Weird.startDrag, false);
     elmnt.addEventListener("mousedown", $tw.Weird.pushZStack, false);
+    
+    elmnt.querySelectorAll(".resizer-left, .resizer-right").forEach(function(resizer) {
+    	resizer.addEventListener("mousedown", $tw.Weird.startResize, false);
+    });
 
   	
 };

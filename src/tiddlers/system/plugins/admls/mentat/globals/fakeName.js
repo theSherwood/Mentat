@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/mentat/globals/fakeName.js
 tags: unfinished tampered
-modified: 20190201221852844
+modified: 20190201225954324
 module-type: global
 
 Description...
@@ -36,7 +36,7 @@ const Weird = {
           return;
         }       
         const Weird = $tw.Weird;
-        Weird.movingTiddler = this;
+        Weird.eventTiddler = this;
 
         // get the mouse cursor position at startup:
         Weird.pos3 = e.clientX;
@@ -48,7 +48,7 @@ const Weird = {
     
     tiddlerDrag: function(e) {
         const Weird = $tw.Weird;
-        const tiddler = Weird.movingTiddler
+        const tiddler = Weird.eventTiddler
         const title = tiddler.dataset.tiddlerTitle;
         e.preventDefault();
         // calculate the new cursor position:
@@ -85,14 +85,13 @@ const Weird = {
     },
 
     logNewDimensions: function() {
-    	const tiddler = this.movingTiddler;
+    	const tiddler = this.eventTiddler;
     	const title = tiddler.dataset.tiddlerTitle;
         // Log the dimensions to the appropriate field for pickup by CSS
-        const u = undefined;
-        $tw.wiki.setText(title,'top',u,(tiddler.offsetTop)+"px",u);
-        $tw.wiki.setText(title,'left',u,(tiddler.offsetLeft)+"px",u);
-        $tw.wiki.setText(title,'width',u,(tiddler.offsetWidth)+"px",u);
-        $tw.wiki.setText(title,'height',u,(tiddler.offsetHeight)+"px",u);
+        $tw.wiki.setText(title,'top',undefined,(tiddler.offsetTop)+"px",undefined);
+        $tw.wiki.setText(title,'left',undefined,(tiddler.offsetLeft)+"px",undefined);
+        $tw.wiki.setText(title,'width',undefined,(tiddler.offsetWidth)+"px",undefined);
+        $tw.wiki.setText(title,'height',undefined,(tiddler.offsetHeight)+"px",undefined);
         // Wait to get rid of element styles until the fields have been updated
         setTimeout(function() {
         	tiddler.style.top = "";
@@ -100,18 +99,13 @@ const Weird = {
             tiddler.style.width = "";
         	tiddler.style.height = "";
         }, 1000);
-        this.movingTiddler = undefined;
+        this.eventTiddler = undefined;
     },
 
     pushZStack: function(e) {
-    	let elmnt = e.target;
-        // Get the tiddler that the event happened in
-    	while(!(elmnt.matches('[data-tags*="testingStyle"]'))) {
-            elmnt = elmnt.parentElement;
-        }
-        e.stopPropagation();
-        const tiddler = elmnt;
     	const Weird = $tw.Weird;
+    	const tiddler = Weird.getEventTiddler(e);
+        e.stopPropagation();
     	const zStack = Weird.zStack;
         const index = zStack.indexOf(tiddler);
         if (index !== -1) {
@@ -122,8 +116,7 @@ const Weird = {
   	},
     
    	evaluateZStack: function(tiddler) {
-    	const Weird = $tw.Weird;
-    	const zStack = Weird.zStack;
+    	const zStack = $tw.Weird.zStack;
         // Assigns z-index to the elements in zstack based on position.
         for (let i = 0; i < zStack.length; i++) {
          	zStack[i].style.zIndex = i * 10 + 700;
@@ -135,6 +128,48 @@ const Weird = {
             }
         }
   	},
+    
+    startResize: function(e) {
+    	const Weird = $tw.Weird;
+    	Weird.eventTiddler = Weird.getEventTiddler(e);
+        e.stopPropagation();
+        if (e.target.classList.contains("resizer-left")) {
+        	window.addEventListener('mousemove', Weird.resizeLeft, false);
+        } else {
+        	window.addEventListener('mousemove', Weird.resizeRight, false);
+        }
+        window.addEventListener('mouseup', Weird.endResize, false);     
+    },
+
+	resizeLeft: function(e) {
+    	const tiddler = $tw.Weird.eventTiddler;
+        tiddler.style.width = (tiddler.offsetWidth + (tiddler.offsetLeft - e.clientX) + 5) + 'px';
+        tiddler.style.left = (e.clientX - 5) + 'px';
+       	tiddler.style.height = (e.clientY - tiddler.offsetTop + 5) + 'px';
+    },
+    
+    resizeRight: function(e) {
+        const tiddler = $tw.Weird.eventTiddler;
+       	tiddler.style.width = (e.clientX - tiddler.offsetLeft + 5) + 'px';
+       	tiddler.style.height = (e.clientY - tiddler.offsetTop + 5) + 'px';      	
+    },
+    
+    endResize: function() {
+    	const Weird = $tw.Weird;
+    	Weird.logNewDimensions();
+        window.removeEventListener('mousemove', Weird.resizeLeft, false);
+        window.removeEventListener('mousemove', Weird.resizeRight, false);
+        window.removeEventListener('mouseup', Weird.endResize, false);
+    },
+    
+    getEventTiddler: function(e) {
+    	let elmnt = e.target;
+        // Get the tiddler that the event happened in
+    	while(!(elmnt.matches('[data-tags*="testingStyle"]'))) {
+            elmnt = elmnt.parentElement;
+        }
+        return elmnt;
+    },
 
 
 
@@ -225,29 +260,7 @@ const Weird = {
     
 
     
-    resizeLeft: function(e) {
-		const Weird = $tw.Weird;
-    	const tiddler = Weird.movingTiddler;
-        tiddler.style.width = (tiddler.offsetWidth + (tiddler.offsetLeft - e.clientX) + 5) + 'px';
-        tiddler.style.left = (e.clientX - 5) + 'px';
-       	tiddler.style.height = (e.clientY - tiddler.offsetTop + 5) + 'px';
-    },
     
-    resizeRight: function(e) {
-    	const Weird = $tw.Weird;
-    	const tiddler = Weird.movingTiddler;
-       	tiddler.style.width = (e.clientX - tiddler.offsetLeft + 5) + 'px';
-       	tiddler.style.height = (e.clientY - tiddler.offsetTop + 5) + 'px';      	
-    },
-    
-    stopResize: function() {
-    	const Weird = $tw.Weird;
-    	Weird.logNewDimensions();
-
-        window.removeEventListener('mousemove', Weird.resizeLeft, false);
-        window.removeEventListener('mousemove', Weird.resizeRight, false);
-        window.removeEventListener('mouseup', Weird.stopResize, false);
-    },
     
     toZStack: function(elmnt) {
     	const Weird = $tw.Weird;
