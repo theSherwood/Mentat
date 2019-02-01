@@ -3,7 +3,7 @@ created: 20190129200505951
 type: application/javascript
 title: $:/plugins/admls/mentat/storyviews/mentat.js
 tags: 
-modified: 20190131112518262
+modified: 20190201214219949
 module-type: storyview
 
 Views the story as a collection of story-windows
@@ -35,12 +35,14 @@ ClassicStoryView.prototype.navigateTo = function(historyInfo) {
 	// Scroll the node into view
 	this.listWidget.dispatchEvent({type: "tm-scroll", target: targetElement});
     
+    /*\
     console.log('This is a test navigation!');
 
 	// Test eventListener on document
     $tw.utils.addEventListeners(document, [{
     	name: "mousedown", handlerFunction: $tw.utils.dragListener
     }]);
+   	\*/
    
 };
 

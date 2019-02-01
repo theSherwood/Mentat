@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/mentat/globals/fakeName.js
 tags: unfinished tampered
-modified: 20190201213413832
+modified: 20190201221852844
 module-type: global
 
 Description...
@@ -84,8 +84,57 @@ const Weird = {
         window.removeEventListener('mouseup', Weird.endDrag, false);
     },
 
+    logNewDimensions: function() {
+    	const tiddler = this.movingTiddler;
+    	const title = tiddler.dataset.tiddlerTitle;
+        // Log the dimensions to the appropriate field for pickup by CSS
+        const u = undefined;
+        $tw.wiki.setText(title,'top',u,(tiddler.offsetTop)+"px",u);
+        $tw.wiki.setText(title,'left',u,(tiddler.offsetLeft)+"px",u);
+        $tw.wiki.setText(title,'width',u,(tiddler.offsetWidth)+"px",u);
+        $tw.wiki.setText(title,'height',u,(tiddler.offsetHeight)+"px",u);
+        // Wait to get rid of element styles until the fields have been updated
+        setTimeout(function() {
+        	tiddler.style.top = "";
+        	tiddler.style.left = "";
+            tiddler.style.width = "";
+        	tiddler.style.height = "";
+        }, 1000);
+        this.movingTiddler = undefined;
+    },
 
-
+    pushZStack: function(e) {
+    	let elmnt = e.target;
+        // Get the tiddler that the event happened in
+    	while(!(elmnt.matches('[data-tags*="testingStyle"]'))) {
+            elmnt = elmnt.parentElement;
+        }
+        e.stopPropagation();
+        const tiddler = elmnt;
+    	const Weird = $tw.Weird;
+    	const zStack = Weird.zStack;
+        const index = zStack.indexOf(tiddler);
+        if (index !== -1) {
+          zStack.splice(index, 1);
+        }
+        zStack.push(tiddler);
+        Weird.evaluateZStack(tiddler);
+  	},
+    
+   	evaluateZStack: function(tiddler) {
+    	const Weird = $tw.Weird;
+    	const zStack = Weird.zStack;
+        // Assigns z-index to the elements in zstack based on position.
+        for (let i = 0; i < zStack.length; i++) {
+         	zStack[i].style.zIndex = i * 10 + 700;
+            // Quick test to make sure this is working
+            if (i === zStack.length - 1) {
+            	zStack[i].style.border = "solid black 2px";
+            } else {
+            	zStack[i].style.border = "";
+            }
+        }
+  	},
 
 
 
@@ -174,25 +223,7 @@ const Weird = {
 
     },
     
-    logNewDimensions: function() {
-    	const Weird = $tw.Weird;
-    	const tiddler = Weird.movingTiddler;
-    	const title = tiddler.dataset.tiddlerTitle;
-        // Log the dimensions to the appropriate field for pickup by CSS
-        const u = undefined;
-        $tw.wiki.setText(title,'top',u,(tiddler.offsetTop)+"px",u);
-        $tw.wiki.setText(title,'left',u,(tiddler.offsetLeft)+"px",u);
-        $tw.wiki.setText(title,'width',u,(tiddler.offsetWidth)+"px",u);
-        $tw.wiki.setText(title,'height',u,(tiddler.offsetHeight)+"px",u);
-        // Wait to get rid of element styles until the fields have been updated
-        setTimeout(function() {
-        	tiddler.style.top = "";
-        	tiddler.style.left = "";
-            tiddler.style.width = "";
-        	tiddler.style.height = "";
-        }, 1000);
-        Weird.movingTiddler = undefined;
-    },
+
     
     resizeLeft: function(e) {
 		const Weird = $tw.Weird;
