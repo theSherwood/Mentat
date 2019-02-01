@@ -1,5 +1,5 @@
 created: 20190129234855069
-modified: 20190131234727134
+modified: 20190201001917021
 tags: tampered $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/dimensions
 type: text/vnd.tiddlywiki
@@ -20,6 +20,7 @@ background-color: grey;
 top: <<backup top>>;
 left: <<backup left>>;
 width: <<backup width>>;
+height: <<backup height>>;
 z-index: 1000;
 }
 
