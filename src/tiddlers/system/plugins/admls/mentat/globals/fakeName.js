@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/mentat/globals/fakeName.js
 tags: unfinished tampered
-modified: 20190201225954324
+modified: 20190201234904596
 module-type: global
 
 Description...
@@ -11,7 +11,12 @@ Description...
 ToDo:
 - Fix stutter on mouseup and fast dragging
 - fix zStack initialization
-- make macro and widget for calling rather than storyview and utils (must add the event listener to the the tiddlers themselves)
+- remove items from zStack when they are closed
+- handle switching from view to edit and back
+- edit doesn't work with zStack for some reason
+- edit doesn't run macro. So a movingtiddler that is opened in edit mode first may not get any of the eventhandlers attached. I'm not sure.
+- I may have introduced problem with getEventTiddler and the way it affects the zStack with window-tiddlers
+
 
 \*/
 
@@ -105,6 +110,9 @@ const Weird = {
     pushZStack: function(e) {
     	const Weird = $tw.Weird;
     	const tiddler = Weird.getEventTiddler(e);
+        if(!tiddler) {
+        	return;
+        };
         e.stopPropagation();
     	const zStack = Weird.zStack;
         const index = zStack.indexOf(tiddler);
@@ -130,15 +138,18 @@ const Weird = {
   	},
     
     startResize: function(e) {
-    	const Weird = $tw.Weird;
-    	Weird.eventTiddler = Weird.getEventTiddler(e);
-        e.stopPropagation();
-        if (e.target.classList.contains("resizer-left")) {
-        	window.addEventListener('mousemove', Weird.resizeLeft, false);
-        } else {
-        	window.addEventListener('mousemove', Weird.resizeRight, false);
+    	if (e.target.classList.contains("resizer")) {
+            const Weird = $tw.Weird;
+            Weird.eventTiddler = Weird.getEventTiddler(e);
+            console.log(Weird.eventTiddler);
+            e.stopPropagation();
+            if (e.target.classList.contains("resizer-left")) {
+                window.addEventListener('mousemove', Weird.resizeLeft, false);
+            } else if (e.target.classList.contains("resizer-right")) {
+                window.addEventListener('mousemove', Weird.resizeRight, false);     
+            }
+            window.addEventListener('mouseup', Weird.endResize, false); 
         }
-        window.addEventListener('mouseup', Weird.endResize, false);     
     },
 
 	resizeLeft: function(e) {
@@ -165,125 +176,18 @@ const Weird = {
     getEventTiddler: function(e) {
     	let elmnt = e.target;
         // Get the tiddler that the event happened in
-    	while(!(elmnt.matches('[data-tags*="testingStyle"]'))) {
+    	while(!(elmnt.matches('[data-tiddler-title]'))) {
+        	// Stop if you get to the root element
+        	if(elmnt.tagName === "HTML") {
+            	return;
+            }
             elmnt = elmnt.parentElement;
         }
         return elmnt;
-    },
+    }
 
+};    
 
-
-
-
-
-
-
-    dragMouseDown: function(e) {
-    	const Weird = $tw.Weird
-        const elmnt = e.target;
-        
-        // Catch if the click happened on the tiddler or any element within it
-        if (elmnt.matches('[data-tags*="testingStyle"], [data-tags*="testingStyle"] *')) {
-            let traversingElmnt = elmnt;
-            // If clicked element wasn't the tiddler element, get the tiddler element
-            while (!traversingElmnt.matches('[data-tags*="testingStyle"]')) {
-            	traversingElmnt = traversingElmnt.parentElement;
-            }
-			Weird.toZStack(traversingElmnt);
-            e.stopPropagation();
-        }
-        
-        // Catch resizing
-        if (elmnt.classList.contains("resizer-left") || elmnt.classList.contains("resizer-right")) {
-        	// They two resizers are inside of a span produced by the reveal widget
-        	Weird.movingTiddler = elmnt.parentElement.parentElement;
-            if (elmnt.classList.contains("resizer-left")) {
-            	window.addEventListener('mousemove', Weird.resizeLeft, false);
-            } else {
-        		window.addEventListener('mousemove', Weird.resizeRight, false);
-            }
-     		window.addEventListener('mouseup', Weird.stopResize, false);
-            return;
-        }
-        // The dragging won't occur if the click is on some other element than the tagged tiddler, either within or without.
-        if (!(elmnt.dataset.tags && elmnt.dataset.tags.includes("testingStyle"))) {
-          return;
-        }
-        Weird.movingTiddler = elmnt
-        // get the mouse cursor position at startup:
-        Weird.pos3 = e.clientX;
-        Weird.pos4 = e.clientY;
-        // call a function whenever the cursor moves:
-        window.addEventListener('mousemove', Weird.elementDrag, false);
-        window.addEventListener('mouseup', Weird.closeDragElement, false);
-
-    },
-
-    elementDrag: function(e) {
-        const Weird = $tw.Weird;
-        e = e || window.event;
-        const elmnt = Weird.movingTiddler
-        const title = elmnt.dataset.tiddlerTitle;
-        e.preventDefault();
-        // calculate the new cursor position:
-        Weird.pos1 = Weird.pos3 - e.clientX;
-        Weird.pos2 = Weird.pos4 - e.clientY;
-        Weird.pos3 = e.clientX;
-        Weird.pos4 = e.clientY;
-        // get dimensions
-        const top = elmnt.offsetTop;
-        const left = elmnt.offsetLeft;
-        // set the element's new position: prevent them from
-        // running off the window (assumes fixed position)
-        if (elmnt.style.position === "fixed") {
-        if (elmnt.offsetTop - Weird.pos2 >= 0 && window.innerHeight >= elmnt.offsetTop - Weird.pos2 + elmnt.offsetHeight) {
-        	elmnt.style.top = (top - Weird.pos2) + "px";
-        };
-        if (elmnt.offsetLeft - Weird.pos1 >= 0 && window.innerWidth >= elmnt.offsetLeft - Weird.pos1 + elmnt.offsetWidth) {
-        	elmnt.style.left = (left - Weird.pos1) + "px";
-        };
-        } else {
-        	elmnt.style.top = (top - Weird.pos2) + "px";
-            elmnt.style.left = (left - Weird.pos1) + "px";
-        }
-
-    },
-
-    closeDragElement: function() {
-        const Weird = $tw.Weird;
-        // stop moving when mouse button is released:
-        Weird.logNewDimensions()
-        window.removeEventListener('mousemove', Weird.elementDrag, false);
-        window.removeEventListener('mouseup', Weird.closeDragElement, false);
-
-    },
-    
-
-    
-    
-    
-    toZStack: function(elmnt) {
-    	const Weird = $tw.Weird;
-    	const zStack = Weird.zStack;
-        const index = zStack.indexOf(elmnt);
-        if (index !== -1) {
-          zStack.splice(index, 1);
-        }
-        zStack.push(elmnt);
-        // Assigns z-index to the elements in zstack based on position.
-        for (let i = 0; i < zStack.length; i++) {
-         	zStack[i].style.zIndex = i * 10 + 700;
-            // Quick test to make sure this is working
-            if (i === zStack.length - 1) {
-            	zStack[i].style.border = "solid black 2px";
-            } else {
-            	zStack[i].style.border = "";
-            }
-        }
-  	}
-       
-    
-};
 
 exports.Weird = Weird;
 

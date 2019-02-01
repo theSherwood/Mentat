@@ -3,7 +3,7 @@ created: 20190201191521777
 type: application/javascript
 title: $:/plugins/admls/mentat/commands/macro.js
 tags: unfinished tampered
-modified: 20190201225803872
+modified: 20190201232518964
 module-type: macro
 \*/
 (function(){
@@ -32,10 +32,7 @@ exports.run = function() {
 
 	elmnt.addEventListener("mousedown", $tw.Weird.startDrag, false);
     elmnt.addEventListener("mousedown", $tw.Weird.pushZStack, false);
-    
-    elmnt.querySelectorAll(".resizer-left, .resizer-right").forEach(function(resizer) {
-    	resizer.addEventListener("mousedown", $tw.Weird.startResize, false);
-    });
+    elmnt.addEventListener("mousedown", $tw.Weird.startResize, false);
 
   	
 };

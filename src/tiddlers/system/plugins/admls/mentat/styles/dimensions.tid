@@ -1,5 +1,5 @@
 created: 20190129234855069
-modified: 20190201212455049
+modified: 20190201234528339
 tags: tampered $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/dimensions
 type: text/vnd.tiddlywiki
@@ -12,8 +12,8 @@ type: text/vnd.tiddlywiki
 \end
 
 <$reveal type="match" state="$:/view" text="mentat">
-
-<$list filter="[tag[testingStyle]]">
+<$set name="layoutTiddler-tag" value={{$:/plugins/admls/mentat/config/layoutTiddler-tag}}>
+<$list filter="[tag<layoutTiddler-tag>]">
 
 [data-tiddler-title="<<currentTiddler>>"] {
 position: fixed;
@@ -26,5 +26,5 @@ z-index: 700;
 }
 
 </$list>
-
+</$set>
 </$reveal>
