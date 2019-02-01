@@ -3,13 +3,13 @@ created: 20190130010029762
 type: application/javascript
 title: $:/plugins/admls/mentat/lib/fakeName.js
 tags: unfinished tampered
-modified: 20190201005814824
+modified: 20190201011414495
 module-type: library
 
 Description...
 
 ToDo:
-- Fix stutter on mouseup
+- Fix stutter on mouseup and fast dragging
 - Add resize handle functionality
 - zStack
 
@@ -123,11 +123,9 @@ const Weird = {
     resizeLeft: function(e) {
     	console.log('resize-left is HERE');
     	const tiddler = Weird.movingTiddler;
-        tiddler.style.left = (e.clientX) + 'px';
-        tiddler.style.top = (e.clientY) + 'px';
-        tiddler.style.width = (e.clientX - tiddler.offsetLeft + 5) + 'px';
+        tiddler.style.width = (tiddler.offsetWidth + (tiddler.offsetLeft - e.clientX) + 5) + 'px';
+        tiddler.style.left = (e.clientX - 5) + 'px';
        	tiddler.style.height = (e.clientY - tiddler.offsetTop + 5) + 'px';
-
     },
     
     resizeRight: function(e) {
