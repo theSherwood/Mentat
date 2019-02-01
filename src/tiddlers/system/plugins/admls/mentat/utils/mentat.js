@@ -3,7 +3,7 @@ created: 20190130100248791
 type: application/javascript
 title: $:/plugins/admls/mentat/utils/mentat.js
 tags: tampered
-modified: 20190201003203036
+modified: 20190201021706346
 module-type: utils
 
 Various static DOM-related utility functions.
@@ -34,14 +34,17 @@ function dragListener(e) {
         window.Weird = require("$:/plugins/admls/mentat/lib/fakeName.js").Weird;
     }
 
+/*\
 	const elmnt = e.target;
-	if(elmnt.dataset.tags && elmnt.dataset.tags.includes("testingStyle") || elmnt.classList.contains("resizer-left") || elmnt.classList.contains("resizer-right")) {	
+    
+	if(elmnt.dataset.tags && elmnt.dataset.tags.includes("testingStyle") || elmnt.classList.contains("resizer-left") || elmnt.classList.contains("resizer-right")) {
+    \*/
       	const Weird = require("$:/plugins/admls/mentat/lib/fakeName.js").Weird;
         //console.log(Weird.key);
         //console.log(Weird.zStack);
         //console.log(Weird.log(elmnt));
     	Weird.dragMouseDown(e);
-    }  
+    //}  
 	};
 
 exports.dragListener = dragListener;

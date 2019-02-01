@@ -3,14 +3,14 @@ created: 20190130010029762
 type: application/javascript
 title: $:/plugins/admls/mentat/lib/fakeName.js
 tags: unfinished tampered
-modified: 20190201011414495
+modified: 20190201023555654
 module-type: library
 
 Description...
 
 ToDo:
 - Fix stutter on mouseup and fast dragging
-- Add resize handle functionality
+- make global $tw object and module?
 - zStack
 
 \*/
@@ -32,10 +32,20 @@ const Weird = {
     dragMouseDown: function(e) {
     	const Weird = window.Weird
         const elmnt = e.target;
-        console.log("CLICK");
+        
+        // Catch if the click happened on the tiddler or any element within it
+        if (elmnt.matches('[data-tags*="testingStyle"], [data-tags*="testingStyle"] *')) {
+            let traversingElmnt = elmnt;
+            // If clicked element wasn't the tiddler element, get the tiddler element
+            while (!traversingElmnt.matches('[data-tags*="testingStyle"]')) {
+            	traversingElmnt = traversingElmnt.parentElement;
+            }
+			Weird.toZStack(traversingElmnt);
+            e.stopPropagation();
+        }
+        
         // Catch resizing
         if (elmnt.classList.contains("resizer-left") || elmnt.classList.contains("resizer-right")) {
-        	console.log("RESIZE ME NOW, CAP'N");
         	// They two resizers are inside of a span produced by the reveal widget
         	Weird.movingTiddler = elmnt.parentElement.parentElement;
             if (elmnt.classList.contains("resizer-left")) {
@@ -58,7 +68,6 @@ const Weird = {
         window.addEventListener('mousemove', Weird.elementDrag, false);
         window.addEventListener('mouseup', Weird.closeDragElement, false);
 
-        console.log("dragMouseDown", elmnt);
     },
 
     elementDrag: function(e) {
@@ -89,7 +98,6 @@ const Weird = {
             elmnt.style.left = (left - Weird.pos1) + "px";
         }
 
-        console.log("elementDrag", elmnt);
     },
 
     closeDragElement: function() {
@@ -99,7 +107,6 @@ const Weird = {
         window.removeEventListener('mousemove', Weird.elementDrag, false);
         window.removeEventListener('mouseup', Weird.closeDragElement, false);
 
-        console.log("closeDragElement");
     },
     
     logNewDimensions: function() {
@@ -121,7 +128,7 @@ const Weird = {
     },
     
     resizeLeft: function(e) {
-    	console.log('resize-left is HERE');
+
     	const tiddler = Weird.movingTiddler;
         tiddler.style.width = (tiddler.offsetWidth + (tiddler.offsetLeft - e.clientX) + 5) + 'px';
         tiddler.style.left = (e.clientX - 5) + 'px';
@@ -136,64 +143,34 @@ const Weird = {
     
     stopResize: function() {
     	Weird.logNewDimensions();
-        console.log('stopResize is HERE');
+
         window.removeEventListener('mousemove', Weird.resizeLeft, false);
         window.removeEventListener('mousemove', Weird.resizeRight, false);
         window.removeEventListener('mouseup', Weird.stopResize, false);
-    }
+    },
     
+    toZStack: function(elmnt) {
+    	const zStack = Weird.zStack;
+        const index = zStack.indexOf(elmnt);
+        if (index !== -1) {
+          zStack.splice(index, 1);
+        }
+        zStack.push(elmnt);
+        // Assigns z-index to the elements in zstack based on position.
+        for (let i = 0; i < zStack.length; i++) {
+         	zStack[i].style.zIndex = i * 10 + 700;
+            // Quick test to make sure this is working
+            if (i === zStack.length - 1) {
+            	zStack[i].style.border = "solid black 2px";
+            } else {
+            	zStack[i].style.border = "";
+            }
+        }
+  	}
+       
     
 };
 
 exports.Weird = Weird;
 
 })();
-
-
-
-
- /*\ 
-  logDimensions();
-  getSize();
-  getPosition();
-  elmnt.addEventListener("mousedown", dragMouseDown, false);
-  elmnt.addEventListener("mousedown", zPosition, false);
-  let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  
-  function remove(array, element) {
-    const index = array.indexOf(element);
-    if (index !== -1) {
-      array.splice(index, 1);
-    }
-  }
-  
-  function zPosition(e) {
-    // Removes element from stack and then adds it to the end.
-    remove(zstack, elmnt);
-    zstack.push(elmnt);
-    // Assigns z-index to the elements in zstack based on position.
-    for (let i = 0; i < zstack.length; i++) {
-      zstack[i].style.zIndex = i * 10;
-    }
-  }
-  
-  const resizer = elmnt.querySelector(".resizer");
-  resizer.addEventListener('mousedown', initResize, false);
-
-  function initResize(e) {
-     window.addEventListener('mousemove', Resize, false);
-     window.addEventListener('mouseup', stopResize, false);
-  }
-  function Resize(e) {
-    getSize();
-     elmnt.style.width = (e.clientX - elmnt.offsetLeft) + 'px';
-     elmnt.style.height = (e.clientY - elmnt.offsetTop) + 'px';
-     logDimensions();
-  }
-  function stopResize(e) {
-    window.removeEventListener('mousemove', Resize, false);
-    window.removeEventListener('mouseup', stopResize, false);
-  }
-\*/
-
-
