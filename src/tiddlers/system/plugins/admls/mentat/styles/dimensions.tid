@@ -1,5 +1,5 @@
 created: 20190129234855069
-modified: 20190201234528339
+modified: 20190202003401184
 tags: tampered $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/dimensions
 type: text/vnd.tiddlywiki
@@ -13,16 +13,16 @@ type: text/vnd.tiddlywiki
 
 <$reveal type="match" state="$:/view" text="mentat">
 <$set name="layoutTiddler-tag" value={{$:/plugins/admls/mentat/config/layoutTiddler-tag}}>
-<$list filter="[tag<layoutTiddler-tag>]">
+<$list filter="[list[$:/StoryList]tag<layoutTiddler-tag>]">
 
 [data-tiddler-title="<<currentTiddler>>"] {
 position: fixed;
-background-color: grey;
 top: <<backup top>>;
 left: <<backup left>>;
 width: <<backup width>>;
 height: <<backup height>>;
-z-index: 700;
+z-index: <<backup z-index>>;
+padding: 15px 15px 15px 15px;
 }
 
 </$list>

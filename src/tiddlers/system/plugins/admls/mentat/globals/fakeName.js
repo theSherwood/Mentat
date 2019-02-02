@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/mentat/globals/fakeName.js
 tags: unfinished tampered
-modified: 20190201234904596
+modified: 20190202002503634
 module-type: global
 
 Description...
@@ -97,6 +97,8 @@ const Weird = {
         $tw.wiki.setText(title,'left',undefined,(tiddler.offsetLeft)+"px",undefined);
         $tw.wiki.setText(title,'width',undefined,(tiddler.offsetWidth)+"px",undefined);
         $tw.wiki.setText(title,'height',undefined,(tiddler.offsetHeight)+"px",undefined);
+        $tw.wiki.setText(title,'bottom',undefined,(tiddler.offsetTop+tiddler.offsetHeight)+"px",undefined);
+        $tw.wiki.setText(title,'right',undefined,(tiddler.offsetLeft+tiddler.offsetWidth)+"px",undefined);
         // Wait to get rid of element styles until the fields have been updated
         setTimeout(function() {
         	tiddler.style.top = "";
