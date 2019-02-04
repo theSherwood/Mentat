@@ -1,5 +1,5 @@
 created: 20190129234855069
-modified: 20190202012601646
+modified: 20190204170410558
 tags: tampered $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/dimensions
 type: text/vnd.tiddlywiki
@@ -24,6 +24,29 @@ height: <<backup height>>;
 z-index: <<backup z-index>>;
 padding: 15px 15px 15px 15px;
 overflow-y: auto;
+}
+
+/* Resizer handles */
+.resizer-left, .resizer-right {
+position: fixed;
+width: 12px;
+height: 12px;
+background-color: rgba(200,0,0,1);
+color: white;
+}
+
+.resizer-left {
+left: <<backup resizerleft-left>>;
+top: <<backup resizerleft-top>>;
+cursor: ne-resize;
+border-radius: 0% 70% 0% 0%;
+}
+
+.resizer-right {
+left: <<backup resizerright-left>>;
+top: <<backup resizerright-top>>;
+cursor: se-resize;
+border-radius: 70% 0% 0% 0%;
 }
 
 </$list>

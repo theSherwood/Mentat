@@ -1,5 +1,5 @@
 created: 20190131224855059
-modified: 20190202015350197
+modified: 20190204165214997
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/general
 type: text/vnd.tiddlywiki
@@ -13,31 +13,3 @@ background-color: rgba(0,0,0,.3);
 color: #fff;
 }
 
-/* Resizer handles */
-.resizer-left, .resizer-right {
-position: absolute;
-width: 12px;
-height: 12px;
-background-color: rgba(200,0,0,1);
-color: white;
-bottom: 0px;
-/*\
-position: -webkit-sticky;
-position: -moz-sticky;
-position: -o-sticky;
-position: -ms-sticky;
-position: sticky;
-\*/
-}
-
-.resizer-left {
-left: 0px;
-cursor: ne-resize;
-border-radius: 0% 70% 0% 0%;
-}
-
-.resizer-right {
-right: 0px;
-cursor: se-resize;
-border-radius: 70% 0% 0% 0%;
-}
