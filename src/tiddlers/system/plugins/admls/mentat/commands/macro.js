@@ -3,7 +3,7 @@ created: 20190201191521777
 type: application/javascript
 title: $:/plugins/admls/mentat/commands/macro.js
 tags: unfinished tampered
-modified: 20190204220416389
+modified: 20190204233346296
 module-type: macro
 \*/
 (function(){
@@ -44,6 +44,10 @@ exports.run = function(position) {
 	tiddler.addEventListener("mousedown", $tw.Weird.startDrag, false);
     tiddler.addEventListener("mousedown", $tw.Weird.getEventTiddler, false);
     tiddler.addEventListener("mousedown", $tw.Weird.startResize, false);
+    if(position === "absolute") {
+    	tiddler.addEventListener("scroll", $tw.Weird.repositionAbsoluteResizers, false);
+    }
+    
     $tw.Weird.logNewDimensions(tiddler);
     $tw.Weird.pushZStack(tiddler);
 

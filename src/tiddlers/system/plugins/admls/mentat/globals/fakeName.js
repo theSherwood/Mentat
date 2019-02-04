@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/mentat/globals/fakeName.js
 tags: unfinished tampered
-modified: 20190204232731914
+modified: 20190204233526343
 module-type: global
 
 Description...
@@ -219,6 +219,21 @@ const Weird = {
             resizerRight.style.top = (tiddler.clientHeight + tiddler.scrollTop - resizerRight.offsetHeight) + "px";
             resizerRight.style.left = (tiddler.clientWidth + tiddler.scrollLeft - resizerRight.offsetWidth) + "px";
         }
+    },
+    
+    repositionAbsoluteResizers: function(e) {
+    	let elmnt = e.target;
+        // Get the tiddler that the event happened in
+    	while(!(elmnt.matches('[data-tiddler-title]'))) {
+        	// Stop if you get to the root element
+        	if(elmnt.tagName === "HTML") {
+            	return;
+            }
+            elmnt = elmnt.parentElement;
+        }
+        e.stopPropagation();
+        const tiddler = elmnt;
+        Weird.updateResizerPositions(tiddler);
     }
     	
 
