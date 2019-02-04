@@ -3,7 +3,7 @@ created: 20190201191521777
 type: application/javascript
 title: $:/plugins/admls/mentat/commands/macro.js
 tags: unfinished tampered
-modified: 20190204172648354
+modified: 20190204181836859
 module-type: macro
 \*/
 (function(){
@@ -36,10 +36,11 @@ exports.run = function() {
     tiddler.appendChild(resizerRight);
 
 	tiddler.addEventListener("mousedown", $tw.Weird.startDrag, false);
-    tiddler.addEventListener("mousedown", $tw.Weird.pushZStack, false);
+    tiddler.addEventListener("mousedown", $tw.Weird.getEventTiddler, false);
     tiddler.addEventListener("mousedown", $tw.Weird.startResize, false);
     console.log(tiddler);
     $tw.Weird.logNewDimensions(tiddler);
+    $tw.Weird.pushZStack(tiddler);
 
   	
 };

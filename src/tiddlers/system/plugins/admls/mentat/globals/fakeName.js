@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/mentat/globals/fakeName.js
 tags: unfinished tampered
-modified: 20190204171449722
+modified: 20190204181654742
 module-type: global
 
 Description...
@@ -128,13 +128,11 @@ const Weird = {
         this.eventTiddler = undefined;
     },
 
-    pushZStack: function(e) {
+    pushZStack: function(tiddler) {
     	const Weird = $tw.Weird;
-    	const tiddler = Weird.getEventTiddler(e);
         if(!tiddler) {
         	return;
         };
-        e.stopPropagation();
     	const zStack = Weird.zStack;
         const index = zStack.indexOf(tiddler);
         if (index !== -1) {
@@ -151,7 +149,7 @@ const Weird = {
          	zStack[i].style.zIndex = i * 10 + 700;
             // Quick test to make sure this is working
             if (i === zStack.length - 1) {
-            	zStack[i].style.border = "solid black 2px";
+            	zStack[i].style.border = "solid black 2px"; // Signalling selected thing by border is far from ideal
             } else {
             	zStack[i].style.border = "";
             }
@@ -214,7 +212,10 @@ const Weird = {
             }
             elmnt = elmnt.parentElement;
         }
-        return elmnt;
+        e.stopPropagation();
+        const tiddler = elmnt;
+        $tw.Weird.pushZStack(tiddler);
+        return tiddler;
     },
     
     dragResizers: function(tiddler) {
