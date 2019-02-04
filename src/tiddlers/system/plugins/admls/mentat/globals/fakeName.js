@@ -3,20 +3,23 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/mentat/globals/fakeName.js
 tags: unfinished tampered
-modified: 20190204181654742
+modified: 20190204232731914
 module-type: global
 
 Description...
 
 ToDo:
 - Fix stutter on mouseup and fast dragging
-- fix zStack initialization
-- remove items from zStack when they are closed
-- handle switching from view to edit and back
-- edit doesn't work with zStack for some reason
-- edit doesn't run macro. So a movingtiddler that is opened in edit mode first may not get any of the eventhandlers attached. I'm not sure.
+- remove items from zStack when they are closed (this might have to be done in the storyview)
 - I may have introduced problem with getEventTiddler and the way it affects the zStack with window-tiddlers
-- initialize dimension fields
+- store zStack in a click history tiddler
+- add absolute flying tiddlers
+- change namespace
+- something other than a border for the top of the zstack
+- refactor
+- comment code
+- implement grid
+
 
 \*/
 
@@ -47,7 +50,7 @@ const Weird = {
         Weird.pos3 = e.clientX;
         Weird.pos4 = e.clientY;
         // call a function whenever the cursor moves:
-        window.addEventListener('mousemove', Weird.tiddlerDrag, false);
+        window.addEventListener('mousemove', Weird.tiddlerDrag);
         window.addEventListener('mouseup', Weird.endDrag, false);        
     },
     
@@ -65,38 +68,17 @@ const Weird = {
         const top = tiddler.offsetTop;
         const left = tiddler.offsetLeft;
         
-        // get resizers
-        const resizerLeft = tiddler.querySelector(".resizer-left");
-        const resizerRight = tiddler.querySelector(".resizer-right");
-        
-        /*\
-        // set the element's new position: prevent them from
-        // running off the window (assumes fixed position)
-        if (tiddler.style.position === "fixed") {
-            if (tiddler.offsetTop - Weird.pos2 >= 0 && window.innerHeight >= tiddler.offsetTop - Weird.pos2 + tiddler.offsetHeight) {
-                tiddler.style.top = (top - Weird.pos2) + "px";
-            };
-            if (tiddler.offsetLeft - Weird.pos1 >= 0 && window.innerWidth >= tiddler.offsetLeft - Weird.pos1 + tiddler.offsetWidth) {
-                tiddler.style.left = (left - Weird.pos1) + "px";
-            };  
-        } else {
-        \*/
-        
-        	tiddler.style.top = (top - Weird.pos2) + "px";
-            tiddler.style.left = (left - Weird.pos1) + "px";
-            
-            resizerLeft.style.top = (top + tiddler.offsetHeight - Weird.pos2 - resizerLeft.offsetHeight) + "px";
-            resizerLeft.style.left = tiddler.style.left;
-            resizerRight.style.top = (top + tiddler.offsetHeight - Weird.pos2 - resizerRight.offsetHeight) + "px";
-            resizerRight.style.left = (left - Weird.pos1 + tiddler.offsetWidth - resizerRight.offsetWidth) + "px";
-        //}
+        tiddler.style.top = (top - Weird.pos2) + "px";
+        tiddler.style.left = (left - Weird.pos1) + "px";
+
+        Weird.updateResizerPositions(tiddler);
     },
 
 	endDrag: function() {
         const Weird = $tw.Weird;
         // stop moving when mouse button is released:
         Weird.logNewDimensions()
-        window.removeEventListener('mousemove', Weird.tiddlerDrag, false);
+        window.removeEventListener('mousemove', Weird.tiddlerDrag);
         window.removeEventListener('mouseup', Weird.endDrag, false);
     },
 
@@ -110,21 +92,22 @@ const Weird = {
         $tw.wiki.setText(title,'left',undefined,(tiddler.offsetLeft)+"px",undefined);
         $tw.wiki.setText(title,'width',undefined,(tiddler.offsetWidth)+"px",undefined);
         $tw.wiki.setText(title,'height',undefined,(tiddler.offsetHeight)+"px",undefined);
-        // Log resizer-left position
+        
+        // Log resizer positions
         const resizerLeft = tiddler.querySelector(".resizer-left");
-        $tw.wiki.setText(title,'resizerleft-top',undefined,(tiddler.offsetTop+tiddler.offsetHeight-resizerLeft.offsetHeight)+"px",undefined);
-        $tw.wiki.setText(title,'resizerleft-left',undefined,(tiddler.offsetLeft)+"px",undefined);
-        // Log resizer-Right position
         const resizerRight = tiddler.querySelector(".resizer-right");
-        $tw.wiki.setText(title,'resizerright-top',undefined,(tiddler.offsetTop+tiddler.offsetHeight-resizerRight.offsetHeight)+"px",undefined);
-        $tw.wiki.setText(title,'resizerright-left',undefined,(tiddler.offsetLeft+tiddler.offsetWidth-resizerRight.offsetWidth)+"px",undefined);
-        // Wait to get rid of element styles until the fields have been updated
-        setTimeout(function() {
-        	tiddler.style.top = "";
-        	tiddler.style.left = "";
-            tiddler.style.width = "";
-        	tiddler.style.height = "";
-        }, 1000);
+        if(resizerLeft.style.position === "fixed") {
+            $tw.wiki.setText(title,'resizerleft-top',undefined,(tiddler.offsetTop+tiddler.offsetHeight-resizerLeft.offsetHeight)+"px",undefined);
+            $tw.wiki.setText(title,'resizerleft-left',undefined,(tiddler.offsetLeft)+"px",undefined);        
+            $tw.wiki.setText(title,'resizerright-top',undefined,(tiddler.offsetTop+tiddler.offsetHeight-resizerRight.offsetHeight)+"px",undefined);
+            $tw.wiki.setText(title,'resizerright-left',undefined,(tiddler.offsetLeft+tiddler.offsetWidth-resizerRight.offsetWidth)+"px",undefined);
+        } else {
+        	$tw.wiki.setText(title,'resizerleft-top',undefined,(tiddler.clientHeight + tiddler.scrollTop - resizerLeft.offsetHeight)+"px",undefined);
+            $tw.wiki.setText(title,'resizerleft-left',undefined,(-tiddler.scrollLeft)+"px",undefined);        
+            $tw.wiki.setText(title,'resizerright-top',undefined,(tiddler.clientHeight + tiddler.scrollTop - resizerRight.offsetHeight)+"px",undefined);
+            $tw.wiki.setText(title,'resizerright-left',undefined,(tiddler.clientWidth + tiddler.scrollLeft - resizerRight.offsetWidth)+"px",undefined);
+        }
+        
         this.eventTiddler = undefined;
     },
 
@@ -163,42 +146,45 @@ const Weird = {
             console.log(Weird.eventTiddler);
             e.stopPropagation();
             if (e.target.classList.contains("resizer-left")) {
-                window.addEventListener('mousemove', Weird.resizeLeft, false);
+                window.addEventListener('mousemove', Weird.resizeLeft);
             } else if (e.target.classList.contains("resizer-right")) {
-                window.addEventListener('mousemove', Weird.resizeRight, false);     
+                window.addEventListener('mousemove', Weird.resizeRight);     
             }
             window.addEventListener('mouseup', Weird.endResize, false); 
         }
     },
 
 	resizeLeft: function(e) {
+    	e.preventDefault();
     	const tiddler = $tw.Weird.eventTiddler;
-        const resizerLeft = tiddler.querySelector(".resizer-left");
-        const resizerRight = tiddler.querySelector(".resizer-right");
-        tiddler.style.width = (tiddler.offsetWidth + (tiddler.offsetLeft - e.clientX) + 5) + 'px';
+        //const resizerLeft = tiddler.querySelector(".resizer-left");
+        //const resizerRight = tiddler.querySelector(".resizer-right");
+        const viewportOffset = tiddler.getBoundingClientRect();
+        tiddler.style.width = (tiddler.offsetWidth + (viewportOffset.left - e.clientX) + 5) + 'px';
         tiddler.style.left = (e.clientX - 5) + 'px';
-       	tiddler.style.height = (e.clientY - tiddler.offsetTop + 5) + 'px';
-        resizerLeft.style.top = (e.clientY + 5 - resizerLeft.offsetHeight) + 'px';
-        resizerLeft.style.left = tiddler.style.left;
-        resizerRight.style.top = (e.clientY + 5 - resizerRight.offsetHeight) + 'px';
+       	tiddler.style.height = (e.clientY - viewportOffset.top + 5) + 'px';
+        
+        Weird.updateResizerPositions(tiddler);
     },
     
     resizeRight: function(e) {
+    	e.preventDefault();
         const tiddler = $tw.Weird.eventTiddler;
-        const resizerLeft = tiddler.querySelector(".resizer-left");
-        const resizerRight = tiddler.querySelector(".resizer-right");
-       	tiddler.style.width = (e.clientX - tiddler.offsetLeft + 5) + 'px';
-       	tiddler.style.height = (e.clientY - tiddler.offsetTop + 5) + 'px';
-        resizerRight.style.top = (e.clientY + 5 - resizerRight.offsetHeight) + 'px';
-        resizerRight.style.left = (e.clientX + 5 - resizerRight.offsetWidth) + 'px';
-        resizerLeft.style.top = (e.clientY + 5 - resizerLeft.offsetHeight) + 'px';
+        //const resizerLeft = tiddler.querySelector(".resizer-left");
+        //const resizerRight = tiddler.querySelector(".resizer-right");
+        const viewportOffset = tiddler.getBoundingClientRect();
+       	tiddler.style.width = (e.clientX - viewportOffset.left + 5) + 'px';
+       	tiddler.style.height = (e.clientY - viewportOffset.top + 5) + 'px';
+        
+        Weird.updateResizerPositions(tiddler);
+        
     },
     
     endResize: function() {
     	const Weird = $tw.Weird;
     	Weird.logNewDimensions();
-        window.removeEventListener('mousemove', Weird.resizeLeft, false);
-        window.removeEventListener('mousemove', Weird.resizeRight, false);
+        window.removeEventListener('mousemove', Weird.resizeLeft);
+        window.removeEventListener('mousemove', Weird.resizeRight);
         window.removeEventListener('mouseup', Weird.endResize, false);
     },
     
@@ -218,9 +204,23 @@ const Weird = {
         return tiddler;
     },
     
-    dragResizers: function(tiddler) {
-    	const resizerLeft = tiddler.querySelector(".resizerLeft");
+    updateResizerPositions: function(tiddler) {
+    	const resizerLeft = tiddler.querySelector(".resizer-left");
+        const resizerRight = tiddler.querySelector(".resizer-right");
+        
+        if(resizerLeft.style.position === "fixed") {
+            resizerLeft.style.top = (tiddler.offsetTop + tiddler.offsetHeight - resizerLeft.offsetHeight) + "px";
+            resizerLeft.style.left = (tiddler.offsetLeft) + "px";
+            resizerRight.style.top = (tiddler.offsetTop + tiddler.offsetHeight - resizerRight.offsetHeight) + "px";
+            resizerRight.style.left = (tiddler.offsetLeft + tiddler.offsetWidth - resizerRight.offsetWidth) + "px";
+        } else {     
+        	resizerLeft.style.top = (tiddler.clientHeight + tiddler.scrollTop - resizerLeft.offsetHeight) + "px";
+            resizerLeft.style.left = (-tiddler.scrollLeft) + "px";
+            resizerRight.style.top = (tiddler.clientHeight + tiddler.scrollTop - resizerRight.offsetHeight) + "px";
+            resizerRight.style.left = (tiddler.clientWidth + tiddler.scrollLeft - resizerRight.offsetWidth) + "px";
+        }
     }
+    	
 
 };    
 

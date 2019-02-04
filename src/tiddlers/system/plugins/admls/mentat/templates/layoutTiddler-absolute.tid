@@ -1,0 +1,11 @@
+created: 20190204183011639
+modified: 20190204184419221
+tags: $:/tags/EditTemplate $:/tags/ViewTemplate
+title: $:/plugins/admls/mentat/templates/layoutTiddler-absolute
+type: text/vnd.tiddlywiki
+
+<$reveal type="match" state="$:/view" text="mentat">
+<$list filter="[is[current]tag[layoutTiddler-absolute]]">
+<<movingTiddler "absolute">>
+</$list>
+</$reveal>

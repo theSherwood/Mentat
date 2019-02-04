@@ -1,5 +1,5 @@
 created: 20190129234855069
-modified: 20190204174628455
+modified: 20190204232244945
 tags: tampered $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/dimensions
 type: text/vnd.tiddlywiki
@@ -13,10 +13,9 @@ type: text/vnd.tiddlywiki
 
 <$reveal type="match" state="$:/view" text="mentat">
 <$set name="layoutTiddler-tag" value={{$:/plugins/admls/mentat/config/layoutTiddler-tag}}>
-<$list filter="[list[$:/StoryList]tag<layoutTiddler-tag>]">
+<$list filter="[list[$:/StoryList]tag<layoutTiddler-tag>] [list[$:/StoryList]tag[layoutTiddler-absolute]]">
 
 [data-tiddler-title="<<currentTiddler>>"] {
-position: fixed;
 top: <<backup top>>;
 left: <<backup left>>;
 width: <<backup width>>;
@@ -28,7 +27,6 @@ overflow-y: auto;
 
 /* Resizer handles */
 [data-tiddler-title="<<currentTiddler>>"] > .resizer-left, [data-tiddler-title="<<currentTiddler>>"] > .resizer-right {
-position: fixed;
 width: 12px;
 height: 12px;
 background-color: rgba(200,0,0,1);

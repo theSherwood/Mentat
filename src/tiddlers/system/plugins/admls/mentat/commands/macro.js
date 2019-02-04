@@ -3,7 +3,7 @@ created: 20190201191521777
 type: application/javascript
 title: $:/plugins/admls/mentat/commands/macro.js
 tags: unfinished tampered
-modified: 20190204181836859
+modified: 20190204220416389
 module-type: macro
 \*/
 (function(){
@@ -14,9 +14,12 @@ module-type: macro
 
 exports.name = "movingTiddler";
 
-exports.params = [];
+exports.params = [
+  { name: "position", default: "fixed" }
+];
 
-exports.run = function() {
+exports.run = function(position) {
+	position = (position === "absolute") ? position : "fixed";
 	let elmnt = this.parentDomNode;
 	// Get the tiddler element that this macro runs in
     while(!(elmnt.dataset.tiddlerTitle) ) {
@@ -27,18 +30,20 @@ exports.run = function() {
    	}
     
     const tiddler = elmnt;
+    tiddler.style.position = position;
     
     const resizerLeft = document.createElement("div");
     resizerLeft.className = "resizer resizer-left";
+    resizerLeft.style.position = position;
     const resizerRight = document.createElement("div");
     resizerRight.className = "resizer resizer-right";
+    resizerRight.style.position = position;
 	tiddler.appendChild(resizerLeft);
     tiddler.appendChild(resizerRight);
 
 	tiddler.addEventListener("mousedown", $tw.Weird.startDrag, false);
     tiddler.addEventListener("mousedown", $tw.Weird.getEventTiddler, false);
     tiddler.addEventListener("mousedown", $tw.Weird.startResize, false);
-    console.log(tiddler);
     $tw.Weird.logNewDimensions(tiddler);
     $tw.Weird.pushZStack(tiddler);
 
