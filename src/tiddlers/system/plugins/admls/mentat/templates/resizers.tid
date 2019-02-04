@@ -1,5 +1,5 @@
 created: 20190131232747058
-modified: 20190202001148087
+modified: 20190204172015546
 tags: $:/tags/EditTemplate $:/tags/ViewTemplate
 title: $:/plugins/admls/mentat/templates/resizers
 type: text/vnd.tiddlywiki
@@ -7,10 +7,6 @@ type: text/vnd.tiddlywiki
 <$reveal type="match" state="$:/view" text="mentat">
 <$set name="layoutTiddler-tag" value={{$:/plugins/admls/mentat/config/layoutTiddler-tag}}>
 <$list filter="[is[current]tag<layoutTiddler-tag>]">
-<div class="resizer resizer-left">
-</div>
-<div class="resizer resizer-right">
-</div>
 <<movingTiddler>>
 </$list>
 </$set>

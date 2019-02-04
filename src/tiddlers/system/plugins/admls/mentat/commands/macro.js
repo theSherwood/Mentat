@@ -3,7 +3,7 @@ created: 20190201191521777
 type: application/javascript
 title: $:/plugins/admls/mentat/commands/macro.js
 tags: unfinished tampered
-modified: 20190201232518964
+modified: 20190204172648354
 module-type: macro
 \*/
 (function(){
@@ -18,21 +18,28 @@ exports.params = [];
 
 exports.run = function() {
 	let elmnt = this.parentDomNode;
-	// Get the tiddler that this macro runs in
+	// Get the tiddler element that this macro runs in
     while(!(elmnt.dataset.tiddlerTitle) ) {
     	if(elmnt.tagName === "HTML") {
         	return;
         }
     	elmnt = elmnt.parentElement;
    	}
+    
+    const tiddler = elmnt;
+    
+    const resizerLeft = document.createElement("div");
+    resizerLeft.className = "resizer resizer-left";
+    const resizerRight = document.createElement("div");
+    resizerRight.className = "resizer resizer-right";
+	tiddler.appendChild(resizerLeft);
+    tiddler.appendChild(resizerRight);
 
-	const cLog = function(e) {
-    	console.log(e.target.className);
-   }
-
-	elmnt.addEventListener("mousedown", $tw.Weird.startDrag, false);
-    elmnt.addEventListener("mousedown", $tw.Weird.pushZStack, false);
-    elmnt.addEventListener("mousedown", $tw.Weird.startResize, false);
+	tiddler.addEventListener("mousedown", $tw.Weird.startDrag, false);
+    tiddler.addEventListener("mousedown", $tw.Weird.pushZStack, false);
+    tiddler.addEventListener("mousedown", $tw.Weird.startResize, false);
+    console.log(tiddler);
+    $tw.Weird.logNewDimensions(tiddler);
 
   	
 };

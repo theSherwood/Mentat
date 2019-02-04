@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/mentat/globals/fakeName.js
 tags: unfinished tampered
-modified: 20190204170500570
+modified: 20190204171449722
 module-type: global
 
 Description...
@@ -100,8 +100,10 @@ const Weird = {
         window.removeEventListener('mouseup', Weird.endDrag, false);
     },
 
-    logNewDimensions: function() {
-    	const tiddler = this.eventTiddler;
+    logNewDimensions: function(tiddler) {
+    	if(tiddler === undefined) {
+			tiddler = this.eventTiddler;
+        }
     	const title = tiddler.dataset.tiddlerTitle;
         // Log the dimensions to the appropriate field for pickup by CSS
         $tw.wiki.setText(title,'top',undefined,(tiddler.offsetTop)+"px",undefined);
