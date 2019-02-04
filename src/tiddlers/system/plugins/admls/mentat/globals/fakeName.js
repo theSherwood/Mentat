@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/mentat/globals/fakeName.js
 tags: unfinished tampered
-modified: 20190204233526343
+modified: 20190204234012187
 module-type: global
 
 Description...
@@ -103,7 +103,7 @@ const Weird = {
             $tw.wiki.setText(title,'resizerright-left',undefined,(tiddler.offsetLeft+tiddler.offsetWidth-resizerRight.offsetWidth)+"px",undefined);
         } else {
         	$tw.wiki.setText(title,'resizerleft-top',undefined,(tiddler.clientHeight + tiddler.scrollTop - resizerLeft.offsetHeight)+"px",undefined);
-            $tw.wiki.setText(title,'resizerleft-left',undefined,(-tiddler.scrollLeft)+"px",undefined);        
+            $tw.wiki.setText(title,'resizerleft-left',undefined,(tiddler.scrollLeft)+"px",undefined);        
             $tw.wiki.setText(title,'resizerright-top',undefined,(tiddler.clientHeight + tiddler.scrollTop - resizerRight.offsetHeight)+"px",undefined);
             $tw.wiki.setText(title,'resizerright-left',undefined,(tiddler.clientWidth + tiddler.scrollLeft - resizerRight.offsetWidth)+"px",undefined);
         }
@@ -215,7 +215,7 @@ const Weird = {
             resizerRight.style.left = (tiddler.offsetLeft + tiddler.offsetWidth - resizerRight.offsetWidth) + "px";
         } else {     
         	resizerLeft.style.top = (tiddler.clientHeight + tiddler.scrollTop - resizerLeft.offsetHeight) + "px";
-            resizerLeft.style.left = (-tiddler.scrollLeft) + "px";
+            resizerLeft.style.left = (tiddler.scrollLeft) + "px";
             resizerRight.style.top = (tiddler.clientHeight + tiddler.scrollTop - resizerRight.offsetHeight) + "px";
             resizerRight.style.left = (tiddler.clientWidth + tiddler.scrollLeft - resizerRight.offsetWidth) + "px";
         }
