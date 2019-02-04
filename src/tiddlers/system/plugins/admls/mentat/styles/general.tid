@@ -1,5 +1,5 @@
 created: 20190131224855059
-modified: 20190202004245713
+modified: 20190202015350197
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/general
 type: text/vnd.tiddlywiki
@@ -21,6 +21,13 @@ height: 12px;
 background-color: rgba(200,0,0,1);
 color: white;
 bottom: 0px;
+/*\
+position: -webkit-sticky;
+position: -moz-sticky;
+position: -o-sticky;
+position: -ms-sticky;
+position: sticky;
+\*/
 }
 
 .resizer-left {
