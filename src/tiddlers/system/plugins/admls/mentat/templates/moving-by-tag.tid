@@ -1,7 +1,7 @@
 created: 20190131232747058
-modified: 20190204172015546
+modified: 20190204174713502
 tags: $:/tags/EditTemplate $:/tags/ViewTemplate
-title: $:/plugins/admls/mentat/templates/resizers
+title: $:/plugins/admls/mentat/templates/moving-by-tag
 type: text/vnd.tiddlywiki
 
 <$reveal type="match" state="$:/view" text="mentat">
