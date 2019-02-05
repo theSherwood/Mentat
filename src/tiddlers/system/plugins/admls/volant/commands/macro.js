@@ -1,9 +1,9 @@
 /*\
 created: 20190201191521777
 type: application/javascript
-title: $:/plugins/admls/mentat/commands/macro.js
+title: $:/plugins/admls/volant/commands/macro.js
 tags: unfinished tampered
-modified: 20190204233346296
+modified: 20190205002156167
 module-type: macro
 \*/
 (function(){
@@ -12,7 +12,7 @@ module-type: macro
 /*global $tw: false */
 "use strict";
 
-exports.name = "movingTiddler";
+exports.name = "volant";
 
 exports.params = [
   { name: "position", default: "fixed" }
@@ -41,15 +41,15 @@ exports.run = function(position) {
 	tiddler.appendChild(resizerLeft);
     tiddler.appendChild(resizerRight);
 
-	tiddler.addEventListener("mousedown", $tw.Weird.startDrag, false);
-    tiddler.addEventListener("mousedown", $tw.Weird.getEventTiddler, false);
-    tiddler.addEventListener("mousedown", $tw.Weird.startResize, false);
+	tiddler.addEventListener("mousedown", $tw.Volant.startDrag, false);
+    tiddler.addEventListener("mousedown", $tw.Volant.pushEventToZStack, false);
+    tiddler.addEventListener("mousedown", $tw.Volant.startResize, false);
     if(position === "absolute") {
-    	tiddler.addEventListener("scroll", $tw.Weird.repositionAbsoluteResizers, false);
+    	tiddler.addEventListener("scroll", $tw.Volant.repositionAbsoluteResizers, false);
     }
     
-    $tw.Weird.logNewDimensions(tiddler);
-    $tw.Weird.pushZStack(tiddler);
+    $tw.Volant.logNewDimensions(tiddler);
+    $tw.Volant.pushTiddlerToZStack(tiddler);
 
   	
 };

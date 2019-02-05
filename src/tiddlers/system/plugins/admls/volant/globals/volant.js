@@ -1,9 +1,9 @@
 /*\
 created: 20190201185751112
 type: application/javascript
-title: $:/plugins/admls/mentat/globals/fakeName.js
+title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190204234012187
+modified: 20190205000440915
 module-type: global
 
 Description...
@@ -15,7 +15,7 @@ ToDo:
 - store zStack in a click history tiddler
 - add absolute flying tiddlers
 - change namespace
-- something other than a border for the top of the zstack
+- something other than a border for the top tiddler of the zstack
 - refactor
 - comment code
 - implement grid
@@ -30,7 +30,7 @@ ToDo:
 "use strict";
 
 
-const Weird = {
+const Volant = {
 	zStack: [],
     pos1: 0,
     pos2: 0,
@@ -43,43 +43,43 @@ const Weird = {
         if(!e.target.matches(".tc-tiddler-frame")) {
           return;
         }       
-        const Weird = $tw.Weird;
-        Weird.eventTiddler = this;
+        const Volant = $tw.Volant;
+        Volant.eventTiddler = this;
 
         // get the mouse cursor position at startup:
-        Weird.pos3 = e.clientX;
-        Weird.pos4 = e.clientY;
+        Volant.pos3 = e.clientX;
+        Volant.pos4 = e.clientY;
         // call a function whenever the cursor moves:
-        window.addEventListener('mousemove', Weird.tiddlerDrag);
-        window.addEventListener('mouseup', Weird.endDrag, false);        
+        window.addEventListener('mousemove', Volant.tiddlerDrag);
+        window.addEventListener('mouseup', Volant.endDrag, false);        
     },
     
     tiddlerDrag: function(e) {
-        const Weird = $tw.Weird;
-        const tiddler = Weird.eventTiddler
+        const Volant = $tw.Volant;
+        const tiddler = Volant.eventTiddler
         const title = tiddler.dataset.tiddlerTitle;
         e.preventDefault();
         // calculate the new cursor position:
-        Weird.pos1 = Weird.pos3 - e.clientX;
-        Weird.pos2 = Weird.pos4 - e.clientY;
-        Weird.pos3 = e.clientX;
-        Weird.pos4 = e.clientY;
+        Volant.pos1 = Volant.pos3 - e.clientX;
+        Volant.pos2 = Volant.pos4 - e.clientY;
+        Volant.pos3 = e.clientX;
+        Volant.pos4 = e.clientY;
         // get dimensions
         const top = tiddler.offsetTop;
         const left = tiddler.offsetLeft;
         
-        tiddler.style.top = (top - Weird.pos2) + "px";
-        tiddler.style.left = (left - Weird.pos1) + "px";
+        tiddler.style.top = (top - Volant.pos2) + "px";
+        tiddler.style.left = (left - Volant.pos1) + "px";
 
-        Weird.updateResizerPositions(tiddler);
+        Volant.updateResizerPositions(tiddler);
     },
 
 	endDrag: function() {
-        const Weird = $tw.Weird;
+        const Volant = $tw.Volant;
         // stop moving when mouse button is released:
-        Weird.logNewDimensions()
-        window.removeEventListener('mousemove', Weird.tiddlerDrag);
-        window.removeEventListener('mouseup', Weird.endDrag, false);
+        Volant.logNewDimensions()
+        window.removeEventListener('mousemove', Volant.tiddlerDrag);
+        window.removeEventListener('mouseup', Volant.endDrag, false);
     },
 
     logNewDimensions: function(tiddler) {
@@ -111,22 +111,27 @@ const Weird = {
         this.eventTiddler = undefined;
     },
 
-    pushZStack: function(tiddler) {
-    	const Weird = $tw.Weird;
+    pushTiddlerToZStack: function(tiddler) {
+    	const Volant = $tw.Volant;
         if(!tiddler) {
         	return;
         };
-    	const zStack = Weird.zStack;
+    	const zStack = Volant.zStack;
         const index = zStack.indexOf(tiddler);
         if (index !== -1) {
           zStack.splice(index, 1);
         }
         zStack.push(tiddler);
-        Weird.evaluateZStack(tiddler);
+        Volant.evaluateZStack();
   	},
     
-   	evaluateZStack: function(tiddler) {
-    	const zStack = $tw.Weird.zStack;
+    pushEventToZStack(e) {
+    	const tiddler = $tw.Volant.getEventTiddler(e);
+        $tw.Volant.pushTiddlerToZStack(tiddler);
+    },
+    
+   	evaluateZStack: function() {
+    	const zStack = $tw.Volant.zStack;
         // Assigns z-index to the elements in zstack based on position.
         for (let i = 0; i < zStack.length; i++) {
          	zStack[i].style.zIndex = i * 10 + 700;
@@ -141,22 +146,22 @@ const Weird = {
     
     startResize: function(e) {
     	if (e.target.classList.contains("resizer")) {
-            const Weird = $tw.Weird;
-            Weird.eventTiddler = Weird.getEventTiddler(e);
-            console.log(Weird.eventTiddler);
+            const Volant = $tw.Volant;
+            Volant.eventTiddler = Volant.getEventTiddler(e);
+            console.log(Volant.eventTiddler);
             e.stopPropagation();
             if (e.target.classList.contains("resizer-left")) {
-                window.addEventListener('mousemove', Weird.resizeLeft);
+                window.addEventListener('mousemove', Volant.resizeLeft);
             } else if (e.target.classList.contains("resizer-right")) {
-                window.addEventListener('mousemove', Weird.resizeRight);     
+                window.addEventListener('mousemove', Volant.resizeRight);     
             }
-            window.addEventListener('mouseup', Weird.endResize, false); 
+            window.addEventListener('mouseup', Volant.endResize, false); 
         }
     },
 
 	resizeLeft: function(e) {
     	e.preventDefault();
-    	const tiddler = $tw.Weird.eventTiddler;
+    	const tiddler = $tw.Volant.eventTiddler;
         //const resizerLeft = tiddler.querySelector(".resizer-left");
         //const resizerRight = tiddler.querySelector(".resizer-right");
         const viewportOffset = tiddler.getBoundingClientRect();
@@ -164,28 +169,28 @@ const Weird = {
         tiddler.style.left = (e.clientX - 5) + 'px';
        	tiddler.style.height = (e.clientY - viewportOffset.top + 5) + 'px';
         
-        Weird.updateResizerPositions(tiddler);
+        $tw.Volant.updateResizerPositions(tiddler);
     },
     
     resizeRight: function(e) {
     	e.preventDefault();
-        const tiddler = $tw.Weird.eventTiddler;
+        const tiddler = $tw.Volant.eventTiddler;
         //const resizerLeft = tiddler.querySelector(".resizer-left");
         //const resizerRight = tiddler.querySelector(".resizer-right");
         const viewportOffset = tiddler.getBoundingClientRect();
        	tiddler.style.width = (e.clientX - viewportOffset.left + 5) + 'px';
        	tiddler.style.height = (e.clientY - viewportOffset.top + 5) + 'px';
         
-        Weird.updateResizerPositions(tiddler);
+        $tw.Volant.updateResizerPositions(tiddler);
         
     },
     
     endResize: function() {
-    	const Weird = $tw.Weird;
-    	Weird.logNewDimensions();
-        window.removeEventListener('mousemove', Weird.resizeLeft);
-        window.removeEventListener('mousemove', Weird.resizeRight);
-        window.removeEventListener('mouseup', Weird.endResize, false);
+    	const Volant = $tw.Volant;
+    	Volant.logNewDimensions();
+        window.removeEventListener('mousemove', Volant.resizeLeft);
+        window.removeEventListener('mousemove', Volant.resizeRight);
+        window.removeEventListener('mouseup', Volant.endResize, false);
     },
     
     getEventTiddler: function(e) {
@@ -200,7 +205,6 @@ const Weird = {
         }
         e.stopPropagation();
         const tiddler = elmnt;
-        $tw.Weird.pushZStack(tiddler);
         return tiddler;
     },
     
@@ -222,24 +226,15 @@ const Weird = {
     },
     
     repositionAbsoluteResizers: function(e) {
-    	let elmnt = e.target;
-        // Get the tiddler that the event happened in
-    	while(!(elmnt.matches('[data-tiddler-title]'))) {
-        	// Stop if you get to the root element
-        	if(elmnt.tagName === "HTML") {
-            	return;
-            }
-            elmnt = elmnt.parentElement;
-        }
+    	const tiddler = $tw.Volant.getEventTiddler(e);
         e.stopPropagation();
-        const tiddler = elmnt;
-        Weird.updateResizerPositions(tiddler);
+        $tw.Volant.updateResizerPositions(tiddler);
     }
     	
 
 };    
 
 
-exports.Weird = Weird;
+exports.Volant = Volant;
 
 })();
