@@ -3,7 +3,7 @@ created: 20190201191521777
 type: application/javascript
 title: $:/plugins/admls/volant/commands/macro.js
 tags: unfinished tampered
-modified: 20190205111915302
+modified: 20190205220211312
 module-type: macro
 \*/
 (function(){

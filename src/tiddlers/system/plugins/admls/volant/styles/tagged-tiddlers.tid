@@ -1,5 +1,5 @@
 created: 20190129234855069
-modified: 20190205111309234
+modified: 20190205222937806
 tags: tampered $:/tags/Stylesheet
 title: $:/plugins/admls/volant/styles/tagged-tiddlers
 type: text/vnd.tiddlywiki
@@ -12,7 +12,7 @@ type: text/vnd.tiddlywiki
 \end
 
 <$reveal type="match" state="$:/view" text="mentat">
-<$set name="volant-default" value={{$:/plugins/admls/volant/config/tags}}>
+<$set name="volant-default" value={{$:/plugins/admls/volant/config/tags!!default}}>
 <$set name="volant-absolute" value={{$:/plugins/admls/volant/config/tags!!absolute}}>
 <$list filter="[list[$:/StoryList]tag<volant-default>] [list[$:/StoryList]tag<volant-absolute>]">
 
@@ -22,30 +22,18 @@ left: <<backup left>>;
 width: <<backup width>>;
 height: <<backup height>>;
 z-index: <<backup z-index>>;
-padding: 25px 15px 15px 15px;
-overflow-y: auto;
 }
 
 /* Resizer handles */
-[data-tiddler-title="<<currentTiddler>>"] > .resizer-left, [data-tiddler-title="<<currentTiddler>>"] > .resizer-right {
-width: 12px;
-height: 12px;
-background-color: rgba(200,0,0,1);
-color: white;
-}
 
 [data-tiddler-title="<<currentTiddler>>"] > .resizer-left {
 left: <<backup resizerleft-left>>;
 top: <<backup resizerleft-top>>;
-cursor: ne-resize;
-border-radius: 0% 70% 0% 0%;
 }
 
 [data-tiddler-title="<<currentTiddler>>"] > .resizer-right {
 left: <<backup resizerright-left>>;
 top: <<backup resizerright-top>>;
-cursor: se-resize;
-border-radius: 70% 0% 0% 0%;
 }
 
 </$list>
