@@ -3,18 +3,15 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190205005121279
+modified: 20190205021337836
 module-type: global
 
 Description...
 
 ToDo:
-- Fix stutter on mouseup and fast dragging
 - remove items from zStack when they are closed (this might have to be done in the storyview)
 - I may have introduced problem with getEventTiddler and the way it affects the zStack with window-tiddlers
 - store zStack in a click history tiddler
-- add absolute flying tiddlers
-- change namespace
 - something other than a border for the top tiddler of the zstack
 - refactor
 - comment code
@@ -76,6 +73,9 @@ const Volant = {
 
 	endDrag: function() {
         const Volant = $tw.Volant;
+        
+        Volant.snapToGrid();
+        
         // stop moving when mouse button is released:
         Volant.logNewDimensions()
         window.removeEventListener('mousemove', Volant.tiddlerDrag);
@@ -186,6 +186,9 @@ const Volant = {
     
     endResize: function() {
     	const Volant = $tw.Volant;
+        
+        Volant.snapToGrid();
+        
     	Volant.logNewDimensions();
         window.removeEventListener('mousemove', Volant.resizeLeft);
         window.removeEventListener('mousemove', Volant.resizeRight);
@@ -228,6 +231,38 @@ const Volant = {
     	const tiddler = $tw.Volant.getEventTiddler(e);
         e.stopPropagation();
         $tw.Volant.updateResizerPositions(tiddler);
+    },
+    
+    snapToGrid: function(tiddler) {
+    	const Volant = $tw.Volant;
+       	if(tiddler === undefined) {
+        	tiddler = Volant.eventTiddler;
+        }
+        const grid = Volant.getGrid();
+        tiddler.style.top = Volant.convertToGridValue(tiddler.offsetTop, grid, "height") + "px";
+        tiddler.style.left = Volant.convertToGridValue(tiddler.offsetLeft, grid, "width") + "px";
+        tiddler.style.height = Volant.convertToGridValue(tiddler.offsetHeight, grid, "height") + "px";
+        tiddler.style.width = Volant.convertToGridValue(tiddler.offsetWidth, grid, "width") + "px";
+        Volant.updateResizerPositions(tiddler); 	   
+    },
+    
+    getGrid: function() {
+    	const width = document.documentElement.clientWidth;
+        const height = document.documentElement.clientHeight;
+        return {
+          "cellWidth": width/Math.round(width/10),
+          "cellHeight": height/Math.round(height/10)
+        }
+    },
+    
+    convertToGridValue(number, grid, direction) {
+    	if(direction === "width") {
+            const quotient = number / grid.cellWidth;
+            return Math.round(quotient) * grid.cellWidth;
+       	} else {
+        	const quotient = number / grid.cellHeight;
+            return Math.round(quotient) * grid.cellHeight;
+        }
     }
     	
 
