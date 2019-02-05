@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190205000440915
+modified: 20190205005121279
 module-type: global
 
 Description...
@@ -148,7 +148,6 @@ const Volant = {
     	if (e.target.classList.contains("resizer")) {
             const Volant = $tw.Volant;
             Volant.eventTiddler = Volant.getEventTiddler(e);
-            console.log(Volant.eventTiddler);
             e.stopPropagation();
             if (e.target.classList.contains("resizer-left")) {
                 window.addEventListener('mousemove', Volant.resizeLeft);
@@ -171,7 +170,7 @@ const Volant = {
         
         $tw.Volant.updateResizerPositions(tiddler);
     },
-    
+
     resizeRight: function(e) {
     	e.preventDefault();
         const tiddler = $tw.Volant.eventTiddler;

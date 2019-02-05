@@ -1,18 +1,19 @@
 created: 20190129234855069
-modified: 20190205001653345
+modified: 20190205010755376
 tags: tampered $:/tags/Stylesheet
 title: $:/plugins/admls/volant/styles/tagged-tiddlers
 type: text/vnd.tiddlywiki
 
-\define backup(value)
-<$view field="""$value$""">
-	<$view tiddler="$:/plugins/admls/volant/config/backup-values" field="""$value$""">
+\define backup(position)
+<$view field="""$position$""">
+	<$view tiddler="$:/plugins/admls/volant/config/backup-values" field="""$position$""">
     </$view>
 </$view>
 \end
 
 <$reveal type="match" state="$:/view" text="mentat">
-<$vars volant-default={{$:/plugins/admls/volant/config/tags}} volant-absolute={{$:/plugins/admls/volant/config/tags!!absolute}}>
+<$set name="volant-default" value={{$:/plugins/admls/volant/config/tags}}>
+<$set name="volant-absolute" value={{$:/plugins/admls/volant/config/tags!!absolute}}>
 <$list filter="[list[$:/StoryList]tag<volant-default>] [list[$:/StoryList]tag<volant-absolute>]">
 
 [data-tiddler-title="<<currentTiddler>>"] {
@@ -48,5 +49,6 @@ border-radius: 70% 0% 0% 0%;
 }
 
 </$list>
-</$vars>
+</$set>
+</$set>
 </$reveal>

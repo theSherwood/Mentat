@@ -1,5 +1,5 @@
 created: 20190131224855059
-modified: 20190205002941430
+modified: 20190205011857825
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/volant/styles/general
 type: text/vnd.tiddlywiki
@@ -13,7 +13,7 @@ background-color: rgba(0,0,0,.3);
 color: #fff;
 }
 
-// Tiddler Scrollbars
+/* Tiddler Scrollbars */
 .tc-tiddler-frame::-webkit-scrollbar {
 	height: 4px;
     width: 4px;
@@ -33,3 +33,5 @@ color: #fff;
 	scrollbar-color: lightgray #eee;
 	scrollbar-width: thin;
 }
+
+
