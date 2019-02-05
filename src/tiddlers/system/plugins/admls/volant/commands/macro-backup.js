@@ -1,10 +1,10 @@
 /*\
-created: 20190201191521777
+created: 20190205100624268
 type: application/javascript
-title: $:/plugins/admls/volant/commands/macro.js
+title: $:/plugins/admls/volant/commands/macro-backup.js
 tags: unfinished tampered
-modified: 20190205102511467
-module-type: macro
+modified: 20190205100639365
+module-type: 
 \*/
 (function(){
 
@@ -34,16 +34,10 @@ exports.run = function(position) {
     
     const resizerLeft = document.createElement("div");
     resizerLeft.className = "resizer resizer-left";
-    resizerLeft.style.position = "fixed";
+    resizerLeft.style.position = position;
     const resizerRight = document.createElement("div");
     resizerRight.className = "resizer resizer-right";
-	resizerRight.style.position = "fixed";
-
-	if(position === "absolute") {
-    	resizerLeft.className += ' ' + 'absolute';
-        resizerRight.className += ' ' + 'absolute';
-    } 
-
+    resizerRight.style.position = position;
 	tiddler.appendChild(resizerLeft);
     tiddler.appendChild(resizerRight);
 
@@ -51,7 +45,7 @@ exports.run = function(position) {
     tiddler.addEventListener("mousedown", $tw.Volant.pushEventToZStack, false);
     tiddler.addEventListener("mousedown", $tw.Volant.startResize, false);
     if(position === "absolute") {
-    	window.addEventListener("scroll", $tw.Volant.repositionResizersOnAbsolute, false);
+    	tiddler.addEventListener("scroll", $tw.Volant.repositionAbsoluteResizers, false);
     }
     
     $tw.Volant.logNewDimensions(tiddler);

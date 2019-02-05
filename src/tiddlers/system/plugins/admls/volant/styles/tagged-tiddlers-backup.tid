@@ -1,7 +1,7 @@
-created: 20190129234855069
-modified: 20190205101149390
-tags: tampered $:/tags/Stylesheet
-title: $:/plugins/admls/volant/styles/tagged-tiddlers
+created: 20190205100553255
+modified: 20190205100609736
+tags: tampered
+title: $:/plugins/admls/volant/styles/tagged-tiddlers-backup
 type: text/vnd.tiddlywiki
 
 \define backup(position)
@@ -28,7 +28,6 @@ overflow-y: auto;
 
 /* Resizer handles */
 [data-tiddler-title="<<currentTiddler>>"] > .resizer-left, [data-tiddler-title="<<currentTiddler>>"] > .resizer-right {
-position: "fixed";
 width: 12px;
 height: 12px;
 background-color: rgba(200,0,0,1);

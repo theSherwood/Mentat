@@ -1,10 +1,10 @@
 /*\
-created: 20190201185751112
+created: 20190205100435993
 type: application/javascript
-title: $:/plugins/admls/volant/globals/volant.js
+title: $:/plugins/admls/volant/globals/volant-backup.js
 tags: unfinished tampered
-modified: 20190205104258944
-module-type: global
+modified: 20190205100504222
+module-type: 
 
 Description...
 
@@ -161,7 +161,8 @@ const Volant = {
 	resizeLeft: function(e) {
     	e.preventDefault();
     	const tiddler = $tw.Volant.eventTiddler;
-        
+        //const resizerLeft = tiddler.querySelector(".resizer-left");
+        //const resizerRight = tiddler.querySelector(".resizer-right");
         const viewportOffset = tiddler.getBoundingClientRect();
         tiddler.style.width = (tiddler.offsetWidth + (viewportOffset.left - e.clientX) + 5) + 'px';
         tiddler.style.left = (e.clientX - 5) + 'px';
@@ -173,7 +174,8 @@ const Volant = {
     resizeRight: function(e) {
     	e.preventDefault();
         const tiddler = $tw.Volant.eventTiddler;
-
+        //const resizerLeft = tiddler.querySelector(".resizer-left");
+        //const resizerRight = tiddler.querySelector(".resizer-right");
         const viewportOffset = tiddler.getBoundingClientRect();
        	tiddler.style.width = (e.clientX - viewportOffset.left + 5) + 'px';
        	tiddler.style.height = (e.clientY - viewportOffset.top + 5) + 'px';
@@ -211,37 +213,24 @@ const Volant = {
     updateResizerPositions: function(tiddler) {
     	const resizerLeft = tiddler.querySelector(".resizer-left");
         const resizerRight = tiddler.querySelector(".resizer-right");
-        const viewportOffset = tiddler.getBoundingClientRect();
         
-        resizerLeft.style.top = (viewportOffset.top + tiddler.offsetHeight - resizerLeft.offsetHeight) + "px";
-        resizerLeft.style.left = (viewportOffset.left) + "px";
-        resizerRight.style.top = (viewportOffset.top + tiddler.offsetHeight - resizerRight.offsetHeight) + "px";
-        resizerRight.style.left = (viewportOffset.left + tiddler.offsetWidth - resizerRight.offsetWidth) + "px";
-
+        if(resizerLeft.style.position === "fixed") {
+            resizerLeft.style.top = (tiddler.offsetTop + tiddler.offsetHeight - resizerLeft.offsetHeight) + "px";
+            resizerLeft.style.left = (tiddler.offsetLeft) + "px";
+            resizerRight.style.top = (tiddler.offsetTop + tiddler.offsetHeight - resizerRight.offsetHeight) + "px";
+            resizerRight.style.left = (tiddler.offsetLeft + tiddler.offsetWidth - resizerRight.offsetWidth) + "px";
+        } else {     
+        	resizerLeft.style.top = (tiddler.clientHeight + tiddler.scrollTop - resizerLeft.offsetHeight) + "px";
+            resizerLeft.style.left = (tiddler.scrollLeft) + "px";
+            resizerRight.style.top = (tiddler.clientHeight + tiddler.scrollTop - resizerRight.offsetHeight) + "px";
+            resizerRight.style.left = (tiddler.clientWidth + tiddler.scrollLeft - resizerRight.offsetWidth) + "px";
+        }
     },
     
-    repositionResizersOnAbsolute: function(e) {
-    	//console.log("SCROLLING...");
-        //const resizerLefts = document.querySelectorAll(".resizer-left.absolute");
-        //console.log(resizerLefts);
-
-        document.querySelectorAll(".resizer-left.absolute").forEach(function(resizer) {
-        	let elmnt = resizer;
-            while(!(elmnt.matches('[data-tiddler-title]'))) {
-                // Stop if you get to the root element
-                if(elmnt.tagName === "HTML") {
-                    return;
-                }
-                elmnt = elmnt.parentElement;
-            }
-            const tiddler = elmnt;
-            //console.log("HELLO!!!!");
-            $tw.Volant.updateResizerPositions(tiddler);
-        });
-
-    	//const tiddler = $tw.Volant.getEventTiddler(e);
-        //e.stopPropagation();
-        //$tw.Volant.updateResizerPositions(tiddler);
+    repositionAbsoluteResizers: function(e) {
+    	const tiddler = $tw.Volant.getEventTiddler(e);
+        e.stopPropagation();
+        $tw.Volant.updateResizerPositions(tiddler);
     },
     
     snapToGrid: function(tiddler) {
@@ -269,10 +258,10 @@ const Volant = {
     convertToGridValue(number, grid, direction) {
     	if(direction === "width") {
             const quotient = number / grid.cellWidth;
-            return Math.round(Math.round(quotient) * grid.cellWidth);
+            return Math.round(quotient) * grid.cellWidth;
        	} else {
         	const quotient = number / grid.cellHeight;
-            return Math.round(Math.round(quotient) * grid.cellHeight);
+            return Math.round(quotient) * grid.cellHeight;
         }
     }
     	
