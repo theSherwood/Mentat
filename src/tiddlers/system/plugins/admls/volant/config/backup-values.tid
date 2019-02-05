@@ -1,12 +1,12 @@
 created: 20190131221331828
-height: 300px
-left: 300px
-modified: 20190205001629212
+height: 400px
+left: 100px
+modified: 20190205232243375
 tags: tampered
 title: $:/plugins/admls/volant/config/backup-values
-top: 300px
+top: 100px
 type: text/vnd.tiddlywiki
-width: 400px
+width: 500px
 z-index: 700
 
 300px
