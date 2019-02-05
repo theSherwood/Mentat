@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190205104258944
+modified: 20190205110703892
 module-type: global
 
 Description...
@@ -15,7 +15,7 @@ ToDo:
 - something other than a border for the top tiddler of the zstack
 - refactor
 - comment code
-- implement grid
+- stop selection on drag and resize
 
 
 \*/
@@ -220,11 +220,7 @@ const Volant = {
 
     },
     
-    repositionResizersOnAbsolute: function(e) {
-    	//console.log("SCROLLING...");
-        //const resizerLefts = document.querySelectorAll(".resizer-left.absolute");
-        //console.log(resizerLefts);
-
+    repositionResizersOnAbsolute: function() {
         document.querySelectorAll(".resizer-left.absolute").forEach(function(resizer) {
         	let elmnt = resizer;
             while(!(elmnt.matches('[data-tiddler-title]'))) {
@@ -235,13 +231,8 @@ const Volant = {
                 elmnt = elmnt.parentElement;
             }
             const tiddler = elmnt;
-            //console.log("HELLO!!!!");
             $tw.Volant.updateResizerPositions(tiddler);
         });
-
-    	//const tiddler = $tw.Volant.getEventTiddler(e);
-        //e.stopPropagation();
-        //$tw.Volant.updateResizerPositions(tiddler);
     },
     
     snapToGrid: function(tiddler) {
