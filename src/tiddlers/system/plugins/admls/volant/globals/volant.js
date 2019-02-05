@@ -3,19 +3,18 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190205120120967
+modified: 20190205232836641
 module-type: global
 
 Description...
 
 ToDo:
-- remove items from zStack when they are closed (this might have to be done in the storyview)
+
 - I may have introduced problem with getEventTiddler and the way it affects the zStack with window-tiddlers
 - store zStack in a click history tiddler
-- something other than a border for the top tiddler of the zstack
 - refactor
 - comment code
-- stop selection on drag and resize
+- fix bug on absolute tiddlers far to right or left of story river on resize
 
 
 \*/
@@ -52,10 +51,10 @@ const Volant = {
     },
     
     tiddlerDrag: function(e) {
+    	e.preventDefault();
         const Volant = $tw.Volant;
         const tiddler = Volant.eventTiddler
         const title = tiddler.dataset.tiddlerTitle;
-        e.preventDefault();
         // calculate the new cursor position:
         Volant.pos1 = Volant.pos3 - e.clientX;
         Volant.pos2 = Volant.pos4 - e.clientY;
@@ -150,9 +149,11 @@ const Volant = {
     
     startResize: function(e) {
     	if (e.target.classList.contains("resizer")) {
+        	e.preventDefault();
+            e.stopPropagation();
+            
             const Volant = $tw.Volant;
             Volant.eventTiddler = Volant.getEventTiddler(e);
-            e.stopPropagation();
             if (e.target.classList.contains("resizer-left")) {
                 window.addEventListener('mousemove', Volant.resizeLeft);
             } else if (e.target.classList.contains("resizer-right")) {
@@ -164,6 +165,7 @@ const Volant = {
 
 	resizeLeft: function(e) {
     	e.preventDefault();
+        e.stopPropagation();
     	const tiddler = $tw.Volant.eventTiddler;
         
         const viewportOffset = tiddler.getBoundingClientRect();
@@ -176,6 +178,7 @@ const Volant = {
 
     resizeRight: function(e) {
     	e.preventDefault();
+        e.stopPropagation();
         const tiddler = $tw.Volant.eventTiddler;
 
         const viewportOffset = tiddler.getBoundingClientRect();
