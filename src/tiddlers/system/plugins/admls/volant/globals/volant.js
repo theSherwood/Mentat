@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190205115135793
+modified: 20190205120120967
 module-type: global
 
 Description...
@@ -135,16 +135,15 @@ const Volant = {
         // Filter out tiddlers no longer in the storyList
         const storyList = $tw.wiki.getTiddler("$:/StoryList").fields.list;
         Volant.zStack = Volant.zStack.filter(tiddler => storyList.includes(tiddler.dataset.tiddlerTitle));
-        console.log(Volant.zStack);
         // Assigns z-index to the elements in zstack based on position.
         const zStack = Volant.zStack;
         for (let i = 0; i < zStack.length; i++) {
          	zStack[i].style.zIndex = i * 10 + 700;
             // Quick test to make sure this is working
             if (i === zStack.length - 1) {
-            	zStack[i].style.border = "solid black 2px"; // Signalling selected thing by border is far from ideal
+            	zStack[i].style.boxShadow = "2px 2px 13px 6px rgba(0,0,0,.4)";
             } else {
-            	zStack[i].style.border = "";
+            	zStack[i].style.boxShadow = "";
             }
         }
   	},
