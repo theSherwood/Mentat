@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190205232836641
+modified: 20190206010003539
 module-type: global
 
 Description...
@@ -169,8 +169,8 @@ const Volant = {
     	const tiddler = $tw.Volant.eventTiddler;
         
         const viewportOffset = tiddler.getBoundingClientRect();
+        tiddler.style.left = (window.scrollX + e.clientX - 5) + 'px';
         tiddler.style.width = (tiddler.offsetWidth + (viewportOffset.left - e.clientX) + 5) + 'px';
-        tiddler.style.left = (e.clientX - 5) + 'px';
        	tiddler.style.height = (e.clientY - viewportOffset.top + 5) + 'px';
         
         $tw.Volant.updateResizerPositions(tiddler);
