@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190206010003539
+modified: 20190206011156233
 module-type: global
 
 Description...
@@ -91,21 +91,6 @@ const Volant = {
         $tw.wiki.setText(title,'left',undefined,(tiddler.offsetLeft)+"px",undefined);
         $tw.wiki.setText(title,'width',undefined,(tiddler.offsetWidth)+"px",undefined);
         $tw.wiki.setText(title,'height',undefined,(tiddler.offsetHeight)+"px",undefined);
-        
-        // Log resizer positions
-        const resizerLeft = tiddler.querySelector(".resizer-left");
-        const resizerRight = tiddler.querySelector(".resizer-right");
-        if(resizerLeft.style.position === "fixed") {
-            $tw.wiki.setText(title,'resizerleft-top',undefined,(tiddler.offsetTop+tiddler.offsetHeight-resizerLeft.offsetHeight)+"px",undefined);
-            $tw.wiki.setText(title,'resizerleft-left',undefined,(tiddler.offsetLeft)+"px",undefined);        
-            $tw.wiki.setText(title,'resizerright-top',undefined,(tiddler.offsetTop+tiddler.offsetHeight-resizerRight.offsetHeight)+"px",undefined);
-            $tw.wiki.setText(title,'resizerright-left',undefined,(tiddler.offsetLeft+tiddler.offsetWidth-resizerRight.offsetWidth)+"px",undefined);
-        } else {
-        	$tw.wiki.setText(title,'resizerleft-top',undefined,(tiddler.clientHeight + tiddler.scrollTop - resizerLeft.offsetHeight)+"px",undefined);
-            $tw.wiki.setText(title,'resizerleft-left',undefined,(tiddler.scrollLeft)+"px",undefined);        
-            $tw.wiki.setText(title,'resizerright-top',undefined,(tiddler.clientHeight + tiddler.scrollTop - resizerRight.offsetHeight)+"px",undefined);
-            $tw.wiki.setText(title,'resizerright-left',undefined,(tiddler.clientWidth + tiddler.scrollLeft - resizerRight.offsetWidth)+"px",undefined);
-        }
         
         this.eventTiddler = undefined;
     },

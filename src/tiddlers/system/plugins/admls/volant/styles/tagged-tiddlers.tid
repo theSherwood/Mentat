@@ -1,5 +1,5 @@
 created: 20190129234855069
-modified: 20190205232311687
+modified: 20190206011128321
 tags: tampered $:/tags/Stylesheet
 title: $:/plugins/admls/volant/styles/tagged-tiddlers
 type: text/vnd.tiddlywiki
@@ -28,18 +28,6 @@ overflow-y: auto;
 
 [data-tiddler-title="<<currentTiddler>>"] .tc-titlebar {
 font-size: 1.6em;
-}
-
-/* Resizer handles */
-
-[data-tiddler-title="<<currentTiddler>>"] > .resizer-left {
-left: <<backup resizerleft-left>>;
-top: <<backup resizerleft-top>>;
-}
-
-[data-tiddler-title="<<currentTiddler>>"] > .resizer-right {
-left: <<backup resizerright-left>>;
-top: <<backup resizerright-top>>;
 }
 
 </$list>
