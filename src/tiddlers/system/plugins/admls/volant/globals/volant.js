@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190206011156233
+modified: 20190206014830244
 module-type: global
 
 Description...
@@ -14,7 +14,8 @@ ToDo:
 - store zStack in a click history tiddler
 - refactor
 - comment code
-- fix bug on absolute tiddlers far to right or left of story river on resize
+- implement requestAnimationFrame
+- look into scrolling left and circular scrolling for the mentat plugin
 
 
 \*/
