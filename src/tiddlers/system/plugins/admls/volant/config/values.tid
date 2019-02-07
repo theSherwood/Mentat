@@ -1,5 +1,6 @@
 created: 20190205210210532
-modified: 20190205224004285
+gridsize: 10
+modified: 20190207200113283
 resizer-color: rgba(200,0,0,1)
 tags: 
 title: $:/plugins/admls/volant/config/values

@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190206014830244
+modified: 20190207195959739
 module-type: global
 
 Description...
@@ -242,11 +242,12 @@ const Volant = {
     },
     
     getGrid: function() {
+    	const gridsize = Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.gridsize) || 1;
     	const width = document.documentElement.clientWidth;
         const height = document.documentElement.clientHeight;
         return {
-          "cellWidth": width/Math.round(width/10),
-          "cellHeight": height/Math.round(height/10)
+          "cellWidth": width/Math.round(width/gridsize),
+          "cellHeight": height/Math.round(height/gridsize)
         }
     },
     
