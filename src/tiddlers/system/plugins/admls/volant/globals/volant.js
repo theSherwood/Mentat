@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190207195959739
+modified: 20190207213036835
 module-type: global
 
 Description...
@@ -16,6 +16,7 @@ ToDo:
 - comment code
 - implement requestAnimationFrame
 - look into scrolling left and circular scrolling for the mentat plugin
+- implement drag mode in which you can drag from anywhere on the tiddler
 
 
 \*/
@@ -35,11 +36,15 @@ const Volant = {
     pos4: 0,
 
 	startDrag: function(e) {
-    	e.stopPropagation();
 		// Disable dragging if interior elements were target
-        if(!e.target.matches(".tc-tiddler-frame")) {
+        const dragModeIsOn = $tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.dragmode === "on";
+        const targetIsChildElement = !e.target.matches(".tc-tiddler-frame"); // This will be problematic if you have nested volant tiddlers
+        const targetIsResizer = e.target.matches(".resizer"); // Stops drag if target is a resizer
+        if(targetIsResizer || (!dragModeIsOn && targetIsChildElement)) {
           return;
-        }       
+        }
+        e.stopPropagation();
+        e.preventDefault();
         const Volant = $tw.Volant;
         Volant.eventTiddler = this;
 
@@ -52,6 +57,7 @@ const Volant = {
     },
     
     tiddlerDrag: function(e) {
+    	e.stopPropagation();
     	e.preventDefault();
         const Volant = $tw.Volant;
         const tiddler = Volant.eventTiddler
@@ -64,7 +70,7 @@ const Volant = {
         // get dimensions
         const top = tiddler.offsetTop;
         const left = tiddler.offsetLeft;
-        
+        // style tiddler element
         tiddler.style.top = (top - Volant.pos2) + "px";
         tiddler.style.left = (left - Volant.pos1) + "px";
 
@@ -72,11 +78,11 @@ const Volant = {
     },
 
 	endDrag: function() {
+        // stop moving when mouse button is released:
         const Volant = $tw.Volant;
         
         Volant.snapToGrid();
         
-        // stop moving when mouse button is released:
         Volant.logNewDimensions()
         window.removeEventListener('mousemove', Volant.tiddlerDrag);
         window.removeEventListener('mouseup', Volant.endDrag, false);
