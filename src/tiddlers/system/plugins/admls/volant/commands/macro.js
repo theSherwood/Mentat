@@ -3,7 +3,7 @@ created: 20190201191521777
 type: application/javascript
 title: $:/plugins/admls/volant/commands/macro.js
 tags: unfinished tampered
-modified: 20190205220211312
+modified: 20190212152402075
 module-type: macro
 \*/
 (function(){
@@ -57,7 +57,6 @@ exports.run = function(position) {
     $tw.Volant.snapToGrid(tiddler);
     $tw.Volant.logNewDimensions(tiddler);
     $tw.Volant.pushTiddlerToZStack(tiddler);
-
   	
 };
 

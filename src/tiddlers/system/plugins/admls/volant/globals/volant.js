@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190207213036835
+modified: 20190212155707031
 module-type: global
 
 Description...
@@ -14,9 +14,10 @@ ToDo:
 - store zStack in a click history tiddler
 - refactor
 - comment code
-- implement requestAnimationFrame
 - look into scrolling left and circular scrolling for the mentat plugin
-- implement drag mode in which you can drag from anywhere on the tiddler
+- resolve bug (not snapping to grid on startup)
+  -- The problem arises in response to the timing of the rendering of scrollbars. If an absolute volant tiddler off to the right is rendered before the fixed tiddlers, the scrollbars are already present and there is no problem. If there are no scrollbars, there is no problem. Tricky issue.
+  -- This issue might be resolvable (for the most part) elsewhere. In the mentat plugin, if fixed, set overflow to hidden. No scrollbars ever. If absolute, set overflow to scroll. Always scrollbars.
 
 
 \*/
@@ -27,6 +28,11 @@ ToDo:
 /*global $tw: true */
 "use strict";
 
+window.requestAnimationFrame = window.requestAnimationFrame
+    || window.mozRequestAnimationFrame
+    || window.webkitRequestAnimationFrame
+    || window.msRequestAnimationFrame
+    || function(f){return setTimeout(f, 1000/60)};
 
 const Volant = {
 	zStack: [],
@@ -62,28 +68,33 @@ const Volant = {
         const Volant = $tw.Volant;
         const tiddler = Volant.eventTiddler
         const title = tiddler.dataset.tiddlerTitle;
-        // calculate the new cursor position:
-        Volant.pos1 = Volant.pos3 - e.clientX;
-        Volant.pos2 = Volant.pos4 - e.clientY;
-        Volant.pos3 = e.clientX;
-        Volant.pos4 = e.clientY;
-        // get dimensions
-        const top = tiddler.offsetTop;
-        const left = tiddler.offsetLeft;
-        // style tiddler element
-        tiddler.style.top = (top - Volant.pos2) + "px";
-        tiddler.style.left = (left - Volant.pos1) + "px";
+        window.requestAnimationFrame(() => {
+            // calculate the new cursor position:
+            Volant.pos1 = Volant.pos3 - e.clientX;
+            Volant.pos2 = Volant.pos4 - e.clientY;
+            Volant.pos3 = e.clientX;
+            Volant.pos4 = e.clientY;
+            // get dimensions
+            const top = tiddler.offsetTop;
+            const left = tiddler.offsetLeft;
+            // style tiddler element
+            tiddler.style.top = (top - Volant.pos2) + "px";
+            tiddler.style.left = (left - Volant.pos1) + "px";
 
-        Volant.updateResizerPositions(tiddler);
+            Volant.updateResizerPositions(tiddler);
+        });
+        
     },
 
 	endDrag: function() {
         // stop moving when mouse button is released:
         const Volant = $tw.Volant;
         
-        Volant.snapToGrid();
-        
-        Volant.logNewDimensions()
+        window.requestAnimationFrame(() => {
+            Volant.snapToGrid();
+            Volant.logNewDimensions()
+       	});
+            
         window.removeEventListener('mousemove', Volant.tiddlerDrag);
         window.removeEventListener('mouseup', Volant.endDrag, false);
     },
@@ -161,11 +172,19 @@ const Volant = {
     	const tiddler = $tw.Volant.eventTiddler;
         
         const viewportOffset = tiddler.getBoundingClientRect();
-        tiddler.style.left = (window.scrollX + e.clientX - 5) + 'px';
-        tiddler.style.width = (tiddler.offsetWidth + (viewportOffset.left - e.clientX) + 5) + 'px';
-       	tiddler.style.height = (e.clientY - viewportOffset.top + 5) + 'px';
         
-        $tw.Volant.updateResizerPositions(tiddler);
+        window.requestAnimationFrame(() => {
+            tiddler.style.height = (e.clientY - viewportOffset.top + 5) + 'px';
+            if(tiddler.style.position === "fixed") {
+                tiddler.style.width = (tiddler.offsetWidth + tiddler.offsetLeft - e.clientX + 5) + 'px';
+                tiddler.style.left = (e.clientX - 5) + 'px'; 	
+            } else {
+                tiddler.style.left = (window.scrollX + e.clientX - 5) + 'px';
+                tiddler.style.width = (tiddler.offsetWidth + viewportOffset.left - e.clientX + 5) + 'px';
+            }
+
+            $tw.Volant.updateResizerPositions(tiddler);
+        });
     },
 
     resizeRight: function(e) {
@@ -174,19 +193,23 @@ const Volant = {
         const tiddler = $tw.Volant.eventTiddler;
 
         const viewportOffset = tiddler.getBoundingClientRect();
-       	tiddler.style.width = (e.clientX - viewportOffset.left + 5) + 'px';
-       	tiddler.style.height = (e.clientY - viewportOffset.top + 5) + 'px';
         
-        $tw.Volant.updateResizerPositions(tiddler);
-        
+        window.requestAnimationFrame(() => {
+            tiddler.style.width = (e.clientX - viewportOffset.left + 5) + 'px';
+            tiddler.style.height = (e.clientY - viewportOffset.top + 5) + 'px';
+
+            $tw.Volant.updateResizerPositions(tiddler);
+        });
     },
     
     endResize: function() {
     	const Volant = $tw.Volant;
+
+        window.requestAnimationFrame(() => {
+            Volant.snapToGrid();
+            Volant.logNewDimensions()
+       	});
         
-        Volant.snapToGrid();
-        
-    	Volant.logNewDimensions();
         window.removeEventListener('mousemove', Volant.resizeLeft);
         window.removeEventListener('mousemove', Volant.resizeRight);
         window.removeEventListener('mouseup', Volant.endResize, false);
@@ -230,7 +253,9 @@ const Volant = {
                 elmnt = elmnt.parentElement;
             }
             const tiddler = elmnt;
-            $tw.Volant.updateResizerPositions(tiddler);
+            window.requestAnimationFrame(() => {
+            	$tw.Volant.updateResizerPositions(tiddler);
+            });
         });
     },
     
@@ -239,31 +264,40 @@ const Volant = {
        	if(tiddler === undefined) {
         	tiddler = Volant.eventTiddler;
         }
-        const grid = Volant.getGrid();
-        tiddler.style.top = Volant.convertToGridValue(tiddler.offsetTop, grid, "height") + "px";
-        tiddler.style.left = Volant.convertToGridValue(tiddler.offsetLeft, grid, "width") + "px";
-        tiddler.style.height = Volant.convertToGridValue(tiddler.offsetHeight, grid, "height") + "px";
-        tiddler.style.width = Volant.convertToGridValue(tiddler.offsetWidth, grid, "width") + "px";
-        Volant.updateResizerPositions(tiddler); 	   
+        Volant.getGrid();
+        const positionIsFixed = (tiddler.style.position === "fixed");
+        tiddler.style.top = Volant.convertToGridValue(tiddler.offsetTop, positionIsFixed, "height") + "px";
+        tiddler.style.left = Volant.convertToGridValue(tiddler.offsetLeft, positionIsFixed, "width") + "px";
+        tiddler.style.height = Volant.convertToGridValue(tiddler.offsetHeight, positionIsFixed, "height") + "px";
+        tiddler.style.width = Volant.convertToGridValue(tiddler.offsetWidth, positionIsFixed, "width") + "px";
+        Volant.updateResizerPositions(tiddler); 
     },
     
     getGrid: function() {
     	const gridsize = Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.gridsize) || 1;
     	const width = document.documentElement.clientWidth;
         const height = document.documentElement.clientHeight;
-        return {
-          "cellWidth": width/Math.round(width/gridsize),
-          "cellHeight": height/Math.round(height/gridsize)
+        $tw.Volant.grid = {
+        	// The grid should register to the viewport for fixed volant tiddlers, but not for absolute
+            "fixedCellWidth": width/Math.round(width/gridsize),
+            "fixedCellHeight": height/Math.round(height/gridsize),
+            "absoluteGridSize": gridsize
         }
     },
     
-    convertToGridValue(number, grid, direction) {
-    	if(direction === "width") {
-            const quotient = number / grid.cellWidth;
-            return Math.round(Math.round(quotient) * grid.cellWidth);
-       	} else {
-        	const quotient = number / grid.cellHeight;
-            return Math.round(Math.round(quotient) * grid.cellHeight);
+    convertToGridValue(number, positionIsFixed, direction) {
+    	const grid = $tw.Volant.grid;
+        if(positionIsFixed) {
+            if(direction === "width") {
+                const quotient = number / grid.fixedCellWidth;
+                return Math.round(Math.round(quotient) * grid.fixedCellWidth);
+            } else {
+                const quotient = number / grid.fixedCellHeight;
+                return Math.round(Math.round(quotient) * grid.fixedCellHeight);
+            }
+        } else {
+        	const quotient = number / grid.absoluteGridSize;
+            return Math.round(Math.round(quotient) * grid.absoluteGridSize);
         }
     }
     	
