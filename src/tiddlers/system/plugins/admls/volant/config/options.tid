@@ -1,12 +1,12 @@
 created: 20190205194739396
-modified: 20190212162427518
+modified: 20190212172219300
 tags: tampered unfinished
 title: $:/plugins/admls/volant/config/options
 type: text/vnd.tiddlywiki
 
 <$set name="configTiddler" value="$:/plugins/admls/volant/config/values">
 
-|<$link to=<<configTiddler>>>default functionality</$link> |//When enabled, basic volant functionality by tag is aavailable.//| <$checkbox tiddler=<<configTiddler>> field="default-functionality" checked="on" unchecked="off" default="off"></$checkbox> |
+|<$link to=<<configTiddler>>>default functionality</$link> |//When enabled, basic volant functionality by tag is available.//| <$checkbox tiddler=<<configTiddler>> field="default-functionality" checked="on" unchecked="off" default="off"></$checkbox> |
 |<$link to="$:/plugins/admls/volant/config/tags">volant default tag</$link> |//This tag triggers the default/fixed volant behavior. You cannot scroll away from it.//|<$edit-text tiddler="$:/plugins/admls/volant/config/tags" field="default" default="volant" tag="input"/> |
 |<$link to="$:/plugins/admls/volant/config/tags">volant absolute tag</$link> |//This tag triggers the absolute volant behavior. You can scroll away from it.//|<$edit-text tiddler="$:/plugins/admls/volant/config/tags" field="absolute" default="volant-absolute" tag="input"/> |
 |<$link to=<<configTiddler>>>resizer color</$link> | |<$edit-text tiddler=<<configTiddler>> field="resizer-color" default="rgba(200,0,0,1)" tag="input"/> |
