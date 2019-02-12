@@ -1,7 +1,8 @@
 created: 20190205210210532
+default-functionality: off
 dragmode: on
-gridsize: 10
-modified: 20190212155031816
+gridsize: 100
+modified: 20190212163259105
 resizer-color: rgba(200,0,0,1)
 tags: unfinished tampered
 title: $:/plugins/admls/volant/config/values

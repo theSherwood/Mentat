@@ -1,5 +1,5 @@
 created: 20190129234855069
-modified: 20190206011128321
+modified: 20190212163021717
 tags: tampered $:/tags/Stylesheet
 title: $:/plugins/admls/volant/styles/tagged-tiddlers
 type: text/vnd.tiddlywiki
@@ -11,7 +11,7 @@ type: text/vnd.tiddlywiki
 </$view>
 \end
 
-<$reveal type="match" state="$:/view" text="mentat">
+<$reveal type="match" stateTitle="$:/plugins/admls/volant/config/values" stateField="default-functionality" text="on">
 <$set name="volant-default" value={{$:/plugins/admls/volant/config/tags!!default}}>
 <$set name="volant-absolute" value={{$:/plugins/admls/volant/config/tags!!absolute}}>
 <$list filter="[list[$:/StoryList]tag<volant-default>] [list[$:/StoryList]tag<volant-absolute>]">
