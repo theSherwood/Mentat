@@ -28,18 +28,22 @@ ToDo:
 /*global $tw: true */
 "use strict";
 
-window.requestAnimationFrame = window.requestAnimationFrame
-    || window.mozRequestAnimationFrame
-    || window.webkitRequestAnimationFrame
-    || window.msRequestAnimationFrame
-    || function(f){return setTimeout(f, 1000/60)};
-
 const Volant = {
 	zStack: [],
     pos1: 0,
     pos2: 0,
     pos3: 0,
     pos4: 0,
+
+    /*\
+    getRequestAnimationFrame: function() {
+        $tw.volant.requestAnimationFrame = window.requestAnimationFrame
+        || window.mozRequestAnimationFrame
+        || window.webkitRequestAnimationFrame
+        || window.msRequestAnimationFrame
+        || function(f){return setTimeout(f, 1000/60)}
+    },
+    \*/
 
 	startDrag: function(e) {
 		// Disable dragging if interior elements were target
