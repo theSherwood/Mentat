@@ -1,8 +1,12 @@
-created: 20190129234855069
-modified: 20190212203100119
+created: 20190212174511720
+height: 94px
+left: 198px
+modified: 20190212202834058
 tags: $:/tags/Stylesheet tampered
-title: $:/plugins/admls/volant/styles/tagged-tiddlers
+title: $:/plugins/admls/mentat/styles/fixed-tiddlers
+top: 469px
 type: text/vnd.tiddlywiki
+width: 198px
 
 \define backup(position)
 <$view field="""$position$""">
@@ -11,10 +15,8 @@ type: text/vnd.tiddlywiki
 </$view>
 \end
 
-<$reveal type="match" stateTitle="$:/plugins/admls/volant/config/values" stateField="default-functionality" text="on">
-<$set name="volant-default" value={{$:/plugins/admls/volant/config/tags!!default}}>
-<$set name="volant-absolute" value={{$:/plugins/admls/volant/config/tags!!absolute}}>
-<$list filter="[list[$:/StoryList]tag<volant-default>] [list[$:/StoryList]tag<volant-absolute>]">
+<$reveal type="match" state="$:/view" text="mentat">
+<$list filter="[list[$:/StoryList]]">
 
 [data-tiddler-title="<<currentTiddler>>"] {
 top: <<backup top>>;
@@ -31,6 +33,4 @@ font-size: 1.6em;
 }
 
 </$list>
-</$set>
-</$set>
 </$reveal>

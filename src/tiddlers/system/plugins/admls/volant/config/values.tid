@@ -1,10 +1,14 @@
 created: 20190205210210532
-default-functionality: on
+default-functionality: off
 dragmode: on
 gridsize: 100
-modified: 20190212172120987
+height: 188px
+left: 0px
+modified: 20190212183204629
 resizer-color: rgba(200,0,0,1)
 tags: unfinished tampered
 title: $:/plugins/admls/volant/config/values
+top: 94px
 type: text/vnd.tiddlywiki
+width: 1087px
 

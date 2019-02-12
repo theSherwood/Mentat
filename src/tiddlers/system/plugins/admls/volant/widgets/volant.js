@@ -3,8 +3,12 @@ created: 20190212164359746
 type: application/javascript
 title: $:/plugins/admls/volant/widgets/volant.js
 tags: 
-modified: 20190212171902905
+modified: 20190212202950762
 module-type: widget
+top: 188px
+left: 198px
+width: 494px
+height: 282px
 
 \*/
 (function(){
@@ -65,7 +69,7 @@ VolantWidget.prototype.render = function(parent,nextSibling) {
     	window.addEventListener("scroll", $tw.Volant.repositionResizersOnAbsolute, false);
     }
     
-    $tw.Volant.snapToGrid(tiddler);
+    //$tw.Volant.snapToGrid(tiddler);
     $tw.Volant.logNewDimensions(tiddler);
     $tw.Volant.pushTiddlerToZStack(tiddler); 	
 };
@@ -75,7 +79,7 @@ Compute the internal state of this widget.
 */
 VolantWidget.prototype.execute = function() {
   this.position = this.getAttribute("position", "fixed");
-  this.stateTiddler = this.getAttribute("state", "");
+  this.state = this.getAttribute("state", "");
   //this.makeChildWidgets();
 };  
   
@@ -83,9 +87,8 @@ VolantWidget.prototype.execute = function() {
 Selectively refreshes the widget if needed. Returns true if the widget or any of its children needed re-rendering
 */
 VolantWidget.prototype.refresh = function(changedTiddlers) {
-  var changedAttributes = this.computeAttributes(),
-      hasChangedAttributes = $tw.utils.count(changedAttributes) > 0;
-  if (hasChangedAttributes) {
+  var changedAttributes = this.computeAttributes();
+  if (changedAttributes.position || changedAttributes.state) {
       this.refreshSelf();
       return true;
   } else {

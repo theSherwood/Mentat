@@ -3,8 +3,12 @@ created: 20190129200505951
 type: application/javascript
 title: $:/plugins/admls/mentat/storyviews/mentat.js
 tags: 
-modified: 20190205000635979
+modified: 20190212185538459
+width: 1087px
+top: 94px
 module-type: storyview
+left: 0px
+height: 2910px
 
 Views the story as a collection of story-windows
 
@@ -45,33 +49,7 @@ ClassicStoryView.prototype.insert = function(widget) {
 	if(!(targetElement instanceof Element)) {
 		return;
 	}  
-	// Get the current height of the tiddler
-	var computedStyle = window.getComputedStyle(targetElement),
-		currMarginBottom = parseInt(computedStyle.marginBottom,10),
-		currMarginTop = parseInt(computedStyle.marginTop,10),
-		currHeight = targetElement.offsetHeight + currMarginTop;
-	// Reset the margin once the transition is over
-	setTimeout(function() {
-		$tw.utils.setStyle(targetElement,[
-			{transition: "none"},
-			{marginBottom: ""}
-		]);
-	},duration);
-	// Set up the initial position of the element
-	$tw.utils.setStyle(targetElement,[
-		{transition: "none"},
-		{marginBottom: (-currHeight) + "px"},
-		{opacity: "0.0"}
-	]);
-	$tw.utils.forceLayout(targetElement);
-	// Transition to the final position
-	$tw.utils.setStyle(targetElement,[
-		{transition: "opacity " + duration + "ms " + easing + ", " +
-					"margin-bottom " + duration + "ms " + easing},
-		{marginBottom: currMarginBottom + "px"},
-		{opacity: "1.0"}
-	]);
-    
+	console.log(targetElement);
 
 };
 
