@@ -1,0 +1,18 @@
+created: 20190205194739396
+modified: 20190207212914626
+tags: tampered unfinished
+title: $:/plugins/admls/volant/config/options
+type: text/vnd.tiddlywiki
+
+<$set name="configTiddler" value="$:/plugins/admls/volant/config/values">
+
+|<$link to="$:/plugins/admls/volant/config/tags">volant default tag</$link> |//This tag triggers the default/fixed volant behavior. You cannot scroll away from it.//|<$edit-text tiddler="$:/plugins/admls/volant/config/tags" field="default" default="volant" tag="input"/> |
+|<$link to="$:/plugins/admls/volant/config/tags">volant absolute tag</$link> |//This tag triggers the absolute volant behavior. You can scroll away from it.//|<$edit-text tiddler="$:/plugins/admls/volant/config/tags" field="absolute" default="volant-absolute" tag="input"/> |
+|<$link to=<<configTiddler>>>resizer color</$link> | |<$edit-text tiddler=<<configTiddler>> field="resizer-color" default="rgba(200,0,0,1)" tag="input"/> |
+|<$link to=<<configTiddler>>>grid size</$link> | |<$edit-text tiddler=<<configTiddler>> field="gridsize" default="10" tag="input"/> |
+|<$link to=<<configTiddler>>>drag mode</$link> |//The click beginning the drag event can be anywhere within the volant tiddler (other than the resizers).//| <$checkbox tiddler=<<configTiddler>> field="dragmode" checked="on" unchecked="off" default="off"></$checkbox> |
+
+
+
+
+</$set>
