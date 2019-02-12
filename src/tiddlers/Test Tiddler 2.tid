@@ -1,10 +1,10 @@
 created: 20190129235947042
-left: 145
-modified: 20190131114010926
-tags: testingStyle
+height: 188px
+left: 622px
+modified: 20190212150957464
+tags: volant
 title: Test Tiddler 2
-top: 216
+top: 469px
 type: text/vnd.tiddlywiki
-width: 500
+width: 311px
 
-{{!!width}}
