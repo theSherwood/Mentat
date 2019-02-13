@@ -3,7 +3,7 @@ created: 20190212164359746
 type: application/javascript
 title: $:/plugins/admls/volant/widgets/volant.js
 tags: 
-modified: 20190213185531734
+modified: 20190213212539028
 width: 494px
 top: 188px
 module-type: widget
@@ -69,6 +69,19 @@ VolantWidget.prototype.render = function(parent,nextSibling) {
     }
 	if(!(this.separateState === "no")) {
     	stateTiddlerTitle = "$:/plugins/admls/volant/state/" + stateTiddlerTitle;
+        
+        const stateTiddler = $tw.wiki.getTiddler(stateTiddlerTitle);
+		const modification = $tw.wiki.getModificationFields();
+        const tag = "permastate";
+		if(stateTiddler) {
+            modification.tags = (stateTiddler.fields.tags || []).slice(0);
+            $tw.utils.pushTop(modification.tags,tag);
+            $tw.wiki.addTiddler(new $tw.Tiddler(stateTiddler,modification));			
+		} else {
+        	const tags = [];
+			tags.push(tag);
+			$tw.wiki.addTiddler(new $tw.Tiddler({title: stateTiddlerTitle, tags: tags},modification));
+        }
     }
     	   
     const startDrag = function(e) {
