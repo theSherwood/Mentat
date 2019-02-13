@@ -3,21 +3,15 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190212203135368
+modified: 20190213014341849
+width: 692px
+top: 0px
 module-type: global
+left: 0px
+height: 375px
+
 
 Description...
-
-ToDo:
-
-- I may have introduced problem with getEventTiddler and the way it affects the zStack with window-tiddlers
-- store zStack in a click history tiddler
-- refactor
-- comment code
-- look into scrolling left and circular scrolling for the mentat plugin
-- resolve bug (not snapping to grid on startup)
-  -- The problem arises in response to the timing of the rendering of scrollbars. If an absolute volant tiddler off to the right is rendered before the fixed tiddlers, the scrollbars are already present and there is no problem. If there are no scrollbars, there is no problem. Tricky issue.
-  -- This issue might be resolvable (for the most part) elsewhere. In the mentat plugin, if fixed, set overflow to hidden. No scrollbars ever. If absolute, set overflow to scroll. Always scrollbars.
 
 
 \*/
@@ -44,7 +38,7 @@ const Volant = {
         || function(f){return setTimeout(f, 1000/60)}
     },
     \*/
-
+	/*\
 	startDrag: function(e) {
 		// Disable dragging if interior elements were target
         const dragModeIsOn = $tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.dragmode === "on";
@@ -65,7 +59,7 @@ const Volant = {
         window.addEventListener('mousemove', Volant.tiddlerDrag);
         window.addEventListener('mouseup', Volant.endDrag, false);        
     },
-    
+    \*/
     tiddlerDrag: function(e) {
     	e.stopPropagation();
     	e.preventDefault();
@@ -103,16 +97,18 @@ const Volant = {
         window.removeEventListener('mouseup', Volant.endDrag, false);
     },
 
-    logNewDimensions: function(tiddler) {
+    logNewDimensions: function(tiddler, stateTiddlerTitle) {
     	if(tiddler === undefined) {
 			tiddler = this.eventTiddler;
         }
-    	const title = tiddler.dataset.tiddlerTitle;
+        if(stateTiddlerTitle === undefined) {
+        	stateTiddlerTitle = this.stateTiddlerTitle;
+        }
         // Log the dimensions to the appropriate field for pickup by CSS
-        $tw.wiki.setText(title,'top',undefined,(tiddler.offsetTop)+"px",undefined);
-        $tw.wiki.setText(title,'left',undefined,(tiddler.offsetLeft)+"px",undefined);
-        $tw.wiki.setText(title,'width',undefined,(tiddler.offsetWidth)+"px",undefined);
-        $tw.wiki.setText(title,'height',undefined,(tiddler.offsetHeight)+"px",undefined);
+        $tw.wiki.setText(stateTiddlerTitle,'top',undefined,(tiddler.offsetTop)+"px",undefined);
+        $tw.wiki.setText(stateTiddlerTitle,'left',undefined,(tiddler.offsetLeft)+"px",undefined);
+        $tw.wiki.setText(stateTiddlerTitle,'width',undefined,(tiddler.offsetWidth)+"px",undefined);
+        $tw.wiki.setText(stateTiddlerTitle,'height',undefined,(tiddler.offsetHeight)+"px",undefined);
         
         this.eventTiddler = undefined;
     },
@@ -153,7 +149,7 @@ const Volant = {
             }
         }
   	},
-    
+    /*\
     startResize: function(e) {
     	if (e.target.classList.contains("resizer")) {
         	e.preventDefault();
@@ -169,7 +165,7 @@ const Volant = {
             window.addEventListener('mouseup', Volant.endResize, false); 
         }
     },
-
+	\*/
 	resizeLeft: function(e) {
     	e.preventDefault();
         e.stopPropagation();
@@ -269,11 +265,15 @@ const Volant = {
         	tiddler = Volant.eventTiddler;
         }
         Volant.getGrid();
+        
+        // refactor this
+        const gridgap = Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.gridgap) || 0;
+
         const positionIsFixed = (tiddler.style.position === "fixed");
-        tiddler.style.top = Volant.convertToGridValue(tiddler.offsetTop, positionIsFixed, "height") + "px";
-        tiddler.style.left = Volant.convertToGridValue(tiddler.offsetLeft, positionIsFixed, "width") + "px";
-        tiddler.style.height = Volant.convertToGridValue(tiddler.offsetHeight, positionIsFixed, "height") + "px";
-        tiddler.style.width = Volant.convertToGridValue(tiddler.offsetWidth, positionIsFixed, "width") + "px";
+        tiddler.style.top = (Volant.convertToGridValue(tiddler.offsetTop, positionIsFixed, "height") + gridgap) + "px";
+        tiddler.style.left = (Volant.convertToGridValue(tiddler.offsetLeft, positionIsFixed, "width") + gridgap) + "px";
+        tiddler.style.height = (Volant.convertToGridValue(tiddler.offsetHeight, positionIsFixed, "height") - (2*gridgap)) + "px";
+        tiddler.style.width = (Volant.convertToGridValue(tiddler.offsetWidth, positionIsFixed, "width") - (2*gridgap)) + "px";
         Volant.updateResizerPositions(tiddler); 
     },
     
