@@ -3,7 +3,7 @@ created: 20190212164359746
 type: application/javascript
 title: $:/plugins/admls/volant/widgets/volant.js
 tags: 
-modified: 20190213212539028
+modified: 20190213222401999
 width: 494px
 top: 188px
 module-type: widget
@@ -63,27 +63,9 @@ VolantWidget.prototype.render = function(parent,nextSibling) {
     tiddler.appendChild(resizerLeft);
     tiddler.appendChild(resizerRight);
 
-	let stateTiddlerTitle = tiddler.dataset.tiddlerTitle;
-    if($tw.wiki.getTiddler(stateTiddlerTitle).hasField("draft.of")) {
-    	stateTiddlerTitle = $tw.wiki.getTiddler(stateTiddlerTitle).getFieldString("draft.of");
-    }
-	if(!(this.separateState === "no")) {
-    	stateTiddlerTitle = "$:/plugins/admls/volant/state/" + stateTiddlerTitle;
-        
-        const stateTiddler = $tw.wiki.getTiddler(stateTiddlerTitle);
-		const modification = $tw.wiki.getModificationFields();
-        const tag = "permastate";
-		if(stateTiddler) {
-            modification.tags = (stateTiddler.fields.tags || []).slice(0);
-            $tw.utils.pushTop(modification.tags,tag);
-            $tw.wiki.addTiddler(new $tw.Tiddler(stateTiddler,modification));			
-		} else {
-        	const tags = [];
-			tags.push(tag);
-			$tw.wiki.addTiddler(new $tw.Tiddler({title: stateTiddlerTitle, tags: tags},modification));
-        }
-    }
-    	   
+	this.getStateTiddler(tiddler.dataset.tiddlerTitle);
+    const stateTiddlerTitle = this.stateTiddlerTitle;
+    
     const startDrag = function(e) {
         // Disable dragging if interior elements were target
         const dragModeIsOn = $tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.dragmode === "on";
@@ -137,6 +119,33 @@ VolantWidget.prototype.render = function(parent,nextSibling) {
     $tw.Volant.pushTiddlerToZStack(tiddler); 	
 };
 
+VolantWidget.prototype.getStateTiddler = function(title) {
+	let tiddlerTitle = title;
+	this.stateTiddlerTitle = tiddlerTitle;
+	if(!(this.separateState === "no")) {
+    	if($tw.wiki.getTiddler(tiddlerTitle).hasField("draft.of")) {
+    		tiddlerTitle = $tw.wiki.getTiddler(tiddlerTitle).getFieldString("draft.of");
+    	}
+        
+    	const stateTiddlerTitle = "$:/plugins/admls/volant/state/" + tiddlerTitle;
+        this.stateTiddlerTitle = stateTiddlerTitle;
+        
+        $tw.wiki.setText(stateTiddlerTitle,"configuredtiddler",undefined,tiddlerTitle,undefined);
+        
+        const stateTiddler = $tw.wiki.getTiddler(stateTiddlerTitle);
+		const modification = $tw.wiki.getModificationFields();
+        const tag = "permastate";
+		if(stateTiddler) {
+            modification.tags = (stateTiddler.fields.tags || []).slice(0);
+            $tw.utils.pushTop(modification.tags,tag);
+            $tw.wiki.addTiddler(new $tw.Tiddler(stateTiddler,modification));			
+		} else {
+        	const tags = [];
+			tags.push(tag);
+			$tw.wiki.addTiddler(new $tw.Tiddler({title: stateTiddlerTitle, tags: tags},modification));
+        }
+    }    
+};
 
 /*
 Compute the internal state of this widget.
