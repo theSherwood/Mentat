@@ -3,7 +3,7 @@ created: 20190212164359746
 type: application/javascript
 title: $:/plugins/admls/volant/widgets/volant.js
 tags: 
-modified: 20190212223900328
+modified: 20190213185531734
 width: 494px
 top: 188px
 module-type: widget
@@ -62,17 +62,11 @@ VolantWidget.prototype.render = function(parent,nextSibling) {
 
     tiddler.appendChild(resizerLeft);
     tiddler.appendChild(resizerRight);
-    
-/*\
-    tiddler.addEventListener("mousedown", $tw.Volant.startDrag);
-    tiddler.addEventListener("mousedown", $tw.Volant.pushEventToZStack, false);
-    tiddler.addEventListener("mousedown", $tw.Volant.startResize);
-    if(position === "absolute") {
-    	window.addEventListener("scroll", $tw.Volant.repositionResizersOnAbsolute, false);
-    }
-\*/ 
 
 	let stateTiddlerTitle = tiddler.dataset.tiddlerTitle;
+    if($tw.wiki.getTiddler(stateTiddlerTitle).hasField("draft.of")) {
+    	stateTiddlerTitle = $tw.wiki.getTiddler(stateTiddlerTitle).getFieldString("draft.of");
+    }
 	if(!(this.separateState === "no")) {
     	stateTiddlerTitle = "$:/plugins/admls/volant/state/" + stateTiddlerTitle;
     }
