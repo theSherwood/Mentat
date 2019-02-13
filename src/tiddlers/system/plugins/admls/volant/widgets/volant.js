@@ -3,11 +3,11 @@ created: 20190212164359746
 type: application/javascript
 title: $:/plugins/admls/volant/widgets/volant.js
 tags: 
-modified: 20190212202950762
-module-type: widget
-top: 188px
-left: 198px
+modified: 20190212223900328
 width: 494px
+top: 188px
+module-type: widget
+left: 198px
 height: 282px
 
 \*/
@@ -36,6 +36,7 @@ VolantWidget.prototype.render = function(parent,nextSibling) {
     this.computeAttributes();
     this.execute();
 
+	const position = this.position;
     let elmnt = this.parentDomNode;
     // Get the tiddler element that this macro runs in
     while(!(elmnt.dataset.tiddlerTitle) ) {
@@ -45,7 +46,7 @@ VolantWidget.prototype.render = function(parent,nextSibling) {
       elmnt = elmnt.parentElement;
     } 
     const tiddler = elmnt;
-    tiddler.style.position = this.position;
+    tiddler.style.position = position;
     
 	const resizerLeft = document.createElement("div");
     resizerLeft.className = "resizer resizer-left";
@@ -54,32 +55,88 @@ VolantWidget.prototype.render = function(parent,nextSibling) {
     resizerRight.className = "resizer resizer-right";
     resizerRight.style.position = "fixed";
 
-    if(this.position === "absolute") {
+    if(position === "absolute") {
     	resizerLeft.className += ' ' + 'absolute';
         resizerRight.className += ' ' + 'absolute';
     } 
 
     tiddler.appendChild(resizerLeft);
     tiddler.appendChild(resizerRight);
-
-    tiddler.addEventListener("mousedown", $tw.Volant.startDrag, false);
+    
+/*\
+    tiddler.addEventListener("mousedown", $tw.Volant.startDrag);
     tiddler.addEventListener("mousedown", $tw.Volant.pushEventToZStack, false);
-    tiddler.addEventListener("mousedown", $tw.Volant.startResize, false);
+    tiddler.addEventListener("mousedown", $tw.Volant.startResize);
+    if(position === "absolute") {
+    	window.addEventListener("scroll", $tw.Volant.repositionResizersOnAbsolute, false);
+    }
+\*/ 
+
+	let stateTiddlerTitle = tiddler.dataset.tiddlerTitle;
+	if(!(this.separateState === "no")) {
+    	stateTiddlerTitle = "$:/plugins/admls/volant/state/" + stateTiddlerTitle;
+    }
+    	   
+    const startDrag = function(e) {
+        // Disable dragging if interior elements were target
+        const dragModeIsOn = $tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.dragmode === "on";
+        const targetIsChildElement = !e.target.matches(".tc-tiddler-frame"); // This will be problematic if you have nested volant tiddlers
+        const targetIsResizer = e.target.matches(".resizer"); // Stops drag if target is a resizer
+        if(targetIsResizer || (!dragModeIsOn && targetIsChildElement)) {
+            return;
+        }
+        e.stopPropagation();
+        e.preventDefault();
+        const Volant = $tw.Volant;
+        Volant.eventTiddler = tiddler;
+        Volant.stateTiddlerTitle = stateTiddlerTitle;
+
+        // get the mouse cursor position at startup:
+        Volant.pos3 = e.clientX;
+        Volant.pos4 = e.clientY;
+        // call a function whenever the cursor moves:
+        window.addEventListener('mousemove', Volant.tiddlerDrag);
+        window.addEventListener('mouseup', Volant.endDrag, false);        
+    };
+    
+    const startResize = function(e) {
+        if (!e.target.classList.contains("resizer")) {
+        	return;
+        }
+        e.preventDefault();
+        e.stopPropagation();
+
+        const Volant = $tw.Volant;
+        Volant.eventTiddler = tiddler;
+        Volant.stateTiddlerTitle = stateTiddlerTitle;
+
+        if (e.target.classList.contains("resizer-left")) {
+        	window.addEventListener('mousemove', Volant.resizeLeft);
+        } else if (e.target.classList.contains("resizer-right")) {
+        	window.addEventListener('mousemove', Volant.resizeRight);     
+        }
+        window.addEventListener('mouseup', Volant.endResize, false); 
+    };   
+    
+    tiddler.addEventListener("mousedown", startDrag);
+    tiddler.addEventListener("mousedown", $tw.Volant.pushEventToZStack, false);
+    tiddler.addEventListener("mousedown", startResize);
     if(this.position === "absolute") {
     	window.addEventListener("scroll", $tw.Volant.repositionResizersOnAbsolute, false);
     }
-    
-    //$tw.Volant.snapToGrid(tiddler);
-    $tw.Volant.logNewDimensions(tiddler);
+        
+    $tw.Volant.snapToGrid(tiddler);
+    $tw.Volant.logNewDimensions(tiddler, stateTiddlerTitle);
     $tw.Volant.pushTiddlerToZStack(tiddler); 	
 };
+
 
 /*
 Compute the internal state of this widget.
 */
 VolantWidget.prototype.execute = function() {
   this.position = this.getAttribute("position", "fixed");
-  this.state = this.getAttribute("state", "");
+  this.separateState = this.getAttribute("separateState", "no");
   //this.makeChildWidgets();
 };  
   
