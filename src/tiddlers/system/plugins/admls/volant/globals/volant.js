@@ -3,12 +3,8 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190213185639390
-width: 692px
-top: 0px
+modified: 20190215102519620
 module-type: global
-left: 0px
-height: 375px
 
 
 Description...
@@ -21,6 +17,24 @@ Description...
 /*jslint node: true, browser: true */
 /*global $tw: true */
 "use strict";
+    
+$tw.hooks.addHook("th-deleting-tiddler", function(tiddler) {
+    const tiddlerTitle = tiddler.hasField("draft.of") ? tiddler.getFieldString("draft.of") : tiddler.getFieldString("title");
+    
+    $tw.wiki.getTiddlersWithTag("permastate").forEach(function(configTiddlerTitle) {
+    	const configTiddler = $tw.wiki.getTiddler(configTiddlerTitle);
+        console.log("LOOKING AT CONFIGTIDDLER", configTiddlerTitle);
+        if(configTiddler.getFieldString("configuredtiddler") === tiddlerTitle) {
+        	console.log("WE HAVE A MATCH!", configTiddlerTitle);
+        	//$tw.wiki.dispatchEvent({type: "tm-delete-tiddler", param: configTiddlerTitle, tiddlerTitle: undefined})
+            $tw.hooks.invokeHook("th-deleting-tiddler",configTiddler);
+			$tw.wiki.deleteTiddler(configTiddlerTitle);
+        }
+    });
+    
+    $tw.rootWidget.dispatchEvent({type: "tm-auto-save-wiki"});
+
+});
 
 const Volant = {
 	zStack: [],
@@ -29,37 +43,6 @@ const Volant = {
     pos3: 0,
     pos4: 0,
 
-    /*\
-    getRequestAnimationFrame: function() {
-        $tw.volant.requestAnimationFrame = window.requestAnimationFrame
-        || window.mozRequestAnimationFrame
-        || window.webkitRequestAnimationFrame
-        || window.msRequestAnimationFrame
-        || function(f){return setTimeout(f, 1000/60)}
-    },
-    \*/
-	/*\
-	startDrag: function(e) {
-		// Disable dragging if interior elements were target
-        const dragModeIsOn = $tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.dragmode === "on";
-        const targetIsChildElement = !e.target.matches(".tc-tiddler-frame"); // This will be problematic if you have nested volant tiddlers
-        const targetIsResizer = e.target.matches(".resizer"); // Stops drag if target is a resizer
-        if(targetIsResizer || (!dragModeIsOn && targetIsChildElement)) {
-          return;
-        }
-        e.stopPropagation();
-        e.preventDefault();
-        const Volant = $tw.Volant;
-        Volant.eventTiddler = this;
-
-        // get the mouse cursor position at startup:
-        Volant.pos3 = e.clientX;
-        Volant.pos4 = e.clientY;
-        // call a function whenever the cursor moves:
-        window.addEventListener('mousemove', Volant.tiddlerDrag);
-        window.addEventListener('mouseup', Volant.endDrag, false);        
-    },
-    \*/
     tiddlerDrag: function(e) {
     	e.stopPropagation();
     	e.preventDefault();
@@ -149,23 +132,7 @@ const Volant = {
             }
         }
   	},
-    /*\
-    startResize: function(e) {
-    	if (e.target.classList.contains("resizer")) {
-        	e.preventDefault();
-            e.stopPropagation();
-            
-            const Volant = $tw.Volant;
-            Volant.eventTiddler = Volant.getEventTiddler(e);
-            if (e.target.classList.contains("resizer-left")) {
-                window.addEventListener('mousemove', Volant.resizeLeft);
-            } else if (e.target.classList.contains("resizer-right")) {
-                window.addEventListener('mousemove', Volant.resizeRight);     
-            }
-            window.addEventListener('mouseup', Volant.endResize, false); 
-        }
-    },
-	\*/
+
 	resizeLeft: function(e) {
     	e.preventDefault();
         e.stopPropagation();
