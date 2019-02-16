@@ -3,7 +3,7 @@ created: 20190212164359746
 type: application/javascript
 title: $:/plugins/admls/volant/widgets/volant.js
 tags: 
-modified: 20190216091338282
+modified: 20190216093249990
 module-type: widget
 
 \*/
@@ -60,8 +60,8 @@ VolantWidget.prototype.render = function(parent,nextSibling) {
     tiddler.appendChild(resizerLeft);
     tiddler.appendChild(resizerRight);
 
-	this.getStateTiddler(tiddler.dataset.tiddlerTitle);
-    const stateTiddlerTitle = this.stateTiddlerTitle;
+	this.getConfigTiddler(tiddler.dataset.tiddlerTitle);
+    const configTiddlerTitle = this.configTiddlerTitle;
     
     const startDrag = function(e) {
         // Disable dragging if interior elements were target
@@ -75,7 +75,7 @@ VolantWidget.prototype.render = function(parent,nextSibling) {
         e.preventDefault();
         const Volant = $tw.Volant;
         Volant.eventTiddler = tiddler;
-        Volant.stateTiddlerTitle = stateTiddlerTitle;
+        Volant.configTiddlerTitle = configTiddlerTitle;
 
         // get the mouse cursor position at startup:
         Volant.pos3 = e.clientX;
@@ -94,7 +94,7 @@ VolantWidget.prototype.render = function(parent,nextSibling) {
 
         const Volant = $tw.Volant;
         Volant.eventTiddler = tiddler;
-        Volant.stateTiddlerTitle = stateTiddlerTitle;
+        Volant.configTiddlerTitle = configTiddlerTitle;
 
         if (e.target.classList.contains("resizer-left")) {
         	window.addEventListener('mousemove', Volant.resizeLeft);
@@ -112,34 +112,34 @@ VolantWidget.prototype.render = function(parent,nextSibling) {
     } 
         
     $tw.Volant.snapToGrid(tiddler);
-    $tw.Volant.logNewDimensions(tiddler, stateTiddlerTitle);
+    $tw.Volant.logNewDimensions(tiddler, configTiddlerTitle);
     $tw.Volant.pushTiddlerToZStack(tiddler); 	
 };
 
-VolantWidget.prototype.getStateTiddler = function(title) {
+VolantWidget.prototype.getConfigTiddler = function(title) {
 	let tiddlerTitle = title;
-	this.stateTiddlerTitle = tiddlerTitle;
-	if(!(this.separateState === "no")) {
+	this.configTiddlerTitle = tiddlerTitle;
+	if(!(this.separateConfig === "no")) {
     	if($tw.wiki.getTiddler(tiddlerTitle).hasField("draft.of")) {
     		tiddlerTitle = $tw.wiki.getTiddler(tiddlerTitle).getFieldString("draft.of");
     	}
         
-    	const stateTiddlerTitle = this.configTiddlerPrefix + tiddlerTitle;
-        this.stateTiddlerTitle = stateTiddlerTitle;
+    	const configTiddlerTitle = this.configTiddlerPrefix + tiddlerTitle;
+        this.configTiddlerTitle = configTiddlerTitle;
         
-        $tw.wiki.setText(stateTiddlerTitle,"configuredtiddler",undefined,tiddlerTitle,undefined);
+        $tw.wiki.setText(configTiddlerTitle,"configuredtiddler",undefined,tiddlerTitle,undefined);
         
-        const stateTiddler = $tw.wiki.getTiddler(stateTiddlerTitle);
+        const configTiddler = $tw.wiki.getTiddler(configTiddlerTitle);
 		const modification = $tw.wiki.getModificationFields();
         const tag = $tw.Volant.configTiddlerTag;
-		if(stateTiddler) {
-            modification.tags = (stateTiddler.fields.tags || []).slice(0);
+		if(configTiddler) {
+            modification.tags = (configTiddler.fields.tags || []).slice(0);
             $tw.utils.pushTop(modification.tags,tag);
-            $tw.wiki.addTiddler(new $tw.Tiddler(stateTiddler,modification));			
+            $tw.wiki.addTiddler(new $tw.Tiddler(configTiddler,modification));			
 		} else {
         	const tags = [];
 			tags.push(tag);
-			$tw.wiki.addTiddler(new $tw.Tiddler({title: stateTiddlerTitle, tags: tags},modification));
+			$tw.wiki.addTiddler(new $tw.Tiddler({title: configTiddlerTitle, tags: tags},modification));
         }
     }    
 };
@@ -149,7 +149,7 @@ Compute the internal state of this widget.
 */
 VolantWidget.prototype.execute = function() {
   this.position = this.getAttribute("position", "fixed");
-  this.separateState = this.getAttribute("separateState", "no");
+  this.separateConfig = this.getAttribute("separateConfig", "no");
   this.configTiddlerPrefix = this.getAttribute("configTiddlerPrefix", "$:/plugins/admls/volant/config/tiddlers/");
   //this.makeChildWidgets();
 };  
@@ -159,7 +159,7 @@ Selectively refreshes the widget if needed. Returns true if the widget or any of
 */
 VolantWidget.prototype.refresh = function(changedTiddlers) {
   var changedAttributes = this.computeAttributes();
-  if (changedAttributes.position || changedAttributes.state) {
+  if (changedAttributes.position || changedAttributes.separateConfig || changedAttributes.configTiddlerPrefix) {
       this.refreshSelf();
       return true;
   } else {

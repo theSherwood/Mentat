@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190216091658779
+modified: 20190216092940584
 module-type: global
 
 
@@ -63,29 +63,29 @@ const Volant = {
         window.removeEventListener('mouseup', Volant.endDrag, false);
     },
 
-    logNewDimensions: function(tiddler, stateTiddlerTitle) {
+    logNewDimensions: function(tiddler, configTiddlerTitle) {
     	if(tiddler === undefined) {
 			tiddler = this.eventTiddler;
         }
-        if(stateTiddlerTitle === undefined) {
-        	stateTiddlerTitle = this.stateTiddlerTitle;
+        if(configTiddlerTitle === undefined) {
+        	configTiddlerTitle = this.configTiddlerTitle;
         }
         
         if(tiddler.style.position === "absolute") {
             // Log the dimensions to the appropriate field for pickup by CSS
-            $tw.wiki.setText(stateTiddlerTitle,'top',undefined,(tiddler.offsetTop)+"px",undefined);
-            $tw.wiki.setText(stateTiddlerTitle,'left',undefined,(tiddler.offsetLeft)+"px",undefined);
-            $tw.wiki.setText(stateTiddlerTitle,'width',undefined,(tiddler.offsetWidth)+"px",undefined);
-            $tw.wiki.setText(stateTiddlerTitle,'height',undefined,(tiddler.offsetHeight)+"px",undefined);
+            $tw.wiki.setText(configTiddlerTitle,'top',undefined,(tiddler.offsetTop)+"px",undefined);
+            $tw.wiki.setText(configTiddlerTitle,'left',undefined,(tiddler.offsetLeft)+"px",undefined);
+            $tw.wiki.setText(configTiddlerTitle,'width',undefined,(tiddler.offsetWidth)+"px",undefined);
+            $tw.wiki.setText(configTiddlerTitle,'height',undefined,(tiddler.offsetHeight)+"px",undefined);
         } else {
-        	$tw.wiki.setText(stateTiddlerTitle,'top',undefined,tiddler.style.top,undefined);
-            $tw.wiki.setText(stateTiddlerTitle,'left',undefined,tiddler.style.left,undefined);
-            $tw.wiki.setText(stateTiddlerTitle,'width',undefined,tiddler.style.width,undefined);
-            $tw.wiki.setText(stateTiddlerTitle,'height',undefined,tiddler.style.height,undefined);
+        	$tw.wiki.setText(configTiddlerTitle,'top',undefined,tiddler.style.top,undefined);
+            $tw.wiki.setText(configTiddlerTitle,'left',undefined,tiddler.style.left,undefined);
+            $tw.wiki.setText(configTiddlerTitle,'width',undefined,tiddler.style.width,undefined);
+            $tw.wiki.setText(configTiddlerTitle,'height',undefined,tiddler.style.height,undefined);
         }
         
         this.eventTiddler = undefined;
-        this.stateTiddlerTitle = undefined;
+        this.configTiddlerTitle = undefined;
     },
 
     pushTiddlerToZStack: function(tiddler) {
