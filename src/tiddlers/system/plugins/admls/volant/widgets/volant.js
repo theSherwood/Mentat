@@ -3,7 +3,7 @@ created: 20190212164359746
 type: application/javascript
 title: $:/plugins/admls/volant/widgets/volant.js
 tags: 
-modified: 20190216080758232
+modified: 20190216091338282
 module-type: widget
 
 \*/
@@ -124,14 +124,14 @@ VolantWidget.prototype.getStateTiddler = function(title) {
     		tiddlerTitle = $tw.wiki.getTiddler(tiddlerTitle).getFieldString("draft.of");
     	}
         
-    	const stateTiddlerTitle = "$:/plugins/admls/volant/state/" + tiddlerTitle;
+    	const stateTiddlerTitle = this.configTiddlerPrefix + tiddlerTitle;
         this.stateTiddlerTitle = stateTiddlerTitle;
         
         $tw.wiki.setText(stateTiddlerTitle,"configuredtiddler",undefined,tiddlerTitle,undefined);
         
         const stateTiddler = $tw.wiki.getTiddler(stateTiddlerTitle);
 		const modification = $tw.wiki.getModificationFields();
-        const tag = "permastate";
+        const tag = $tw.Volant.configTiddlerTag;
 		if(stateTiddler) {
             modification.tags = (stateTiddler.fields.tags || []).slice(0);
             $tw.utils.pushTop(modification.tags,tag);
@@ -150,6 +150,7 @@ Compute the internal state of this widget.
 VolantWidget.prototype.execute = function() {
   this.position = this.getAttribute("position", "fixed");
   this.separateState = this.getAttribute("separateState", "no");
+  this.configTiddlerPrefix = this.getAttribute("configTiddlerPrefix", "$:/plugins/admls/volant/config/tiddlers/");
   //this.makeChildWidgets();
 };  
   
@@ -164,7 +165,6 @@ VolantWidget.prototype.refresh = function(changedTiddlers) {
   } else {
       return false;	
   }
-  //return this.refreshChildren(changedTiddlers) || hasChangedAttributes;
 };
 
 exports.volant = VolantWidget;

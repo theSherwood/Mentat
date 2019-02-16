@@ -1,11 +1,11 @@
 created: 20190129234855069
-modified: 20190214171825861
+modified: 20190216092229255
 tags: $:/tags/Stylesheet tampered
 title: $:/plugins/admls/volant/styles/tagged-tiddlers
 type: text/vnd.tiddlywiki
 
 \define backup(value)
-<$view tiddler={{{ [all[current]get[draft.of]] ~[all[current]] +[addprefix[$:/plugins/admls/volant/state/]] }}} field=<<__value__>>>
+<$view tiddler={{{ [all[current]get[draft.of]] ~[all[current]] +[addprefix[$:/plugins/admls/volant/config/tiddlers/]] }}} field=<<__value__>>>
 	<$view tiddler="$:/plugins/admls/volant/config/backup-values" field="""backup-$value$""">
 	</$view>
 </$view>

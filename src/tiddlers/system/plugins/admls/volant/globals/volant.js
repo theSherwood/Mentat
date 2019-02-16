@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190216083434179
+modified: 20190216091658779
 module-type: global
 
 
@@ -17,24 +17,6 @@ Description...
 /*jslint node: true, browser: true */
 /*global $tw: true */
 "use strict";
-    
-$tw.hooks.addHook("th-deleting-tiddler", function(tiddler) {
-    const tiddlerTitle = tiddler.hasField("draft.of") ? tiddler.getFieldString("draft.of") : tiddler.getFieldString("title");
-    
-    $tw.wiki.getTiddlersWithTag("permastate").forEach(function(configTiddlerTitle) {
-    	const configTiddler = $tw.wiki.getTiddler(configTiddlerTitle);
-        console.log("LOOKING AT CONFIGTIDDLER", configTiddlerTitle);
-        if(configTiddler.getFieldString("configuredtiddler") === tiddlerTitle) {
-        	console.log("WE HAVE A MATCH!", configTiddlerTitle);
-        	//$tw.wiki.dispatchEvent({type: "tm-delete-tiddler", param: configTiddlerTitle, tiddlerTitle: undefined})
-            $tw.hooks.invokeHook("th-deleting-tiddler",configTiddler);
-			$tw.wiki.deleteTiddler(configTiddlerTitle);
-        }
-    });
-    
-    $tw.rootWidget.dispatchEvent({type: "tm-auto-save-wiki"});
-
-});
 
 const Volant = {
 	zStack: [],
@@ -42,6 +24,7 @@ const Volant = {
     pos2: 0,
     pos3: 0,
     pos4: 0,
+    configTiddlerTag: "$:/VolantConfig",
 
     tiddlerDrag: function(e) {
     	e.stopPropagation();
@@ -299,7 +282,22 @@ const Volant = {
 
 };    
 
-
 exports.Volant = Volant;
+
+$tw.hooks.addHook("th-deleting-tiddler", function(tiddler) {
+    const tiddlerTitle = tiddler.hasField("draft.of") ? tiddler.getFieldString("draft.of") : tiddler.getFieldString("title");
+    
+    $tw.wiki.getTiddlersWithTag($tw.Volant.configTiddlerTag).forEach(function(configTiddlerTitle) {
+    	const configTiddler = $tw.wiki.getTiddler(configTiddlerTitle);
+        if(configTiddler.getFieldString("configuredtiddler") === tiddlerTitle) {
+        	//$tw.wiki.dispatchEvent({type: "tm-delete-tiddler", param: configTiddlerTitle, tiddlerTitle: undefined})
+            $tw.hooks.invokeHook("th-deleting-tiddler",configTiddler);
+			$tw.wiki.deleteTiddler(configTiddlerTitle);
+        }
+    });
+    
+    $tw.rootWidget.dispatchEvent({type: "tm-auto-save-wiki"});
+
+});
 
 })();
