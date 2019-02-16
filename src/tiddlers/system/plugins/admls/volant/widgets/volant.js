@@ -3,7 +3,7 @@ created: 20190212164359746
 type: application/javascript
 title: $:/plugins/admls/volant/widgets/volant.js
 tags: 
-modified: 20190216193240536
+modified: 20190216195312429
 module-type: widget
 
 \*/
@@ -127,7 +127,7 @@ VolantWidget.prototype.getConfigTiddler = function(title) {
     	const configTiddlerTitle = this.configTiddlerPrefix + tiddlerTitle;
         this.configTiddlerTitle = configTiddlerTitle;
         
-        $tw.wiki.setText(configTiddlerTitle,"list",undefined,tiddlerTitle,undefined);
+        $tw.wiki.setText(configTiddlerTitle,"list",undefined,"[[" + tiddlerTitle + "]]",undefined);
         
         const configTiddler = $tw.wiki.getTiddler(configTiddlerTitle);
 		const modification = $tw.wiki.getModificationFields();
@@ -150,7 +150,7 @@ Compute the internal state of this widget.
 VolantWidget.prototype.execute = function() {
   this.position = this.getAttribute("position", "fixed");
   this.separateConfig = this.getAttribute("separateConfig", "no");
-  this.configTiddlerPrefix = this.getAttribute("configTiddlerPrefix", "$:/plugins/admls/volant/config/tiddlers/");
+  this.configTiddlerPrefix = this.getAttribute("configTiddlerPrefix", "$:/config/Volant/");
   //this.makeChildWidgets();
 };  
   

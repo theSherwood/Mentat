@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190216193331288
+modified: 20190216195113623
 module-type: global
 
 
@@ -24,7 +24,7 @@ const Volant = {
     pos2: 0,
     pos3: 0,
     pos4: 0,
-    configTiddlerTag: "$:/VolantConfig",
+    configTiddlerTag: "$:/config/Volant",
 
     tiddlerDrag: function(e) {
     	e.stopPropagation();
