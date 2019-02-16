@@ -3,12 +3,8 @@ created: 20190212164359746
 type: application/javascript
 title: $:/plugins/admls/volant/widgets/volant.js
 tags: 
-modified: 20190213222401999
-width: 494px
-top: 188px
+modified: 20190216080758232
 module-type: widget
-left: 198px
-height: 282px
 
 \*/
 (function(){
@@ -32,6 +28,7 @@ VolantWidget.prototype = new Widget();
 Render this widget into the DOM. 
 */
 VolantWidget.prototype.render = function(parent,nextSibling) {
+	console.log(this);
     this.parentDomNode = parent;
     this.computeAttributes();
     this.execute();
@@ -112,7 +109,7 @@ VolantWidget.prototype.render = function(parent,nextSibling) {
     tiddler.addEventListener("mousedown", startResize);
     if(this.position === "absolute") {
     	window.addEventListener("scroll", $tw.Volant.repositionResizersOnAbsolute, false);
-    }
+    } 
         
     $tw.Volant.snapToGrid(tiddler);
     $tw.Volant.logNewDimensions(tiddler, stateTiddlerTitle);

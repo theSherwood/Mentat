@@ -1,7 +1,7 @@
 created: 20190205194739396
 height: 188px
 left: 198px
-modified: 20190213012402741
+modified: 20190216075944397
 tags: tampered unfinished
 title: $:/plugins/admls/volant/config/options
 top: 375px
@@ -11,12 +11,15 @@ width: 494px
 <$set name="configTiddler" value="$:/plugins/admls/volant/config/values">
 
 |<$link to=<<configTiddler>>>default functionality</$link> |//When enabled, basic volant functionality by tag is available.//| <$checkbox tiddler=<<configTiddler>> field="default-functionality" checked="on" unchecked="off" default="off"></$checkbox> |
+|<$link to=<<configTiddler>>>drag mode</$link> |//The click beginning the drag event can be anywhere within the volant tiddler (other than the resizers).//| <$checkbox tiddler=<<configTiddler>> field="dragmode" checked="on" unchecked="off" default="off"></$checkbox> |
 |<$link to="$:/plugins/admls/volant/config/tags">volant default tag</$link> |//This tag triggers the default/fixed volant behavior. You cannot scroll away from it.//|<$edit-text tiddler="$:/plugins/admls/volant/config/tags" field="default" default="volant" tag="input"/> |
 |<$link to="$:/plugins/admls/volant/config/tags">volant absolute tag</$link> |//This tag triggers the absolute volant behavior. You can scroll away from it.//|<$edit-text tiddler="$:/plugins/admls/volant/config/tags" field="absolute" default="volant-absolute" tag="input"/> |
+|<$link to=<<configTiddler>>>default grid size</$link> |//Approximate size of grid cells as a percentage of the size of the viewport// |<$edit-text tiddler=<<configTiddler>> field="defaultgridsize" default="10" tag="input"/> |
+|<$link to=<<configTiddler>>>absolute grid size</$link> |//Approximate size of grid cells in pixels// |<$edit-text tiddler=<<configTiddler>> field="absolutegridsize" default="10" tag="input"/> |
+|<$link to=<<configTiddler>>>default grid gap</$link> |//Approximate distance of tiddler edge from the grid edge it is snapping to// |<$edit-text tiddler=<<configTiddler>> field="defaultgridgap" default="5" tag="input"/> |
+|<$link to=<<configTiddler>>>absolute grid gap</$link> |//Approximate distance of tiddler edge from the grid edge it is snapping to// |<$edit-text tiddler=<<configTiddler>> field="absolutegridgap" default="5" tag="input"/> |
 |<$link to=<<configTiddler>>>resizer color</$link> | |<$edit-text tiddler=<<configTiddler>> field="resizer-color" default="rgba(200,0,0,1)" tag="input"/> |
-|<$link to=<<configTiddler>>>grid size</$link> |//Approximate size of grid cells// |<$edit-text tiddler=<<configTiddler>> field="gridsize" default="10" tag="input"/> |
-|<$link to=<<configTiddler>>>grid gap</$link> |//Approximate distance of tiddler edge from the grid edge it is snapping to// |<$edit-text tiddler=<<configTiddler>> field="gridgap" default="5" tag="input"/> |
-|<$link to=<<configTiddler>>>drag mode</$link> |//The click beginning the drag event can be anywhere within the volant tiddler (other than the resizers).//| <$checkbox tiddler=<<configTiddler>> field="dragmode" checked="on" unchecked="off" default="off"></$checkbox> |
+
 
 
 

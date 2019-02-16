@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190215102519620
+modified: 20190216083434179
 module-type: global
 
 
@@ -87,13 +87,22 @@ const Volant = {
         if(stateTiddlerTitle === undefined) {
         	stateTiddlerTitle = this.stateTiddlerTitle;
         }
-        // Log the dimensions to the appropriate field for pickup by CSS
-        $tw.wiki.setText(stateTiddlerTitle,'top',undefined,(tiddler.offsetTop)+"px",undefined);
-        $tw.wiki.setText(stateTiddlerTitle,'left',undefined,(tiddler.offsetLeft)+"px",undefined);
-        $tw.wiki.setText(stateTiddlerTitle,'width',undefined,(tiddler.offsetWidth)+"px",undefined);
-        $tw.wiki.setText(stateTiddlerTitle,'height',undefined,(tiddler.offsetHeight)+"px",undefined);
+        
+        if(tiddler.style.position === "absolute") {
+            // Log the dimensions to the appropriate field for pickup by CSS
+            $tw.wiki.setText(stateTiddlerTitle,'top',undefined,(tiddler.offsetTop)+"px",undefined);
+            $tw.wiki.setText(stateTiddlerTitle,'left',undefined,(tiddler.offsetLeft)+"px",undefined);
+            $tw.wiki.setText(stateTiddlerTitle,'width',undefined,(tiddler.offsetWidth)+"px",undefined);
+            $tw.wiki.setText(stateTiddlerTitle,'height',undefined,(tiddler.offsetHeight)+"px",undefined);
+        } else {
+        	$tw.wiki.setText(stateTiddlerTitle,'top',undefined,tiddler.style.top,undefined);
+            $tw.wiki.setText(stateTiddlerTitle,'left',undefined,tiddler.style.left,undefined);
+            $tw.wiki.setText(stateTiddlerTitle,'width',undefined,tiddler.style.width,undefined);
+            $tw.wiki.setText(stateTiddlerTitle,'height',undefined,tiddler.style.height,undefined);
+        }
         
         this.eventTiddler = undefined;
+        this.stateTiddlerTitle = undefined;
     },
 
     pushTiddlerToZStack: function(tiddler) {
@@ -202,10 +211,17 @@ const Volant = {
         const resizerRight = tiddler.querySelector(".resizer-right");
         const viewportOffset = tiddler.getBoundingClientRect();
         
-        resizerLeft.style.top = (viewportOffset.top + tiddler.offsetHeight - resizerLeft.offsetHeight) + "px";
-        resizerLeft.style.left = (viewportOffset.left) + "px";
-        resizerRight.style.top = (viewportOffset.top + tiddler.offsetHeight - resizerRight.offsetHeight) + "px";
-        resizerRight.style.left = (viewportOffset.left + tiddler.offsetWidth - resizerRight.offsetWidth) + "px";
+        if(tiddler.style.position === "absolute") {
+            resizerLeft.style.top = (viewportOffset.top + tiddler.offsetHeight - resizerLeft.offsetHeight) + "px";
+            resizerLeft.style.left = (viewportOffset.left) + "px";
+            resizerRight.style.top = (viewportOffset.top + tiddler.offsetHeight - resizerRight.offsetHeight) + "px";
+            resizerRight.style.left = (viewportOffset.left + tiddler.offsetWidth - resizerRight.offsetWidth) + "px";
+        } else {
+        	resizerLeft.style.cssText += `left:${tiddler.style.left};`;
+            resizerLeft.style.cssText += `top:calc(${tiddler.style.top} + ${tiddler.style.height} - ${resizerLeft.offsetHeight}px);`;
+            resizerRight.style.cssText += `left:calc(${tiddler.style.left} + ${tiddler.style.width} - ${resizerRight.offsetWidth}px);`;
+            resizerRight.style.cssText += `top:calc(${tiddler.style.top} + ${tiddler.style.height} - ${resizerRight.offsetHeight}px);`;
+        }
 
     },
     
@@ -232,40 +248,48 @@ const Volant = {
         	tiddler = Volant.eventTiddler;
         }
         Volant.getGrid();
-        
-        // refactor this
-        const gridgap = Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.gridgap) || 0;
 
-        const positionIsFixed = (tiddler.style.position === "fixed");
-        tiddler.style.top = (Volant.convertToGridValue(tiddler.offsetTop, positionIsFixed, "height") + gridgap) + "px";
-        tiddler.style.left = (Volant.convertToGridValue(tiddler.offsetLeft, positionIsFixed, "width") + gridgap) + "px";
-        tiddler.style.height = (Volant.convertToGridValue(tiddler.offsetHeight, positionIsFixed, "height") - (2*gridgap)) + "px";
-        tiddler.style.width = (Volant.convertToGridValue(tiddler.offsetWidth, positionIsFixed, "width") - (2*gridgap)) + "px";
+        const positionIsFixed = (tiddler.style.position === "fixed"); 
+        let gridgap;
+        if(positionIsFixed) {
+        	gridgap = Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.defaultgridgap) || 0;
+            
+            const top = Volant.convertToGridValue(tiddler.offsetTop-gridgap, positionIsFixed, "height");
+            const left = Volant.convertToGridValue(tiddler.offsetLeft-gridgap, positionIsFixed, "width");
+            const height = Volant.convertToGridValue(tiddler.offsetHeight+2*gridgap, positionIsFixed, "height");
+            const width = Volant.convertToGridValue(tiddler.offsetWidth+2*gridgap, positionIsFixed, "width");
+
+            tiddler.style.cssText += `top:calc(${top}% + ${gridgap}px);`;
+            tiddler.style.cssText += `left:calc(${left}% + ${gridgap}px);`;
+            tiddler.style.cssText += `height:calc(${height}% - 2 * ${gridgap}px);`;
+            tiddler.style.cssText += `width:calc(${width}% - 2 * ${gridgap}px);`;
+        } else {
+        	gridgap = Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.absolutegridgap) || 0;
+
+            tiddler.style.top = (Volant.convertToGridValue(tiddler.offsetTop, positionIsFixed, "height") + gridgap) + "px";
+            tiddler.style.left = (Volant.convertToGridValue(tiddler.offsetLeft, positionIsFixed, "width") + gridgap) + "px";
+            tiddler.style.height = (Volant.convertToGridValue(tiddler.offsetHeight, positionIsFixed, "height") - (2*gridgap)) + "px";
+            tiddler.style.width = (Volant.convertToGridValue(tiddler.offsetWidth, positionIsFixed, "width") - (2*gridgap)) + "px";
+        }
+
         Volant.updateResizerPositions(tiddler); 
     },
     
     getGrid: function() {
-    	const gridsize = Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.gridsize) || 1;
-    	const width = document.documentElement.clientWidth;
-        const height = document.documentElement.clientHeight;
         $tw.Volant.grid = {
-        	// The grid should register to the viewport for fixed volant tiddlers, but not for absolute
-            "fixedCellWidth": width/Math.round(width/gridsize),
-            "fixedCellHeight": height/Math.round(height/gridsize),
-            "absoluteGridSize": gridsize
+        	viewportWidth: document.documentElement.clientWidth,
+            viewportHeight: document.documentElement.clientHeight,
+            defaultGridSize: Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.defaultgridsize) || 1,
+            absoluteGridSize: Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.absolutegridsize) || 1
         }
     },
     
     convertToGridValue(number, positionIsFixed, direction) {
     	const grid = $tw.Volant.grid;
         if(positionIsFixed) {
-            if(direction === "width") {
-                const quotient = number / grid.fixedCellWidth;
-                return Math.round(Math.round(quotient) * grid.fixedCellWidth);
-            } else {
-                const quotient = number / grid.fixedCellHeight;
-                return Math.round(Math.round(quotient) * grid.fixedCellHeight);
-            }
+        	const viewportValue = (direction === "width") ? grid.viewportWidth : grid.viewportHeight;
+            let percentage = (number / viewportValue) * 100;
+            return Math.round(percentage / grid.defaultGridSize) * grid.defaultGridSize;
         } else {
         	const quotient = number / grid.absoluteGridSize;
             return Math.round(Math.round(quotient) * grid.absoluteGridSize);

@@ -1,11 +1,15 @@
+absolutegridgap: 10
+absolutegridsize: 50
 created: 20190205210210532
 default-functionality: on
+defaultgridgap: 0
+defaultgridsize: 5
 dragmode: on
 gridgap: 5
 gridsize: 100
 height: 188px
 left: 0px
-modified: 20190213014704640
+modified: 20190216081943498
 resizer-color: rgba(200,0,0,1)
 tags: unfinished tampered
 title: $:/plugins/admls/volant/config/values
