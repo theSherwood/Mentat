@@ -3,7 +3,7 @@ created: 20190212164359746
 type: application/javascript
 title: $:/plugins/admls/volant/widgets/volant.js
 tags: 
-modified: 20190216093249990
+modified: 20190216193240536
 module-type: widget
 
 \*/
@@ -127,7 +127,7 @@ VolantWidget.prototype.getConfigTiddler = function(title) {
     	const configTiddlerTitle = this.configTiddlerPrefix + tiddlerTitle;
         this.configTiddlerTitle = configTiddlerTitle;
         
-        $tw.wiki.setText(configTiddlerTitle,"configuredtiddler",undefined,tiddlerTitle,undefined);
+        $tw.wiki.setText(configTiddlerTitle,"list",undefined,tiddlerTitle,undefined);
         
         const configTiddler = $tw.wiki.getTiddler(configTiddlerTitle);
 		const modification = $tw.wiki.getModificationFields();

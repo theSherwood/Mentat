@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190216092940584
+modified: 20190216193331288
 module-type: global
 
 
@@ -289,7 +289,7 @@ $tw.hooks.addHook("th-deleting-tiddler", function(tiddler) {
     
     $tw.wiki.getTiddlersWithTag($tw.Volant.configTiddlerTag).forEach(function(configTiddlerTitle) {
     	const configTiddler = $tw.wiki.getTiddler(configTiddlerTitle);
-        if(configTiddler.getFieldString("configuredtiddler") === tiddlerTitle) {
+        if(configTiddler.getFieldString("list") === tiddlerTitle) {
         	//$tw.wiki.dispatchEvent({type: "tm-delete-tiddler", param: configTiddlerTitle, tiddlerTitle: undefined})
             $tw.hooks.invokeHook("th-deleting-tiddler",configTiddler);
 			$tw.wiki.deleteTiddler(configTiddlerTitle);
@@ -297,7 +297,7 @@ $tw.hooks.addHook("th-deleting-tiddler", function(tiddler) {
     });
     
     $tw.rootWidget.dispatchEvent({type: "tm-auto-save-wiki"});
-
 });
+
 
 })();
