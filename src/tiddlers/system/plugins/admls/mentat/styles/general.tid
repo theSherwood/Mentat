@@ -1,5 +1,5 @@
 created: 20190218191609036
-modified: 20190218195137409
+modified: 20190218205425813
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/general
 type: text/vnd.tiddlywiki
@@ -8,6 +8,16 @@ type: text/vnd.tiddlywiki
 display: none;
 }
 
-[data-tags*="Mentat"] {
-z-index: 2000 !important;
+[data-tags*="Mentat"] .tc-tab-content {
+font-size: 14px;
+line-height: 20px;
+}
+
+[data-tags*="Mentat"] p {
+margin-top: 3px;
+margin-bottom: 3px;
+}
+
+[data-tags*="Mentat"] .tc-tab-content button, [data-tags*="Mentat"] .tc-tab-buttons {
+font-size: 12px;
 }
