@@ -1,0 +1,19 @@
+created: 20190218190731297
+modified: 20190218192116648
+tags: Mentat
+title: Sidebar
+type: text/vnd.tiddlywiki
+
+\define config-title()
+$:/config/SideBarSegments/Visibility/$(listItem)$
+\end
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/SideBarSegment]!has[draft.of]]" variable="listItem">
+
+<$reveal type="nomatch" state=<<config-title>> text="hide"  tag="div">
+
+<$transclude tiddler=<<listItem>> mode="block"/>
+
+</$reveal>
+
+</$list>
