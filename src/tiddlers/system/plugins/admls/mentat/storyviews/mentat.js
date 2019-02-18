@@ -3,12 +3,8 @@ created: 20190129200505951
 type: application/javascript
 title: $:/plugins/admls/mentat/storyviews/mentat.js
 tags: 
-modified: 20190212185538459
-width: 1087px
-top: 94px
+modified: 20190218203007795
 module-type: storyview
-left: 0px
-height: 2910px
 
 Views the story as a collection of story-windows
 
@@ -38,8 +34,7 @@ ClassicStoryView.prototype.navigateTo = function(historyInfo) {
 	}
 	// Scroll the node into view
 	this.listWidget.dispatchEvent({type: "tm-scroll", target: targetElement});
-    
-   
+	$tw.Volant.pushTiddlerToZStack(targetElement);  
 };
 
 ClassicStoryView.prototype.insert = function(widget) {
@@ -49,8 +44,7 @@ ClassicStoryView.prototype.insert = function(widget) {
 	if(!(targetElement instanceof Element)) {
 		return;
 	}  
-	console.log(targetElement);
-
+	$tw.Volant.pushTiddlerToZStack(targetElement); 
 };
 
 ClassicStoryView.prototype.remove = function(widget) {
