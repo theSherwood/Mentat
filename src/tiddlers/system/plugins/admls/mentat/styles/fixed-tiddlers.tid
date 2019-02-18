@@ -1,5 +1,5 @@
 created: 20190212174511720
-modified: 20190218114616036
+modified: 20190218234852142
 tags: $:/tags/Stylesheet tampered
 title: $:/plugins/admls/mentat/styles/fixed-tiddlers
 type: text/vnd.tiddlywiki
@@ -12,7 +12,7 @@ type: text/vnd.tiddlywiki
 \end
 
 <$reveal type="match" state="$:/view" text="mentat">
-<$list filter="[list[$:/StoryList]]">
+<$list filter="[list[$:/StoryList]tag[Window]] [list[$:/StoryList]tag[Mentat]]">
 
 [data-tiddler-title="<<currentTiddler>>"] {
 top: <<backup top>>;

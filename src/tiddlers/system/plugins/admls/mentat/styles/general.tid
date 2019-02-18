@@ -1,5 +1,5 @@
 created: 20190218191609036
-modified: 20190218233534288
+modified: 20190218234810871
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/general
 type: text/vnd.tiddlywiki
@@ -33,6 +33,9 @@ type: text/vnd.tiddlywiki
 [data-tags="Window"] > .tc-tiddler-body {
 	display: none;
 }
+
+</$reveal>
+
 
 .window-tiddler-controls {
 	float: right;
@@ -84,4 +87,3 @@ type: text/vnd.tiddlywiki
 	}
 }
 
-</$reveal>
