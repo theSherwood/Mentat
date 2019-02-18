@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190218102154495
+modified: 20190218104844106
 module-type: global
 
 
@@ -301,18 +301,13 @@ $tw.hooks.addHook("th-deleting-tiddler", function(tiddler) {
 
 $tw.hooks.addHook("th-relinking-tiddler", function(newTiddler, tiddler) {
 	
-    //console.log("NEWTIDDLER", newTiddler);
-    //console.log("TIDDLER", tiddler);
-	
-    const newTitle = newTiddler.fields.prefix + newTiddler.fields.list[0];
-    
-    //console.log("NEW TITLE", newTitle);
-    
-    return new $tw.Tiddler(newTiddler,{title: newTitle},$tw.wiki.getModificationFields())
-
-	//if(tiddler.hasTag("$:/config/Volant") {
-    	
-    //}
+    if(newTiddler.hasTag("$:/config/Volant")) {
+        const newTitle = newTiddler.fields.prefix + newTiddler.fields.list[0];
+        const newConfigTiddler = new $tw.Tiddler(newTiddler,{title: newTitle},$tw.wiki.getModificationFields());
+        $tw.wiki.deleteTiddler(tiddler.fields.title);
+        $tw.wiki.relinkTiddler(newTiddler.fields.title,newTitle);
+        return newConfigTiddler;
+    }
 });
 
 })();
