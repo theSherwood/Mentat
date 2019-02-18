@@ -3,8 +3,12 @@ created: 20190212164359746
 type: application/javascript
 title: $:/plugins/admls/volant/widgets/volant.js
 tags: 
-modified: 20190218100335287
+modified: 20190218112056734
 module-type: widget
+top: calc(25% + 0px)
+left: calc(25% + 0px)
+width: calc(50% - 0px)
+height: calc(50% - 0px)
 
 \*/
 (function(){

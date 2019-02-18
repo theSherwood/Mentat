@@ -3,8 +3,12 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190218104844106
+modified: 20190218112056708
 module-type: global
+top: calc(25% + 0px)
+left: calc(25% + 0px)
+width: calc(50% - 0px)
+height: calc(50% - 0px)
 
 
 Description...

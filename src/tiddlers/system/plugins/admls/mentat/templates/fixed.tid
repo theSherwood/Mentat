@@ -1,15 +1,9 @@
 created: 20190212173030711
-height: 188px
-left: 0px
-modified: 20190212184520487
+modified: 20190218120542300
 tags: $:/tags/EditTemplate $:/tags/ViewTemplate
 title: $:/plugins/admls/mentat/templates/fixed
-top: 94px
 type: text/vnd.tiddlywiki
-width: 1087px
 
 <$reveal type="match" state="$:/view" text="mentat">
-<$list filter="[is[current]]">
-<$volant/>
-</$list>
+<$volant separateConfig="yes" configTiddlerPrefix="$:/config/Mentat/Engine/"/>
 </$reveal>
