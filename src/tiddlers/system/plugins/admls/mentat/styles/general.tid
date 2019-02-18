@@ -1,0 +1,13 @@
+created: 20190218191609036
+modified: 20190218195137409
+tags: $:/tags/Stylesheet
+title: $:/plugins/admls/mentat/styles/general
+type: text/vnd.tiddlywiki
+
+[data-tags*="Mentat"] .tc-title, [data-tags*="Mentat"] .tc-subtitle, [data-tags*="Mentat"] .tc-tags-wrapper {
+display: none;
+}
+
+[data-tags*="Mentat"] {
+z-index: 2000 !important;
+}
