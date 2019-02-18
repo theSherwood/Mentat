@@ -1,23 +1,87 @@
 created: 20190218191609036
-modified: 20190218205425813
+modified: 20190218233534288
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/general
 type: text/vnd.tiddlywiki
 
-[data-tags*="Mentat"] .tc-title, [data-tags*="Mentat"] .tc-subtitle, [data-tags*="Mentat"] .tc-tags-wrapper {
-display: none;
+<$reveal type="match" state="$:/view" text="mentat">
+
+[data-tags*="Mentat"] .tc-title, 
+[data-tags*="Mentat"] .tc-subtitle, 
+[data-tags*="Mentat"] .tc-tags-wrapper {
+	display: none;
 }
 
 [data-tags*="Mentat"] .tc-tab-content {
-font-size: 14px;
-line-height: 20px;
+	font-size: 14px;
+	line-height: 20px;
 }
 
 [data-tags*="Mentat"] p {
-margin-top: 3px;
-margin-bottom: 3px;
+	margin-top: 3px;
+	margin-bottom: 3px;
 }
 
-[data-tags*="Mentat"] .tc-tab-content button, [data-tags*="Mentat"] .tc-tab-buttons {
-font-size: 12px;
+[data-tags*="Mentat"] .tc-tab-content button, 
+[data-tags*="Mentat"] .tc-tab-buttons {
+	font-size: 12px;
 }
+
+[data-tags="Window"] > .tc-tiddler-title, 
+[data-tags="Window"] > .tc-reveal > .tc-subtitle, 
+[data-tags="Window"] > .tc-reveal > .tc-tags-wrapper, 
+[data-tags="Window"] > .tc-tiddler-body {
+	display: none;
+}
+
+.window-tiddler-controls {
+	float: right;
+}
+
+.window-tiddler-controls .tc-drop-down {
+	font-size: 0.6em;
+}
+
+.window-tiddler-controls .tc-drop-down .tc-drop-down {
+	font-size: 1em;
+}
+
+.window-tiddler-controls > span > button,
+.window-tiddler-controls > span > span > button,
+.window-tiddler-controls > span > span > span > button {
+	vertical-align: baseline;
+	margin-left:5px;
+}
+
+.window-tiddler-controls button svg, .window-tiddler-controls button img,
+.window-search button svg, .tc-search a svg {
+	fill: <<colour tiddler-controls-foreground>>;
+}
+
+.window-tiddler-controls button svg, .window-tiddler-controls button img {
+	height: 0.75em;
+}
+
+.window-search button svg, .window-search a svg {
+    height: 1.2em;
+    width: 1.2em;
+    margin: 0 0.25em;
+}
+
+.window-tiddler-controls button.tc-selected svg,
+.window-page-controls button.tc-selected svg  {
+	fill: <<colour tiddler-controls-foreground-selected>>;
+}
+
+.window-tiddler-controls button.tc-btn-invisible:hover svg,
+.window-search button:hover svg, .tc-search a:hover svg {
+	fill: <<colour tiddler-controls-foreground-hover>>;
+}
+
+@media print {
+	.window-tiddler-controls {
+		display: none;
+	}
+}
+
+</$reveal>
