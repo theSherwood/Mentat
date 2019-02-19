@@ -3,12 +3,8 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190218112056708
+modified: 20190219015647476
 module-type: global
-top: calc(25% + 0px)
-left: calc(25% + 0px)
-width: calc(50% - 0px)
-height: calc(50% - 0px)
 
 
 Description...
@@ -115,9 +111,14 @@ const Volant = {
     	const Volant = $tw.Volant;
         // Filter out tiddlers no longer in the storyList
         const storyList = $tw.wiki.getTiddler("$:/StoryList").fields.list;
+
         Volant.zStack = Volant.zStack.filter(tiddler => storyList.includes(tiddler.dataset.tiddlerTitle));
-        // Assigns z-index to the elements in zstack based on position.
         const zStack = Volant.zStack;
+        // Logs zStack to the list of $:/state/zStack
+        const list = zStack.map(tiddler => tiddler.dataset.tiddlerTitle);
+        $tw.wiki.setText("$:/state/zStack","list",undefined,$tw.utils.stringifyList(list.slice(-20)));
+
+        // Assigns z-index to the elements in zstack based on position.
         for (let i = 0; i < zStack.length; i++) {
          	zStack[i].style.zIndex = i * 10 + 700;
             // Quick test to make sure this is working
