@@ -1,5 +1,5 @@
 created: 20190111185317881
-modified: 20190218230748436
+modified: 20190219000235184
 tags: $:/tags/WindowViewTemplate tampered
 title: WindowViewTemplate/title
 type: text/vnd.tiddlywiki
@@ -10,16 +10,13 @@ fill:$(foregroundColor)$;
 \define config-title()
 $:/config/WindowViewToolbarButtons/Visibility/$(listItem)$
 \end
-<div class="window-tiddler-title">
-<div class="window-titlebar">
+
 <span class="window-tiddler-controls">
 <$list filter="[all[shadows+tiddlers]tag[$:/tags/WindowViewToolbar]!has[draft.of]]" variable="listItem"><$reveal type="nomatch" state=<<config-title>> text="hide"><$set name="tv-config-toolbar-class" filter="[<tv-config-toolbar-class>] [<listItem>encodeuricomponent[]addprefix[tc-btn-]]"><$transclude tiddler=<<listItem>>/></$set></$reveal></$list>
 </span>
-</div>
 
 <$reveal type="nomatch" text="" default="" state=<<tiddlerInfoState>> class="tc-tiddler-info tc-popup-handle" animate="yes" retain="yes">
 
 <$list filter="[all[shadows+tiddlers]tag[$:/tags/TiddlerInfoSegment]!has[draft.of]] [[$:/core/ui/TiddlerInfo]]" variable="listItem"><$transclude tiddler=<<listItem>> mode="block"/></$list>
 
 </$reveal>
-</div>
