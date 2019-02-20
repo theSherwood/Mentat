@@ -3,7 +3,7 @@ created: 20190129200505951
 type: application/javascript
 title: $:/plugins/admls/mentat/storyviews/mentat.js
 tags: 
-modified: 20190218203007795
+modified: 20190220164555583
 module-type: storyview
 
 Views the story as a collection of story-windows
@@ -17,11 +17,11 @@ Views the story as a collection of story-windows
 
 var easing = "cubic-bezier(0.645, 0.045, 0.355, 1)";
 
-var ClassicStoryView = function(listWidget) {
+var MentatStoryView = function(listWidget) {
 	this.listWidget = listWidget;
 };
 
-ClassicStoryView.prototype.navigateTo = function(historyInfo) {
+MentatStoryView.prototype.navigateTo = function(historyInfo) {
 	var listElementIndex = this.listWidget.findListItem(0,historyInfo.title);
 	if(listElementIndex === undefined) {
 		return;
@@ -37,17 +37,68 @@ ClassicStoryView.prototype.navigateTo = function(historyInfo) {
 	$tw.Volant.pushTiddlerToZStack(targetElement);  
 };
 
-ClassicStoryView.prototype.insert = function(widget) {
+MentatStoryView.prototype.insert = function(widget) {
 	var targetElement = widget.findFirstDomNode(),
 		duration = $tw.utils.getAnimationDuration();
 	// Abandon if the list entry isn't a DOM element (it might be a text node)
 	if(!(targetElement instanceof Element)) {
 		return;
-	}  
-	$tw.Volant.pushTiddlerToZStack(targetElement); 
+	}
+	console.log('THIS', this);
+	console.log('TARGETELEMENT', targetElement);
+
+	// let widget = this.listWidget;
+	// while(!(widget.attributes["story"] && widget.attributes["history"])) {
+	// 	widget = widget.parentWidget;
+	// }
+	// const navigatorWidget = widget;
+
+
+	/*\
+    if(targetElement.dataset && !targetElement.matches(".tc-tagged-Window")) {
+    	// find window tiddler nearest top of zStack
+        const zStack = $tw.Volant.zStack;
+        console.log(this);
+        const topWindow = zStack.filter(tiddler => tiddler.matches(".tc-tagged-Window")).slice(-1)[0];
+        console.log('TOPWINDOW',topWindow);
+        if(topWindow) {
+        	const title = targetElement.dataset.tiddlerTitle;
+            const storyTitle = topWindow.dataset.tiddlerTitle;
+			$tw.wiki.addToStory(title,undefined,storyTitle,{openLinkFromInsideRiver: "top",openLinkFromOutsideRiver: "top"});
+			
+			// Get encapsulating story list
+            let widget = this.listWidget;
+            while(widget.variables["tv-story-list"].value === storyTitle) {
+				widget = widget.parentWidget;
+			}
+            const outerStoryTitle = widget.variables["tv-story-list"].value;
+            const outerStoryTiddler = $tw.wiki.getTiddler(outerStoryTitle);
+            let storyList = outerStoryTiddler.fields.list;
+            
+            // Remove inserted tiddler from outer storyList
+            const p = storyList.indexOf(title);
+            while(p !== -1) {
+                storyList.splice(p,1);
+                p = storyList.indexOf(title);
+            }
+            // Save outerStoryTiddler
+            $tw.wiki.addTiddler(new $tw.Tiddler(
+                {title: outerStoryTitle},
+                outerStoryTiddler,
+				{list: storyList})
+			);
+
+        } else {
+         //TBD
+        }
+    } else if (targetElement.dataset && targetElement.matches(".tc-tagged-Window")) {
+    	$tw.Volant.pushTiddlerToZStack(targetElement); 
+	}
+	\*/
+    
 };
 
-ClassicStoryView.prototype.remove = function(widget) {
+MentatStoryView.prototype.remove = function(widget) {
 	var targetElement = widget.findFirstDomNode(),
 		duration = $tw.utils.getAnimationDuration(),
 		removeElement = function() {
@@ -86,6 +137,6 @@ ClassicStoryView.prototype.remove = function(widget) {
 
 };
 
-exports.mentat = ClassicStoryView;
+exports.mentat = MentatStoryView;
 
 })();
