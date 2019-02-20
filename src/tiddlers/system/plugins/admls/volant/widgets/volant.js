@@ -3,7 +3,7 @@ created: 20190212164359746
 type: application/javascript
 title: $:/plugins/admls/volant/widgets/volant.js
 tags: 
-modified: 20190220115918079
+modified: 20190220120211926
 module-type: widget
 
 \*/
@@ -149,7 +149,7 @@ module-type: widget
     VolantWidget.prototype.pushEventToZStack = function (e) {
         const eventTiddler = $tw.Volant.getEventTiddler(e);
         // Allow for link navigation
-        if (e.target.matches(".tc-tiddlylink")) {
+        if ((e.button === 0) && e.target.matches(".tc-tiddlylink")) {
             const link = e.target.href;
             const titleStart = link.indexOf("#");
             const tiddlerTitle = decodeURIComponent(link.slice(titleStart + 1));
