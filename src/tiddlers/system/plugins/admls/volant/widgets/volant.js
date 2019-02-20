@@ -3,7 +3,7 @@ created: 20190212164359746
 type: application/javascript
 title: $:/plugins/admls/volant/widgets/volant.js
 tags: 
-modified: 20190220021821495
+modified: 20190220115918079
 module-type: widget
 
 \*/
@@ -166,7 +166,7 @@ module-type: widget
                 navigateFromClientRect: {
                     top: bounds.top, left: bounds.left, width: bounds.width, right: bounds.right, bottom: bounds.bottom, height: bounds.height
                 },
-                navigateSuppressNavigation: e.metaKey || e.ctrlKey || (e.button === 1),
+                navigateSuppressNavigation: e.metaKey || e.ctrlKey || (e.button !== 0),
                 metaKey: e.metaKey,
                 ctrlKey: e.ctrlKey,
                 altKey: e.altKey,
