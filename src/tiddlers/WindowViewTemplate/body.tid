@@ -1,12 +1,8 @@
 created: 20190111185742088
-height: calc(25% - 0px)
-left: calc(5% + 0px)
-modified: 20190220215911285
+modified: 20190220230005098
 tags: $:/tags/WindowViewTemplate tampered
 title: WindowViewTemplate/body
-top: calc(110% + 0px)
 type: text/vnd.tiddlywiki
-width: calc(100% - 0px)
 
 \define windowStoryList(currentTiddler) $(currentTiddler)$
 
@@ -24,7 +20,11 @@ width: calc(100% - 0px)
 
 <section class="story-backdrop"><$list filter="[all[shadows+tiddlers]tag[$:/tags/AboveWindow]!has[draft.of]]"><$transclude/></$list></section>
 
+<$scrollable fallthrough="no" class="window-scrollable">
+
 <$list filter="[list<windowStoryList>]" history=<<windowHistoryList>> template="$:/core/ui/ViewTemplate" editTemplate="$:/core/ui/EditTemplate" storyview={{!!view}} emptyMessage={{$:/config/EmptyStoryMessage}}/>
+
+</$scrollable>
 
 <section class="story-frontdrop"><$list filter="[all[shadows+tiddlers]tag[$:/tags/BelowWindow]!has[draft.of]]">
 <$transclude/></$list></section>

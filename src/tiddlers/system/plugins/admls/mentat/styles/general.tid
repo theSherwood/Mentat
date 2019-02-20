@@ -1,5 +1,5 @@
 created: 20190218191609036
-modified: 20190219155357466
+modified: 20190220231834093
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/general
 type: text/vnd.tiddlywiki
@@ -36,6 +36,22 @@ type: text/vnd.tiddlywiki
 [data-tags="Window"] > .window-body > p {
 margin-top: 0px;
 margin-bottom: 0px;
+}
+
+[data-tags="Window"] {
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+}
+
+.window-body, .window-scrollable {
+display: flex;
+flex-direction: column;
+flex: 1 1 100%;
+}
+
+.window-scrollable {
+padding: 2px 2px 2px 2px;
 }
 
 </$reveal>
