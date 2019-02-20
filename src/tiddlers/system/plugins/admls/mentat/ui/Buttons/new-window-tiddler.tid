@@ -1,5 +1,5 @@
 created: 20190111210715655
-modified: 20190218201323038
+modified: 20190220171334287
 tags: $:/tags/PageControls
 title: $:/plugins/admls/mentat/ui/Buttons/new-window-tiddler
 type: text/vnd.tiddlywiki
@@ -10,6 +10,7 @@ type: text/vnd.tiddlywiki
 <$set name="timestamp" value=<<now YY0MM0DD0hh0mm0ss0XXX>>>
 <$set name="windowTitle" value=<<uniqueWindow>>>
 <$action-setfield $tiddler=<<windowTitle>> tags="Window"/>
+<$action-setfield $tiddler=<<windowTitle>> $field="view" $value="classic"/>
 <$action-navigate $to=<<windowTitle>>/>
 </$set>
 </$set>
