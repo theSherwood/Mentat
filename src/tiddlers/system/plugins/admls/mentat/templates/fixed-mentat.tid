@@ -1,11 +1,11 @@
 created: 20190212173030711
-modified: 20190218234556929
+modified: 20190220151341318
 tags: $:/tags/EditTemplate $:/tags/ViewTemplate
-title: $:/plugins/admls/mentat/templates/fixed
+title: $:/plugins/admls/mentat/templates/fixed-mentat
 type: text/vnd.tiddlywiki
 
 <$reveal type="match" state="$:/view" text="mentat">
-<$list filter="[all[current]tag[Window]] [all[current]tag[Mentat]]">
+<$list filter="[all[current]tag[Mentat]]">
 <$volant separateConfig="yes" configTiddlerPrefix="$:/config/Mentat/Engine/"/>
 </$list>
 </$reveal>

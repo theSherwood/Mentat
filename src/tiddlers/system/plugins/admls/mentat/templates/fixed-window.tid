@@ -1,0 +1,11 @@
+created: 20190220151244523
+modified: 20190220151323968
+tags: $:/tags/EditTemplate $:/tags/ViewTemplate
+title: $:/plugins/admls/mentat/templates/fixed-window
+type: text/vnd.tiddlywiki
+
+<$reveal type="match" state="$:/view" text="mentat">
+<$list filter="[all[current]tag[Window]]">
+<$volant/>
+</$list>
+</$reveal>
