@@ -1,5 +1,5 @@
 created: 20190131224855059
-modified: 20190205231635561
+modified: 20190220231545683
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/volant/styles/general
 type: text/vnd.tiddlywiki
@@ -24,22 +24,22 @@ border-radius: 70% 0% 0% 0%;
 
 /* Tiddler Scrollbars */
 
-.tc-tiddler-frame::-webkit-scrollbar {
+.tc-tiddler-frame::-webkit-scrollbar, .tc-tiddler-frame *::-webkit-scrollbar {
 	height: 4px;
     width: 4px;
     background: transparent;
 }
 
-.tc-tiddler-frame::-webkit-scrollbar-thumb {
+.tc-tiddler-frame::-webkit-scrollbar-thumb, .tc-tiddler-frame *::-webkit-scrollbar-thumb {
     background: #999;
     -webkit-border-radius: 1ex;
 }
 
-.tc-tiddler-frame::-webkit-scrollbar-corner {
+.tc-tiddler-frame::-webkit-scrollbar-corner, .tc-tiddler-frame *::-webkit-scrollbar-corner {
     background: transparent;
 }
 
-.tc-tiddler-frame,.tc-tiddler-frame * {
+.tc-tiddler-frame, .tc-tiddler-frame * {
 	scrollbar-color: lightgray #eee;
 	scrollbar-width: thin;
 }
