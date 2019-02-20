@@ -3,12 +3,8 @@ created: 20190212164359746
 type: application/javascript
 title: $:/plugins/admls/volant/widgets/volant.js
 tags: 
-modified: 20190218112056734
+modified: 20190220021821495
 module-type: widget
-top: calc(25% + 0px)
-left: calc(25% + 0px)
-width: calc(50% - 0px)
-height: calc(50% - 0px)
 
 \*/
 (function(){
@@ -46,6 +42,7 @@ VolantWidget.prototype.render = function(parent,nextSibling) {
       elmnt = elmnt.parentElement;
     } 
     const tiddler = elmnt;
+    tiddler.className += " volant";
     tiddler.style.position = position;
     
 	const resizerLeft = document.createElement("div");
@@ -105,10 +102,11 @@ VolantWidget.prototype.render = function(parent,nextSibling) {
         	window.addEventListener('mousemove', Volant.resizeRight);     
         }
         window.addEventListener('mouseup', Volant.endResize, false); 
-    };   
+    };
     
+    this.boundPushEventToZStack = this.pushEventToZStack.bind(this);
     tiddler.addEventListener("mousedown", startDrag);
-    tiddler.addEventListener("mousedown", $tw.Volant.pushEventToZStack, false);
+    tiddler.addEventListener("mousedown", this.boundPushEventToZStack);
     tiddler.addEventListener("mousedown", startResize);
     if(this.position === "absolute") {
     	window.addEventListener("scroll", $tw.Volant.repositionResizersOnAbsolute, false);
@@ -147,6 +145,49 @@ VolantWidget.prototype.getConfigTiddler = function(title) {
         }
     }    
 };
+
+VolantWidget.prototype.pushEventToZStack = function(e) {
+    const eventTiddler = $tw.Volant.getEventTiddler(e);
+    // Allow for link navigation
+    if(e.target.matches(".tc-tiddlylink")) {
+        const link = e.target.href;
+        const titleStart = link.indexOf("#");
+        const tiddlerTitle = decodeURIComponent(link.slice(titleStart + 1));
+        const linkedTiddler = document.querySelector(`[data-tiddler-title*="${tiddlerTitle}"]`);
+
+        $tw.Volant.pushTiddlerToZStack(eventTiddler);
+
+            // Send the click on its way as a navigate event
+        const bounds = e.target.getBoundingClientRect();
+        this.dispatchEvent({
+            type: "tm-navigate",
+            navigateTo: tiddlerTitle,
+            navigateFromTitle: eventTiddler.dataset.tiddlerTitle,
+            navigateFromNode: this,
+            navigateFromClientRect: { top: bounds.top, left: bounds.left, width: bounds.width, right: bounds.right, bottom: bounds.bottom, height: bounds.height
+            },
+            navigateSuppressNavigation: e.metaKey || e.ctrlKey || (e.button === 1),
+            metaKey: e.metaKey,
+            ctrlKey: e.ctrlKey,
+            altKey: e.altKey,
+            shiftKey: e.shiftKey
+        });
+        if(e.target.hasAttribute("href")) {
+            e.preventDefault();
+        }
+        e.stopPropagation();
+        
+        if(linkedTiddler.matches(".volant")) {
+            $tw.Volant.pushTiddlerToZStack(linkedTiddler);
+        }
+        
+        return false;
+    } else {
+        // Push onto zStack
+        $tw.Volant.pushTiddlerToZStack(eventTiddler);
+    }
+},
+
 
 /*
 Compute the internal state of this widget.
