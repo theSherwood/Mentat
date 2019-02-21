@@ -28,13 +28,7 @@ function addNavigationHooks() {
 	$tw.hooks.addHook("th-navigating", function(event) {
 		console.log('INITIAL EVENT',event);
 
-		// let widget = event.navigateFromNode;
-		// while(widget && !(widget.storyViewName)) {
-		// 	widget = widget.parentWidget;
-		// }
-		// const innerView = widget ? widget.storyViewName : null;
-
-		const title = event.navigateTo;
+		const toTitle = event.navigateTo;
 		const fromTitle = event.navigateFromTitle;
 		const fromInside = $tw.wiki.getTiddler("$:/config/Navigation/openLinkFromInsideRiver").fields.text || "top";
 		const fromOutside = $tw.wiki.getTiddler("$:/config/Navigation/openLinkFromOutsideRiver").fields.text || "top";
@@ -50,19 +44,35 @@ function addNavigationHooks() {
             } else if (navigateTarget) {
 				//console.log('MENTAT OR WINDOW: FALSE',event);
 				const widget = event.navigateFromNode;
+				const originHistoryTitle = widget.getVariable("tv-history-list") || "$:/HistoryList";
 				const originStoryTitle = widget.getVariable("tv-story-list") || "$:/StoryList";
 				const originStoryTiddler = $tw.wiki.getTiddler(originStoryTitle);
 				const originStoryList = originStoryTiddler.fields.list;
-				// Get the top-most window that's on the zStack and still in the story list
-				const zStack = $tw.Volant.zStack;
-				const windowsOnStack = zStack.filter(tiddler => tiddler.matches('[data-tags*="Window"]'));
-				let windowTitles = windowsOnStack.map(window => window.dataset.tiddlerTitle);
+
+				// Get all window tiddlers
+				let windowTitles = $tw.wiki.getTiddlersWithTag("Window");
+				// Filter zStack by windowTitles
+				const zStackTitles = $tw.Volant.zStack.map(tiddler => tiddler.dataset.tiddlerTitle);
+				console.log('ZSTACK',zStackTitles);
+				const windowsOnStack = zStackTitles.filter(windowTitle => windowTitles.includes(windowTitle));
+				console.log("WINDOWS ON STACK", windowsOnStack.slice(-1)[0]);
+				// Filter story list by windowTitles
+				const windowsInStory = originStoryList.filter(windowTitle => windowTitles.includes(windowTitle));
+				console.log("WINDOWS IN STORY", windowsInStory.slice(-1)[0]);
+				// Filter windowsOnStack by windowsInStory and get the one at the top of the stack
+				const preferredWindow = windowsOnStack.filter(windowTitle => windowsInStory.includes(windowTitle)).slice(-1)[0];
+				console.log("PREFERRED WINDOW", preferredWindow);
+
+				let windowTitle = preferredWindow || windowsInStory.slice(-1)[0] || windowsOnStack.slice(-1)[0] || windowTitles.slice(-1)[0];
+
+				// windowTitles = windowsOnStack.map(window => window.dataset.tiddlerTitle);
+				// windowTitles = windowTitles.filter(title => $tw.wiki.tiddlerExists(title));
 				/*
 				Uncomment the following line if it should only use tiddlers currently open 
 				(in a story list)
 				*/
 				// windowTitles = windowTitles.filter(windowTitle => originStoryList.includes(windowTitle))
-				let windowTitle = windowTitles.slice(-1)[0];
+			
 				// Check to see if the navigation came from within a window
 				let elmnt = widget.parentDomNode;
 				while(elmnt && !elmnt.matches('[data-tags*="Window"]')) {
@@ -88,14 +98,14 @@ function addNavigationHooks() {
 					// If the window isn't open, add it to the story
 					$tw.wiki.addToStory(windowTitle,fromTitle,originStoryTitle,{openLinkFromInsideRiver: fromInside,openLinkFromOutsideRiver: fromOutside});
 					if(!event.navigateSuppressNavigation) {
-						$tw.wiki.addToHistory(windowTitle,event.navigateFromClientRect,originStoryTitle);
+						$tw.wiki.addToHistory(windowTitle,event.navigateFromClientRect,originHistoryTitle);
 					}	
 				}
 				if(windowTitle) {
 					// Add the navigateTarget to the window
-					$tw.wiki.addToStory(title,fromTitle,windowTitle,{openLinkFromInsideRiver: fromInside,openLinkFromOutsideRiver: fromOutside});
+					$tw.wiki.addToStory(toTitle,fromTitle,windowTitle,{openLinkFromInsideRiver: fromInside,openLinkFromOutsideRiver: fromOutside});
 					if(!event.navigateSuppressNavigation) {
-						$tw.wiki.addToHistory(event.navigateTo,event.navigateFromClientRect,windowTitle);
+						$tw.wiki.addToHistory(toTitle,event.navigateFromClientRect,windowTitle);
 						//$tw.Volant.pushTiddlerToZStack(windowTitle);
 					}
 				}
