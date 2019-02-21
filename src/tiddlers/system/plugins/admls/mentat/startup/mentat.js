@@ -45,8 +45,18 @@ function addNavigationHooks() {
             } else if (navigateTarget) {
 				//console.log('MENTAT OR WINDOW: FALSE',event);
 				const zStack = $tw.Volant.zStack;
-				const topWindow = zStack.filter(tiddler => tiddler.matches(".tc-tagged-Window")).slice(-1)[0];
-				//console.log('TOPWINDOW',topWindow);
+				let topWindow = zStack.filter(tiddler => tiddler.matches('[data-tags*="Window"]')).slice(-1)[0];
+				// Check to see if the navigation came from within a window
+				const widget = event.navigateFromNode;
+				let elmnt = widget.parentDomNode;
+				while(elmnt && !elmnt.matches('[data-tags*="Window"]')) {
+					elmnt = elmnt.parentElement;
+				}
+				// If the navigation did come from within a window, stay within the window
+				if(elmnt) {
+					topWindow = elmnt;
+				}
+				// console.log('TOPWINDOW',topWindow);
 				if(topWindow && event.navigateTo) {
 					const title = event.navigateTo;
 					const fromTitle = event.navigateFromTitle;
@@ -56,6 +66,7 @@ function addNavigationHooks() {
 					$tw.wiki.addToStory(title,fromTitle,storyTitle,{openLinkFromInsideRiver: fromInside,openLinkFromOutsideRiver: fromOutside});
 					if(!event.navigateSuppressNavigation) {
 						$tw.wiki.addToHistory(event.navigateTo,event.navigateFromClientRect,storyTitle);
+						$tw.Volant.pushTiddlerToZStack(topWindow);
 					}
 				
 				}
