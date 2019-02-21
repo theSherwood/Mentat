@@ -17,6 +17,13 @@ module-type: widget
 
     var VolantWidget = function (parseTreeNode, options) {
         this.initialise(parseTreeNode, options);
+
+        /* For this approach to work it would require transcluding the body
+        of the tiddler through the interior of the volant tiddler and hiding the
+        display of the normal body. Pretty drastic stuff. */
+        // this.addEventListeners([
+        //     {type: "tm-navigate", handler: "handleNavigateEvent"},
+        // ]);
     };
 
     /* 
@@ -42,6 +49,7 @@ module-type: widget
             elmnt = elmnt.parentElement;
         }
         const tiddler = elmnt;
+        //this.tiddler = tiddler;
         tiddler.className += " volant";
         tiddler.style.position = position;
 
@@ -149,7 +157,10 @@ module-type: widget
     VolantWidget.prototype.pushEventToZStack = function (e) {
         const eventTiddler = $tw.Volant.getEventTiddler(e);
         // Allow for link navigation
-        if ((e.button === 0) && e.target.matches(".tc-tiddlylink")) {
+        // THIS NEEDS REFACTORED: UGLY!!!!!!!!!!!!!!!!!
+        // WE CAN'T BYPASS THE LINK WIDGET. THERE MUST BE SOME OTHER WAY TO HANDLE
+        // NAVIGATION FROM VOLANT TIDDLERS
+        if (0 && (e.button === 0) && e.target.matches(".tc-tiddlylink")) {
             const link = e.target.href;
             const titleStart = link.indexOf("#");
             const tiddlerTitle = decodeURIComponent(link.slice(titleStart + 1));
@@ -158,6 +169,7 @@ module-type: widget
 
             // Send the click on its way as a navigate event
             const bounds = e.target.getBoundingClientRect();
+            debugger;
             this.dispatchEvent({
                 type: "tm-navigate",
                 navigateTo: tiddlerTitle,
@@ -187,18 +199,23 @@ module-type: widget
             // Push onto zStack
             $tw.Volant.pushTiddlerToZStack(eventTiddler);
         }
-    },
+    };
 
+    /* This kind of approach may proof entirely excessive */
+    // VolantWidget.prototype.handleNavigateEvent = function(event) {
+    //     console.log("HERE!!! IT'S A FLAG!!! HERE!!!");
+    //     return true;
+    // };
 
-        /*
-        Compute the internal state of this widget.
-        */
-        VolantWidget.prototype.execute = function () {
-            this.position = this.getAttribute("position", "fixed");
-            this.separateConfig = this.getAttribute("separateConfig", "no");
-            this.configTiddlerPrefix = this.getAttribute("configTiddlerPrefix", "$:/config/Volant/");
-            //this.makeChildWidgets();
-        };
+    /*
+    Compute the internal state of this widget.
+    */
+    VolantWidget.prototype.execute = function () {
+        this.position = this.getAttribute("position", "fixed");
+        this.separateConfig = this.getAttribute("separateConfig", "no");
+        this.configTiddlerPrefix = this.getAttribute("configTiddlerPrefix", "$:/config/Volant/");
+        //this.makeChildWidgets();
+    };
 
     /*
     Selectively refreshes the widget if needed. Returns true if the widget or any of its children needed re-rendering
