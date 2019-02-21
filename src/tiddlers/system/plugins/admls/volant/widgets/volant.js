@@ -3,7 +3,7 @@ created: 20190212164359746
 type: application/javascript
 title: $:/plugins/admls/volant/widgets/volant.js
 tags: 
-modified: 20190220120211926
+modified: 20190221190101349
 module-type: widget
 
 \*/
@@ -76,7 +76,7 @@ module-type: widget
             const dragModeIsOn = $tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.dragmode === "on";
             const targetIsChildElement = !e.target.matches(".tc-tiddler-frame"); // This will be problematic if you have nested volant tiddlers
             const targetIsResizer = e.target.matches(".resizer"); // Stops drag if target is a resizer
-            if (targetIsResizer || (!dragModeIsOn && targetIsChildElement)) {
+            if ((e.button !== 0) || targetIsResizer || (!dragModeIsOn && targetIsChildElement)) {
                 return;
             }
             e.stopPropagation();
