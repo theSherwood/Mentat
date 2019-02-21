@@ -46,32 +46,20 @@ function addNavigationHooks() {
 				const widget = event.navigateFromNode;
 				const originHistoryTitle = widget.getVariable("tv-history-list") || "$:/HistoryList";
 				const originStoryTitle = widget.getVariable("tv-story-list") || "$:/StoryList";
-				const originStoryTiddler = $tw.wiki.getTiddler(originStoryTitle);
-				const originStoryList = originStoryTiddler.fields.list;
+				let originStoryTiddler = $tw.wiki.getTiddler(originStoryTitle);
+				let originStoryList = originStoryTiddler.fields.list;
 
 				// Get all window tiddlers
 				let windowTitles = $tw.wiki.getTiddlersWithTag("Window");
 				// Filter zStack by windowTitles
 				const zStackTitles = $tw.Volant.zStack.map(tiddler => tiddler.dataset.tiddlerTitle);
-				console.log('ZSTACK',zStackTitles);
 				const windowsOnStack = zStackTitles.filter(windowTitle => windowTitles.includes(windowTitle));
-				console.log("WINDOWS ON STACK", windowsOnStack.slice(-1)[0]);
 				// Filter story list by windowTitles
 				const windowsInStory = originStoryList.filter(windowTitle => windowTitles.includes(windowTitle));
-				console.log("WINDOWS IN STORY", windowsInStory.slice(-1)[0]);
 				// Filter windowsOnStack by windowsInStory and get the one at the top of the stack
 				const preferredWindow = windowsOnStack.filter(windowTitle => windowsInStory.includes(windowTitle)).slice(-1)[0];
-				console.log("PREFERRED WINDOW", preferredWindow);
 
 				let windowTitle = preferredWindow || windowsInStory.slice(-1)[0] || windowsOnStack.slice(-1)[0] || windowTitles.slice(-1)[0];
-
-				// windowTitles = windowsOnStack.map(window => window.dataset.tiddlerTitle);
-				// windowTitles = windowTitles.filter(title => $tw.wiki.tiddlerExists(title));
-				/*
-				Uncomment the following line if it should only use tiddlers currently open 
-				(in a story list)
-				*/
-				// windowTitles = windowTitles.filter(windowTitle => originStoryList.includes(windowTitle))
 			
 				// Check to see if the navigation came from within a window
 				let elmnt = widget.parentDomNode;
@@ -81,6 +69,7 @@ function addNavigationHooks() {
 				// If the navigation did come from within a window, stay within the window
 				if(elmnt) {
 					windowTitle = elmnt.dataset.tiddlerTitle;
+					console.log("THE LINK IS ON THE INSIDE");
 				}
 				// console.log('windowTitle',windowTitle);
 				if(!$tw.wiki.tiddlerExists(windowTitle) || !windowTitle) {
@@ -94,8 +83,13 @@ function addNavigationHooks() {
 					});
 					$tw.wiki.addTiddler(windowTiddler);
 				}
-				if(!originStoryList.includes(windowTitle)) {
+				// Get an updated story list
+				originStoryTiddler = $tw.wiki.getTiddler(originStoryTitle);
+				originStoryList = originStoryTiddler.fields.list;
+				console.log(originStoryList);
+				if((originStoryTitle !== windowTitle) && !originStoryList.includes(windowTitle)) {
 					// If the window isn't open, add it to the story
+					console.log("THE WINDOW ISN'T OPEN");
 					$tw.wiki.addToStory(windowTitle,fromTitle,originStoryTitle,{openLinkFromInsideRiver: fromInside,openLinkFromOutsideRiver: fromOutside});
 					if(!event.navigateSuppressNavigation) {
 						$tw.wiki.addToHistory(windowTitle,event.navigateFromClientRect,originHistoryTitle);
