@@ -56,9 +56,13 @@ function addNavigationHooks() {
 				// Get the top-most window that's on the zStack and still in the story list
 				const zStack = $tw.Volant.zStack;
 				const windowsOnStack = zStack.filter(tiddler => tiddler.matches('[data-tags*="Window"]'));
-				const windowTitles = windowsOnStack.map(window => window.dataset.tiddlerTitle);
-				const windowsInStory = windowTitles.filter(windowTitle => originStoryList.includes(windowTitle))
-				let windowTitle = windowsInStory.slice(-1)[0];
+				let windowTitles = windowsOnStack.map(window => window.dataset.tiddlerTitle);
+				/*
+				Uncomment the following line if it should only use tiddlers currently open 
+				(in a story list)
+				*/
+				// windowTitles = windowTitles.filter(windowTitle => originStoryList.includes(windowTitle))
+				let windowTitle = windowTitles.slice(-1)[0];
 				// Check to see if the navigation came from within a window
 				let elmnt = widget.parentDomNode;
 				while(elmnt && !elmnt.matches('[data-tags*="Window"]')) {
@@ -69,7 +73,7 @@ function addNavigationHooks() {
 					windowTitle = elmnt.dataset.tiddlerTitle;
 				}
 				// console.log('windowTitle',windowTitle);
-				if(!windowTitle) {
+				if(!$tw.wiki.tiddlerExists(windowTitle) || !windowTitle) {
 					// Add a window to the story to put the navigateTarget in
 					const timestamp = $tw.utils.formatDateString(new Date(),"YY0MM0DD0hh0mm0ss0XXX");
 					windowTitle = "Window-" + timestamp;			
@@ -79,14 +83,16 @@ function addNavigationHooks() {
 						view: "classic" // make this configurable
 					});
 					$tw.wiki.addTiddler(windowTiddler);
+				}
+				if(!originStoryList.includes(windowTitle)) {
+					// If the window isn't open, add it to the story
 					$tw.wiki.addToStory(windowTitle,fromTitle,originStoryTitle,{openLinkFromInsideRiver: fromInside,openLinkFromOutsideRiver: fromOutside});
 					if(!event.navigateSuppressNavigation) {
 						$tw.wiki.addToHistory(windowTitle,event.navigateFromClientRect,originStoryTitle);
-					}
+					}	
 				}
 				if(windowTitle) {
 					// Add the navigateTarget to the window
-					//const innerStoryTitle = windowTitle.dataset.tiddlerTitle;
 					$tw.wiki.addToStory(title,fromTitle,windowTitle,{openLinkFromInsideRiver: fromInside,openLinkFromOutsideRiver: fromOutside});
 					if(!event.navigateSuppressNavigation) {
 						$tw.wiki.addToHistory(event.navigateTo,event.navigateFromClientRect,windowTitle);
