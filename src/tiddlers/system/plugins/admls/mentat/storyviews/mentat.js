@@ -3,7 +3,7 @@ created: 20190129200505951
 type: application/javascript
 title: $:/plugins/admls/mentat/storyviews/mentat.js
 tags: 
-modified: 20190220164555583
+modified: 20190221170317269
 module-type: storyview
 
 Views the story as a collection of story-windows
@@ -19,6 +19,28 @@ var easing = "cubic-bezier(0.645, 0.045, 0.355, 1)";
 
 var MentatStoryView = function(listWidget) {
 	this.listWidget = listWidget;
+
+	// Hide all tiddlers but those tagged Window or Mentat
+	$tw.utils.each(this.listWidget.children,function(itemWidget,index) {
+		var domNode = itemWidget.findFirstDomNode();
+		// Abandon if the list entry isn't a DOM element (it might be a text node)
+		if(!(domNode instanceof Element)) {
+			return;
+		}
+		console.log("ITEM WIDGET", itemWidget);
+		console.log("PARSE TREE NODE", itemWidget.parseTreeNode);
+		console.log("ITEM TITLE", itemWidget.parseTreeNode.itemTitle);
+
+		const tiddlerTitle = itemWidget.parseTreeNode.itemTitle;
+		const tiddler = $tw.wiki.getTiddler(tiddlerTitle);
+		if(tiddler && !(tiddler.fields.tags.includes("Mentat") || tiddler.fields.tags.includes("Window"))) {
+			domNode.style.display = "none";
+		}
+		// if((targetTiddler && targetTiddler !== itemWidget.parseTreeNode.itemTitle) || (!targetTiddler && index)) {
+		// 	domNode.style.display = "none";
+		// } 
+	});
+
 };
 
 MentatStoryView.prototype.navigateTo = function(historyInfo) {
@@ -26,32 +48,41 @@ MentatStoryView.prototype.navigateTo = function(historyInfo) {
 	if(listElementIndex === undefined) {
 		return;
 	}
-	var listItemWidget = this.listWidget.children[listElementIndex],
-		targetElement = listItemWidget.findFirstDomNode();
+	var itemWidget = this.listWidget.children[listElementIndex],
+		domNode = itemWidget.findFirstDomNode();
 	// Abandon if the list entry isn't a DOM element (it might be a text node)
-	if(!(targetElement instanceof Element)) {
+	if(!(domNode instanceof Element)) {
 		return;
 	}
 	// Scroll the node into view
-	this.listWidget.dispatchEvent({type: "tm-scroll", target: targetElement});
-	$tw.Volant.pushTiddlerToZStack(targetElement);  
+	this.listWidget.dispatchEvent({type: "tm-scroll", target: domNode});
+	$tw.Volant.pushTiddlerToZStack(domNode);  
 };
 
 MentatStoryView.prototype.insert = function(widget) {
-	var targetElement = widget.findFirstDomNode(),
+	var domNode = widget.findFirstDomNode(),
 		duration = $tw.utils.getAnimationDuration();
 	// Abandon if the list entry isn't a DOM element (it might be a text node)
-	if(!(targetElement instanceof Element)) {
+	if(!(domNode instanceof Element)) {
 		return;
 	}
-	console.log('THIS', this);
-	console.log('TARGETELEMENT', targetElement);
+	console.log("WIDGET", widget);
+	console.log("PARSE TREE NODE", widget.parseTreeNode);
+	console.log("ITEM TITLE", widget.parseTreeNode.itemTitle);
 
+	const tiddlerTitle = widget.parseTreeNode.itemTitle;
+	const tiddler = $tw.wiki.getTiddler(tiddlerTitle);
+	if(tiddler && !(tiddler.fields.tags.includes("Mentat") || tiddler.fields.tags.includes("Window"))) {
+		domNode.style.display = "none";
+	}
+
+	// Get the navigatorWidget for this story
 	// let widget = this.listWidget;
 	// while(!(widget.attributes["story"] && widget.attributes["history"])) {
 	// 	widget = widget.parentWidget;
 	// }
-	// const navigatorWidget = widget;
+	// const navWidget = widget;
+	// navWidget.
 
 
 	/*\
