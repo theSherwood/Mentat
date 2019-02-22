@@ -72,7 +72,7 @@ MentatStoryView.prototype.insert = function(widget) {
 
 	const tiddlerTitle = widget.parseTreeNode.itemTitle;
 	const tiddler = $tw.wiki.getTiddler(tiddlerTitle);
-	if(tiddler && !(tiddler.fields.tags.includes("Mentat") || tiddler.fields.tags.includes("Window"))) {
+	if(!(tiddler && tiddler.fields.tags && (tiddler.fields.tags.includes("Mentat") || tiddler.fields.tags.includes("Window")))) {
 		domNode.style.display = "none";
 	}
 
