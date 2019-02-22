@@ -3,7 +3,7 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190219172953840
+modified: 20190221170445591
 module-type: global
 
 
@@ -176,8 +176,8 @@ const Volant = {
     
     getEventTiddler: function(e) {
     	let elmnt = e.target;
-        // Get the tiddler that the event happened in
-    	while(!(elmnt.matches('[data-tiddler-title]'))) {
+        // Get the volant tiddler that the event happened in
+    	while(!(elmnt.matches('.volant'))) {
         	// Stop if you get to the root element
         	if(elmnt.tagName === "HTML") {
             	return;
@@ -278,8 +278,6 @@ const Volant = {
             return Math.round(Math.round(quotient) * grid.absoluteGridSize);
         }
     }
-    	
-
 };    
 
 exports.Volant = Volant;
