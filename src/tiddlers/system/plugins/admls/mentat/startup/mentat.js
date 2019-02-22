@@ -24,6 +24,23 @@ exports.startup = function() {
     addNavigationHooks()   
 };
 
+/*
+function findWidget(widget) {
+    if (widget.getVariable("tv-story-list") === "Window-190221223944981") {
+        return widget;
+    }
+for(child of widget.children) {
+//console.log(child);
+let widg = findWidget(child);
+if(widg) {
+return widg
+}
+}
+}
+*/
+
+
+
 function addNavigationHooks() {
 	$tw.hooks.addHook("th-navigating", function(event) {
 		console.log('INITIAL EVENT',event);
@@ -36,11 +53,19 @@ function addNavigationHooks() {
 		const baseView = $tw.wiki.getTiddler("$:/view").fields.text;
 		//event.navigateFromNode.variables[""]
     	if(baseView === "mentat") {
-			let navigateTarget = $tw.wiki.getTiddler(event.navigateTo);
+			let navigateTarget = $tw.wiki.getTiddler(toTitle);
 			//console.log('navigateTarget',navigateTarget);
             if(navigateTarget && navigateTarget.fields.tags && (navigateTarget.fields.tags.includes("Mentat") || navigateTarget.fields.tags.includes("Window"))) {
-            	//console.log('MENTAT OR WINDOW: TRUE',event);
-            	return event;
+				//console.log('MENTAT OR WINDOW: TRUE',event);
+				$tw.wiki.addToStory(toTitle,fromTitle,"$:/StoryList",{openLinkFromInsideRiver: fromInside,openLinkFromOutsideRiver: fromOutside});
+				if(!event.navigateSuppressNavigation) {
+					$tw.wiki.addToHistory(toTitle,event.navigateFromClientRect,"$:/HistoryList");
+					//$tw.Volant.pushTiddlerToZStack(windowTitle);
+				}
+            	const emptyEvent = {
+					type: "tm-navigate"
+				}
+            	return emptyEvent;
             } else if (navigateTarget) {
 				//console.log('MENTAT OR WINDOW: FALSE',event);
 				const widget = event.navigateFromNode;
