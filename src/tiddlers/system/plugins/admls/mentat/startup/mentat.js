@@ -32,6 +32,9 @@ function addHooks() {
 
 		const baseStoryView = $tw.wiki.getTiddler("$:/view").fields.text;
     	if(baseStoryView === "mentat") {
+			// Make sure $:/StoryList is up to date
+			maintainStoryList();
+
 			let toTitleTiddler = $tw.wiki.getTiddler(toTitle);
 			// If toTitleTiddler is tagged Window or Mentat
             if(toTitleTiddler && toTitleTiddler.fields.tags && (toTitleTiddler.fields.tags.includes("Mentat") || toTitleTiddler.fields.tags.includes("Window"))) {
@@ -54,7 +57,7 @@ function addHooks() {
 					if(windowTiddler && windowTiddler.fields.list && windowTiddler.fields.list.includes(toTitle)) {
 						windowsContainingToTitle.push(windowTitle);
 					}
-				})
+				});
 				// If some window already contains toTitle, navigate to it
 				if(windowsContainingToTitle.length > 0) {
 					windowTitles = windowsContainingToTitle;
@@ -63,8 +66,6 @@ function addHooks() {
 					addToBaseStoryList(windowTitle, event);
 					// Add toTitle to the window (and navigate to it)
 					addToWindow(event, windowTitle);
-					// Also add toTitle to $:/StoryList (hidden by mentat storyview)
-					addToBaseStoryList(toTitle, event, false);
 					// Wherever the original navigation event came from, ignore it
 					return {};
 				}
@@ -98,8 +99,6 @@ function addHooks() {
 				addToBaseStoryList(windowTitle, event);
 				// Add toTitle to windowTitle
 				addToWindow(event, windowTitle);
-				// Also add toTitle to $:/StoryList (hidden by mentat storyview)
-				addToBaseStoryList(toTitle, event, false);
 				// Wherever the original navigation event came from, ignore it
             	return {};
             }
@@ -145,8 +144,19 @@ function addHooks() {
 			openLinkFromOutsideRiver: $tw.wiki.getTiddler("$:/config/Navigation/openLinkFromOutsideRiver").fields.text || "top"
 		}
 		return riverPositions;
-	}
+	};
 
+	function maintainStoryList() {
+		// Make sure $:/StoryList is up to date (filtered of everything not Mentat or Window)
+		const windowTitles = $tw.wiki.getTiddlersWithTag("Window");
+		const mentatTitles = $tw.wiki.getTiddlersWithTag("Mentat");
+		const storyTiddler = $tw.wiki.getTiddler("$:/StoryList");
+		let storyList = storyTiddler.fields.list.filter(title => (mentatTitles.includes(title) || windowTitles.includes(title)));
+		$tw.wiki.addTiddler(new $tw.Tiddler(
+			{title: "$:/StoryList"},
+			{list: storyList}
+		));
+	};
     
 }
 
