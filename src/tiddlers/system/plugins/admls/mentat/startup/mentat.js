@@ -63,7 +63,9 @@ function addHooks() {
 					addToBaseStoryList(windowTitle, event);
 					// Add toTitle to the window (and navigate to it)
 					addToWindow(event, windowTitle);
-					// Don't add the tiddler to the base story list
+					// Also add toTitle to $:/StoryList (hidden by mentat storyview)
+					addToBaseStoryList(toTitle, event, false);
+					// Wherever the original navigation event came from, ignore it
 					return {};
 				}
 
@@ -96,7 +98,9 @@ function addHooks() {
 				addToBaseStoryList(windowTitle, event);
 				// Add toTitle to windowTitle
 				addToWindow(event, windowTitle);
-				// Don't add toTitle to $:/StoryList
+				// Also add toTitle to $:/StoryList (hidden by mentat storyview)
+				addToBaseStoryList(toTitle, event, false);
+				// Wherever the original navigation event came from, ignore it
             	return {};
             }
 		}
@@ -126,11 +130,11 @@ function addHooks() {
 		}
 	};
 
-	function addToBaseStoryList(tiddlerToAdd, event) {
+	function addToBaseStoryList(tiddlerToAdd, event, navigate=true) {
 		const riverPositions = getRiverPositions();
 		// Add tiddler to $:/StoryList (and navigate to it)
 		$tw.wiki.addToStory(tiddlerToAdd,event.navigateFromTitle,"$:/StoryList",riverPositions);
-		if(!event.navigateSuppressNavigation) {
+		if(navigate && !event.navigateSuppressNavigation) {
 			$tw.wiki.addToHistory(tiddlerToAdd,event.navigateFromClientRect,"$:/HistoryList");
 		}
 	};
