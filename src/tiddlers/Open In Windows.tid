@@ -1,0 +1,47 @@
+caption: Ready
+created: 20190222113306417
+list-before: $:/core/ui/SideBar/Open
+modified: 20190222232755182
+tags: tampered unfinished $:/tags/SideBar
+title: Open In Windows
+type: text/vnd.tiddlywiki
+
+\whitespace trim
+\define lingo-base() $:/language/CloseAll/
+
+\define drop-window-actions()
+<$action-listops $tiddler="$:/StoryList" $subfilter="+[insertbefore:<windowTiddler><actionTiddler>]"/>
+\end
+
+\define drop-actions()
+<$action-listops $tiddler=$(windowTiddler)$ $subfilter="+[insertbefore:currentTiddler<actionTiddler>]"/>
+\end
+
+<$list filter="[all[system+tiddlers]tag[Window]]" variable="windowTiddler">
+
+<div style="position: relative;">
+<$droppable actions=<<drop-window-actions>>>
+<div class="tc-droppable-placeholder">
+&nbsp;
+</div>
+<div>
+<$button message="tm-delete-tiddler" tooltip="Close this window and its contents" aria-label="Close this window" class="tc-btn-invisible tc-btn-mini">&times;</$button>
+<$link to=<<windowTiddler>>>&nbsp;''WINDOW''&nbsp;</$link>
+</div>
+</$droppable>
+</div>
+
+<$list filter="[list<windowTiddler>]">
+<div style="position: relative;">
+<$droppable actions=<<drop-actions>>>
+<div class="tc-droppable-placeholder">
+&nbsp;
+</div>
+<div>
+<$button message="tm-close-tiddler" tooltip={{$:/language/Buttons/Close/Hint}} aria-label={{$:/language/Buttons/Close/Caption}} class="tc-btn-invisible tc-btn-mini">&times;</$button> <$link to={{!!title}}><$view field="title"/></$link>
+</div>
+</$droppable>
+</div>
+</$list>
+<hr>
+</$list>
