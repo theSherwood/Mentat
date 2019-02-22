@@ -1,5 +1,5 @@
 created: 20190218191609036
-modified: 20190220231834093
+modified: 20190222011403269
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/general
 type: text/vnd.tiddlywiki
@@ -44,10 +44,15 @@ flex-direction: column;
 justify-content: flex-start;
 }
 
+[data-tags="Window"] .window-body .tc-storyview-zoomin-tiddler {
+position: relative;
+width: auto;
+}
+
 .window-body, .window-scrollable {
 display: flex;
 flex-direction: column;
-flex: 1 1 100%;
+flex: 1 1 1px;
 }
 
 .window-scrollable {
