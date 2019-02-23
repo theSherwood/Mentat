@@ -1,8 +1,8 @@
 caption: Ready
-created: 20190222113306417
+created: 20190223031911509
 list-before: $:/core/ui/SideBar/Open
-modified: 20190222232755182
-tags: tampered unfinished $:/tags/SideBar
+modified: 20190223032200312
+tags: unfinished tampered $:/tags/SideBar
 title: Open In Windows
 type: text/vnd.tiddlywiki
 
@@ -17,7 +17,7 @@ type: text/vnd.tiddlywiki
 <$action-listops $tiddler=$(windowTiddler)$ $subfilter="+[insertbefore:currentTiddler<actionTiddler>]"/>
 \end
 
-<$list filter="[all[system+tiddlers]tag[Window]]" variable="windowTiddler">
+<$list filter="[all[system+tiddlers]tag[Window]]" variable="windowTiddler" emptyMessage={{$:/plugins/admls/mentat/ui/Buttons/new-window-tiddler}}>
 
 <div style="position: relative;">
 <$droppable actions=<<drop-window-actions>>>
