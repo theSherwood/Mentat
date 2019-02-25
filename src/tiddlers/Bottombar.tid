@@ -1,0 +1,35 @@
+created: 20190225180426874
+modified: 20190225192335820
+tags: Mentat
+title: Bottombar
+type: text/vnd.tiddlywiki
+
+<div class="link-tabs">
+<$tiddler tiddler="">
+<$droppable actions=<<drop-at-end>>>
+<div class="tc-droppable-placeholder">&nbsp;
+</div>
+</$droppable>
+</$tiddler>
+<$list filter="[tag[Window]]" storyview="pop">
+<$set name="listItemTitle" value={{!!title}}>
+<$reveal type="match" state="$:/HistoryList!!current-tiddler" text=<<listItemTitle>>>
+<$droppable actions=<<drop-actions>>>
+<$link to={{!!title}} tooltip={{!!title}} class="link-tab-selected" startactions=<<start-actions>>>
+<span>
+<$view field="current-tiddler"/>
+</span><$button message="tm-close-tiddler" tooltip={{$:/language/Buttons/Close/Hint}} aria-label={{$:/language/Buttons/Close/Caption}} class="tc-btn-invisible tc-btn-mini">&times;</$button> 
+</$link><div class="tc-droppable-placeholder">
+&nbsp;
+</div></$droppable></$reveal>
+<$reveal type="nomatch" state="$:/HistoryList!!current-tiddler" text=<<listItemTitle>>>
+<$droppable actions=<<drop-actions>>>
+<$link to={{!!title}} tooltip=<<currentTab>> class="link-tab">
+<span>
+<$view field="current-tiddler"/>
+</span><$button message="tm-close-tiddler" tooltip={{$:/language/Buttons/Close/Hint}} aria-label={{$:/language/Buttons/Close/Caption}} class="tc-btn-invisible tc-btn-mini">&times;</$button> 
+</$link><div class="tc-droppable-placeholder">
+&nbsp;
+</div></$droppable></$reveal></$set>
+</$list></div>
+{{$:/plugins/admls/mentat/ui/Buttons/new-window-tiddler}}
