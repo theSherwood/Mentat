@@ -15,8 +15,6 @@ Views the story as a collection of story-windows
 /*global $tw: false */
 "use strict";        
 
-var easing = "cubic-bezier(0.645, 0.045, 0.355, 1)";
-
 var MentatStoryView = function(listWidget) {
 	this.listWidget = listWidget;
 
@@ -36,9 +34,6 @@ var MentatStoryView = function(listWidget) {
 		if(tiddler && !(tiddler.fields.tags.includes("Mentat") || tiddler.fields.tags.includes("Window"))) {
 			domNode.style.display = "none";
 		}
-		// if((targetTiddler && targetTiddler !== itemWidget.parseTreeNode.itemTitle) || (!targetTiddler && index)) {
-		// 	domNode.style.display = "none";
-		// } 
 	});
 
 };
@@ -74,6 +69,7 @@ MentatStoryView.prototype.insert = function(widget) {
 	const tiddler = $tw.wiki.getTiddler(tiddlerTitle);
 	if(!(tiddler && tiddler.fields.tags && (tiddler.fields.tags.includes("Mentat") || tiddler.fields.tags.includes("Window")))) {
 		domNode.style.display = "none";
+		widget.removeChildDomNodes();
 
 		const storyTiddler = $tw.wiki.getTiddler("$:/StoryList");
 		let storyList = storyTiddler.fields.list;
@@ -120,59 +116,7 @@ MentatStoryView.prototype.insert = function(widget) {
 		// Add the tiddlerTitle to the window
 		$tw.wiki.addToStory(tiddlerTitle, undefined, windowTitle, riverPositions);
 		$tw.wiki.addToHistory(tiddlerTitle, undefined, windowTitle);
-
 	}
-
-	// Get the navigatorWidget for this story
-	// let widget = this.listWidget;
-	// while(!(widget.attributes["story"] && widget.attributes["history"])) {
-	// 	widget = widget.parentWidget;
-	// }
-	// const navWidget = widget;
-	// navWidget.
-
-
-	/*\
-    if(targetElement.dataset && !targetElement.matches(".tc-tagged-Window")) {
-    	// find window tiddler nearest top of zStack
-        const zStack = $tw.Volant.zStack;
-        console.log(this);
-        const topWindow = zStack.filter(tiddler => tiddler.matches(".tc-tagged-Window")).slice(-1)[0];
-        console.log('TOPWINDOW',topWindow);
-        if(topWindow) {
-        	const title = targetElement.dataset.tiddlerTitle;
-            const storyTitle = topWindow.dataset.tiddlerTitle;
-			$tw.wiki.addToStory(title,undefined,storyTitle,{openLinkFromInsideRiver: "top",openLinkFromOutsideRiver: "top"});
-			
-			// Get encapsulating story list
-            let widget = this.listWidget;
-            while(widget.variables["tv-story-list"].value === storyTitle) {
-				widget = widget.parentWidget;
-			}
-            const outerStoryTitle = widget.variables["tv-story-list"].value;
-            const outerStoryTiddler = $tw.wiki.getTiddler(outerStoryTitle);
-            let storyList = outerStoryTiddler.fields.list;
-            
-            // Remove inserted tiddler from outer storyList
-            const p = storyList.indexOf(title);
-            while(p !== -1) {
-                storyList.splice(p,1);
-                p = storyList.indexOf(title);
-            }
-            // Save outerStoryTiddler
-            $tw.wiki.addTiddler(new $tw.Tiddler(
-                {title: outerStoryTitle},
-                outerStoryTiddler,
-				{list: storyList})
-			);
-
-        } else {
-         //TBD
-        }
-    } else if (targetElement.dataset && targetElement.matches(".tc-tagged-Window")) {
-    	$tw.Volant.pushTiddlerToZStack(targetElement); 
-	}
-	\*/
     
 };
 
