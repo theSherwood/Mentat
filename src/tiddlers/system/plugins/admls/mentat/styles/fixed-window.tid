@@ -1,5 +1,5 @@
 created: 20190220151403137
-modified: 20190220151906245
+modified: 20190225220131141
 tags: $:/tags/Stylesheet tampered
 title: $:/plugins/admls/mentat/styles/fixed-window
 type: text/vnd.tiddlywiki
@@ -20,8 +20,6 @@ left: <<backup left>>;
 width: <<backup width>>;
 height: <<backup height>>;
 z-index: <<backup z-index>>;
-padding: 25px 15px 15px 15px;
-overflow-y: auto;
 }
 
 [data-tiddler-title="<<currentTiddler>>"] .tc-titlebar {

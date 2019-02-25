@@ -1,15 +1,33 @@
 created: 20190218191609036
-modified: 20190222011403269
+modified: 20190225230702722
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/general
 type: text/vnd.tiddlywiki
 
 <$reveal type="match" state="$:/view" text="mentat">
 
+.tc-topbar, .tc-sidebar-scrollable {
+display: none;
+}
+
+[data-tags*="Mentat"] {
+	padding-top: 15px;
+}
+
 [data-tags*="Mentat"] .tc-title, 
 [data-tags*="Mentat"] .tc-subtitle, 
 [data-tags*="Mentat"] .tc-tags-wrapper {
 	display: none;
+}
+
+[data-tags*="Mentat"] .tc-tiddler-controls {
+    position: absolute;
+    top: 0px;
+    right: 4px;
+}
+
+[data-tags*="Mentat"] .tc-tiddler-controls button svg, [data-tags*="Mentat"] .tc-tiddler-controls button img { 
+	height: 0.75em;
 }
 
 [data-tags*="Mentat"] .tc-tab-content {
@@ -41,7 +59,7 @@ margin-bottom: 0px;
 [data-tags="Window"] {
 display: flex;
 flex-direction: column;
-justify-content: flex-start;
+justify-content: space-between;
 }
 
 [data-tags="Window"] .window-body .tc-storyview-zoomin-tiddler {
@@ -63,9 +81,12 @@ padding: 2px 2px 2px 2px;
 
 .window-tiddler-controls {
 	float: right;
+    position: absolute;
+    top: 0px;
+    right: 4px;
 }
 .window-tiddler-controls .tc-drop-down {
-	font-size: 0.6em;
+	font-size: 1em;
 }
 .window-tiddler-controls .tc-drop-down .tc-drop-down {
 	font-size: 1em;
@@ -80,8 +101,8 @@ padding: 2px 2px 2px 2px;
 .window-search button svg, .tc-search a svg {
 	fill: <<colour tiddler-controls-foreground>>;
 }
-.window-tiddler-controls button svg, .window-tiddler-controls button img {
-	height: 0.75em;
+.window-tiddler-controls button svg, .window-tiddler-controls button img { 
+	height: 0.75em; 
 }
 .window-search button svg, .window-search a svg {
     height: 1.2em;
