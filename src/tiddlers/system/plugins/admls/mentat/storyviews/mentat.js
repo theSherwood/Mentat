@@ -15,6 +15,8 @@ Views the story as a collection of story-windows
 /*global $tw: false */
 "use strict";        
 
+var easing = "cubic-bezier(0.645, 0.045, 0.355, 1)";
+
 var MentatStoryView = function(listWidget) {
 	this.listWidget = listWidget;
 
