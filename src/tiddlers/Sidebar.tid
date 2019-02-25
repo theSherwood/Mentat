@@ -1,5 +1,5 @@
 created: 20190218190731297
-modified: 20190220224704459
+modified: 20190225222113330
 tags: Mentat
 title: Sidebar
 type: text/vnd.tiddlywiki
@@ -7,8 +7,6 @@ type: text/vnd.tiddlywiki
 \define config-title()
 $:/config/SideBarSegments/Visibility/$(listItem)$
 \end
-
-<$scrollable fallthrough="no" class="sidebar-tiddler-scrollable">
 
 <div class="tc-sidebar-header">
 
@@ -23,5 +21,3 @@ $:/config/SideBarSegments/Visibility/$(listItem)$
 </$list>
 
 </div>
-
-</$scrollable>
