@@ -1,7 +1,7 @@
 caption: Ready
 created: 20190223031911509
 list-before: $:/core/ui/SideBar/Open
-modified: 20190223032200312
+modified: 20190225161935256
 tags: unfinished tampered $:/tags/SideBar
 title: Open In Windows
 type: text/vnd.tiddlywiki
@@ -25,7 +25,6 @@ type: text/vnd.tiddlywiki
 &nbsp;
 </div>
 <div>
-<$button message="tm-delete-tiddler" tooltip="Close this window and its contents" aria-label="Close this window" class="tc-btn-invisible tc-btn-mini">&times;</$button>
 <$link to=<<windowTiddler>>>&nbsp;''WINDOW''&nbsp;</$link>
 </div>
 </$droppable>
@@ -38,7 +37,7 @@ type: text/vnd.tiddlywiki
 &nbsp;
 </div>
 <div>
-<$button message="tm-close-tiddler" tooltip={{$:/language/Buttons/Close/Hint}} aria-label={{$:/language/Buttons/Close/Caption}} class="tc-btn-invisible tc-btn-mini">&times;</$button> <$link to={{!!title}}><$view field="title"/></$link>
+<$link to={{!!title}}><$view field="title"/></$link>
 </div>
 </$droppable>
 </div>
