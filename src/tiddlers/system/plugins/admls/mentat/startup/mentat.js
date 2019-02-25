@@ -100,6 +100,7 @@ Add hooks.
 			return event;
 		});
 
+		/*
 		$tw.hooks.addHook("th-new-tiddler", function (event) {
 			console.log("NEW TIDDLER EVENT", event);
 
@@ -243,7 +244,7 @@ Add hooks.
 				if (storyList.indexOf(title) !== -1) {
 					storyList.splice(storyList.indexOf(title), 1);
 				}
-				*/
+				
 
 				
 				const riverPositions = getRiverPositions();
@@ -264,14 +265,14 @@ Add hooks.
 				));
 				// Add a new record to the top of the history stack (on the window)
 				$tw.wiki.addToHistory(draftTitle,undefined,windowTitle);
-				*/	
+					
 
 
 				/*
 				The current navigator widget's handling of tm-new-tiddler does not appear to be abortable
 				by means of the hook, meaning that the following measures must be taken to undo the
 				normal handling
-				*/
+				
 				// Get the names of the new tiddlers that the event will generate
 				const doppelgangerTitle = getNewTitles(templateTiddler, additionalFields);
 				const {draftTitle: doppelDraft, existingTiddler: doppelExisting} = getDraftObject(doppelgangerTitle);
@@ -288,6 +289,8 @@ Add hooks.
 			// If not mentat view, proceed normally
 			return event;
 		});
+		*/
+
 
 		function getTopWindow(windowTitles, storyList) {
 			// Filter zStack by windowTitles

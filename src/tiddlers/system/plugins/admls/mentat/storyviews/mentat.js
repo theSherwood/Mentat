@@ -74,6 +74,44 @@ MentatStoryView.prototype.insert = function(widget) {
 	const tiddler = $tw.wiki.getTiddler(tiddlerTitle);
 	if(!(tiddler && tiddler.fields.tags && (tiddler.fields.tags.includes("Mentat") || tiddler.fields.tags.includes("Window")))) {
 		domNode.style.display = "none";
+
+		const baseStoryTiddler = $tw.wiki.getTiddler("$:/StoryList");
+		const storyList = baseStoryTiddler.fields.list;
+
+		let windowTitles = $tw.wiki.getTiddlersWithTag("Window");
+		// Filter zStack by windowTitles
+		const zStackTitles = $tw.Volant.zStack.map(tiddler => tiddler.dataset.tiddlerTitle);
+		const windowsOnStack = zStackTitles.filter(windowTitle => windowTitles.includes(windowTitle));
+		// Filter story list by windowTitles
+		const windowsInStory = storyList.filter(windowTitle => windowTitles.includes(windowTitle));
+		// Filter windowsOnStack by windowsInStory and get the one at the top of the stack
+		const preferredWindow = windowsOnStack.filter(windowTitle => windowsInStory.includes(windowTitle)).slice(-1)[0];
+		let windowTitle = preferredWindow || windowsInStory.slice(-1)[0] || windowsOnStack.slice(-1)[0] || windowTitles.slice(-1)[0];
+		
+		if(!windowTitle) {
+			const timestamp = $tw.utils.formatDateString(new Date(), "YY0MM0DD0hh0mm0ss0XXX");
+			windowTitle = "Window-" + timestamp;
+			const windowTiddler = new $tw.Tiddler({
+				title: windowTitle,
+				tags: "Window",
+				view: $tw.wiki.getTiddler("$:/plugins/admls/mentat/config/values").fields["default-window-storyview"] || "classic"
+			});
+			$tw.wiki.addTiddler(windowTiddler);
+		}
+
+		const riverPositions = {
+			openLinkFromInsideRiver: $tw.wiki.getTiddler("$:/config/Navigation/openLinkFromInsideRiver").fields.text || "top",
+			openLinkFromOutsideRiver: $tw.wiki.getTiddler("$:/config/Navigation/openLinkFromOutsideRiver").fields.text || "top"
+		}
+
+		// Add the window to the $:/StoryList
+		$tw.wiki.addToStory(windowTitle, undefined, "$:/StoryList", riverPositions);
+		$tw.wiki.addToHistory(windowTitle, undefined, "$:/HistoryList");
+
+		// Add the tiddlerTitle to the window
+		$tw.wiki.addToStory(tiddlerTitle, undefined, windowTitle, riverPositions);
+		$tw.wiki.addToHistory(tiddlerTitle, undefined, windowTitle);
+
 	}
 
 	// Get the navigatorWidget for this story
