@@ -1,7 +1,7 @@
 created: 20190129234855069
 height: calc(50% - 0px)
 left: calc(25% + 0px)
-modified: 20190218192424705
+modified: 20190225220038758
 tags: $:/tags/Stylesheet tampered
 title: $:/plugins/admls/volant/styles/tagged-tiddlers
 top: calc(25% + 0px)
@@ -26,8 +26,6 @@ left: <<backup left>>;
 width: <<backup width>>;
 height: <<backup height>>;
 z-index: <<backup z-index>>;
-padding: 25px 15px 15px 15px;
-overflow-y: auto;
 }
 
 [data-tiddler-title="<<currentTiddler>>"] .tc-titlebar {
