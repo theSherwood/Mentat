@@ -75,8 +75,8 @@ MentatStoryView.prototype.insert = function(widget) {
 	if(!(tiddler && tiddler.fields.tags && (tiddler.fields.tags.includes("Mentat") || tiddler.fields.tags.includes("Window")))) {
 		domNode.style.display = "none";
 
-		const baseStoryTiddler = $tw.wiki.getTiddler("$:/StoryList");
-		const storyList = baseStoryTiddler.fields.list;
+		const storyTiddler = $tw.wiki.getTiddler("$:/StoryList");
+		let storyList = storyTiddler.fields.list;
 
 		let windowTitles = $tw.wiki.getTiddlersWithTag("Window");
 		// Filter zStack by windowTitles
@@ -87,6 +87,15 @@ MentatStoryView.prototype.insert = function(widget) {
 		// Filter windowsOnStack by windowsInStory and get the one at the top of the stack
 		const preferredWindow = windowsOnStack.filter(windowTitle => windowsInStory.includes(windowTitle)).slice(-1)[0];
 		let windowTitle = preferredWindow || windowsInStory.slice(-1)[0] || windowsOnStack.slice(-1)[0] || windowTitles.slice(-1)[0];
+
+		// Remove tiddler from $:/StoryList
+		windowTitles = $tw.wiki.getTiddlersWithTag("Window");
+		const mentatTitles = $tw.wiki.getTiddlersWithTag("Mentat");
+		storyList = storyTiddler.fields.list.filter(title => (mentatTitles.includes(title) || windowTitles.includes(title)));
+		$tw.wiki.addTiddler(new $tw.Tiddler(
+			{ title: "$:/StoryList" },
+			{ list: storyList }
+		));
 		
 		if(!windowTitle) {
 			const timestamp = $tw.utils.formatDateString(new Date(), "YY0MM0DD0hh0mm0ss0XXX");
