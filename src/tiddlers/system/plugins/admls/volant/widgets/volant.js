@@ -17,13 +17,6 @@ module-type: widget
 
     var VolantWidget = function (parseTreeNode, options) {
         this.initialise(parseTreeNode, options);
-
-        /* For this approach to work it would require transcluding the body
-        of the tiddler through the interior of the volant tiddler and hiding the
-        display of the normal body. Pretty drastic stuff. */
-        // this.addEventListeners([
-        //     {type: "tm-navigate", handler: "handleNavigateEvent"},
-        // ]);
     };
 
     /* 
@@ -156,56 +149,44 @@ module-type: widget
 
     VolantWidget.prototype.pushEventToZStack = function (e) {
         const eventTiddler = $tw.Volant.getEventTiddler(e);
-        // Allow for link navigation
-        // THIS NEEDS REFACTORED: UGLY!!!!!!!!!!!!!!!!!
-        // WE CAN'T BYPASS THE LINK WIDGET. THERE MUST BE SOME OTHER WAY TO HANDLE
-        // NAVIGATION FROM VOLANT TIDDLERS
-        if (0 && (e.button === 0) && e.target.matches(".tc-tiddlylink")) {
+
+        // Edge case: clicking on a link to "$:/state/zStack"
+        if ((e.button === 0) && e.target.matches(".tc-tiddlylink")) {
             const link = e.target.href;
             const titleStart = link.indexOf("#");
             const tiddlerTitle = decodeURIComponent(link.slice(titleStart + 1));
 
+            if(tiddlerTitle === "$:/state/zStack") {
+                // Send the click on its way as a navigate event
+                const bounds = e.target.getBoundingClientRect();
+                this.dispatchEvent({
+                    type: "tm-navigate",
+                    navigateTo: tiddlerTitle,
+                    navigateFromTitle: eventTiddler.dataset.tiddlerTitle,
+                    navigateFromNode: this,
+                    navigateFromClientRect: {
+                        top: bounds.top, left: bounds.left, width: bounds.width, right: bounds.right, bottom: bounds.bottom, height: bounds.height
+                    },
+                    navigateSuppressNavigation: e.metaKey || e.ctrlKey || (e.button !== 0),
+                    metaKey: e.metaKey,
+                    ctrlKey: e.ctrlKey,
+                    altKey: e.altKey,
+                    shiftKey: e.shiftKey
+                });
+                if (e.target.hasAttribute("href")) {
+                    e.preventDefault();
+                }
+                e.stopPropagation();
+
+                return false;
+            }
+
             $tw.Volant.pushTiddlerToZStack(eventTiddler);
-
-            // Send the click on its way as a navigate event
-            const bounds = e.target.getBoundingClientRect();
-            debugger;
-            this.dispatchEvent({
-                type: "tm-navigate",
-                navigateTo: tiddlerTitle,
-                navigateFromTitle: eventTiddler.dataset.tiddlerTitle,
-                navigateFromNode: this,
-                navigateFromClientRect: {
-                    top: bounds.top, left: bounds.left, width: bounds.width, right: bounds.right, bottom: bounds.bottom, height: bounds.height
-                },
-                navigateSuppressNavigation: e.metaKey || e.ctrlKey || (e.button !== 0),
-                metaKey: e.metaKey,
-                ctrlKey: e.ctrlKey,
-                altKey: e.altKey,
-                shiftKey: e.shiftKey
-            });
-            if (e.target.hasAttribute("href")) {
-                e.preventDefault();
-            }
-            e.stopPropagation();
-
-            const linkedTiddler = document.querySelector(`[data-tiddler-title*="${tiddlerTitle}"]`);
-            if (linkedTiddler && linkedTiddler.matches(".volant")) {
-                $tw.Volant.pushTiddlerToZStack(linkedTiddler);
-            }
-
-            return false;
         } else {
             // Push onto zStack
             $tw.Volant.pushTiddlerToZStack(eventTiddler);
         }
     };
-
-    /* This kind of approach may proof entirely excessive */
-    // VolantWidget.prototype.handleNavigateEvent = function(event) {
-    //     console.log("HERE!!! IT'S A FLAG!!! HERE!!!");
-    //     return true;
-    // };
 
     /*
     Compute the internal state of this widget.
