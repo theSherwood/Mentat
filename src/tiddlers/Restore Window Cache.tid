@@ -1,0 +1,37 @@
+created: 20190226190956378
+modified: 20190226193352977
+tags: 
+title: Restore Window Cache
+type: text/vnd.tiddlywiki
+
+\define uniqueWindow(timestamp) Window-$(timestamp)$
+
+<$button>Restore Window Cache
+<$list filter="[tag[$:/config/Window]]">
+<$set name="timestamp" value=<<now YY0MM0DD0hh0mm0ss0XXX>>>
+<$set name="windowTitle" value=<<uniqueWindow>>>
+<$action-setfield $tiddler=<<windowTitle>> tags="Testing"/>
+<$action-setfield $tiddler=<<windowTitle>> $field="list" $value={{!!list}}/>
+<$action-setfield $tiddler=<<windowTitle>> $field="view" $value={{!!view}}/>
+<$action-setfield $tiddler=<<windowTitle>> $field="height" $value={{!!height}}/>
+<$action-setfield $tiddler=<<windowTitle>> $field="width" $value={{!!width}}/>
+<$action-setfield $tiddler=<<windowTitle>> $field="top" $value={{!!top}}/>
+<$action-setfield $tiddler=<<windowTitle>> $field="left" $value={{!!left}}/>
+<$action-navigate $to=<<windowTitle>>/>
+</$set>
+</$set>
+</$list>
+</$button>
+
+<$fieldmangler>
+<$button>Restore Window Cache
+<$list filter="[tag[$:/config/Window]]">
+<$set name="timestamp" value=<<now YY0MM0DD0hh0mm0ss0XXX>>>
+<$set name="windowTitle" value=<<uniqueWindow>>>
+<$action-createtiddler $basetitle=<<windowTitle>> tags="Window" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
+<$action-navigate $to=<<windowTitle>>/>
+</$set>
+</$set>
+</$list>
+</$button>
+</$fieldmangler>
