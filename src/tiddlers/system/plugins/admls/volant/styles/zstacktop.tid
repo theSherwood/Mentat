@@ -1,0 +1,17 @@
+created: 20190226182609692
+modified: 20190226183121216
+tags: $:/tags/Stylesheet
+title: $:/plugins/admls/volant/styles/zstacktop
+type: text/vnd.tiddlywiki
+
+<$reveal type="match" stateTitle="$:/plugins/admls/volant/config/values" stateField="default-functionality" text="on">
+
+<$set filter="[list[$:/state/zStack]last[]]" name="zStackTop">
+
+[data-tiddler-title="<<zStackTop>>"] {
+box-shadow: 2px 2px 13px 6px rgba(0,0,0,.4);
+}
+
+</$set>
+
+</$reveal>
