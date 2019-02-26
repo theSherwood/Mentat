@@ -1,5 +1,5 @@
 created: 20190225185537487
-modified: 20190225191614749
+modified: 20190226002201127
 tags: $:/tags/AboveWindow
 title: Window Links
 type: text/vnd.tiddlywiki
@@ -17,6 +17,7 @@ type: text/vnd.tiddlywiki
 <$action-listops $tiddler=<<tv-story-list>> $subfilter="-[<actionTiddler>]"/>
 \end
 
+<$tiddler tiddler=""><$transclude tiddler="$:/core/ui/Buttons/new-tiddler" mode="inline"/></$tiddler>
 <div class="link-tabs">
 <$tiddler tiddler="">
 <$droppable actions=<<drop-at-end>>>
@@ -44,4 +45,4 @@ type: text/vnd.tiddlywiki
 </$link><div class="tc-droppable-placeholder">
 &nbsp;
 </div></$droppable></$reveal></$set>
-</$list></div><$tiddler tiddler=""><$transclude tiddler="$:/core/ui/Buttons/new-tiddler" mode="inline"/></$tiddler>
+</$list></div>
