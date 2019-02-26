@@ -1,0 +1,11 @@
+created: 20190226190528908
+modified: 20190226190936219
+tags: 
+title: Delete Window Cache
+type: text/vnd.tiddlywiki
+
+<$button>Delete Window Cache
+<$list filter="[tag[$:/config/Window]]">
+<$action-sendmessage $message="tm-delete-tiddler" param=<<currentTiddler>>/>
+</$list>
+</$button>
