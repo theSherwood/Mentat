@@ -1,0 +1,21 @@
+created: 20190226184243494
+modified: 20190226191815084
+tags: 
+title: Save Layouts
+type: text/vnd.tiddlywiki
+
+<$fieldmangler>
+<$button>Cache Windows
+<$list filter="[list[$:/StoryList]tag[Window]]">
+<$action-createtiddler $basetitle=<<currentTiddler>> tags="$:/config/Window" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
+</$list>
+</$button>
+</$fieldmangler>
+
+<$fieldmangler>
+<$button>Cache Window Layout
+<$list filter="[list[$:/StoryList]tag[Window]]">
+<$action-createtiddler $basetitle=<<currentTiddler>> tags="$:/config/Window" height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
+</$list>
+</$button>
+</$fieldmangler>
