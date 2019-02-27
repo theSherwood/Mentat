@@ -1,19 +1,15 @@
 created: 20190226190956378
-modified: 20190227181905944
+modified: 20190227182626306
 tags: 
 title: Restore Window Cache
 type: text/vnd.tiddlywiki
 
-\define uniqueWindow(timestamp) Window-$(timestamp)$
-
 <$fieldmangler>
 <$button>Restore Window Cache
 <$list filter="[tag[$:/config/Window]]">
-<$set name="timestamp" value=<<now YY0MM0DD0hh0mm0ss0XXX>>>
-<$set name="windowTitle" value=<<uniqueWindow>>>
+<$set name="windowTitle" value="$:/Window">
 <$action-createtiddler $basetitle=<<windowTitle>> $savetitle="$:/temp/windowTitle" tags="Window" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
 <$action-navigate $to={{$:/temp/windowTitle}}/>
-</$set>
 </$set>
 </$list>
 </$button>

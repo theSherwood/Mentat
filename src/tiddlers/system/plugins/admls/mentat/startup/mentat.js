@@ -3,7 +3,7 @@ created: 20190220195956481
 type: application/javascript
 title: $:/plugins/admls/mentat/startup/mentat.js
 tags: 
-modified: 20190221170232160
+modified: 20190227183353369
 module-type: startup
 
 Add hooks.
@@ -116,8 +116,7 @@ Add hooks.
 
 		function createWindow() {
 			// Add a window to the tiddler store
-			const timestamp = $tw.utils.formatDateString(new Date(), "YY0MM0DD0hh0mm0ss0XXX");
-			let windowTitle = "Window-" + timestamp;
+			let windowTitle = $tw.wiki.generateNewTitle("$:/Window")
 			const windowTiddler = new $tw.Tiddler({
 				title: windowTitle,
 				tags: "Window",

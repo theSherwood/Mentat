@@ -3,7 +3,7 @@ created: 20190129200505951
 type: application/javascript
 title: $:/plugins/admls/mentat/storyviews/mentat.js
 tags: 
-modified: 20190221170317269
+modified: 20190227183550720
 module-type: storyview
 
 Views the story as a collection of story-windows
@@ -96,8 +96,7 @@ MentatStoryView.prototype.insert = function(widget) {
 		));
 		
 		if(!windowTitle) {
-			const timestamp = $tw.utils.formatDateString(new Date(), "YY0MM0DD0hh0mm0ss0XXX");
-			windowTitle = "Window-" + timestamp;
+			windowTitle = $tw.wiki.generateNewTitle("$:/Window");
 			const windowTiddler = new $tw.Tiddler({
 				title: windowTitle,
 				tags: "Window",

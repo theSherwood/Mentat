@@ -1,18 +1,13 @@
 created: 20190111210715655
-modified: 20190222005650345
+modified: 20190227183802260
 tags: $:/tags/PageControls
 title: $:/plugins/admls/mentat/ui/Buttons/new-window-tiddler
 type: text/vnd.tiddlywiki
 
-\define uniqueWindow(timestamp) Window-$(timestamp)$
-
 \define actions()
-<$set name="timestamp" value=<<now YY0MM0DD0hh0mm0ss0XXX>>>
-<$set name="windowTitle" value=<<uniqueWindow>>>
-<$action-setfield $tiddler=<<windowTitle>> tags="Window"/>
-<$action-setfield $tiddler=<<windowTitle>> $field="view" $value={{$:/plugins/admls/mentat/config/values!!default-window-storyview}}/>
-<$action-navigate $to=<<windowTitle>>/>
-</$set>
+<$set name="windowTitle" value="$:/Window">
+<$action-createtiddler $basetitle=<<windowTitle>> $savetitle="$:/temp/windowTitle" tags="Window" view={{$:/plugins/admls/mentat/config/values!!default-window-storyview}}/>
+<$action-navigate $to={{$:/temp/windowTitle}}/>
 </$set>
 \end
 
@@ -24,17 +19,3 @@ type: text/vnd.tiddlywiki
 <span class="tc-btn-text"><$text text="new window tiddler"/></span>
 </$list>
 </$button>
-
-
-
-
-<$action-sendmessage $message="tm-new-tiddler" $param="Test Template"/>
-<$action-sendmessage $message="tm-save-tiddler" $param="Test Template"/>
-
-<$action-createtiddler $basetitle="$:/window" tags="Window"/>
-
-<$action-createtiddler $basetitle="Window" $savetitle="$:/temp/title" tags="Window" text={{Window Template}}/>
-<$action-navigate $to={{$:/temp/title}}>/>
-
-<$action-createtiddler $basetitle="$:/window" $savetitle="$:/temp/title" tags="Window"/>
-<$action-navigate $to={{$:/temp/title}}>/>
