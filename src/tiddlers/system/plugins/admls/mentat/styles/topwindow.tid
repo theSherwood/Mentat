@@ -1,0 +1,25 @@
+created: 20190226183003665
+modified: 20190227175917349
+tags: $:/tags/Stylesheet
+title: $:/plugins/admls/mentat/styles/topwindow
+type: text/vnd.tiddlywiki
+
+<$reveal type="match" state="$:/view" text="mentat">
+
+<$wikify name="topWindow" text={{$:/plugins/admls/mentat/state/topwindow}}>
+
+[data-tiddler-title="<<topWindow>>"] {
+box-shadow: 2px 2px 13px 6px rgba(0,0,0,.4);
+}
+
+</$wikify>
+
+<$set filter="[list[$:/state/zStack]last[]]" name="zStackTop">
+
+[data-tiddler-title="<<zStackTop>>"] {
+box-shadow: 2px 2px 13px 6px rgba(0,0,0,.4);
+}
+
+</$set>
+
+</$reveal>

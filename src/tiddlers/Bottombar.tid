@@ -1,25 +1,25 @@
 created: 20190225180426874
-modified: 20190226181801835
+modified: 20190227180008318
 tags: Mentat
 title: Bottombar
 type: text/vnd.tiddlywiki
 
 <div class="link-tabs">
 <$list filter="[tag[Window]]" storyview="pop">
-<$set filter="[list[$:/state/zStack]tag[Window]last[]]" name="zStackWindow">
+<$wikify name="topWindow" text={{$:/plugins/admls/mentat/state/topwindow!!text}}>
 <$set name="listItemTitle" value={{!!title}}>
-<$reveal type="match" default=<<zStackWindow>> text=<<listItemTitle>>>
+<$reveal type="match" default=<<topWindow>> text=<<listItemTitle>>>
 <$link to={{!!title}} tooltip={{!!title}} class="link-tab-selected">
 <span>
-<$view field="current-tiddler"/>
+<$view field="title"/>
 </span><$button message="tm-close-tiddler" tooltip={{$:/language/Buttons/Close/Hint}} aria-label={{$:/language/Buttons/Close/Caption}} class="tc-btn-invisible tc-btn-mini">&times;</$button> 
 </$link></$reveal>
-<$reveal type="nomatch" default=<<zStackWindow>> text=<<listItemTitle>>>
+<$reveal type="nomatch" default=<<topWindow>> text=<<listItemTitle>>>
 <$link to={{!!title}} tooltip={{!!title}} class="link-tab">
 <span>
-<$view field="current-tiddler"/>
+<$view field="title"/>
 </span><$button message="tm-close-tiddler" tooltip={{$:/language/Buttons/Close/Hint}} aria-label={{$:/language/Buttons/Close/Caption}} class="tc-btn-invisible tc-btn-mini">&times;</$button> 
-</$link></$reveal></$set></$set>
+</$link></$reveal></$set></$wikify>
 </$list>
 </div>
 {{$:/plugins/admls/mentat/ui/Buttons/new-window-tiddler}}
