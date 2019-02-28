@@ -1,9 +1,0 @@
-created: 20190227172240907
-modified: 20190227175346254
-tags: 
-title: $:/plugins/admls/mentat/state/topwindow
-type: text/vnd.tiddlywiki
-
-<$list filter="[list[$:/state/zStack]tag[Window]] -[!list[$:/StoryList]] +[last[]]">
-
-</$list>

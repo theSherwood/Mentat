@@ -1,12 +1,12 @@
 created: 20190225180426874
-modified: 20190227180008318
+modified: 20190228020004035
 tags: Mentat
 title: Bottombar
 type: text/vnd.tiddlywiki
 
 <div class="link-tabs">
 <$list filter="[tag[Window]]" storyview="pop">
-<$wikify name="topWindow" text={{$:/plugins/admls/mentat/state/topwindow!!text}}>
+<$wikify name="topWindow" text={{$:/state/topwindow!!text}}>
 <$set name="listItemTitle" value={{!!title}}>
 <$reveal type="match" default=<<topWindow>> text=<<listItemTitle>>>
 <$link to={{!!title}} tooltip={{!!title}} class="link-tab-selected">
