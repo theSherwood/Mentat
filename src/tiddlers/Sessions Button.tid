@@ -28,10 +28,10 @@ $:/config/Mentat/sessions/{{$:/state/new-mentat-session}}/
 <$wikify name="sessionPrefix" text=<<getSessionPrefix>>>
 
 <$button>Restore
-<$action-listops $tiddler="$:/state/delete-window-cache" $field="list" $filter="[tag[Window]]"/>
-<$action-listops $tiddler="$:/StoryList" $field="list" $subfilter=" -[tag[Window]]"/>
+<$action-listops $tiddler="$:/state/delete-window-cache" $field="list" $filter="[tag[$:/Window]]"/>
+<$action-listops $tiddler="$:/StoryList" $field="list" $subfilter=" -[tag[$:/Window]]"/>
 <$list filter="[prefix<sessionPrefix>]">
-<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="Window" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
+<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="$:/Window" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
 <$action-navigate $to={{$:/temp/windowTitle}}/>
 </$list>
 <$action-deletetiddler $filter="[list[$:/state/delete-window-cache]]"/>
@@ -51,7 +51,7 @@ Name your new session:
 <$button>Create New Session
 <$wikify name="sessionPrefix" text=<<newSessionPrefix>>>
 <$action-deletetiddler $filter="[prefix<sessionPrefix>]"/>
-<$list filter="[list[$:/StoryList]tag[Window]]">
+<$list filter="[list[$:/StoryList]tag[$:/Window]]">
 <$list filter="[all[current]] +[addprefix<sessionPrefix>]" variable="listItem">
 <$action-createtiddler $basetitle=<<listItem>> tags="$:/config/Window" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
 </$list>

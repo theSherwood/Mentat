@@ -20,7 +20,7 @@ Layout?
 <$button>Cache Window Layout
 <$wikify name="layoutPrefix" text=<<layoutPrefix>>>
 <$action-deletetiddler $filter="[prefix<layoutPrefix>]"/>
-<$list filter="[list[$:/StoryList]tag[Window]]">
+<$list filter="[list[$:/StoryList]tag[$:/Window]]">
 <$list filter="[all[current]] +[addprefix<layoutPrefix>]" variable="listItem">
 <$action-createtiddler $basetitle=<<listItem>> tags="$:/config/Window" height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
 </$list>
@@ -35,7 +35,7 @@ Session?
 <$button>Cache Window Session
 <$wikify name="sessionPrefix" text=<<sessionPrefix>>>
 <$action-deletetiddler $filter="[prefix<sessionPrefix>]"/>
-<$list filter="[list[$:/StoryList]tag[Window]]">
+<$list filter="[list[$:/StoryList]tag[$:/Window]]">
 <$list filter="[all[current]] +[addprefix<sessionPrefix>]" variable="listItem">
 <$action-createtiddler $basetitle=<<listItem>> tags="$:/config/Window" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
 </$list>

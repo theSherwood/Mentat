@@ -1,5 +1,5 @@
 created: 20190228014435887
-modified: 20190228022319189
+modified: 20190228175736796
 tags: 
 title: Windows Button
 type: text/vnd.tiddlywiki
@@ -7,8 +7,6 @@ type: text/vnd.tiddlywiki
 \define newWindowPrefix()
 $:/config/Mentat/windows/{{$:/state/new-window}}
 \end
-
-<$set name="windowPrefix" value="$:/config/Mentat/windows/">
 
 <span class="tc-popup-keep">
 <$button popup=<<qualify "$:/state/filterDropdown">> class="tc-btn-invisible">
@@ -20,10 +18,11 @@ $:/config/Mentat/windows/{{$:/state/new-window}}
 
 <div class="tc-block-dropdown-wrapper">
 <div class="tc-block-dropdown tc-edit-type-dropdown">
+<$set name="windowPrefix" value="$:/config/Mentat/windows/">
 
 <$list filter="[prefix<windowPrefix>]">
 <$button>Add Window
-<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="Window" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
+<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="$:/Window" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
 <$action-navigate $to={{$:/temp/windowTitle}}/>
 </$button>
 <$button>{{$:/core/images/delete-button}}
@@ -48,8 +47,8 @@ Name your new window:
 </$wikify>
 </$button>
 
+</$set>
 </div>
 </div>
 </$reveal>
 
-</$set>

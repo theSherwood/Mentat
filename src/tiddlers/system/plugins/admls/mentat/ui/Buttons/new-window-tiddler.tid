@@ -1,14 +1,12 @@
 created: 20190111210715655
-modified: 20190227183802260
+modified: 20190228201126760
 tags: $:/tags/PageControls
 title: $:/plugins/admls/mentat/ui/Buttons/new-window-tiddler
 type: text/vnd.tiddlywiki
 
 \define actions()
-<$set name="windowTitle" value="$:/Window">
-<$action-createtiddler $basetitle=<<windowTitle>> $savetitle="$:/temp/windowTitle" tags="Window" view={{$:/plugins/admls/mentat/config/values!!default-window-storyview}}/>
+<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="$:/Window" view={{$:/plugins/admls/mentat/config/values!!default-window-storyview}}/>
 <$action-navigate $to={{$:/temp/windowTitle}}/>
-</$set>
 \end
 
 <$button actions=<<actions>> class="tc-btn-box tc-tiddlylink" tooltip="Create a new window tiddler" aria-label="new window tiddler" class=<<tv-config-toolbar-class>>>

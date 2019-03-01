@@ -20,7 +20,7 @@ var easing = "cubic-bezier(0.645, 0.045, 0.355, 1)";
 var MentatStoryView = function(listWidget) {
 	this.listWidget = listWidget;
 
-	// Hide all tiddlers but those tagged Window or Mentat
+	// Hide all tiddlers but those tagged $:/Window or Mentat
 	$tw.utils.each(this.listWidget.children,function(itemWidget,index) {
 		var domNode = itemWidget.findFirstDomNode();
 		// Abandon if the list entry isn't a DOM element (it might be a text node)
@@ -33,7 +33,7 @@ var MentatStoryView = function(listWidget) {
 
 		const tiddlerTitle = itemWidget.parseTreeNode.itemTitle;
 		const tiddler = $tw.wiki.getTiddler(tiddlerTitle);
-		if(tiddler && !(tiddler.fields.tags.includes("Mentat") || tiddler.fields.tags.includes("Window"))) {
+		if(tiddler && !(tiddler.fields.tags.includes("Mentat") || tiddler.fields.tags.includes("$:/Window"))) {
 			domNode.style.display = "none";
 		}
 	});
@@ -69,14 +69,14 @@ MentatStoryView.prototype.insert = function(widget) {
 
 	const tiddlerTitle = widget.parseTreeNode.itemTitle;
 	const tiddler = $tw.wiki.getTiddler(tiddlerTitle);
-	if(!(tiddler && tiddler.fields.tags && (tiddler.fields.tags.includes("Mentat") || tiddler.fields.tags.includes("Window")))) {
+	if(!(tiddler && tiddler.fields.tags && (tiddler.fields.tags.includes("Mentat") || tiddler.fields.tags.includes("$:/Window")))) {
 		domNode.style.display = "none";
 		widget.removeChildDomNodes();
 
 		const storyTiddler = $tw.wiki.getTiddler("$:/StoryList");
 		let storyList = storyTiddler.fields.list;
 
-		let windowTitles = $tw.wiki.getTiddlersWithTag("Window");
+		let windowTitles = $tw.wiki.getTiddlersWithTag("$:/Window");
 		// Filter zStack by windowTitles
 		const zStackTitles = $tw.Volant.zStack.map(tiddler => tiddler.dataset.tiddlerTitle);
 		const windowsOnStack = zStackTitles.filter(windowTitle => windowTitles.includes(windowTitle));
@@ -87,7 +87,7 @@ MentatStoryView.prototype.insert = function(widget) {
 		let windowTitle = preferredWindow || windowsInStory.slice(-1)[0] || windowsOnStack.slice(-1)[0] || windowTitles.slice(-1)[0];
 
 		// Remove tiddler from $:/StoryList
-		windowTitles = $tw.wiki.getTiddlersWithTag("Window");
+		windowTitles = $tw.wiki.getTiddlersWithTag("$:/Window");
 		const mentatTitles = $tw.wiki.getTiddlersWithTag("Mentat");
 		storyList = storyTiddler.fields.list.filter(title => (mentatTitles.includes(title) || windowTitles.includes(title)));
 		$tw.wiki.addTiddler(new $tw.Tiddler(
@@ -99,7 +99,7 @@ MentatStoryView.prototype.insert = function(widget) {
 			windowTitle = $tw.wiki.generateNewTitle("$:/Window");
 			const windowTiddler = new $tw.Tiddler({
 				title: windowTitle,
-				tags: "Window",
+				tags: "$:/Window",
 				view: $tw.wiki.getTiddler("$:/plugins/admls/mentat/config/values").fields["default-window-storyview"] || "classic"
 			});
 			$tw.wiki.addTiddler(windowTiddler);

@@ -38,8 +38,8 @@ Add hooks.
 				maintainStoryList();
 
 				let toTitleTiddler = $tw.wiki.getTiddler(toTitle);
-				// If toTitleTiddler is tagged Window or Mentat
-				if (toTitleTiddler && toTitleTiddler.fields.tags && (toTitleTiddler.fields.tags.includes("Mentat") || toTitleTiddler.fields.tags.includes("Window"))) {
+				// If toTitleTiddler is tagged $:/Window or Mentat
+				if (toTitleTiddler && toTitleTiddler.fields.tags && (toTitleTiddler.fields.tags.includes("Mentat") || toTitleTiddler.fields.tags.includes("$:/Window"))) {
 					// Add tiddler to $:/StoryList (and navigate to it) regardless of the scope of the widget
 					addToBaseStoryList(toTitle, event);
 					// Don't add the tiddler to the same story list that obtains in the scope of the widget
@@ -50,7 +50,7 @@ Add hooks.
 					const baseStoryList = baseStoryTiddler.fields.list;
 
 					// Get all window tiddlers
-					let windowTitles = $tw.wiki.getTiddlersWithTag("Window");
+					let windowTitles = $tw.wiki.getTiddlersWithTag("$:/Window");
 
 					// Search to see if the toTitle tiddler is already in the story list of a window
 					const windowsContainingToTitle = []
@@ -76,7 +76,7 @@ Add hooks.
 
 					// Check to see if the navigation came from within a window
 					let elmnt = widget.parentDomNode;
-					while (elmnt && !elmnt.matches('[data-tags*="Window"]')) {
+					while (elmnt && !elmnt.matches('[data-tags*="$:/Window"]')) {
 						elmnt = elmnt.parentElement;
 					}
 					// If the navigation did come from within a window, stay within the window
@@ -119,7 +119,7 @@ Add hooks.
 			let windowTitle = $tw.wiki.generateNewTitle("$:/Window")
 			const windowTiddler = new $tw.Tiddler({
 				title: windowTitle,
-				tags: "Window",
+				tags: "$:/Window",
 				view: $tw.wiki.getTiddler("$:/plugins/admls/mentat/config/values").fields["default-window-storyview"] || "classic"
 			});
 			$tw.wiki.addTiddler(windowTiddler);
@@ -154,8 +154,8 @@ Add hooks.
 		};
 
 		function maintainStoryList() {
-			// Make sure $:/StoryList is up to date (filtered of everything not Mentat or Window)
-			const windowTitles = $tw.wiki.getTiddlersWithTag("Window");
+			// Make sure $:/StoryList is up to date (filtered of everything not Mentat or $:/Window)
+			const windowTitles = $tw.wiki.getTiddlersWithTag("$:/Window");
 			const mentatTitles = $tw.wiki.getTiddlersWithTag("Mentat");
 			const storyTiddler = $tw.wiki.getTiddler("$:/StoryList");
 			let storyList = storyTiddler.fields.list.filter(title => (mentatTitles.includes(title) || windowTitles.includes(title)));

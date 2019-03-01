@@ -11,7 +11,7 @@ type: text/vnd.tiddlywiki
 <$navigator story=<<windowStoryList>> history=<<windowHistoryList>>>
 
 <$reveal type="match" state="$:/view" text="mentat">
-<$list filter="[all[current]tag[Window]]">
+<$list filter="[all[current]tag[$:/Window]]">
 <$volant/>
 </$list>
 </$reveal>

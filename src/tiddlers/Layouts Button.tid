@@ -28,10 +28,10 @@ $:/config/Mentat/layouts/{{$:/state/new-mentat-layout}}/
 <$wikify name="layoutPrefix" text=<<getLayoutPrefix>>>
 
 <$button>Restore
-<$action-listops $tiddler="$:/state/delete-window-cache" $field="list" $filter="[tag[Window]]"/>
-<$action-listops $tiddler="$:/StoryList" $field="list" $subfilter=" -[tag[Window]]"/>
+<$action-listops $tiddler="$:/state/delete-window-cache" $field="list" $filter="[tag[$:/Window]]"/>
+<$action-listops $tiddler="$:/StoryList" $field="list" $subfilter=" -[tag[$:/Window]]"/>
 <$list filter="[prefix<layoutPrefix>]">
-<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="Window" height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
+<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="$:/Window" height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
 <$action-navigate $to={{$:/temp/windowTitle}}/>
 </$list>
 <$action-deletetiddler $filter="[list[$:/state/delete-window-cache]]"/>
@@ -51,7 +51,7 @@ Name your new layout:
 <$button>Create New Layout
 <$wikify name="layoutPrefix" text=<<newLayoutPrefix>>>
 <$action-deletetiddler $filter="[prefix<layoutPrefix>]"/>
-<$list filter="[list[$:/StoryList]tag[Window]]">
+<$list filter="[list[$:/StoryList]tag[$:/Window]]">
 <$list filter="[all[current]] +[addprefix<layoutPrefix>]" variable="listItem">
 <$action-createtiddler $basetitle=<<listItem>> tags="$:/config/Window" height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
 </$list>

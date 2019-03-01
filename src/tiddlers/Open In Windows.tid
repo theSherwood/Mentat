@@ -1,7 +1,7 @@
 caption: Mentat
 created: 20190223031911509
 list-before: $:/core/ui/SideBar/Open
-modified: 20190228022358843
+modified: 20190228175533364
 tags: unfinished tampered $:/tags/SideBar
 title: Open In Windows
 type: text/vnd.tiddlywiki
@@ -21,7 +21,7 @@ Layouts {{Layouts Button}} Sessions {{Sessions Button}} Windows {{Windows Button
 
 <hr>
 
-<$list filter="[all[system+tiddlers]tag[Window]]" variable="windowTiddler" emptyMessage={{$:/plugins/admls/mentat/ui/Buttons/new-window-tiddler}}>
+<$list filter="[all[system+tiddlers]tag[$:/Window]]" variable="windowTiddler" emptyMessage={{$:/plugins/admls/mentat/ui/Buttons/new-window-tiddler}}>
 
 <div style="position: relative;">
 <$droppable actions=<<drop-window-actions>>>

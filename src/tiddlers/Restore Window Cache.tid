@@ -27,7 +27,7 @@ $:/config/Mentat/sessions/{{$:/state/restore-mentat-configuration}}/
 <$button>Restore Window Layout
 <$wikify name="layoutPrefix" text=<<layoutPrefix>>>
 <$list filter="[prefix<layoutPrefix>]">
-<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="Window" height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
+<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="$:/Window" height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
 <$action-navigate $to={{$:/temp/windowTitle}}/>
 </$list>
 </$wikify>
@@ -50,7 +50,7 @@ $:/config/Mentat/sessions/{{$:/state/restore-mentat-configuration}}/
 <$button>Restore Window Session
 <$wikify name="sessionPrefix" text=<<sessionPrefix>>>
 <$list filter="[prefix<sessionPrefix>]">
-<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="Window" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
+<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="$:/Window" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
 <$action-navigate $to={{$:/temp/windowTitle}}/>
 </$list>
 </$wikify>
