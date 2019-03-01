@@ -1,12 +1,12 @@
 created: 20190226183003665
-modified: 20190228020051672
+modified: 20190301091728439
 tags: $:/tags/Stylesheet
-title: $:/plugins/admls/mentat/styles/topwindow
+title: $:/plugins/admls/mentat/styles/top-window
 type: text/vnd.tiddlywiki
 
 <$reveal type="match" state="$:/view" text="mentat">
 
-<$wikify name="topWindow" text={{$:/state/topwindow}}>
+<$wikify name="topWindow" text={{$:/plugins/admls/mentat/state/top-window}}>
 
 [data-tiddler-title="<<topWindow>>"] {
 box-shadow: 2px 2px 13px 6px rgba(0,0,0,.4);
