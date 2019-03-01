@@ -1,13 +1,14 @@
 caption: {{$:/core/images/full-screen-button}} maximize window toggle
 created: 20190112131343903
 description: Maximize window toggle
-modified: 20190301192140207
+modified: 20190301203118885
 tags: tampered $:/tags/WindowViewToolbar
 title: $:/plugins/admls/mentat/ui/Buttons/fullscreen-window
 type: text/vnd.tiddlywiki
 
 \whitespace trim
 
+<$reveal type="nomatch" state="$:/plugins/admls/volant/state/fullscreen-tiddler!!text" text={{!!title}}>
 <$button tooltip="Maximize window toggle" aria-label="maximize toggle" class=<<tv-config-toolbar-class>>>
 <$set name="fullscreenTiddler" value={{$:/plugins/admls/volant/state/fullscreen-tiddler!!text}}>
 <$list filter="[tag[$:/config/Volant]suffix<fullscreenTiddler>]">
@@ -18,6 +19,7 @@ type: text/vnd.tiddlywiki
 <$list filter="[tag[$:/config/Volant]suffix<currentTiddler>]">
 <$action-setfield $tiddler="$:/plugins/admls/volant/state/fullscreen-tiddler" text=<<currentTiddler>> top={{!!top}} height={{!!height}} left={{!!left}} width={{!!width}}/>
 </$list>
+<$action-navigate $to=<<currentTiddler>>/>
 
 <$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
 {{$:/core/images/full-screen-button}}
@@ -28,3 +30,4 @@ type: text/vnd.tiddlywiki
 </span>
 </$list>
 </$button>
+</$reveal>
