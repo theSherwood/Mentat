@@ -109,9 +109,9 @@ module-type: widget
         tiddler.addEventListener("mousedown", startDrag);
         tiddler.addEventListener("mousedown", this.boundPushEventToZStack);
         tiddler.addEventListener("mousedown", startResize);
-        if (this.position === "absolute") {
-            window.addEventListener("scroll", $tw.Volant.repositionResizersOnAbsolute, false);
-        }
+        ["fullscreenchange", "webkitfullscreenchange", "mozfullscreenchange", "msfullscreenchange", "scroll", "resize"].forEach(
+            eventType => window.addEventListener(eventType, $tw.Volant.repositionResizers, false)
+        );
 
         $tw.Volant.snapToGrid(tiddler);
         $tw.Volant.logNewDimensions(tiddler, configTiddlerTitle);

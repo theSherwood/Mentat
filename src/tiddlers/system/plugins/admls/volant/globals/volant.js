@@ -212,10 +212,10 @@ const Volant = {
 
     },
     
-    repositionResizersOnAbsolute: function() {
-        document.querySelectorAll(".resizer-left.absolute").forEach(function(resizer) {
+    repositionResizers: function() {
+        document.querySelectorAll(".resizer-left").forEach(function(resizer) {
         	let elmnt = resizer;
-            while(!(elmnt.matches('[data-tiddler-title]'))) {
+            while(!(elmnt.matches('.volant'))) {
                 // Stop if you get to the root element
                 if(elmnt.tagName === "HTML") {
                     return;
