@@ -56,7 +56,7 @@ const Volant = {
         
         window.requestAnimationFrame(() => {
             Volant.snapToGrid();
-            Volant.logNewDimensions()
+            Volant.logNewDimensions();
        	});
             
         window.removeEventListener('mousemove', Volant.tiddlerDrag);
@@ -84,8 +84,18 @@ const Volant = {
             $tw.wiki.setText(configTiddlerTitle,'height',undefined,tiddler.style.height,undefined);
         }
         
+        setTimeout(function() {
+            $tw.Volant.removeStyle(tiddler);
+        }, 0);
         this.eventTiddler = undefined;
         this.configTiddlerTitle = undefined;
+    },
+
+    removeStyle: function(tiddler) {
+        tiddler.style.top = "";
+        tiddler.style.left = "";
+        tiddler.style.height = "";
+        tiddler.style.width = "";
     },
 
     pushTiddlerToZStack: function(tiddler) {
@@ -115,13 +125,7 @@ const Volant = {
 
         // Assigns z-index to the elements in zstack based on position.
         for (let i = 0; i < zStack.length; i++) {
-         	zStack[i].style.zIndex = i * 10 + 700;
-        //     // Quick test to make sure this is working
-        //     if (i === zStack.length - 1) {
-        //     	zStack[i].style.boxShadow = "2px 2px 13px 6px rgba(0,0,0,.4)";
-        //     } else {
-        //     	zStack[i].style.boxShadow = "";
-        //     }
+         	zStack[i].style.zIndex = i * 2 + 700;
         }
   	},
 
@@ -200,10 +204,10 @@ const Volant = {
             resizerRight.style.top = (viewportOffset.top + tiddler.offsetHeight - resizerRight.offsetHeight) + "px";
             resizerRight.style.left = (viewportOffset.left + tiddler.offsetWidth - resizerRight.offsetWidth) + "px";
         } else {
-        	resizerLeft.style.cssText += `left:${tiddler.style.left};`;
-            resizerLeft.style.cssText += `top:calc(${tiddler.style.top} + ${tiddler.style.height} - ${resizerLeft.offsetHeight}px);`;
-            resizerRight.style.cssText += `left:calc(${tiddler.style.left} + ${tiddler.style.width} - ${resizerRight.offsetWidth}px);`;
-            resizerRight.style.cssText += `top:calc(${tiddler.style.top} + ${tiddler.style.height} - ${resizerRight.offsetHeight}px);`;
+            resizerLeft.style.cssText += `left:${viewportOffset.left}px;`;
+            resizerLeft.style.cssText += `top:calc(${viewportOffset.top}px + ${viewportOffset.height}px - ${resizerLeft.offsetHeight}px);`;
+            resizerRight.style.cssText += `left:calc(${viewportOffset.left}px + ${viewportOffset.width}px - ${resizerRight.offsetWidth}px);`;
+            resizerRight.style.cssText += `top:calc(${viewportOffset.top}px + ${viewportOffset.height}px - ${resizerRight.offsetHeight}px);`;
         }
 
     },
