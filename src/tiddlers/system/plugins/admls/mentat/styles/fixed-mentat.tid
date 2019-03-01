@@ -1,11 +1,11 @@
 created: 20190212174511720
-modified: 20190225220101917
+modified: 20190228183850391
 tags: $:/tags/Stylesheet tampered
 title: $:/plugins/admls/mentat/styles/fixed-mentat
 type: text/vnd.tiddlywiki
 
 \define backup(value)
-<$view tiddler={{{ [all[current]get[draft.of]] ~[all[current]] +[addprefix[$:/config/Mentat/Engine/]] }}} field=<<__value__>>>
+<$view tiddler={{{ [all[current]get[draft.of]] ~[all[current]] +[addprefix[$:/config/Mentat/]] }}} field=<<__value__>>>
 	<$view tiddler="$:/plugins/admls/volant/config/backup-values" field="""backup-$value$""">
 	</$view>
 </$view>
