@@ -1,5 +1,5 @@
 created: 20190227225752561
-modified: 20190228012013887
+modified: 20190301112055019
 tags: 
 title: Layouts Button
 type: text/vnd.tiddlywiki
@@ -31,7 +31,7 @@ $:/config/Mentat/layouts/{{$:/state/new-mentat-layout}}/
 <$action-listops $tiddler="$:/state/delete-window-cache" $field="list" $filter="[tag[$:/Window]]"/>
 <$action-listops $tiddler="$:/StoryList" $field="list" $subfilter=" -[tag[$:/Window]]"/>
 <$list filter="[prefix<layoutPrefix>]">
-<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="$:/Window" height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
+<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="$:/Window  $:/config/Volant" height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
 <$action-navigate $to={{$:/temp/windowTitle}}/>
 </$list>
 <$action-deletetiddler $filter="[list[$:/state/delete-window-cache]]"/>
