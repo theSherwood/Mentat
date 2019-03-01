@@ -1,0 +1,22 @@
+created: 20190301102459480
+modified: 20190301102732763
+tags: 
+title: Make Fullscreen
+type: text/vnd.tiddlywiki
+
+\define getFullscreen(value)
+<$view tiddler="$:/plugins/admls/volant/config/fullscreen-values" field="""fullscreen-$value$""">
+</$view>
+\end
+
+<$list filter="[list[$:/StoryList]]" variable="openTiddler">
+
+<$fieldmangler>
+<$button>Make Fullscreen
+<$list filter="[tag[$:/config/Volant]suffix<openTiddler>]">
+<$action-setfield $tiddler={{!!title}} top={{$:/plugins/admls/volant/config/fullscreen-values!!fullscreen-top}} height={{$:/plugins/admls/volant/config/fullscreen-values!!fullscreen-height}} left={{$:/plugins/admls/volant/config/fullscreen-values!!fullscreen-left}} width={{$:/plugins/admls/volant/config/fullscreen-values!!fullscreen-width}}/>
+</$list>
+</$button>
+<$link to=<<openTiddler>>><$view tiddler=<<openTiddler>> field="title"></$view></$link>
+</$fieldmangler>
+</$list>
