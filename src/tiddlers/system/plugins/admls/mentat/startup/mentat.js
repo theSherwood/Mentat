@@ -29,7 +29,7 @@ Add hooks.
 
 			const baseStoryView = $tw.wiki.getTiddler("$:/view").fields.text;
 			if (baseStoryView === "mentat") {
-				//console.log('INITIAL EVENT',event);
+				console.log('INITIAL EVENT',event);
 				const toTitle = event.navigateTo;
 				const widget = event.navigateFromNode;
 
@@ -53,25 +53,28 @@ Add hooks.
 					let windowTitles = $tw.wiki.getTiddlersWithTag("$:/Window");
 
 					// Search to see if the toTitle tiddler is already in the story list of a window
-					const windowsContainingToTitle = []
-					windowTitles.forEach(windowTitle => {
-						const windowTiddler = $tw.wiki.getTiddler(windowTitle);
-						if (windowTiddler && windowTiddler.fields.list && windowTiddler.fields.list.includes(toTitle)) {
-							windowsContainingToTitle.push(windowTitle);
+					if(!(event.shiftKey || event.altKey)) { // Don't search in other windows if the shiftKey or altKey were pressed
+						const windowsContainingToTitle = []
+						windowTitles.forEach(windowTitle => {
+							const windowTiddler = $tw.wiki.getTiddler(windowTitle);
+							if (windowTiddler && windowTiddler.fields.list && windowTiddler.fields.list.includes(toTitle)) {
+								windowsContainingToTitle.push(windowTitle);
+							}
+						});
+						// If some window already contains toTitle, navigate to it
+						if (windowsContainingToTitle.length > 0) {
+							windowTitles = windowsContainingToTitle;
+							let windowTitle = getTopWindow(windowsContainingToTitle, baseStoryList);
+							// Add window to $:/StoryList (and navigate to it)
+							addToBaseStoryList(windowTitle, event);
+							// Add toTitle to the window (and navigate to it)
+							addToWindow(event, windowTitle);
+							// Wherever the original navigation event came from, ignore it
+							return {};
 						}
-					});
-					// If some window already contains toTitle, navigate to it
-					if (windowsContainingToTitle.length > 0) {
-						windowTitles = windowsContainingToTitle;
-						let windowTitle = getTopWindow(windowsContainingToTitle, baseStoryList);
-						// Add window to $:/StoryList (and navigate to it)
-						addToBaseStoryList(windowTitle, event);
-						// Add toTitle to the window (and navigate to it)
-						addToWindow(event, windowTitle);
-						// Wherever the original navigation event came from, ignore it
-						return {};
 					}
 
+					// Get the top window per the $:/StoryList and the zstack
 					let windowTitle = getTopWindow(windowTitles, baseStoryList);
 
 					// Check to see if the navigation came from within a window
@@ -84,8 +87,8 @@ Add hooks.
 						windowTitle = elmnt.dataset.tiddlerTitle;
 					}
 
-					// if windowTitle isn't a tiddler
-					if (!$tw.wiki.tiddlerExists(windowTitle) || !windowTitle) {
+					// if windowTitle isn't a tiddler or the altKey was pressed
+					if (!$tw.wiki.tiddlerExists(windowTitle) || !windowTitle || event.altKey) {
 						// Add a window to the tiddler store to put the toTitle tiddler in
 						windowTitle = createWindow();
 					}
