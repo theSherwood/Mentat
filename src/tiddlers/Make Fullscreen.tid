@@ -1,5 +1,5 @@
 created: 20190301102459480
-modified: 20190301191438041
+modified: 20190301203152472
 tags: 
 title: Make Fullscreen
 type: text/vnd.tiddlywiki
@@ -23,6 +23,7 @@ type: text/vnd.tiddlywiki
 <$list filter="[tag[$:/config/Volant]suffix<openTiddler>]">
 <$action-setfield $tiddler="$:/plugins/admls/volant/state/fullscreen-tiddler" text=<<openTiddler>> top={{!!top}} height={{!!height}} left={{!!left}} width={{!!width}}/>
 </$list>
+<$action-navigate $to=<<openTiddler>>/>
 
 </$button>
 
@@ -32,6 +33,7 @@ type: text/vnd.tiddlywiki
 <$action-setfield $tiddler={{!!title}} top={{$:/plugins/admls/volant/state/fullscreen-tiddler!!top}} height={{$:/plugins/admls/volant/state/fullscreen-tiddler!!height}} left={{$:/plugins/admls/volant/state/fullscreen-tiddler!!left}} width={{$:/plugins/admls/volant/state/fullscreen-tiddler!!width}}/>
 <$action-setfield $tiddler="$:/plugins/admls/volant/state/fullscreen-tiddler" text="" top="" height="" left="" width=""/>
 </$list>
+<$action-navigate $to=<<openTiddler>>/>
 
 </$button>
 </$fieldmangler>
