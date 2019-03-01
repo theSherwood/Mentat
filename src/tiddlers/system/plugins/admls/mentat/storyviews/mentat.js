@@ -99,7 +99,7 @@ MentatStoryView.prototype.insert = function(widget) {
 			windowTitle = $tw.wiki.generateNewTitle("$:/Window");
 			const windowTiddler = new $tw.Tiddler({
 				title: windowTitle,
-				tags: "$:/Window",
+				tags: "$:/Window $:/config/Volant",
 				view: $tw.wiki.getTiddler("$:/plugins/admls/mentat/config/values").fields["default-window-storyview"] || "classic"
 			});
 			$tw.wiki.addTiddler(windowTiddler);

@@ -1,11 +1,11 @@
 created: 20190111210715655
-modified: 20190228201126760
+modified: 20190301111118188
 tags: $:/tags/PageControls
 title: $:/plugins/admls/mentat/ui/Buttons/new-window-tiddler
 type: text/vnd.tiddlywiki
 
 \define actions()
-<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="$:/Window" view={{$:/plugins/admls/mentat/config/values!!default-window-storyview}}/>
+<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="$:/Window $:/config/Volant" view={{$:/plugins/admls/mentat/config/values!!default-window-storyview}}/>
 <$action-navigate $to={{$:/temp/windowTitle}}/>
 \end
 
