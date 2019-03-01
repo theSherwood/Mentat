@@ -1,0 +1,11 @@
+created: 20190301220008815
+modified: 20190301221538230
+tags: $:/tags/Image
+title: $:/plugins/admls/mentat/images/minimize
+type: text/vnd.tiddlywiki
+
+<svg class="image-minimize-button tc-image-button" width="24" height="24" viewBox="5 8 14 14">
+<g fill-rule="evenodd">
+<path d="M7 19h10c.55 0 1 .45 1 1s-.45 1-1 1H7c-.55 0-1-.45-1-1s.45-1 1-1z"/>
+</g>
+</svg>

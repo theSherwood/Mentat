@@ -1,15 +1,15 @@
-caption: {{$:/core/images/down-arrow}} minimize
+caption: {{$:/plugins/admls/mentat/images/minimize}} minimize
 created: 20190111235001893
 description: Minimize this window
-modified: 20190126002116721
+modified: 20190301221756198
 tags: tampered $:/tags/WindowViewToolbar
-title: $:/plugins/admls/mentat/ui/Buttons/minimize-window
+title: $:/plugins/admls/mentat/ui/Buttons/minimize
 type: text/vnd.tiddlywiki
 
 \whitespace trim
-<$button message="tm-close-tiddler" tooltip="Minimize this window" aria-label="minimize" class=<<tv-config-toolbar-class>>>
+<$button message="tm-close-tiddler" tooltip="Minimize" aria-label="minimize" class=<<tv-config-toolbar-class>>>
 <$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
-{{$:/core/images/down-arrow}}
+{{$:/plugins/admls/mentat/images/minimize}}
 </$list>
 <$list filter="[<tv-config-toolbar-text>prefix[yes]]">
 <span class="tc-btn-text">
