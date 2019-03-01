@@ -1,0 +1,26 @@
+created: 20190301104910328
+modified: 20190301185404018
+tags: $:/tags/Stylesheet
+title: Fullscreen Stylesheet
+type: text/vnd.tiddlywiki
+
+\define fullscreen(value)
+<$view tiddler="$:/plugins/admls/volant/config/fullscreen-values" field="""fullscreen-$value$""">
+</$view>
+\end
+
+<$list filter="[title{$:/plugins/admls/volant/state/fullscreen-tiddler}]">
+
+[data-tiddler-title="<<currentTiddler>>"] {
+top: <<fullscreen top>> !important;
+left: <<fullscreen left>> !important;
+width: <<fullscreen width>> !important;
+height: <<fullscreen height>> !important;
+z-index: 1000 !important;
+}
+
+[data-tiddler-title="<<currentTiddler>>"] .resizer {
+display: none;
+}
+
+</$list>

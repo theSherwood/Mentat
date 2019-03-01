@@ -1,5 +1,5 @@
 created: 20190301102459480
-modified: 20190301102732763
+modified: 20190301191438041
 tags: 
 title: Make Fullscreen
 type: text/vnd.tiddlywiki
@@ -13,10 +13,28 @@ type: text/vnd.tiddlywiki
 
 <$fieldmangler>
 <$button>Make Fullscreen
-<$list filter="[tag[$:/config/Volant]suffix<openTiddler>]">
-<$action-setfield $tiddler={{!!title}} top={{$:/plugins/admls/volant/config/fullscreen-values!!fullscreen-top}} height={{$:/plugins/admls/volant/config/fullscreen-values!!fullscreen-height}} left={{$:/plugins/admls/volant/config/fullscreen-values!!fullscreen-left}} width={{$:/plugins/admls/volant/config/fullscreen-values!!fullscreen-width}}/>
+
+<$set name="fullscreenTiddler" value={{$:/plugins/admls/volant/state/fullscreen-tiddler!!text}}>
+<$list filter="[tag[$:/config/Volant]suffix<fullscreenTiddler>]">
+<$action-setfield $tiddler={{!!title}} top={{$:/plugins/admls/volant/state/fullscreen-tiddler!!top}} height={{$:/plugins/admls/volant/state/fullscreen-tiddler!!height}} left={{$:/plugins/admls/volant/state/fullscreen-tiddler!!left}} width={{$:/plugins/admls/volant/state/fullscreen-tiddler!!width}}/>
 </$list>
+</$set>
+
+<$list filter="[tag[$:/config/Volant]suffix<openTiddler>]">
+<$action-setfield $tiddler="$:/plugins/admls/volant/state/fullscreen-tiddler" text=<<openTiddler>> top={{!!top}} height={{!!height}} left={{!!left}} width={{!!width}}/>
+</$list>
+
 </$button>
-<$link to=<<openTiddler>>><$view tiddler=<<openTiddler>> field="title"></$view></$link>
+
+<$button>Leave Fullscreen
+
+<$list filter="[tag[$:/config/Volant]suffix<openTiddler>]">
+<$action-setfield $tiddler={{!!title}} top={{$:/plugins/admls/volant/state/fullscreen-tiddler!!top}} height={{$:/plugins/admls/volant/state/fullscreen-tiddler!!height}} left={{$:/plugins/admls/volant/state/fullscreen-tiddler!!left}} width={{$:/plugins/admls/volant/state/fullscreen-tiddler!!width}}/>
+<$action-setfield $tiddler="$:/plugins/admls/volant/state/fullscreen-tiddler" text="" top="" height="" left="" width=""/>
+</$list>
+
+</$button>
 </$fieldmangler>
+<$link to=<<openTiddler>>><$view tiddler=<<openTiddler>> field="title"></$view></$link>
+
 </$list>

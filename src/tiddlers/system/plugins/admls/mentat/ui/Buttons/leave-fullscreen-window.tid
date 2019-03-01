@@ -1,9 +1,9 @@
 caption: {{$:/core/images/full-screen-button}} maximize window toggle
-created: 20190112131343903
+created: 20190301110214324
 description: Maximize window toggle
-modified: 20190301192140207
+modified: 20190301191932918
 tags: tampered $:/tags/WindowViewToolbar
-title: $:/plugins/admls/mentat/ui/Buttons/fullscreen-window
+title: $:/plugins/admls/mentat/ui/Buttons/leave-fullscreen-window
 type: text/vnd.tiddlywiki
 
 \whitespace trim
@@ -12,15 +12,12 @@ type: text/vnd.tiddlywiki
 <$set name="fullscreenTiddler" value={{$:/plugins/admls/volant/state/fullscreen-tiddler!!text}}>
 <$list filter="[tag[$:/config/Volant]suffix<fullscreenTiddler>]">
 <$action-setfield $tiddler={{!!title}} top={{$:/plugins/admls/volant/state/fullscreen-tiddler!!top}} height={{$:/plugins/admls/volant/state/fullscreen-tiddler!!height}} left={{$:/plugins/admls/volant/state/fullscreen-tiddler!!left}} width={{$:/plugins/admls/volant/state/fullscreen-tiddler!!width}}/>
+<$action-setfield $tiddler="$:/plugins/admls/volant/state/fullscreen-tiddler" text="" top="" height="" left="" width=""/>
 </$list>
 </$set>
 
-<$list filter="[tag[$:/config/Volant]suffix<currentTiddler>]">
-<$action-setfield $tiddler="$:/plugins/admls/volant/state/fullscreen-tiddler" text=<<currentTiddler>> top={{!!top}} height={{!!height}} left={{!!left}} width={{!!width}}/>
-</$list>
-
 <$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
-{{$:/core/images/full-screen-button}}
+Leave fullscreen
 </$list>
 <$list filter="[<tv-config-toolbar-text>prefix[yes]]">
 <span class="tc-btn-text">
