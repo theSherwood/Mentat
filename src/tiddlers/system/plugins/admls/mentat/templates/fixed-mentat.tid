@@ -1,0 +1,11 @@
+created: 20190212173030711
+modified: 20190227184322937
+tags: $:/tags/EditTemplate $:/tags/ViewTemplate
+title: $:/plugins/admls/mentat/templates/fixed-mentat
+type: text/vnd.tiddlywiki
+
+<$reveal type="match" state="$:/view" text="mentat">
+<$list filter="[all[current]tag[Mentat]]">
+<$volant separateConfig="yes" configTiddlerPrefix="$:/config/Mentat/"/>
+</$list>
+</$reveal>

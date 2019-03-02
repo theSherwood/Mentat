@@ -1,0 +1,33 @@
+caption: {{$:/core/images/full-screen-button}} maximize
+created: 20190112131343903
+description: Maximize window toggle
+modified: 20190301232647752
+tags: tampered $:/tags/WindowViewToolbar
+title: $:/plugins/admls/mentat/ui/Buttons/maximize
+type: text/vnd.tiddlywiki
+
+\whitespace trim
+
+<$reveal type="nomatch" state="$:/plugins/admls/mentat/state/maximized-tiddler!!text" text={{!!title}}>
+<$button tooltip="Maximize" aria-label="maximize" class=<<tv-config-toolbar-class>>>
+<$set name="maximizedTiddler" value={{$:/plugins/admls/mentat/state/maximized-tiddler!!text}}>
+<$list filter="[tag[$:/config/Volant]suffix<maximizedTiddler>]">
+<$action-setfield $tiddler={{!!title}} top={{$:/plugins/admls/mentat/state/maximized-tiddler!!top}} height={{$:/plugins/admls/mentat/state/maximized-tiddler!!height}} left={{$:/plugins/admls/mentat/state/maximized-tiddler!!left}} width={{$:/plugins/admls/mentat/state/maximized-tiddler!!width}}/>
+</$list>
+</$set>
+
+<$list filter="[tag[$:/config/Volant]suffix<currentTiddler>]">
+<$action-setfield $tiddler="$:/plugins/admls/mentat/state/maximized-tiddler" text=<<currentTiddler>> top={{!!top}} height={{!!height}} left={{!!left}} width={{!!width}}/>
+</$list>
+<$action-navigate $to=<<currentTiddler>>/>
+
+<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
+{{$:/core/images/full-screen-button}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+<span class="tc-btn-text">
+<$text text="maximize"}/>
+</span>
+</$list>
+</$button>
+</$reveal>

@@ -1,0 +1,19 @@
+created: 20190111210715655
+modified: 20190301223333009
+tags: $:/tags/PageControls
+title: $:/plugins/admls/mentat/ui/Buttons/new-story-window
+type: text/vnd.tiddlywiki
+
+\define actions()
+<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="$:/Window $:/config/Volant" view={{$:/plugins/admls/mentat/config/values!!default-window-storyview}}/>
+<$action-navigate $to={{$:/temp/windowTitle}}/>
+\end
+
+<$button actions=<<actions>> class="tc-btn-box tc-tiddlylink" tooltip="Create a new story window" aria-label="new window tiddler" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
+{{$:/plugins/admls/mentat/images/new-story-window}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+<span class="tc-btn-text"><$text text="new story window"/></span>
+</$list>
+</$button>

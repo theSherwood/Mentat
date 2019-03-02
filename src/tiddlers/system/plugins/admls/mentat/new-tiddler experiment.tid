@@ -4,7 +4,7 @@ caption: {{$:/core/images/new-button}} {{$:/language/Buttons/NewTiddler/Caption}
 created: 20190114012853186
 description: {{$:/language/Buttons/NewTiddler/Hint}}
 modified: 20190131000220015
-tags: unfinished tampered $:/tags/AboveStory
+tags: unfinished tampered $:/tags/AboveWindow
 title: $:/plugins/admls/mentat/new-tiddler experiment
 type: text/vnd.tiddlywiki
 

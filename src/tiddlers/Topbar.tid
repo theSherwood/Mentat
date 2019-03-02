@@ -1,0 +1,11 @@
+created: 20190225203539938
+modified: 20190228022429094
+tags: Mentat
+title: Topbar
+type: text/vnd.tiddlywiki
+
+{{||$:/core/ui/PageTemplate/pagecontrols}}
+{{$:/core/ui/SideBarSegments/search}}
+Layouts {{Layouts Button}}
+Sessions {{Sessions Button}}
+Windows {{Windows Button}}

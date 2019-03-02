@@ -1,0 +1,57 @@
+created: 20190226190956378
+modified: 20190227220533065
+tags: 
+title: Restore Window Cache
+type: text/vnd.tiddlywiki
+
+\define layoutPrefix()
+$:/config/Mentat/layouts/{{$:/state/restore-mentat-configuration}}/
+\end
+
+\define sessionPrefix()
+$:/config/Mentat/sessions/{{$:/state/restore-mentat-configuration}}/
+\end
+
+<$wikify name="layoutPrefix" text=<<layoutPrefix>>>
+<$list filter="[prefix<layoutPrefix>]">
+
+</$list>
+</$wikify>
+
+<$select tiddler="$:/state/restore-mentat-configuration">
+<$list filter="[removeprefix[$:/config/Mentat/layouts/]splitbefore[/]removesuffix[/]]">
+<option value=<<currentTiddler>>><$view field="title"/></option>
+</$list>
+</$select>
+
+<$button>Restore Window Layout
+<$wikify name="layoutPrefix" text=<<layoutPrefix>>>
+<$list filter="[prefix<layoutPrefix>]">
+<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="$:/Window" height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
+<$action-navigate $to={{$:/temp/windowTitle}}/>
+</$list>
+</$wikify>
+</$button>
+
+<hr>
+
+<$wikify name="sessionPrefix" text=<<sessionPrefix>>>
+<$list filter="[prefix<sessionPrefix>]">
+
+</$list>
+</$wikify>
+
+<$select tiddler="$:/state/restore-mentat-configuration" default={{{ [list[$:/config/Mentat/layouts]first[]] }}|>
+<$list filter="[removeprefix[$:/config/Mentat/sessions/]splitbefore[/]removesuffix[/]]">
+<option value=<<currentTiddler>>><$view field="title"/></option>
+</$list>
+</$select>
+
+<$button>Restore Window Session
+<$wikify name="sessionPrefix" text=<<sessionPrefix>>>
+<$list filter="[prefix<sessionPrefix>]">
+<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="$:/Window" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
+<$action-navigate $to={{$:/temp/windowTitle}}/>
+</$list>
+</$wikify>
+</$button>

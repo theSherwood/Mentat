@@ -1,0 +1,30 @@
+caption: {{$:/plugins/admls/mentat/images/restore-down-button}} restore down
+created: 20190301110214324
+description: Maximize window toggle
+modified: 20190301233054656
+tags: tampered $:/tags/WindowViewToolbar
+title: $:/plugins/admls/mentat/ui/Buttons/restore-down
+type: text/vnd.tiddlywiki
+
+\whitespace trim
+
+<$reveal type="match" state="$:/plugins/admls/mentat/state/maximized-tiddler!!text" text={{!!title}}>
+<$button tooltip="Restore down" aria-label="restore down" class=<<tv-config-toolbar-class>>>
+<$set name="maximizedTiddler" value={{$:/plugins/admls/mentat/state/maximized-tiddler!!text}}>
+<$list filter="[tag[$:/config/Volant]suffix<maximizedTiddler>]">
+<$action-setfield $tiddler={{!!title}} top={{$:/plugins/admls/mentat/state/maximized-tiddler!!top}} height={{$:/plugins/admls/mentat/state/maximized-tiddler!!height}} left={{$:/plugins/admls/mentat/state/maximized-tiddler!!left}} width={{$:/plugins/admls/mentat/state/maximized-tiddler!!width}}/>
+<$action-setfield $tiddler="$:/plugins/admls/mentat/state/maximized-tiddler" text="" top="" height="" left="" width=""/>
+</$list>
+<$action-navigate $to=<<maximizedTiddler>>/>
+</$set>
+
+<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
+{{$:/plugins/admls/mentat/images/restore-down-button}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+<span class="tc-btn-text">
+<$text text="restore down"}/>
+</span>
+</$list>
+</$button>
+</$reveal>

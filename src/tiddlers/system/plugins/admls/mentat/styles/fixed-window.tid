@@ -1,0 +1,30 @@
+created: 20190220151403137
+modified: 20190225220131141
+tags: $:/tags/Stylesheet tampered
+title: $:/plugins/admls/mentat/styles/fixed-window
+type: text/vnd.tiddlywiki
+
+\define backup(value)
+<$view tiddler={{{ [all[current]get[draft.of]] ~[all[current]]}}} field=<<__value__>>>
+	<$view tiddler="$:/plugins/admls/volant/config/backup-values" field="""backup-$value$""">
+	</$view>
+</$view>
+\end
+
+<$reveal type="match" state="$:/view" text="mentat">
+<$list filter="[list[$:/StoryList]tag[$:/Window]]">
+
+[data-tiddler-title="<<currentTiddler>>"] {
+top: <<backup top>>;
+left: <<backup left>>;
+width: <<backup width>>;
+height: <<backup height>>;
+z-index: <<backup z-index>>;
+}
+
+[data-tiddler-title="<<currentTiddler>>"] .tc-titlebar {
+font-size: 1.6em;
+}
+
+</$list>
+</$reveal>

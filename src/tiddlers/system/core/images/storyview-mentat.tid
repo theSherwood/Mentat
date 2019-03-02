@@ -1,7 +1,11 @@
 created: 20190131002757571
-modified: 20190131003318873
+modified: 20190301225037367
 tags: tampered $:/tags/Image
 title: $:/core/images/storyview-mentat
 type: text/vnd.tiddlywiki
 
-M
+<svg class="image-storyview-mentat tc-image-button" viewBox="6 4 14 14" width="24pt" height="24pt">
+    <g fill-rule="evenodd">
+<path d="M10 18h5v-6h-5v6zm-6 0h5V5H4v13zm12 0h5v-6h-5v6zM10 5v6h11V5H10z"/>
+</g>
+</svg>

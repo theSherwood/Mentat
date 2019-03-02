@@ -3,21 +3,11 @@ created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
 tags: unfinished tampered
-modified: 20190212155707031
+modified: 20190221170445591
 module-type: global
 
+
 Description...
-
-ToDo:
-
-- I may have introduced problem with getEventTiddler and the way it affects the zStack with window-tiddlers
-- store zStack in a click history tiddler
-- refactor
-- comment code
-- look into scrolling left and circular scrolling for the mentat plugin
-- resolve bug (not snapping to grid on startup)
-  -- The problem arises in response to the timing of the rendering of scrollbars. If an absolute volant tiddler off to the right is rendered before the fixed tiddlers, the scrollbars are already present and there is no problem. If there are no scrollbars, there is no problem. Tricky issue.
-  -- This issue might be resolvable (for the most part) elsewhere. In the mentat plugin, if fixed, set overflow to hidden. No scrollbars ever. If absolute, set overflow to scroll. Always scrollbars.
 
 
 \*/
@@ -28,40 +18,14 @@ ToDo:
 /*global $tw: true */
 "use strict";
 
-window.requestAnimationFrame = window.requestAnimationFrame
-    || window.mozRequestAnimationFrame
-    || window.webkitRequestAnimationFrame
-    || window.msRequestAnimationFrame
-    || function(f){return setTimeout(f, 1000/60)};
-
 const Volant = {
 	zStack: [],
     pos1: 0,
     pos2: 0,
     pos3: 0,
     pos4: 0,
+    configTiddlerTag: "$:/config/Volant",
 
-	startDrag: function(e) {
-		// Disable dragging if interior elements were target
-        const dragModeIsOn = $tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.dragmode === "on";
-        const targetIsChildElement = !e.target.matches(".tc-tiddler-frame"); // This will be problematic if you have nested volant tiddlers
-        const targetIsResizer = e.target.matches(".resizer"); // Stops drag if target is a resizer
-        if(targetIsResizer || (!dragModeIsOn && targetIsChildElement)) {
-          return;
-        }
-        e.stopPropagation();
-        e.preventDefault();
-        const Volant = $tw.Volant;
-        Volant.eventTiddler = this;
-
-        // get the mouse cursor position at startup:
-        Volant.pos3 = e.clientX;
-        Volant.pos4 = e.clientY;
-        // call a function whenever the cursor moves:
-        window.addEventListener('mousemove', Volant.tiddlerDrag);
-        window.addEventListener('mouseup', Volant.endDrag, false);        
-    },
-    
     tiddlerDrag: function(e) {
     	e.stopPropagation();
     	e.preventDefault();
@@ -92,25 +56,46 @@ const Volant = {
         
         window.requestAnimationFrame(() => {
             Volant.snapToGrid();
-            Volant.logNewDimensions()
+            Volant.logNewDimensions();
        	});
             
         window.removeEventListener('mousemove', Volant.tiddlerDrag);
         window.removeEventListener('mouseup', Volant.endDrag, false);
     },
 
-    logNewDimensions: function(tiddler) {
+    logNewDimensions: function(tiddler, configTiddlerTitle) {
     	if(tiddler === undefined) {
 			tiddler = this.eventTiddler;
         }
-    	const title = tiddler.dataset.tiddlerTitle;
-        // Log the dimensions to the appropriate field for pickup by CSS
-        $tw.wiki.setText(title,'top',undefined,(tiddler.offsetTop)+"px",undefined);
-        $tw.wiki.setText(title,'left',undefined,(tiddler.offsetLeft)+"px",undefined);
-        $tw.wiki.setText(title,'width',undefined,(tiddler.offsetWidth)+"px",undefined);
-        $tw.wiki.setText(title,'height',undefined,(tiddler.offsetHeight)+"px",undefined);
+        if(configTiddlerTitle === undefined) {
+        	configTiddlerTitle = this.configTiddlerTitle;
+        }
         
+        if(tiddler.style.position === "absolute") {
+            // Log the dimensions to the appropriate field for pickup by CSS
+            $tw.wiki.setText(configTiddlerTitle,'top',undefined,(tiddler.offsetTop)+"px",undefined);
+            $tw.wiki.setText(configTiddlerTitle,'left',undefined,(tiddler.offsetLeft)+"px",undefined);
+            $tw.wiki.setText(configTiddlerTitle,'width',undefined,(tiddler.offsetWidth)+"px",undefined);
+            $tw.wiki.setText(configTiddlerTitle,'height',undefined,(tiddler.offsetHeight)+"px",undefined);
+        } else {
+        	$tw.wiki.setText(configTiddlerTitle,'top',undefined,tiddler.style.top,undefined);
+            $tw.wiki.setText(configTiddlerTitle,'left',undefined,tiddler.style.left,undefined);
+            $tw.wiki.setText(configTiddlerTitle,'width',undefined,tiddler.style.width,undefined);
+            $tw.wiki.setText(configTiddlerTitle,'height',undefined,tiddler.style.height,undefined);
+        }
+        
+        setTimeout(function() {
+            $tw.Volant.removeStyle(tiddler);
+        }, 0);
         this.eventTiddler = undefined;
+        this.configTiddlerTitle = undefined;
+    },
+
+    removeStyle: function(tiddler) {
+        tiddler.style.top = "";
+        tiddler.style.left = "";
+        tiddler.style.height = "";
+        tiddler.style.width = "";
     },
 
     pushTiddlerToZStack: function(tiddler) {
@@ -127,44 +112,22 @@ const Volant = {
         Volant.evaluateZStack();
   	},
     
-    pushEventToZStack(e) {
-    	const tiddler = $tw.Volant.getEventTiddler(e);
-        $tw.Volant.pushTiddlerToZStack(tiddler);
-    },
-    
    	evaluateZStack: function() {
     	const Volant = $tw.Volant;
         // Filter out tiddlers no longer in the storyList
         const storyList = $tw.wiki.getTiddler("$:/StoryList").fields.list;
+
         Volant.zStack = Volant.zStack.filter(tiddler => storyList.includes(tiddler.dataset.tiddlerTitle));
-        // Assigns z-index to the elements in zstack based on position.
         const zStack = Volant.zStack;
+        // Logs zStack to the list of $:/state/zStack
+        const zList = zStack.map(tiddler => tiddler.dataset.tiddlerTitle);      
+        $tw.wiki.setText("$:/state/zStack","list",undefined,$tw.utils.stringifyList(zList.slice(-20)));
+
+        // Assigns z-index to the elements in zstack based on position.
         for (let i = 0; i < zStack.length; i++) {
-         	zStack[i].style.zIndex = i * 10 + 700;
-            // Quick test to make sure this is working
-            if (i === zStack.length - 1) {
-            	zStack[i].style.boxShadow = "2px 2px 13px 6px rgba(0,0,0,.4)";
-            } else {
-            	zStack[i].style.boxShadow = "";
-            }
+         	zStack[i].style.zIndex = i * 2 + 700;
         }
   	},
-    
-    startResize: function(e) {
-    	if (e.target.classList.contains("resizer")) {
-        	e.preventDefault();
-            e.stopPropagation();
-            
-            const Volant = $tw.Volant;
-            Volant.eventTiddler = Volant.getEventTiddler(e);
-            if (e.target.classList.contains("resizer-left")) {
-                window.addEventListener('mousemove', Volant.resizeLeft);
-            } else if (e.target.classList.contains("resizer-right")) {
-                window.addEventListener('mousemove', Volant.resizeRight);     
-            }
-            window.addEventListener('mouseup', Volant.endResize, false); 
-        }
-    },
 
 	resizeLeft: function(e) {
     	e.preventDefault();
@@ -217,8 +180,8 @@ const Volant = {
     
     getEventTiddler: function(e) {
     	let elmnt = e.target;
-        // Get the tiddler that the event happened in
-    	while(!(elmnt.matches('[data-tiddler-title]'))) {
+        // Get the volant tiddler that the event happened in
+    	while(!(elmnt.matches('.volant'))) {
         	// Stop if you get to the root element
         	if(elmnt.tagName === "HTML") {
             	return;
@@ -235,17 +198,24 @@ const Volant = {
         const resizerRight = tiddler.querySelector(".resizer-right");
         const viewportOffset = tiddler.getBoundingClientRect();
         
-        resizerLeft.style.top = (viewportOffset.top + tiddler.offsetHeight - resizerLeft.offsetHeight) + "px";
-        resizerLeft.style.left = (viewportOffset.left) + "px";
-        resizerRight.style.top = (viewportOffset.top + tiddler.offsetHeight - resizerRight.offsetHeight) + "px";
-        resizerRight.style.left = (viewportOffset.left + tiddler.offsetWidth - resizerRight.offsetWidth) + "px";
+        if(tiddler.style.position === "absolute") {
+            resizerLeft.style.top = (viewportOffset.top + tiddler.offsetHeight - resizerLeft.offsetHeight) + "px";
+            resizerLeft.style.left = (viewportOffset.left) + "px";
+            resizerRight.style.top = (viewportOffset.top + tiddler.offsetHeight - resizerRight.offsetHeight) + "px";
+            resizerRight.style.left = (viewportOffset.left + tiddler.offsetWidth - resizerRight.offsetWidth) + "px";
+        } else {
+            resizerLeft.style.cssText += `left:${viewportOffset.left}px;`;
+            resizerLeft.style.cssText += `top:calc(${viewportOffset.top}px + ${viewportOffset.height}px - ${resizerLeft.offsetHeight}px);`;
+            resizerRight.style.cssText += `left:calc(${viewportOffset.left}px + ${viewportOffset.width}px - ${resizerRight.offsetWidth}px);`;
+            resizerRight.style.cssText += `top:calc(${viewportOffset.top}px + ${viewportOffset.height}px - ${resizerRight.offsetHeight}px);`;
+        }
 
     },
     
-    repositionResizersOnAbsolute: function() {
-        document.querySelectorAll(".resizer-left.absolute").forEach(function(resizer) {
+    repositionResizers: function() {
+        document.querySelectorAll(".resizer-left").forEach(function(resizer) {
         	let elmnt = resizer;
-            while(!(elmnt.matches('[data-tiddler-title]'))) {
+            while(!(elmnt.matches('.volant'))) {
                 // Stop if you get to the root element
                 if(elmnt.tagName === "HTML") {
                     return;
@@ -265,46 +235,81 @@ const Volant = {
         	tiddler = Volant.eventTiddler;
         }
         Volant.getGrid();
-        const positionIsFixed = (tiddler.style.position === "fixed");
-        tiddler.style.top = Volant.convertToGridValue(tiddler.offsetTop, positionIsFixed, "height") + "px";
-        tiddler.style.left = Volant.convertToGridValue(tiddler.offsetLeft, positionIsFixed, "width") + "px";
-        tiddler.style.height = Volant.convertToGridValue(tiddler.offsetHeight, positionIsFixed, "height") + "px";
-        tiddler.style.width = Volant.convertToGridValue(tiddler.offsetWidth, positionIsFixed, "width") + "px";
+
+        const positionIsFixed = (tiddler.style.position === "fixed"); 
+        let gridgap;
+        if(positionIsFixed) {
+        	gridgap = Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.defaultgridgap) || 0;
+            
+            const top = Volant.convertToGridValue(tiddler.offsetTop-gridgap, positionIsFixed, "height");
+            const left = Volant.convertToGridValue(tiddler.offsetLeft-gridgap, positionIsFixed, "width");
+            const height = Volant.convertToGridValue(tiddler.offsetHeight+2*gridgap, positionIsFixed, "height");
+            const width = Volant.convertToGridValue(tiddler.offsetWidth+2*gridgap, positionIsFixed, "width");
+
+            tiddler.style.cssText += `top:calc(${top}% + ${gridgap}px);`;
+            tiddler.style.cssText += `left:calc(${left}% + ${gridgap}px);`;
+            tiddler.style.cssText += `height:calc(${height}% - 2 * ${gridgap}px);`;
+            tiddler.style.cssText += `width:calc(${width}% - 2 * ${gridgap}px);`;
+        } else {
+        	gridgap = Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.absolutegridgap) || 0;
+
+            tiddler.style.top = (Volant.convertToGridValue(tiddler.offsetTop, positionIsFixed, "height") + gridgap) + "px";
+            tiddler.style.left = (Volant.convertToGridValue(tiddler.offsetLeft, positionIsFixed, "width") + gridgap) + "px";
+            tiddler.style.height = (Volant.convertToGridValue(tiddler.offsetHeight, positionIsFixed, "height") - (2*gridgap)) + "px";
+            tiddler.style.width = (Volant.convertToGridValue(tiddler.offsetWidth, positionIsFixed, "width") - (2*gridgap)) + "px";
+        }
+
         Volant.updateResizerPositions(tiddler); 
     },
     
     getGrid: function() {
-    	const gridsize = Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.gridsize) || 1;
-    	const width = document.documentElement.clientWidth;
-        const height = document.documentElement.clientHeight;
         $tw.Volant.grid = {
-        	// The grid should register to the viewport for fixed volant tiddlers, but not for absolute
-            "fixedCellWidth": width/Math.round(width/gridsize),
-            "fixedCellHeight": height/Math.round(height/gridsize),
-            "absoluteGridSize": gridsize
+        	viewportWidth: document.documentElement.clientWidth,
+            viewportHeight: document.documentElement.clientHeight,
+            defaultGridSize: Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.defaultgridsize) || 1,
+            absoluteGridSize: Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.absolutegridsize) || 1
         }
     },
     
     convertToGridValue(number, positionIsFixed, direction) {
     	const grid = $tw.Volant.grid;
         if(positionIsFixed) {
-            if(direction === "width") {
-                const quotient = number / grid.fixedCellWidth;
-                return Math.round(Math.round(quotient) * grid.fixedCellWidth);
-            } else {
-                const quotient = number / grid.fixedCellHeight;
-                return Math.round(Math.round(quotient) * grid.fixedCellHeight);
-            }
+        	const viewportValue = (direction === "width") ? grid.viewportWidth : grid.viewportHeight;
+            let percentage = (number / viewportValue) * 100;
+            return Math.round(percentage / grid.defaultGridSize) * grid.defaultGridSize;
         } else {
         	const quotient = number / grid.absoluteGridSize;
             return Math.round(Math.round(quotient) * grid.absoluteGridSize);
         }
     }
-    	
-
 };    
 
-
 exports.Volant = Volant;
+
+$tw.hooks.addHook("th-deleting-tiddler", function(tiddler) {
+    const tiddlerTitle = tiddler.hasField("draft.of") ? tiddler.getFieldString("draft.of") : tiddler.getFieldString("title");
+    
+    $tw.wiki.getTiddlersWithTag($tw.Volant.configTiddlerTag).forEach(function(configTiddlerTitle) {
+    	const configTiddler = $tw.wiki.getTiddler(configTiddlerTitle);
+        if(configTiddler.getFieldString("list") === tiddlerTitle) {
+        	//$tw.wiki.dispatchEvent({type: "tm-delete-tiddler", param: configTiddlerTitle, tiddlerTitle: undefined})
+            $tw.hooks.invokeHook("th-deleting-tiddler",configTiddler);
+			$tw.wiki.deleteTiddler(configTiddlerTitle);
+        }
+    });
+    
+    $tw.rootWidget.dispatchEvent({type: "tm-auto-save-wiki"});
+});
+
+$tw.hooks.addHook("th-relinking-tiddler", function(newTiddler, tiddler) {
+	
+    if(newTiddler.hasTag("$:/config/Volant")) {
+        const newTitle = newTiddler.fields.prefix + newTiddler.fields.list[0];
+        const newConfigTiddler = new $tw.Tiddler(newTiddler,{title: newTitle},$tw.wiki.getModificationFields());
+        $tw.wiki.deleteTiddler(tiddler.fields.title);
+        $tw.wiki.relinkTiddler(newTiddler.fields.title,newTitle);
+        return newConfigTiddler;
+    }
+});
 
 })();

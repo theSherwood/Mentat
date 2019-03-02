@@ -1,9 +1,19 @@
+absolutegridgap: 10
+absolutegridsize: 50
 created: 20190205210210532
-dragmode: on
-gridsize: 10
-modified: 20190212155031816
+default-functionality: off
+defaultgridgap: 0
+defaultgridsize: 5
+dragmode: off
+gridgap: 5
+gridsize: 100
+height: 188px
+left: 0px
+modified: 20190221000932813
 resizer-color: rgba(200,0,0,1)
 tags: unfinished tampered
 title: $:/plugins/admls/volant/config/values
+top: 94px
 type: text/vnd.tiddlywiki
+width: 1087px
 

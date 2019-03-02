@@ -1,0 +1,55 @@
+created: 20190226190528908
+modified: 20190227215042574
+tags: 
+title: Delete Window Cache
+type: text/vnd.tiddlywiki
+
+\define layoutPrefix()
+$:/config/Mentat/layouts/{{$:/state/delete-mentat-configuration}}/
+\end
+
+\define sessionPrefix()
+$:/config/Mentat/sessions/{{$:/state/delete-mentat-configuration}}/
+\end
+
+<$wikify name="layoutPrefix" text=<<layoutPrefix>>>
+<$list filter="[prefix<layoutPrefix>]">
+
+</$list>
+</$wikify>
+
+<$select tiddler="$:/state/delete-mentat-configuration">
+<$list filter="[removeprefix[$:/config/Mentat/layouts/]splitbefore[/]removesuffix[/]]">
+<option value=<<currentTiddler>>><$view field="title"/></option>
+</$list>
+</$select>
+
+<$button>Delete Window Layout
+<$wikify name="layoutPrefix" text=<<layoutPrefix>>>
+<$list filter="[prefix<layoutPrefix>]">
+<$action-sendmessage $message="tm-delete-tiddler" param=<<currentTiddler>>/>
+</$list>
+</$wikify>
+</$button>
+
+<hr>
+
+<$wikify name="sessionPrefix" text=<<sessionPrefix>>>
+<$list filter="[prefix<sessionPrefix>]">
+
+</$list>
+</$wikify>
+
+<$select tiddler="$:/state/delete-mentat-configuration" default={{{ [list[$:/config/Mentat/layouts]first[]] }}|>
+<$list filter="[removeprefix[$:/config/Mentat/sessions/]splitbefore[/]removesuffix[/]]">
+<option value=<<currentTiddler>>><$view field="title"/></option>
+</$list>
+</$select>
+
+<$button>Delete Window Session
+<$wikify name="sessionPrefix" text=<<sessionPrefix>>>
+<$list filter="[prefix<sessionPrefix>]">
+<$action-sendmessage $message="tm-delete-tiddler" param=<<currentTiddler>>/>
+</$list>
+</$wikify>
+</$button>

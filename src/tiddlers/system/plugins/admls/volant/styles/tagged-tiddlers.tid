@@ -1,17 +1,21 @@
 created: 20190129234855069
-modified: 20190206011128321
-tags: tampered $:/tags/Stylesheet
+height: calc(50% - 0px)
+left: calc(25% + 0px)
+modified: 20190225220038758
+tags: $:/tags/Stylesheet tampered
 title: $:/plugins/admls/volant/styles/tagged-tiddlers
+top: calc(25% + 0px)
 type: text/vnd.tiddlywiki
+width: calc(50% - 0px)
 
-\define backup(position)
-<$view field="""$position$""">
-	<$view tiddler="$:/plugins/admls/volant/config/backup-values" field="""$position$""">
-    </$view>
+\define backup(value)
+<$view tiddler={{{ [all[current]get[draft.of]] ~[all[current]] +[addprefix[$:/config/Volant/]] }}} field=<<__value__>>>
+	<$view tiddler="$:/plugins/admls/volant/config/backup-values" field="""backup-$value$""">
+	</$view>
 </$view>
 \end
 
-<$reveal type="match" state="$:/view" text="mentat">
+<$reveal type="match" stateTitle="$:/plugins/admls/volant/config/values" stateField="default-functionality" text="on">
 <$set name="volant-default" value={{$:/plugins/admls/volant/config/tags!!default}}>
 <$set name="volant-absolute" value={{$:/plugins/admls/volant/config/tags!!absolute}}>
 <$list filter="[list[$:/StoryList]tag<volant-default>] [list[$:/StoryList]tag<volant-absolute>]">
@@ -22,8 +26,6 @@ left: <<backup left>>;
 width: <<backup width>>;
 height: <<backup height>>;
 z-index: <<backup z-index>>;
-padding: 25px 15px 15px 15px;
-overflow-y: auto;
 }
 
 [data-tiddler-title="<<currentTiddler>>"] .tc-titlebar {

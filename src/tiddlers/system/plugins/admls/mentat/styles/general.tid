@@ -1,0 +1,125 @@
+created: 20190218191609036
+modified: 20190301111258534
+tags: $:/tags/Stylesheet
+title: $:/plugins/admls/mentat/styles/general
+type: text/vnd.tiddlywiki
+
+<$reveal type="match" state="$:/view" text="mentat">
+
+.tc-topbar, .tc-sidebar-scrollable {
+display: none;
+}
+
+[data-tags*="Mentat"] {
+	padding-top: 15px;
+}
+
+[data-tags*="Mentat"] .tc-title, 
+[data-tags*="Mentat"] .tc-subtitle, 
+[data-tags*="Mentat"] .tc-tags-wrapper {
+	display: none;
+}
+
+[data-tags*="Mentat"] .tc-tiddler-controls {
+    position: absolute;
+    top: 0px;
+    right: 4px;
+}
+
+[data-tags*="Mentat"] .tc-tiddler-controls button svg, [data-tags*="Mentat"] .tc-tiddler-controls button img { 
+	height: 0.75em;
+}
+
+[data-tags*="Mentat"] .tc-tab-content {
+	font-size: 14px;
+	line-height: 20px;
+}
+[data-tags*="Mentat"] p {
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+[data-tags*="Mentat"] .tc-tab-content button, 
+[data-tags*="Mentat"] .tc-tab-buttons {
+	font-size: 12px;
+}
+
+[data-tags*="$:/Window"] > .tc-tiddler-title, 
+[data-tags*="$:/Window"] > .tc-reveal > .tc-subtitle, 
+[data-tags*="$:/Window"] > .tc-reveal > .tc-tags-wrapper, 
+[data-tags*="$:/Window"] > .tc-tiddler-body {
+	display: none;
+}
+
+[data-tags*="$:/Window"] > p,
+[data-tags*="$:/Window"] > .window-body > p {
+margin-top: 0px;
+margin-bottom: 0px;
+}
+
+[data-tags*="$:/Window"] {
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+[data-tags*="$:/Window"] .window-body .tc-storyview-zoomin-tiddler {
+position: relative;
+width: auto;
+}
+
+.window-body, .window-scrollable {
+display: flex;
+flex-direction: column;
+flex: 1 1 1px;
+}
+
+.window-scrollable {
+padding: 2px 2px 2px 2px;
+}
+
+</$reveal>
+
+.window-tiddler-controls {
+	float: right;
+    position: absolute;
+    top: 0px;
+    right: 4px;
+}
+.window-tiddler-controls .tc-drop-down {
+	font-size: 1em;
+}
+.window-tiddler-controls .tc-drop-down .tc-drop-down {
+	font-size: 1em;
+}
+.window-tiddler-controls > span > button,
+.window-tiddler-controls > span > span > button,
+.window-tiddler-controls > span > span > span > button {
+	vertical-align: baseline;
+	margin-left:5px;
+}
+.window-tiddler-controls button svg, .window-tiddler-controls button img,
+.window-search button svg, .tc-search a svg {
+	fill: <<colour tiddler-controls-foreground>>;
+}
+.window-tiddler-controls button svg, .window-tiddler-controls button img { 
+	height: 0.75em; 
+}
+.window-search button svg, .window-search a svg {
+    height: 1.2em;
+    width: 1.2em;
+    margin: 0 0.25em;
+}
+.window-tiddler-controls button.tc-selected svg,
+.window-page-controls button.tc-selected svg  {
+	fill: <<colour tiddler-controls-foreground-selected>>;
+}
+.window-tiddler-controls button.tc-btn-invisible:hover svg,
+.window-search button:hover svg, .tc-search a:hover svg {
+	fill: <<colour tiddler-controls-foreground-hover>>;
+}
+@media print {
+	.window-tiddler-controls {
+		display: none;
+	}
+}
+

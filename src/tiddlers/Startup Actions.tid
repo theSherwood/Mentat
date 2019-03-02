@@ -1,0 +1,10 @@
+created: 20190301101101387
+modified: 20190301101618732
+tags: $:/tags/StartupAction unfinished tampered
+title: Startup Actions
+type: text/vnd.tiddlywiki
+
+<$list filter="[tag[$:/Window]]">
+<$action-setfield $tiddler=<<currentTiddler>> text=""/>
+</$list>
+
