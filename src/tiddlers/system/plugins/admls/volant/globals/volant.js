@@ -15,7 +15,7 @@ Description...
 (function() {
 
 /*jslint node: true, browser: true */
-/*global $tw: true */
+/*global $tw: false */
 "use strict";
 
 const Volant = {
@@ -310,6 +310,16 @@ $tw.hooks.addHook("th-relinking-tiddler", function(newTiddler, tiddler) {
         $tw.wiki.relinkTiddler(newTiddler.fields.title,newTitle);
         return newConfigTiddler;
     }
+});
+
+$tw.hooks.addHook("th-navigating", function (event) {
+    // If a volant tiddler is the target of navigation, push it onto the zstack
+    const toTitle = event.navigateTo;
+    const tiddler = document.querySelector(`[data-tiddler-title="${toTitle}"]`);
+    if(tiddler.matches(".volant")) {
+        $tw.Volant.pushTiddlerToZStack(tiddler);
+    }
+    return event;
 });
 
 })();
