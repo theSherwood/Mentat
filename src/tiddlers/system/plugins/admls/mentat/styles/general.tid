@@ -1,5 +1,5 @@
 created: 20190218191609036
-modified: 20190301111258534
+modified: 20190304170032985
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/general
 type: text/vnd.tiddlywiki
@@ -10,8 +10,8 @@ type: text/vnd.tiddlywiki
 display: none;
 }
 
-[data-tags*="Mentat"] {
-	padding-top: 15px;
+[data-tags*="Mentat"] .volant-wrapper {
+padding: 5px;
 }
 
 [data-tags*="Mentat"] .tc-title, 
@@ -43,26 +43,26 @@ display: none;
 	font-size: 12px;
 }
 
-[data-tags*="$:/Window"] > .tc-tiddler-title, 
-[data-tags*="$:/Window"] > .tc-reveal > .tc-subtitle, 
-[data-tags*="$:/Window"] > .tc-reveal > .tc-tags-wrapper, 
-[data-tags*="$:/Window"] > .tc-tiddler-body {
-	display: none;
-}
-
-[data-tags*="$:/Window"] > p,
-[data-tags*="$:/Window"] > .window-body > p {
-margin-top: 0px;
-margin-bottom: 0px;
-}
-
-[data-tags*="$:/Window"] {
+[data-tags*="$:/Window"] > .volant-wrapper {
 display: flex;
 flex-direction: column;
 justify-content: space-between;
 }
 
-[data-tags*="$:/Window"] .window-body .tc-storyview-zoomin-tiddler {
+[data-tags*="$:/Window"] > .volant-wrapper > .tc-tiddler-title, 
+[data-tags*="$:/Window"] > .volant-wrapper > .tc-reveal > .tc-subtitle, 
+[data-tags*="$:/Window"] > .volant-wrapper > .tc-reveal > .tc-tags-wrapper, 
+[data-tags*="$:/Window"] > .volant-wrapper > .tc-tiddler-body {
+	display: none;
+}
+
+[data-tags*="$:/Window"] > .volant-wrapper > p,
+[data-tags*="$:/Window"] > .volant-wrapper > .window-body > p {
+margin-top: 0px;
+margin-bottom: 0px;
+}
+
+[data-tags*="$:/Window"] .volant-wrapper > .window-body .tc-storyview-zoomin-tiddler {
 position: relative;
 width: auto;
 }
