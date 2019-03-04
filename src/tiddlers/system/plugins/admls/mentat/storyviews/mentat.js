@@ -33,7 +33,8 @@ var MentatStoryView = function(listWidget) {
 
 		const tiddlerTitle = itemWidget.parseTreeNode.itemTitle;
 		const tiddler = $tw.wiki.getTiddler(tiddlerTitle);
-		if(tiddler && !(tiddler.fields.tags.includes("Mentat") || tiddler.fields.tags.includes("$:/Window"))) {
+		// If the tiddler is not tagged with Mentat or Window
+		if(tiddler && (!tiddler.fields.tags || !(tiddler.fields.tags.includes("Mentat") || tiddler.fields.tags.includes("$:/Window")))) {
 			domNode.style.display = "none";
 		}
 	});
