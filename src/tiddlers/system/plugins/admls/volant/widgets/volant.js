@@ -43,21 +43,19 @@ module-type: widget
         }
         const tiddler = elmnt;
         //this.tiddler = tiddler;
+
         tiddler.className += " volant";
         tiddler.style.position = position;
-
         const resizerLeft = document.createElement("div");
         resizerLeft.className = "resizer resizer-left";
         resizerLeft.style.position = "fixed";
         const resizerRight = document.createElement("div");
         resizerRight.className = "resizer resizer-right";
         resizerRight.style.position = "fixed";
-
         if (position === "absolute") {
             resizerLeft.className += ' ' + 'absolute';
             resizerRight.className += ' ' + 'absolute';
         }
-
         tiddler.appendChild(resizerLeft);
         tiddler.appendChild(resizerRight);
 
@@ -67,7 +65,7 @@ module-type: widget
         const startDrag = function (e) {
             // Disable dragging if interior elements were target
             const dragModeIsOn = $tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.dragmode === "on";
-            const targetIsChildElement = !e.target.matches(".tc-tiddler-frame"); // This will be problematic if you have nested volant tiddlers
+            const targetIsChildElement = !(e.target.matches(".volant") || e.target.matches(".volant-wrapper")); // This will be problematic if you have nested volant tiddlers
             const targetIsResizer = e.target.matches(".resizer"); // Stops drag if target is a resizer
             if ((e.button !== 0) || targetIsResizer || (!dragModeIsOn && targetIsChildElement)) {
                 return;
