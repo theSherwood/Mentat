@@ -1,0 +1,15 @@
+created: 20190304163643328
+modified: 20190304163701461
+title: $:/core/ui/ViewTemplate
+type: text/vnd.tiddlywiki
+
+\define frame-classes()
+tc-tiddler-frame tc-tiddler-view-frame $(missingTiddlerClass)$ $(shadowTiddlerClass)$ $(systemTiddlerClass)$ $(tiddlerTagClasses)$ $(userClass)$
+\end
+\define folded-state()
+$:/state/folded/$(currentTiddler)$
+\end
+<$vars storyTiddler=<<currentTiddler>> tiddlerInfoState=<<qualify "$:/state/popup/tiddler-info">> userClass={{!!class}}><$tiddler tiddler=<<currentTiddler>>><div data-tiddler-title=<<currentTiddler>> data-tags={{!!tags}} class=<<frame-classes>>><div class="volant-wrapper"><$list filter="[all[shadows+tiddlers]tag[$:/tags/ViewTemplate]!has[draft.of]]" variable="listItem"><$transclude tiddler=<<listItem>>/></$list>
+</div>
+</div>
+</$tiddler></$vars>
