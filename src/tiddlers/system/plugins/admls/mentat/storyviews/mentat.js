@@ -27,9 +27,6 @@ var MentatStoryView = function(listWidget) {
 		if(!(domNode instanceof Element)) {
 			return;
 		}
-		console.log("ITEM WIDGET", itemWidget);
-		console.log("PARSE TREE NODE", itemWidget.parseTreeNode);
-		console.log("ITEM TITLE", itemWidget.parseTreeNode.itemTitle);
 
 		const tiddlerTitle = itemWidget.parseTreeNode.itemTitle;
 		const tiddler = $tw.wiki.getTiddler(tiddlerTitle);
@@ -64,9 +61,7 @@ MentatStoryView.prototype.insert = function(widget) {
 	if(!(domNode instanceof Element)) {
 		return;
 	}
-	console.log("WIDGET", widget);
-	console.log("PARSE TREE NODE", widget.parseTreeNode);
-	console.log("ITEM TITLE", widget.parseTreeNode.itemTitle);
+
 
 	const tiddlerTitle = widget.parseTreeNode.itemTitle;
 	const tiddler = $tw.wiki.getTiddler(tiddlerTitle);
