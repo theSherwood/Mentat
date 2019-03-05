@@ -1,0 +1,23 @@
+created: 20190305103358375
+modified: 20190305152227863
+tags: $:/tags/Stylesheet
+title: tc-search stylesheet
+type: text/vnd.tiddlywiki
+
+.volant .tc-block-dropdown {
+position: absolute;
+left: 0px;
+top: 0px;
+}
+
+.volant .tc-block-dropdown-wrapper {
+position: static;
+}
+
+.volant .tc-search + .tc-block-dropdown-wrapper {
+position: absolute;
+}
+
+.volant .tc-search-drop-down {
+position: absolute;
+}
