@@ -1,13 +1,8 @@
 created: 20190225185537487
-modified: 20190226002201127
+modified: 20190305203235361
 tags: $:/tags/AboveWindow
-title: Window Links
+title: $:/plugins/admls/mentat/window-tabs
 type: text/vnd.tiddlywiki
-
-\define drop-at-end()
-<$action-listops $tiddler=<<tv-story-list>> $subfilter="-[<actionTiddler>]"/>
-<$action-listops $tiddler=<<tv-story-list>> $subfilter="[<actionTiddler>]"/>
-\end
 
 \define drop-actions()
 <$action-listops $tiddler=<<tv-story-list>> $subfilter="+[insertbefore:currentTiddler<actionTiddler>]"/>
@@ -18,9 +13,9 @@ type: text/vnd.tiddlywiki
 \end
 
 <$tiddler tiddler=""><$transclude tiddler="$:/core/ui/Buttons/new-tiddler" mode="inline"/></$tiddler>
-<div class="link-tabs">
+<div class="window-tabs">
 <$tiddler tiddler="">
-<$droppable actions=<<drop-at-end>>>
+<$droppable actions=<<drop-actions>>>
 <div class="tc-droppable-placeholder">&nbsp;
 </div>
 </$droppable>
@@ -29,7 +24,7 @@ type: text/vnd.tiddlywiki
 <$set name="listItemTitle" value={{!!title}}>
 <$reveal type="match" stateTitle=<<tv-story-list>> stateField="current-tiddler" text=<<listItemTitle>>>
 <$droppable actions=<<drop-actions>>>
-<$link to={{!!title}} tooltip={{!!title}} class="link-tab-selected" startactions=<<start-actions>>>
+<$link to={{!!title}} tooltip={{!!title}} class="window-tab-selected" startactions=<<start-actions>>>
 <span>
 <$view field="title"/>
 </span><$button message="tm-close-tiddler" tooltip={{$:/language/Buttons/Close/Hint}} aria-label={{$:/language/Buttons/Close/Caption}} class="tc-btn-invisible tc-btn-mini">&times;</$button> 
@@ -38,7 +33,7 @@ type: text/vnd.tiddlywiki
 </div></$droppable></$reveal>
 <$reveal type="nomatch" stateTitle=<<tv-story-list>> stateField="current-tiddler" text=<<listItemTitle>>>
 <$droppable actions=<<drop-actions>>>
-<$link to={{!!title}} tooltip={{!!title}} class="link-tab">
+<$link to={{!!title}} tooltip={{!!title}} class="window-tab">
 <span>
 <$view field="title"/>
 </span><$button message="tm-close-tiddler" tooltip={{$:/language/Buttons/Close/Hint}} aria-label={{$:/language/Buttons/Close/Caption}} class="tc-btn-invisible tc-btn-mini">&times;</$button> 

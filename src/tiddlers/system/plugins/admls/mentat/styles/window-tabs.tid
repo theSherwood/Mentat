@@ -1,15 +1,15 @@
 created: 20190225184551271
-modified: 20190225192030340
+modified: 20190305211335005
 tags: $:/tags/Stylesheet unfinished tampered
-title: link-tabs stylesheet
+title: $:/plugins/admls/mentat/styles/window-tabs
 type: text/vnd.tiddlywiki
 
-.story-backdrop {
+.window-body .story-backdrop {
 display: flex;
 flex-direction: row;
 }
 
-.link-tabs {
+.window-tabs {
 flex: 1 1 auto;
 display: inline-grid;
 grid-auto-flow: column;
@@ -18,7 +18,7 @@ grid-auto-columns: 1fr;
 justify-items: stretch;
 }
 
-.link-tabs .tc-tiddlylink {
+.window-tabs .tc-tiddlylink {
 position: relative;
 background-color: <<colour tab-background>>;
 border: solid <<colour tab-border>> 1px;
@@ -33,63 +33,66 @@ white-space: nowrap;
 width: 100%;
 }
 
-.link-tabs .tc-tiddlylink.link-tab-selected {
+.window-tabs .tc-tiddlylink.window-tab-selected {
 background-color: <<colour background>>;
 }
 
-.link-tabs .tc-tiddlylink:hover {
+.window-tabs .tc-tiddlylink:hover {
 text-decoration: none;
 }
 
-.link-tabs .tc-tiddlylink span {
+.window-tabs .tc-tiddlylink > span {
 white-space: nowrap;
 overflow: hidden;
 flex: 1 1 auto;
 }
 
-.link-tabs > .tc-reveal {
+.window-tabs > .tc-reveal {
 position: relative;
 grid-column-start: auto;
 grid-column-end: span 1;
 white-space: nowrap;
-overflow: hidden;
 margin: 0px 1px 0px 1px;
+overflow: hidden;
 }
 
-.link-tabs .tc-droppable > .tc-droppable-placeholder {
+.window-tabs .tc-droppable > .tc-droppable-placeholder {
 position: absolute;
 visibility: hidden;
 width: 0px;
-height: 20px;
+height: 100%;
 }
 
-.link-tabs .tc-droppable.tc-dragover > .tc-droppable-placeholder {
+.window-tabs .tc-droppable.tc-dragover > .tc-droppable-placeholder {
 visibility: visible;
 background-color: rgba(0,0,0,.5);
 border: none;
 width: 20px;
 top: 0%;
-right: -10px;
-transform: rotate(45deg);
+left: -10px;
 }
 
-.link-tabs .tc-tiddlylink button {
+.window-tabs .tc-tiddlylink button {
 background-color: inherit;
 padding: 2px 0px 0px 3px;
 height: 100%;
 display: none;
+position: absolute;
+right: 3px;
 }
 
-.link-tabs .tc-tiddlylink:hover button {
-display: inline;
+.window-tabs .tc-tiddlylink:hover button {
 width: auto;
+display: block;
 }
 
-.story-backdrop button[title*="Create a new tiddler"] {
-width: 21px;
+.window-body .story-backdrop button[title*="Create a new tiddler"] {
+width: 22px;
+height: 22px;
 background-color: <<colour tab-background>>;
 margin: 0px 0px 0px 2px;
 border-radius: 2px 2px 0px 0px;
 border: solid <<colour tab-border>> 1px;
-flex: 0 0 21px;
+padding-left: 2px;
+flex: 0 0 22px;
 }
