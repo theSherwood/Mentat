@@ -1,6 +1,6 @@
 created: 20190225180426874
-modified: 20190305222041375
-tags: Mentat
+modified: 20190305225328474
+tags: $:/MentatMenu
 title: Bottombar
 type: text/vnd.tiddlywiki
 
@@ -22,5 +22,5 @@ type: text/vnd.tiddlywiki
 </$link></$reveal>
 </$set></$wikify>
 </$list>
+{{$:/plugins/admls/mentat/ui/Buttons/new-story-window}}
 </div>
-{{$:/plugins/admls/mentat/ui/Buttons/new-window-tiddler}}
