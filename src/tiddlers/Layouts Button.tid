@@ -1,5 +1,5 @@
 created: 20190227225752561
-modified: 20190301112055019
+modified: 20190305204528656
 tags: 
 title: Layouts Button
 type: text/vnd.tiddlywiki
@@ -27,6 +27,11 @@ $:/config/Mentat/layouts/{{$:/state/new-mentat-layout}}/
 
 <$wikify name="layoutPrefix" text=<<getLayoutPrefix>>>
 
+<$button>{{$:/core/images/delete-button}}
+<$list filter="[prefix<layoutPrefix>]">
+<$action-sendmessage $message="tm-delete-tiddler" param=<<currentTiddler>>/>
+</$list>
+</$button>
 <$button>Restore
 <$action-listops $tiddler="$:/state/delete-window-cache" $field="list" $filter="[tag[$:/Window]]"/>
 <$action-listops $tiddler="$:/StoryList" $field="list" $subfilter=" -[tag[$:/Window]]"/>
@@ -36,19 +41,14 @@ $:/config/Mentat/layouts/{{$:/state/new-mentat-layout}}/
 </$list>
 <$action-deletetiddler $filter="[list[$:/state/delete-window-cache]]"/>
 </$button>
-<$button>{{$:/core/images/delete-button}}
-<$list filter="[prefix<layoutPrefix>]">
-<$action-sendmessage $message="tm-delete-tiddler" param=<<currentTiddler>>/>
-</$list>
-</$button>
 <$view field="title"/>
 </$wikify>
 </$list>
 
-Name your new layout:
+Name new layout save:
 
 <$edit-text tiddler="$:/state/new-mentat-layout" tag="input" default=""/>
-<$button>Create New Layout
+<$button>Save Current Layout
 <$wikify name="layoutPrefix" text=<<newLayoutPrefix>>>
 <$action-deletetiddler $filter="[prefix<layoutPrefix>]"/>
 <$list filter="[list[$:/StoryList]tag[$:/Window]]">

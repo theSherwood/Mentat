@@ -1,5 +1,5 @@
 created: 20190228002217473
-modified: 20190301112022899
+modified: 20190305204302410
 tags: 
 title: Sessions Button
 type: text/vnd.tiddlywiki
@@ -27,6 +27,11 @@ $:/config/Mentat/sessions/{{$:/state/new-mentat-session}}/
 
 <$wikify name="sessionPrefix" text=<<getSessionPrefix>>>
 
+<$button>{{$:/core/images/delete-button}}
+<$list filter="[prefix<sessionPrefix>]">
+<$action-sendmessage $message="tm-delete-tiddler" param=<<currentTiddler>>/>
+</$list>
+</$button>
 <$button>Restore
 <$action-listops $tiddler="$:/state/delete-window-cache" $field="list" $filter="[tag[$:/Window]]"/>
 <$action-listops $tiddler="$:/StoryList" $field="list" $subfilter=" -[tag[$:/Window]]"/>
@@ -36,19 +41,14 @@ $:/config/Mentat/sessions/{{$:/state/new-mentat-session}}/
 </$list>
 <$action-deletetiddler $filter="[list[$:/state/delete-window-cache]]"/>
 </$button>
-<$button>{{$:/core/images/delete-button}}
-<$list filter="[prefix<sessionPrefix>]">
-<$action-sendmessage $message="tm-delete-tiddler" param=<<currentTiddler>>/>
-</$list>
-</$button>
 <$view field="title"/>
 </$wikify>
 </$list>
 
-Name your new session:
+Name new session save:
 
 <$edit-text tiddler="$:/state/new-mentat-session" tag="input" default=""/>
-<$button>Create New Session
+<$button>Save Current Session
 <$wikify name="sessionPrefix" text=<<newSessionPrefix>>>
 <$action-deletetiddler $filter="[prefix<sessionPrefix>]"/>
 <$list filter="[list[$:/StoryList]tag[$:/Window]]">
