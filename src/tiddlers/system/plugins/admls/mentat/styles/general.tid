@@ -1,5 +1,5 @@
 created: 20190218191609036
-modified: 20190304170032985
+modified: 20190305194601214
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/general
 type: text/vnd.tiddlywiki
@@ -10,36 +10,36 @@ type: text/vnd.tiddlywiki
 display: none;
 }
 
-[data-tags*="Mentat"] .volant-wrapper {
+[data-tags*="$:/MentatMenu"] .volant-wrapper {
 padding: 5px;
 }
 
-[data-tags*="Mentat"] .tc-title, 
-[data-tags*="Mentat"] .tc-subtitle, 
-[data-tags*="Mentat"] .tc-tags-wrapper {
+[data-tags*="$:/MentatMenu"] .tc-title, 
+[data-tags*="$:/MentatMenu"] .tc-subtitle, 
+[data-tags*="$:/MentatMenu"] .tc-tags-wrapper {
 	display: none;
 }
 
-[data-tags*="Mentat"] .tc-tiddler-controls {
+[data-tags*="$:/MentatMenu"] .tc-tiddler-controls {
     position: absolute;
     top: 0px;
     right: 4px;
 }
 
-[data-tags*="Mentat"] .tc-tiddler-controls button svg, [data-tags*="Mentat"] .tc-tiddler-controls button img { 
+[data-tags*="$:/MentatMenu"] .tc-tiddler-controls button svg, [data-tags*="$:/MentatMenu"] .tc-tiddler-controls button img { 
 	height: 0.75em;
 }
 
-[data-tags*="Mentat"] .tc-tab-content {
+[data-tags*="$:/MentatMenu"] .tc-tab-content {
 	font-size: 14px;
 	line-height: 20px;
 }
-[data-tags*="Mentat"] p {
+[data-tags*="$:/MentatMenu"] p {
 	margin-top: 3px;
 	margin-bottom: 3px;
 }
-[data-tags*="Mentat"] .tc-tab-content button, 
-[data-tags*="Mentat"] .tc-tab-buttons {
+[data-tags*="$:/MentatMenu"] .tc-tab-content button, 
+[data-tags*="$:/MentatMenu"] .tc-tab-buttons {
 	font-size: 12px;
 }
 

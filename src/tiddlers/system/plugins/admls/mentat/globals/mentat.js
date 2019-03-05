@@ -68,9 +68,9 @@ Adds methods and hooks for navigation in mentat storyview
         },
 
         maintainStoryList: function () {
-            // Make sure $:/StoryList is up to date (filtered of everything not Mentat or $:/Window)
+            // Make sure $:/StoryList is up to date (filtered of everything not $:/MentatMenu or $:/Window)
             const windowTitles = $tw.wiki.getTiddlersWithTag("$:/Window");
-            const mentatTitles = $tw.wiki.getTiddlersWithTag("Mentat");
+            const mentatTitles = $tw.wiki.getTiddlersWithTag("$:/MentatMenu");
             const storyTiddler = $tw.wiki.getTiddler("$:/StoryList");
             let storyList = storyTiddler.fields.list.filter(title => (mentatTitles.includes(title) || windowTitles.includes(title)));
             $tw.wiki.addTiddler(new $tw.Tiddler(
@@ -109,8 +109,8 @@ Adds methods and hooks for navigation in mentat storyview
             M.maintainStoryList();
 
             let toTitleTiddler = $tw.wiki.getTiddler(toTitle);
-            // If toTitleTiddler is tagged $:/Window or Mentat
-            if (toTitleTiddler && toTitleTiddler.fields.tags && (toTitleTiddler.fields.tags.includes("Mentat") || toTitleTiddler.fields.tags.includes("$:/Window"))) {
+            // If toTitleTiddler is tagged $:/Window or $:/MentatMenu
+            if (toTitleTiddler && toTitleTiddler.fields.tags && (toTitleTiddler.fields.tags.includes("$:/MentatMenu") || toTitleTiddler.fields.tags.includes("$:/Window"))) {
                 // Add tiddler to $:/StoryList (and navigate to it) regardless of the scope of the widget
                 M.addToBaseStoryList(toTitle, event);
                 // Don't add the tiddler to the same story list that obtains in the scope of the widget

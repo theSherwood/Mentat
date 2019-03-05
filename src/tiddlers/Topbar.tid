@@ -1,11 +1,17 @@
 created: 20190225203539938
-modified: 20190228022429094
-tags: Mentat
+modified: 20190305221512880
+tags: $:/MentatMenu
 title: Topbar
 type: text/vnd.tiddlywiki
 
+@@display: inline-block;
 {{||$:/core/ui/PageTemplate/pagecontrols}}
+@@
+@@display: inline-block;
 {{$:/core/ui/SideBarSegments/search}}
+@@
+@@display: inline-block;
 Layouts {{Layouts Button}}
 Sessions {{Sessions Button}}
 Windows {{Windows Button}}
+@@

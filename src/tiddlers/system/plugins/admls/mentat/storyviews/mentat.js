@@ -20,7 +20,7 @@ var easing = "cubic-bezier(0.645, 0.045, 0.355, 1)";
 var MentatStoryView = function(listWidget) {
 	this.listWidget = listWidget;
 
-	// Hide all tiddlers but those tagged $:/Window or Mentat
+	// Hide all tiddlers but those tagged $:/Window or $:/MentatMenu
 	$tw.utils.each(this.listWidget.children,function(itemWidget,index) {
 		var domNode = itemWidget.findFirstDomNode();
 		// Abandon if the list entry isn't a DOM element (it might be a text node)
@@ -30,8 +30,8 @@ var MentatStoryView = function(listWidget) {
 
 		const tiddlerTitle = itemWidget.parseTreeNode.itemTitle;
 		const tiddler = $tw.wiki.getTiddler(tiddlerTitle);
-		// If the tiddler is not tagged with Mentat or Window
-		if(tiddler && (!tiddler.fields.tags || !(tiddler.fields.tags.includes("Mentat") || tiddler.fields.tags.includes("$:/Window")))) {
+		// If the tiddler is not tagged with $:/MentatMenu or $:/Window
+		if(tiddler && (!tiddler.fields.tags || !(tiddler.fields.tags.includes("$:/MentatMenu") || tiddler.fields.tags.includes("$:/Window")))) {
 			domNode.style.display = "none";
 		}
 	});
@@ -64,7 +64,7 @@ MentatStoryView.prototype.insert = function(widget) {
 
 	const tiddlerTitle = widget.parseTreeNode.itemTitle;
 	const tiddler = $tw.wiki.getTiddler(tiddlerTitle);
-	if(!(tiddler && tiddler.fields.tags && (tiddler.fields.tags.includes("Mentat") || tiddler.fields.tags.includes("$:/Window")))) {
+	if(!(tiddler && tiddler.fields.tags && (tiddler.fields.tags.includes("$:/MentatMenu") || tiddler.fields.tags.includes("$:/Window")))) {
 		domNode.style.display = "none";
 		widget.removeChildDomNodes();
 
