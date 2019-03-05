@@ -1,15 +1,15 @@
 created: 20190225180426874
-modified: 20190305210833413
+modified: 20190305222041375
 tags: Mentat
 title: Bottombar
 type: text/vnd.tiddlywiki
 
-<div class="window-tabs">
+<div class="window-bar">
 <$list filter="[tag[$:/Window]]" storyview="pop">
 <$wikify name="topWindow" text={{$:/plugins/admls/mentat/state/top-window!!text}}>
 <$set name="listItemTitle" value={{!!title}}>
 <$reveal type="match" default=<<topWindow>> text=<<listItemTitle>>>
-<$link to={{!!title}} tooltip={{!!title}} class="window-tab-selected">
+<$link to={{!!title}} tooltip={{!!title}} class="window-tab window-tab-selected">
 <span>
 <$view field="title"/>
 </span><$button message="tm-delete-tiddler" tooltip="Close window" aria-label="Close window" class="tc-btn-invisible tc-btn-mini">&times;</$button> 
@@ -19,7 +19,8 @@ type: text/vnd.tiddlywiki
 <span>
 <$view field="title"/>
 </span><$button message="tm-delete-tiddler" tooltip="Close window" aria-label="Close window" class="tc-btn-invisible tc-btn-mini">&times;</$button> 
-</$link></$reveal></$set></$wikify>
+</$link></$reveal>
+</$set></$wikify>
 </$list>
 </div>
 {{$:/plugins/admls/mentat/ui/Buttons/new-window-tiddler}}

@@ -1,5 +1,5 @@
 created: 20190225184551271
-modified: 20190305211335005
+modified: 20190305220551677
 tags: $:/tags/Stylesheet unfinished tampered
 title: $:/plugins/admls/mentat/styles/window-tabs
 type: text/vnd.tiddlywiki
@@ -18,30 +18,33 @@ grid-auto-columns: 1fr;
 justify-items: stretch;
 }
 
-.window-tabs .tc-tiddlylink {
+.window-tab * {
+color: black;
+font-weight: normal;
+}
+
+.window-tab {
 position: relative;
 background-color: <<colour tab-background>>;
 border: solid <<colour tab-border>> 1px;
 border-radius: 2px 2px 2px 2px;
-color: black;
 display: flex;
 flex-direction: row;
 justify-content: space-between;
-font-weight: normal;
 padding: 0px 3px 0px 3px;
 white-space: nowrap;
 width: 100%;
 }
 
-.window-tabs .tc-tiddlylink.window-tab-selected {
+.window-tab-selected {
 background-color: <<colour background>>;
 }
 
-.window-tabs .tc-tiddlylink:hover {
+.window-tabs .window-tab:hover {
 text-decoration: none;
 }
 
-.window-tabs .tc-tiddlylink > span {
+.window-tab > span {
 white-space: nowrap;
 overflow: hidden;
 flex: 1 1 auto;
@@ -72,7 +75,7 @@ top: 0%;
 left: -10px;
 }
 
-.window-tabs .tc-tiddlylink button {
+.window-tab button {
 background-color: inherit;
 padding: 2px 0px 0px 3px;
 height: 100%;
@@ -81,7 +84,7 @@ position: absolute;
 right: 3px;
 }
 
-.window-tabs .tc-tiddlylink:hover button {
+.window-tab:hover button {
 width: auto;
 display: block;
 }

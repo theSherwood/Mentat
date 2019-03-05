@@ -1,5 +1,5 @@
 created: 20190225185537487
-modified: 20190305203235361
+modified: 20190305215741049
 tags: $:/tags/AboveWindow
 title: $:/plugins/admls/mentat/window-tabs
 type: text/vnd.tiddlywiki
@@ -24,7 +24,7 @@ type: text/vnd.tiddlywiki
 <$set name="listItemTitle" value={{!!title}}>
 <$reveal type="match" stateTitle=<<tv-story-list>> stateField="current-tiddler" text=<<listItemTitle>>>
 <$droppable actions=<<drop-actions>>>
-<$link to={{!!title}} tooltip={{!!title}} class="window-tab-selected" startactions=<<start-actions>>>
+<$link to={{!!title}} tooltip={{!!title}} class="window-tab window-tab-selected" startactions=<<start-actions>>>
 <span>
 <$view field="title"/>
 </span><$button message="tm-close-tiddler" tooltip={{$:/language/Buttons/Close/Hint}} aria-label={{$:/language/Buttons/Close/Caption}} class="tc-btn-invisible tc-btn-mini">&times;</$button> 
