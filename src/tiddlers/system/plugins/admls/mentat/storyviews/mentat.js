@@ -62,57 +62,32 @@ MentatStoryView.prototype.insert = function(widget) {
 		return;
 	}
 
-
 	const tiddlerTitle = widget.parseTreeNode.itemTitle;
 	const tiddler = $tw.wiki.getTiddler(tiddlerTitle);
 	if(!(tiddler && tiddler.fields.tags && (tiddler.fields.tags.includes("Mentat") || tiddler.fields.tags.includes("$:/Window")))) {
 		domNode.style.display = "none";
 		widget.removeChildDomNodes();
 
+		const M = $tw.Mentat;
+
 		const storyTiddler = $tw.wiki.getTiddler("$:/StoryList");
 		let storyList = storyTiddler.fields.list;
 
 		let windowTitles = $tw.wiki.getTiddlersWithTag("$:/Window");
-		// Filter zStack by windowTitles
-		const zStackTitles = $tw.Volant.zStack.map(tiddler => tiddler.dataset.tiddlerTitle);
-		const windowsOnStack = zStackTitles.filter(windowTitle => windowTitles.includes(windowTitle));
-		// Filter story list by windowTitles
-		const windowsInStory = storyList.filter(windowTitle => windowTitles.includes(windowTitle));
-		// Filter windowsOnStack by windowsInStory and get the one at the top of the stack
-		const preferredWindow = windowsOnStack.filter(windowTitle => windowsInStory.includes(windowTitle)).slice(-1)[0];
-		let windowTitle = preferredWindow || windowsInStory.slice(-1)[0] || windowsOnStack.slice(-1)[0] || windowTitles.slice(-1)[0];
+		let windowTitle = M.getTopWindow(windowTitles, storyList);
 
 		// Remove tiddler from $:/StoryList
-		windowTitles = $tw.wiki.getTiddlersWithTag("$:/Window");
-		const mentatTitles = $tw.wiki.getTiddlersWithTag("Mentat");
-		storyList = storyTiddler.fields.list.filter(title => (mentatTitles.includes(title) || windowTitles.includes(title)));
-		$tw.wiki.addTiddler(new $tw.Tiddler(
-			{ title: "$:/StoryList" },
-			{ list: storyList }
-		));
+		M.maintainStoryList();
 		
 		if(!windowTitle) {
-			windowTitle = $tw.wiki.generateNewTitle("$:/Window");
-			const windowTiddler = new $tw.Tiddler({
-				title: windowTitle,
-				tags: "$:/Window $:/config/Volant",
-				view: $tw.wiki.getTiddler("$:/plugins/admls/mentat/config/values").fields["default-window-storyview"] || "classic"
-			});
-			$tw.wiki.addTiddler(windowTiddler);
-		}
-
-		const riverPositions = {
-			openLinkFromInsideRiver: $tw.wiki.getTiddler("$:/config/Navigation/openLinkFromInsideRiver").fields.text || "top",
-			openLinkFromOutsideRiver: $tw.wiki.getTiddler("$:/config/Navigation/openLinkFromOutsideRiver").fields.text || "top"
+			windowTitle = M.createWindow();
 		}
 
 		// Add the window to the $:/StoryList
-		$tw.wiki.addToStory(windowTitle, undefined, "$:/StoryList", riverPositions);
-		$tw.wiki.addToHistory(windowTitle, undefined, "$:/HistoryList");
+		M.addToBaseStoryList(windowTitle, {}, true);
 
 		// Add the tiddlerTitle to the window
-		$tw.wiki.addToStory(tiddlerTitle, undefined, windowTitle, riverPositions);
-		$tw.wiki.addToHistory(tiddlerTitle, undefined, windowTitle);
+		M.addToWindow({navigateTo:tiddlerTitle}, windowTitle);
 	}
     
 };

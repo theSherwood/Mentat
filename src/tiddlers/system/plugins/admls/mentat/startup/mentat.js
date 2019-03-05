@@ -3,8 +3,8 @@ created: 20190220195956481
 type: application/javascript
 title: $:/plugins/admls/mentat/startup/mentat.js
 tags: 
-modified: 20190227183353369
-module-type: startup
+modified: 20190302032840459
+module-type: 
 
 Add hooks.
 
@@ -17,11 +17,11 @@ Add hooks.
 
 	// Export name and synchronous status
 	exports.name = "mentat";
-	exports.after = ["story"];
+	exports.after = ["render"];
 	exports.synchronous = true;
 
 	exports.startup = function () {
-		addHooks()
+		addHooks();
 	};
 
 	function addHooks() {
@@ -29,10 +29,8 @@ Add hooks.
 
 			const baseStoryView = $tw.wiki.getTiddler("$:/view").fields.text;
 			if (baseStoryView === "mentat") {
-				console.log('INITIAL EVENT',event);
 				const toTitle = event.navigateTo;
 				const widget = event.navigateFromNode;
-
 
 				// Make sure $:/StoryList is up to date
 				maintainStoryList();
@@ -53,7 +51,7 @@ Add hooks.
 					let windowTitles = $tw.wiki.getTiddlersWithTag("$:/Window");
 
 					// Search to see if the toTitle tiddler is already in the story list of a window
-					if(!(event.shiftKey || event.altKey)) { // Don't search in other windows if the shiftKey or altKey were pressed
+					if (!(event.shiftKey || event.altKey)) { // Don't search in other windows if the shiftKey or altKey were pressed
 						const windowsContainingToTitle = []
 						windowTitles.forEach(windowTitle => {
 							const windowTiddler = $tw.wiki.getTiddler(windowTitle);
