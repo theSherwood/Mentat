@@ -1,5 +1,5 @@
 created: 20190131224855059
-modified: 20190304170232572
+modified: 20190305222252447
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/volant/styles/general
 type: text/vnd.tiddlywiki
@@ -23,6 +23,7 @@ padding: 25px 15px 15px 15px;
 width: 12px;
 height: 12px;
 background-color: {{$:/plugins/admls/volant/config/values!!resizer-color}};
+z-index: 100;
 }
 
 .resizer-left {
