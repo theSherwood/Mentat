@@ -1,5 +1,5 @@
 created: 20190304165703743
-modified: 20190304165724676
+modified: 20190305112437545
 title: $:/core/ui/EditTemplate
 type: text/vnd.tiddlywiki
 
@@ -17,17 +17,17 @@ tc-tiddler-frame tc-tiddler-edit-frame $(missingTiddlerClass)$ $(shadowTiddlerCl
 <div class=<<frame-classes>> data-tiddler-title=<<currentTiddler>>>
 <$fieldmangler>
 <$set name="storyTiddler" value=<<currentTiddler>>>
+<div class="volant-wrapper">
 <$keyboard key="((cancel-edit-tiddler))" message="tm-cancel-tiddler">
 <$keyboard key="((save-tiddler))" actions=<<actions>>>
-<div class="volant-wrapper">
 <$list filter="[all[shadows+tiddlers]tag[$:/tags/EditTemplate]!has[draft.of]]" variable="listItem">
 <$set name="tv-config-toolbar-class" filter="[<tv-config-toolbar-class>] [<listItem>encodeuricomponent[]addprefix[tc-btn-]]">
 <$transclude tiddler=<<listItem>>/>
 </$set>
 </$list>
+</$keyboard>
+</$keyboard>
 </div>
-</$keyboard>
-</$keyboard>
 </$set>
 </$fieldmangler>
 </div>
