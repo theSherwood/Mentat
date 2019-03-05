@@ -42,7 +42,7 @@ module-type: widget
             elmnt = elmnt.parentElement;
         }
         const tiddler = elmnt;
-        //this.tiddler = tiddler;
+        this.tiddler = tiddler;
 
         tiddler.className += " volant";
         tiddler.style.position = position;
@@ -52,10 +52,7 @@ module-type: widget
         const resizerRight = document.createElement("div");
         resizerRight.className = "resizer resizer-right";
         resizerRight.style.position = "fixed";
-        if (position === "absolute") {
-            resizerLeft.className += ' ' + 'absolute';
-            resizerRight.className += ' ' + 'absolute';
-        }
+
         tiddler.appendChild(resizerLeft);
         tiddler.appendChild(resizerRight);
 
@@ -116,7 +113,7 @@ module-type: widget
         $tw.Volant.pushTiddlerToZStack(tiddler);
     };
 
-    VolantWidget.prototype.getConfigTiddler = function (title) {
+    VolantWidget.prototype.getConfigTiddler = function(title) {
         let tiddlerTitle = title;
         this.configTiddlerTitle = tiddlerTitle;
         if (!(this.separateConfig === "no")) {
