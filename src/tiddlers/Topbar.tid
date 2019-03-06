@@ -1,5 +1,5 @@
 created: 20190225203539938
-modified: 20190305221512880
+modified: 20190305233404027
 tags: $:/MentatMenu
 title: Topbar
 type: text/vnd.tiddlywiki
@@ -11,7 +11,7 @@ type: text/vnd.tiddlywiki
 {{$:/core/ui/SideBarSegments/search}}
 @@
 @@display: inline-block;
-Layouts {{Layouts Button}}
-Sessions {{Sessions Button}}
-Windows {{Windows Button}}
+{{Layouts Button}}
+{{Sessions Button}}
+{{Windows Button}}
 @@
