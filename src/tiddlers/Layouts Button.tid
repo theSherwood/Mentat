@@ -1,5 +1,5 @@
 created: 20190227225752561
-modified: 20190305204528656
+modified: 20190305233237880
 tags: 
 title: Layouts Button
 type: text/vnd.tiddlywiki
@@ -14,7 +14,7 @@ $:/config/Mentat/layouts/{{$:/state/new-mentat-layout}}/
 
 <span class="tc-popup-keep">
 <$button popup=<<qualify "$:/state/filterDropdown">> class="tc-btn-invisible">
-{{$:/core/images/down-arrow}}
+Layouts {{$:/core/images/down-arrow}}
 </$button>
 </span>
 

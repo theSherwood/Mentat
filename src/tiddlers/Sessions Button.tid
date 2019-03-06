@@ -1,5 +1,5 @@
 created: 20190228002217473
-modified: 20190305204302410
+modified: 20190305233226809
 tags: 
 title: Sessions Button
 type: text/vnd.tiddlywiki
@@ -14,7 +14,7 @@ $:/config/Mentat/sessions/{{$:/state/new-mentat-session}}/
 
 <span class="tc-popup-keep">
 <$button popup=<<qualify "$:/state/filterDropdown">> class="tc-btn-invisible">
-{{$:/core/images/down-arrow}}
+Sessions {{$:/core/images/down-arrow}}
 </$button>
 </span>
 
