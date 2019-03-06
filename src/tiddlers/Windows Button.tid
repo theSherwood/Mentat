@@ -1,5 +1,5 @@
 created: 20190228014435887
-modified: 20190305233214104
+modified: 20190306213457607
 tags: 
 title: Windows Button
 type: text/vnd.tiddlywiki
@@ -40,7 +40,7 @@ Name new window save:
 <$button>Save Selected Window
 <$wikify name="newWindowPrefix" text=<<newWindowPrefix>>>
 <$action-deletetiddler $filter="[prefix<newWindowPrefix>]"/>
-<$wikify name="topWindow" text={{$:/state/topwindow}}>
+<$wikify name="topWindow" text={{$:/plugins/admls/mentat/state/top-window}}>
 <$list filter="[title<topWindow>]">
 <$action-createtiddler $basetitle=<<newWindowPrefix>> tags="$:/config/Window" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
 </$list>
