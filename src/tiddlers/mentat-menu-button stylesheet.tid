@@ -1,5 +1,5 @@
 created: 20190225223359392
-modified: 20190225231357301
+modified: 20190306124331136
 tags: $:/tags/Stylesheet
 title: mentat-menu-button stylesheet
 type: text/vnd.tiddlywiki
@@ -11,10 +11,38 @@ right: 20px;
 z-index: 1000;
 }
 
+.mentat-menu-button .menu-list {
+position: absolute;
+bottom: 20px;
+right: 20px;
+opacity: 0;
+z-index: -1;
+box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+background-color: white;
+border-radius: 4px;
+padding: 5px;
+transition: 0s;
+width: 0px;
+height: 0px;
+}
+
+.mentat-menu-button:hover .menu-list {
+opacity: 1;
+height: auto;
+transition-delay: .7s;
+width: auto;
+right: 0px;
+bottom: 40px;
+}
+
+.mentat-menu-button .menu-list * {
+text-align: right;
+}
+
 .default-mentat-menu-button {
 background-color: rgba(200,0,0,1);
 border-radius: 50%;
 height: 40px;
 width: 40px;
-box-shadow: 2px 2px 12px 2px rgba(0,0,0,.6);
+box-shadow: 2px 2px 12px 2px rgba(0,0,0,.5);
 }

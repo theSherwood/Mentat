@@ -1,11 +1,17 @@
 created: 20190225223248466
-modified: 20190225232643163
+modified: 20190306134246487
 tags: $:/tags/PageTemplate
 title: mentat-menu-button
 type: text/vnd.tiddlywiki
 
 <$reveal type="match" state="$:/view" text="mentat">
 <$button class="mentat-menu-button tc-btn-invisible">
+<div class="menu-list">
+<$list filter="[list[$:/StoryList]tag[$:/MentatMenu]]">
+
+<$link to=<<currentTiddler>>>{{!!title}}</$link>
+</$list>
+</div>
 <$list filter="[tag[$:/MentatMenuButton]first[]]" emptyMessage="<div class='default-mentat-menu-button'></div>">{{!!text}}</$list>
 <$reveal type="match" default={{{ [tag[$:/MentatMenu]count[]] }}} text={{{ [list[$:/StoryList]tag[$:/MentatMenu]count[]] }}}>
 <$action-listops $tiddler="$:/StoryList" $subfilter="-[tag[$:/MentatMenu]]"/>
