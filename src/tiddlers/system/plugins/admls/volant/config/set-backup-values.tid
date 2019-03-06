@@ -1,0 +1,11 @@
+created: 20190306135134414
+modified: 20190306135604234
+tags: $:/Volant
+title: $:/plugins/admls/volant/config/set-backup-values
+type: text/vnd.tiddlywiki
+
+Click the button to set the position of this tiddler as the backup/default position volant tiddlers.
+
+<$button>Set Backup Values
+<$action-setfield $tiddler="$:/plugins/admls/volant/config/backup-values" backup-height={{$:/config/Volant/$:/plugins/admls/volant/config/set-backup-values!!height}} backup-width={{$:/config/Volant/$:/plugins/admls/volant/config/set-backup-values!!width}} backup-top={{$:/config/Volant/$:/plugins/admls/volant/config/set-backup-values!!top}} backup-left={{$:/config/Volant/$:/plugins/admls/volant/config/set-backup-values!!left}}/>
+</$button>
