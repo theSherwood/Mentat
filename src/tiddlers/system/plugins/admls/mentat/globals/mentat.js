@@ -16,6 +16,8 @@ Adds methods and hooks for navigation in mentat storyview
     "use strict";
 
     const Mentat = {
+        allowedTags: ["$:/MentatMenu", "$:/Window"],
+
         getTopWindow: function (windowTitles, storyList) {
             // Filter zStack by windowTitles
             const zStackTitles = $tw.Volant.zStack.map(tiddler => tiddler.dataset.tiddlerTitle);
@@ -50,7 +52,7 @@ Adds methods and hooks for navigation in mentat storyview
             }
         },
 
-        addToBaseStoryList: function (tiddlerTitleToAdd, event, navigate=true) {
+        addToBaseStoryList: function (tiddlerTitleToAdd, event, navigate = true) {
             const riverPositions = $tw.Mentat.getRiverPositions();
             // Add tiddler to $:/StoryList (and navigate to it)
             $tw.wiki.addToStory(tiddlerTitleToAdd, event.navigateFromTitle, "$:/StoryList", riverPositions);
@@ -68,11 +70,22 @@ Adds methods and hooks for navigation in mentat storyview
         },
 
         maintainStoryList: function () {
-            // Make sure $:/StoryList is up to date (filtered of everything not $:/MentatMenu or $:/Window)
-            const windowTitles = $tw.wiki.getTiddlersWithTag("$:/Window");
-            const mentatTitles = $tw.wiki.getTiddlersWithTag("$:/MentatMenu");
+            let allowedTitles = [];
+            console.log($tw.Mentat.allowedTags);
+            for (let tag of $tw.Mentat.allowedTags) {
+                const titles = $tw.wiki.getTiddlersWithTag(tag);
+                allowedTitles = allowedTitles.concat(titles);
+            }
+            console.log(allowedTitles);
             const storyTiddler = $tw.wiki.getTiddler("$:/StoryList");
-            let storyList = storyTiddler.fields.list.filter(title => (mentatTitles.includes(title) || windowTitles.includes(title)));
+            let storyList = storyTiddler.fields.list.filter(title => allowedTitles.includes(title));
+
+            // Make sure $:/StoryList is up to date (filtered of everything not $:/MentatMenu or $:/Window)
+            // const windowTitles = $tw.wiki.getTiddlersWithTag("$:/Window");
+            // const mentatTitles = $tw.wiki.getTiddlersWithTag("$:/MentatMenu");
+            // const storyTiddler = $tw.wiki.getTiddler("$:/StoryList");
+            // let storyList = storyTiddler.fields.list.filter(title => (mentatTitles.includes(title) || windowTitles.includes(title)));
+
             $tw.wiki.addTiddler(new $tw.Tiddler(
                 { title: "$:/StoryList" },
                 { list: storyList }
@@ -89,6 +102,23 @@ Adds methods and hooks for navigation in mentat storyview
                 c++;
             } while ($tw.wiki.tiddlerExists(draftTitle));
             return draftTitle;
+        },
+
+        updateAllowedTags: function () {
+            const M = $tw.Mentat;
+            // Determine if default volant tagged tiddlers should be allowed on $:/StoryList
+            const volantDefaultFunctions = ($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields["default-functionality"] === "on") ? true : false;
+            if (volantDefaultFunctions) {
+                const volantTagsTiddler = $tw.wiki.getTiddler("$:/plugins/admls/volant/config/tags");
+                const defaultTag = volantTagsTiddler.fields.default || "$:/Volant";
+                const absoluteTag = volantTagsTiddler.fields.absolute || "$:/VolantAbsolute";
+                if (!M.allowedTags.includes(defaultTag)) {
+                    M.allowedTags.push(defaultTag);
+                }
+                if (!M.allowedTags.includes(absoluteTag)) {
+                    M.allowedTags.push(absoluteTag);
+                }
+            }
         }
     };
 
@@ -105,17 +135,27 @@ Adds methods and hooks for navigation in mentat storyview
             const toTitle = event.navigateTo;
             const widget = event.navigateFromNode;
 
+            let toTitleTiddler = $tw.wiki.getTiddler(toTitle);
+
+            // Allow volant tiddlers with volant tags to be added to $:/StoryList if default functionality is "on"
+            M.updateAllowedTags();
+            
+            if (toTitleTiddler && toTitleTiddler.fields.tags) {
+                // If toTitleTiddler is tagged with any of the allowable tags
+                for (let tag of toTitleTiddler.fields.tags) {
+                    if (M.allowedTags.includes(tag)) {
+                        // Add tiddler to $:/StoryList (and navigate to it) regardless of the scope of the widget
+                        M.addToBaseStoryList(toTitle, event);
+                        // Don't add the tiddler to the same story list that obtains in the scope of the widget
+                        return {};
+                    }
+                }
+            }
+
             // Make sure $:/StoryList is up to date
             M.maintainStoryList();
 
-            let toTitleTiddler = $tw.wiki.getTiddler(toTitle);
-            // If toTitleTiddler is tagged $:/Window or $:/MentatMenu
-            if (toTitleTiddler && toTitleTiddler.fields.tags && (toTitleTiddler.fields.tags.includes("$:/MentatMenu") || toTitleTiddler.fields.tags.includes("$:/Window"))) {
-                // Add tiddler to $:/StoryList (and navigate to it) regardless of the scope of the widget
-                M.addToBaseStoryList(toTitle, event);
-                // Don't add the tiddler to the same story list that obtains in the scope of the widget
-                return {};
-            } else if (toTitle) {
+            if (toTitle) {
                 // Get $:/StoryList
                 const baseStoryTiddler = $tw.wiki.getTiddler("$:/StoryList");
                 const baseStoryList = baseStoryTiddler.fields.list;
