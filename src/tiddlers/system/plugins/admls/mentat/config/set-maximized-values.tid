@@ -1,0 +1,11 @@
+created: 20190306133721143
+modified: 20190306135015311
+tags: $:/MentatMenu
+title: $:/plugins/admls/mentat/config/set-maximized-values
+type: text/vnd.tiddlywiki
+
+Click the button to set the position of this tiddler as the maximized position of story windows.
+
+<$button>Set Maximized Values
+<$action-setfield $tiddler="$:/plugins/admls/mentat/config/maximized-values" maximized-height={{$:/config/Mentat/$:/plugins/admls/mentat/config/set-maximized-values!!height}} maximized-width={{$:/config/Mentat/$:/plugins/admls/mentat/config/set-maximized-values!!width}} maximized-top={{$:/config/Mentat/$:/plugins/admls/mentat/config/set-maximized-values!!top}} maximized-left={{$:/config/Mentat/$:/plugins/admls/mentat/config/set-maximized-values!!left}}/>
+</$button>
