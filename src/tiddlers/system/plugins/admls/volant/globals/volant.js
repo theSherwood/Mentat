@@ -7,7 +7,7 @@ modified: 20190221170445591
 module-type: global
 
 
-Description...
+Methods and eventListeners for tiddlers that can be repositioned and resized with ease.
 
 
 \*/
@@ -84,8 +84,11 @@ const Volant = {
             $tw.wiki.setText(configTiddlerTitle,'height',undefined,tiddler.style.height,undefined);
         }
         
+        // Remove the styling from the tiddler once the css has caught up
         setTimeout(function() {
-            $tw.Volant.removeStyle(tiddler);
+            window.requestAnimationFrame(() => {
+                $tw.Volant.removeStyle(tiddler);
+            });
         }, 0);
         this.eventTiddler = undefined;
         this.configTiddlerTitle = undefined;
@@ -104,9 +107,10 @@ const Volant = {
         	return;
         };
     	const zStack = Volant.zStack;
-        const index = zStack.indexOf(tiddler);
-        if (index !== -1) {
+        let index = zStack.indexOf(tiddler);
+        while (index !== -1) {
           zStack.splice(index, 1);
+          index = zStack.indexOf(tiddler);
         }
         zStack.push(tiddler);
         Volant.evaluateZStack();
@@ -114,14 +118,16 @@ const Volant = {
     
    	evaluateZStack: function() {
     	const Volant = $tw.Volant;
-        // Filter out tiddlers no longer in the storyList
-        const storyList = $tw.wiki.getTiddler("$:/StoryList").fields.list;
 
-        Volant.zStack = Volant.zStack.filter(tiddler => storyList.includes(tiddler.dataset.tiddlerTitle));
         const zStack = Volant.zStack;
-        // Logs zStack to the list of $:/state/zStack
-        const zList = zStack.map(tiddler => tiddler.dataset.tiddlerTitle);      
-        $tw.wiki.setText("$:/state/zStack","list",undefined,$tw.utils.stringifyList(zList.slice(-20)));
+        // Log zStack to the list of $:/state/zStack
+        const zList = zStack.map(tiddler => tiddler.dataset.tiddlerTitle).slice(-20);        
+        const zStackTiddler = $tw.wiki.getTiddler("$:/state/zStack");
+        $tw.wiki.addTiddler(new $tw.Tiddler(
+            {title: "$:/state/zStack"},
+            zStackTiddler,
+            {list: zList}
+        ));
 
         // Assigns z-index to the elements in zstack based on position.
         for (let i = 0; i < zStack.length; i++) {
@@ -264,7 +270,7 @@ const Volant = {
     
     getGrid: function() {
         $tw.Volant.grid = {
-        	viewportWidth: document.documentElement.clientWidth,
+        	viewportWidth: document.documentElement.clientWidth, //excludes scrollbars
             viewportHeight: document.documentElement.clientHeight,
             defaultGridSize: Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.defaultgridsize) || 1,
             absoluteGridSize: Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.absolutegridsize) || 1
@@ -272,12 +278,13 @@ const Volant = {
     },
     
     convertToGridValue(number, positionIsFixed, direction) {
-    	const grid = $tw.Volant.grid;
-        if(positionIsFixed) {
+        const grid = $tw.Volant.grid;
+        // Fixed and absolute used different grid schemes
+        if(positionIsFixed) { // fixed grid uses a percentage of the viewport
         	const viewportValue = (direction === "width") ? grid.viewportWidth : grid.viewportHeight;
             let percentage = (number / viewportValue) * 100;
             return Math.round(percentage / grid.defaultGridSize) * grid.defaultGridSize;
-        } else {
+        } else { // absolute grid is a number of pixels
         	const quotient = number / grid.absoluteGridSize;
             return Math.round(Math.round(quotient) * grid.absoluteGridSize);
         }
@@ -303,7 +310,7 @@ $tw.hooks.addHook("th-deleting-tiddler", function(tiddler) {
 
 $tw.hooks.addHook("th-relinking-tiddler", function(newTiddler, tiddler) {
 	
-    if(newTiddler.hasTag("$:/config/Volant")) {
+    if(newTiddler.hasTag(configTiddlerTag)) {
         const newTitle = newTiddler.fields.prefix + newTiddler.fields.list[0];
         const newConfigTiddler = new $tw.Tiddler(newTiddler,{title: newTitle},$tw.wiki.getModificationFields());
         $tw.wiki.deleteTiddler(tiddler.fields.title);
