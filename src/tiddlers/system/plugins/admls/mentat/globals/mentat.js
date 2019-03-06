@@ -1,9 +1,9 @@
 /*\
 created: 20190301234816184
-title: $:/plugins/admls/mentat/globals/mentat.js
 type: application/javascript
-modified: 20190301234849513
+title: $:/plugins/admls/mentat/globals/mentat.js
 tags: 
+modified: 20190306190136948
 module-type: global
 
 Adds methods and hooks for navigation in mentat storyview
@@ -71,21 +71,12 @@ Adds methods and hooks for navigation in mentat storyview
 
         maintainStoryList: function () {
             let allowedTitles = [];
-            console.log($tw.Mentat.allowedTags);
             for (let tag of $tw.Mentat.allowedTags) {
                 const titles = $tw.wiki.getTiddlersWithTag(tag);
                 allowedTitles = allowedTitles.concat(titles);
             }
-            console.log(allowedTitles);
             const storyTiddler = $tw.wiki.getTiddler("$:/StoryList");
             let storyList = storyTiddler.fields.list.filter(title => allowedTitles.includes(title));
-
-            // Make sure $:/StoryList is up to date (filtered of everything not $:/MentatMenu or $:/Window)
-            // const windowTitles = $tw.wiki.getTiddlersWithTag("$:/Window");
-            // const mentatTitles = $tw.wiki.getTiddlersWithTag("$:/MentatMenu");
-            // const storyTiddler = $tw.wiki.getTiddler("$:/StoryList");
-            // let storyList = storyTiddler.fields.list.filter(title => (mentatTitles.includes(title) || windowTitles.includes(title)));
-
             $tw.wiki.addTiddler(new $tw.Tiddler(
                 { title: "$:/StoryList" },
                 { list: storyList }
@@ -146,6 +137,24 @@ Adds methods and hooks for navigation in mentat storyview
                     if (M.allowedTags.includes(tag)) {
                         // Add tiddler to $:/StoryList (and navigate to it) regardless of the scope of the widget
                         M.addToBaseStoryList(toTitle, event);
+                        // Remove the tiddler from the window if the navigation began there
+                        const fromTiddler = $tw.wiki.getTiddler(event.navigateFromTitle);
+                        if(fromTiddler && fromTiddler.fields.tags && fromTiddler.fields.tags.includes("$:/Window")) {
+                            // Get the window storyList
+                            let storyList = fromTiddler.fields.list.slice();
+                            // Remove toTitle from the window storyList
+                            let p = storyList.indexOf(toTitle);
+                            while(p !== -1) {
+                                storyList.splice(p,1);
+                                p = storyList.indexOf(toTitle);
+                            }
+                            // Save the window
+                            $tw.wiki.addTiddler(new $tw.Tiddler(
+                                {title: event.navigateFromTitle},
+                                fromTiddler,
+                                {list: storyList}
+                            ));
+                        }
                         // Don't add the tiddler to the same story list that obtains in the scope of the widget
                         return {};
                     }
