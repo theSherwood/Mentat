@@ -87,7 +87,7 @@ Adds a few hooks, too.
                 window.requestAnimationFrame(() => {
                     $tw.Volant.removeStyle(tiddler);
                 });
-            }, 0);
+            }, 500);
             this.eventTiddler = undefined;
             this.configTiddlerTitle = undefined;
         },
