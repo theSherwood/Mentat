@@ -1,5 +1,5 @@
 created: 20190131224855059
-modified: 20190305222252447
+modified: 20190307113800082
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/volant/styles/general
 type: text/vnd.tiddlywiki
@@ -8,6 +8,10 @@ type: text/vnd.tiddlywiki
 
 .volant {
 padding: 0px;
+}
+
+.volant [hidden] {
+display: none;
 }
 
 .volant > .volant-wrapper {
