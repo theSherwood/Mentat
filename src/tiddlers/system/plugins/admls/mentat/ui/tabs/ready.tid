@@ -1,0 +1,32 @@
+caption: Ready
+created: 20190307155300005
+list-before: $:/plugins/admls/mentat/ui/tabs/layout-archive
+modified: 20190307160724890
+tags: $:/tags/MentatTab
+title: $:/plugins/admls/mentat/ui/tabs/ready
+type: text/vnd.tiddlywiki
+
+<hr>
+
+<$list filter="[all[system+tiddlers]tag[$:/Window]]" variable="windowTiddler" emptyMessage={{$:/plugins/admls/mentat/ui/Buttons/new-window-tiddler}}>
+
+<div style="position: relative;">
+<div>
+<$link to=<<windowTiddler>>>&nbsp;<$text text=<<windowTiddler>>/>&nbsp;</$link>
+</div>
+</div>
+
+<$list filter="[list<windowTiddler>]">
+<div style="position: relative;">
+<$droppable actions=<<drop-actions>>>
+<div class="tc-droppable-placeholder">
+&nbsp;
+</div>
+<div>
+<$link to={{!!title}}><$view field="title"/></$link>
+</div>
+</$droppable>
+</div>
+</$list>
+<hr>
+</$list>
