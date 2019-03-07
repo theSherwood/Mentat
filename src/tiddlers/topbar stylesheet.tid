@@ -1,5 +1,5 @@
 created: 20190225211320497
-modified: 20190225222003125
+modified: 20190305232307020
 tags: $:/tags/Stylesheet tampered
 title: topbar stylesheet
 type: text/vnd.tiddlywiki
@@ -16,8 +16,8 @@ display: inline;
 display: block;
 }
 
-[data-tiddler-title="Topbar"] {
-overflow: visible;
+[data-tiddler-title="Topbar"] .tc-search-drop-down[hidden] {
+display: none;
 }
 
 </$reveal>
