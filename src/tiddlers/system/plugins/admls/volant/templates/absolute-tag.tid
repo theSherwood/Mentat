@@ -1,13 +1,11 @@
 created: 20190204183011639
-modified: 20190216093227752
-tags: $:/tags/EditTemplate $:/tags/ViewTemplate
+modified: 20190307104149716
+tags: $:/tags/ViewTemplate $:/tags/EditTemplate
 title: $:/plugins/admls/volant/templates/absolute-tag
 type: text/vnd.tiddlywiki
 
 <$reveal type="match" stateTitle="$:/plugins/admls/volant/config/values" stateField="default-functionality" text="on">
-<$set name="volant-absolute" value={{$:/plugins/admls/volant/config/tags!!absolute}}>
-<$list filter="[is[current]tag<volant-absolute>]">
+<$list filter="[is[current]tag[$:/VolantAbsolute]]">
 <$volant position="absolute" separateConfig="yes"/>
 </$list>
-</$set>
 </$reveal>

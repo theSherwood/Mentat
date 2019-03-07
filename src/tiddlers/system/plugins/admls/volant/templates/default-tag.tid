@@ -1,13 +1,11 @@
 created: 20190131232747058
-modified: 20190216190528701
+modified: 20190307104121767
 tags: $:/tags/EditTemplate $:/tags/ViewTemplate
 title: $:/plugins/admls/volant/templates/default-tag
 type: text/vnd.tiddlywiki
 
 <$reveal type="match" stateTitle="$:/plugins/admls/volant/config/values" stateField="default-functionality" text="on">
-<$set name="volant-default" value={{$:/plugins/admls/volant/config/tags!!default}}>
-<$list filter="[is[current]tag<volant-default>]">
+<$list filter="[is[current]tag[$:/Volant]]">
 <$volant separateConfig="yes"/>
 </$list>
-</$set>
 </$reveal>

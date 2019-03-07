@@ -16,9 +16,7 @@ width: calc(50% - 0px)
 \end
 
 <$reveal type="match" stateTitle="$:/plugins/admls/volant/config/values" stateField="default-functionality" text="on">
-<$set name="volant-default" value={{$:/plugins/admls/volant/config/tags!!default}}>
-<$set name="volant-absolute" value={{$:/plugins/admls/volant/config/tags!!absolute}}>
-<$list filter="[list[$:/StoryList]tag<volant-default>] [list[$:/StoryList]tag<volant-absolute>]">
+<$list filter="[list[$:/StoryList]tag[$:/Volant]] [list[$:/StoryList]tag[$:/VolantAbsolute]]">
 
 [data-tiddler-title="<<currentTiddler>>"] {
 top: <<backup top>>;
@@ -33,6 +31,4 @@ font-size: 1.6em;
 }
 
 </$list>
-</$set>
-</$set>
 </$reveal>
