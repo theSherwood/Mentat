@@ -1,6 +1,6 @@
 caption: Sessions
 created: 20190228002217473
-modified: 20190307160315076
+modified: 20190307171517418
 tags: $:/tags/MentatTab
 title: $:/plugins/admls/mentat/ui/tabs/session-archive
 type: text/vnd.tiddlywiki
@@ -41,7 +41,7 @@ Name new session save:
 <$button>Save Current Session
 <$wikify name="sessionPrefix" text=<<newSessionPrefix>>>
 <$action-deletetiddler $filter="[prefix<sessionPrefix>]"/>
-<$list filter="[list[$:/StoryList]tag[$:/Window]]">
+<$list filter="[tag[$:/Window]]">
 <$list filter="[all[current]] +[addprefix<sessionPrefix>]" variable="listItem">
 <$action-createtiddler $basetitle=<<listItem>> tags="$:/config/Window" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
 </$list>
