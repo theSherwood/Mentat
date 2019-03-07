@@ -1,7 +1,7 @@
 created: 20190305103358375
-modified: 20190305152227863
+modified: 20190305203147385
 tags: $:/tags/Stylesheet
-title: tc-search stylesheet
+title: $:/plugins/admls/volant/styles/dropdown
 type: text/vnd.tiddlywiki
 
 .volant .tc-block-dropdown {
