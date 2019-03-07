@@ -1,7 +1,8 @@
+caption: Sessions
 created: 20190228002217473
-modified: 20190306234005428
-tags: 
-title: $:/plugins/admls/mentat/ui/Buttons/session-archive
+modified: 20190307160315076
+tags: $:/tags/MentatTab
+title: $:/plugins/admls/mentat/ui/tabs/session-archive
 type: text/vnd.tiddlywiki
 
 \define getSessionPrefix(currentTiddler)
@@ -11,17 +12,6 @@ $:/config/Mentat/sessions/$(currentTiddler)$/
 \define newSessionPrefix()
 $:/config/Mentat/sessions/{{$:/state/new-mentat-session}}/
 \end
-
-<span class="tc-popup-keep">
-<$button popup=<<qualify "$:/state/filterDropdown">> class="tc-btn-invisible">
-Sessions {{$:/core/images/down-arrow}}
-</$button>
-</span>
-
-<$reveal state=<<qualify "$:/state/filterDropdown">> type="popup" position="belowleft" animate="yes" class="tc-popup-keep">
-
-<div class="tc-block-dropdown-wrapper">
-<div class="tc-block-dropdown tc-edit-type-dropdown">
 
 <$list filter="[removeprefix[$:/config/Mentat/sessions/]splitbefore[/]removesuffix[/]]">
 
@@ -58,7 +48,3 @@ Name new session save:
 </$list>
 </$wikify>
 </$button>
-
-</div>
-</div>
-</$reveal>

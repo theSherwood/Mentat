@@ -1,0 +1,28 @@
+created: 20190307142235063
+modified: 20190307155010068
+tags: $:/tags/Stylesheet
+title: $:/plugins/admls/mentat/styles/mentat-dropdown
+type: text/vnd.tiddlywiki
+
+.mentat-dropdown-wrapper {
+height: 100%;
+width: 100%;
+padding: 10px;
+}
+
+.mentat-dropdown {
+background-color: <<colour background>>;
+padding: 10px;
+box-sizing: border-box;
+min-width: 220px;
+box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+border-radius: 4px;
+height: 100%;
+width: 100%;
+overflow: auto;
+overflow-wrap: break-word;
+}
+
+.mentat-dropdown * {
+overflow-wrap: break-word;
+}

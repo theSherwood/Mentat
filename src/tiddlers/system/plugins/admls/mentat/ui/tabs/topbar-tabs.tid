@@ -1,0 +1,31 @@
+created: 20190307112311923
+modified: 20190307154842412
+tags: 
+title: $:/plugins/admls/mentat/ui/tabs/topbar-tabs
+type: text/vnd.tiddlywiki
+
+\define concatCurrent() $:/state/dropdown/$(currentTiddler)$
+
+<div class="tc-tab-set">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/SideBar]]">
+<$qualify name="qualifiedCurrent" title=<<concatCurrent>>>
+@@display: inline-block;
+<div class="tc-tab-buttons">
+<span class="tc-popup-keep">
+<$button popup=<<qualifiedCurrent>> class="tc-btn-invisible">
+{{!!caption}}
+</$button>
+</span>
+</div>
+@@
+
+<$reveal state=<<qualifiedCurrent>> type="popup" position="belowright" animate="yes" class="tc-popup-keep">
+<div class="mentat-dropdown-wrapper">
+<div class="mentat-dropdown">
+{{!!text}}
+</div>
+</div>
+</$reveal>
+</$qualify>
+</$list>
+</div>

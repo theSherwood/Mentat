@@ -1,13 +1,11 @@
 created: 20190305103358375
-modified: 20190305203147385
+modified: 20190307145537681
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/volant/styles/dropdown
 type: text/vnd.tiddlywiki
 
 .volant .tc-block-dropdown {
 position: absolute;
-left: 0px;
-top: 0px;
 }
 
 .volant .tc-block-dropdown-wrapper {
