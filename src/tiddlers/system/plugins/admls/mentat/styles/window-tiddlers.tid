@@ -1,7 +1,7 @@
 created: 20190220151403137
-modified: 20190225220131141
+modified: 20190307203717773
 tags: $:/tags/Stylesheet tampered
-title: $:/plugins/admls/mentat/styles/fixed-window
+title: $:/plugins/admls/mentat/styles/window-tiddlers
 type: text/vnd.tiddlywiki
 
 \define backup(value)
