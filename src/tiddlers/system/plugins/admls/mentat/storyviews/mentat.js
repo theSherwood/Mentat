@@ -16,9 +16,9 @@ Views the story as a collection of story windows
 	"use strict";
 
 	var MentatStoryView = function (listWidget) {
-		this.listWidget = listWidget;
+		// Hide all tiddlers but those with the permitted tags
 
-		// Hide all tiddlers but those tagged $:/Window or $:/MentatMenu
+		this.listWidget = listWidget;
 		$tw.utils.each(this.listWidget.children, function (itemWidget, index) {
 			var domNode = itemWidget.findFirstDomNode();
 			// Abandon if the list entry isn't a DOM element (it might be a text node)
@@ -28,10 +28,6 @@ Views the story as a collection of story windows
 
 			const tiddlerTitle = itemWidget.parseTreeNode.itemTitle;
 			const tiddler = $tw.wiki.getTiddler(tiddlerTitle);
-			// If the tiddler is not tagged with $:/MentatMenu or $:/Window
-			// if (tiddler && (!tiddler.fields.tags || !(tiddler.fields.tags.includes("$:/MentatMenu") || tiddler.fields.tags.includes("$:/Window")))) {
-			// 	domNode.style.display = "none";
-			// }
 
 			const M = $tw.Mentat;
 			M.updateAllowedTags();

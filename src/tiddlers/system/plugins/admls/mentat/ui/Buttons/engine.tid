@@ -1,0 +1,28 @@
+created: 20190225223248466
+modified: 20190307184947530
+tags: $:/tags/PageTemplate
+title: $:/plugins/admls/mentat/ui/Buttons/engine
+type: text/vnd.tiddlywiki
+
+<$reveal type="match" state="$:/view" text="mentat">
+<div class="engine-button-wrapper">
+<$button class="engine-button tc-btn-invisible">
+<$list filter="[tag[$:/EngineButtonTemplate]first[]]" emptyMessage="<div class='default-engine-button'></div>">{{!!text}}</$list>
+<$reveal type="match" default={{{ [tag[$:/EngineGroup]count[]] }}} text={{{ [list[$:/StoryList]tag[$:/EngineGroup]count[]] }}}>
+<$action-listops $tiddler="$:/StoryList" $subfilter="-[tag[$:/Engine]]"/>
+</$reveal>
+<$reveal type="nomatch" default={{{ [tag[$:/EngineGroup]count[]] }}} text={{{ [list[$:/StoryList]tag[$:/EngineGroup]count[]] }}}>
+<$action-listops $tiddler="$:/StoryList" $subfilter="[tag[$:/EngineGroup]]"/>
+</$reveal>
+</$button>
+<div class="engine-button-list">
+<$list filter="[tag[$:/Engine]]">
+
+<div>
+<$link to=<<currentTiddler>>>{{!!title}}</$link>&nbsp;<$checkbox tag="$:/EngineGroup"></$checkbox>
+</div>
+</$list>
+</div>
+</div>
+</$reveal>
+

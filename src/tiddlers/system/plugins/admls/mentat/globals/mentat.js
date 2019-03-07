@@ -16,7 +16,7 @@ Adds methods and hooks for navigation in mentat storyview
     "use strict";
 
     const Mentat = {
-        allowedTags: ["$:/MentatMenu", "$:/Window"],
+        allowedTags: ["$:/Engine", "$:/Window"],
 
         getTopWindow: function (windowTitles, storyList) {
             // Filter zStack by windowTitles

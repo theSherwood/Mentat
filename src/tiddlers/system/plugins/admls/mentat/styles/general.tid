@@ -11,31 +11,31 @@ type: text/vnd.tiddlywiki
 display: none;
 }
 
-[data-tags*="$:/MentatMenu"] .volant-wrapper {
+[data-tags*="$:/Engine"] .volant-wrapper {
 padding: 10px 15px 10px 15px;
 }
 
-[data-tags*="$:/MentatMenu"] .tc-title, 
-[data-tags*="$:/MentatMenu"] .tc-subtitle, 
-[data-tags*="$:/MentatMenu"] .tc-tags-wrapper {
+[data-tags*="$:/Engine"] .tc-title, 
+[data-tags*="$:/Engine"] .tc-subtitle, 
+[data-tags*="$:/Engine"] .tc-tags-wrapper {
 	display: none;
 }
 
-[data-tags*="$:/MentatMenu"] .tc-tiddler-controls {
+[data-tags*="$:/Engine"] .tc-tiddler-controls {
     position: absolute;
     top: 0px;
     right: 4px;
 }
 
-[data-tags*="$:/MentatMenu"] .tc-tiddler-controls button svg, [data-tags*="$:/MentatMenu"] .tc-tiddler-controls button img { 
+[data-tags*="$:/Engine"] .tc-tiddler-controls button svg, [data-tags*="$:/Engine"] .tc-tiddler-controls button img { 
 	height: 0.75em;
 }
 
-[data-tags*="$:/MentatMenu"] .tc-tab-content {
+[data-tags*="$:/Engine"] .tc-tab-content {
 	font-size: 14px;
 	line-height: 20px;
 }
-[data-tags*="$:/MentatMenu"] p {
+[data-tags*="$:/Engine"] p {
 	margin-top: 3px;
 	margin-bottom: 3px;
 }

@@ -12,7 +12,7 @@ type: text/vnd.tiddlywiki
 \end
 
 <$reveal type="match" state="$:/view" text="mentat">
-<$list filter="[list[$:/StoryList]tag[$:/MentatMenu]]">
+<$list filter="[list[$:/StoryList]tag[$:/Engine]]">
 
 [data-tiddler-title="<<currentTiddler>>"] {
 top: <<backup top>>;

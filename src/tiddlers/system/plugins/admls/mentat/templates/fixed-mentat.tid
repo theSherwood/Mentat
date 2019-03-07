@@ -5,7 +5,7 @@ title: $:/plugins/admls/mentat/templates/fixed-mentat
 type: text/vnd.tiddlywiki
 
 <$reveal type="match" state="$:/view" text="mentat">
-<$list filter="[all[current]tag[$:/MentatMenu]]">
+<$list filter="[all[current]tag[$:/Engine]]">
 <$volant separateConfig="yes" configTiddlerPrefix="$:/config/Mentat/"/>
 </$list>
 </$reveal>
