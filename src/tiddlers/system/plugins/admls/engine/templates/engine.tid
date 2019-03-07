@@ -1,0 +1,9 @@
+created: 20190212173030711
+modified: 20190307200453286
+tags: $:/tags/ViewTemplate $:/tags/EditTemplate
+title: $:/plugins/admls/engine/templates/engine
+type: text/vnd.tiddlywiki
+
+<$list filter="[all[current]tag[$:/Engine]]">
+<$volant separateConfig="yes" configTiddlerPrefix="$:/config/Engine/"/>
+</$list>
