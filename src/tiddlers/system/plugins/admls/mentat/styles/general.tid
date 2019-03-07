@@ -1,45 +1,10 @@
 created: 20190218191609036
-modified: 20190307174433888
+modified: 20190307191029716
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/general
 type: text/vnd.tiddlywiki
 
 <$reveal type="match" state="$:/view" text="mentat">
-
-/* Hide the native topbar and sidebar */
-.tc-topbar, .tc-sidebar-scrollable {
-display: none;
-}
-
-[data-tags*="$:/Engine"] .volant-wrapper {
-padding: 10px 15px 10px 15px;
-}
-
-[data-tags*="$:/Engine"] .tc-title, 
-[data-tags*="$:/Engine"] .tc-subtitle, 
-[data-tags*="$:/Engine"] .tc-tags-wrapper {
-	display: none;
-}
-
-[data-tags*="$:/Engine"] .tc-tiddler-controls {
-    position: absolute;
-    top: 0px;
-    right: 4px;
-}
-
-[data-tags*="$:/Engine"] .tc-tiddler-controls button svg, [data-tags*="$:/Engine"] .tc-tiddler-controls button img { 
-	height: 0.75em;
-}
-
-[data-tags*="$:/Engine"] .tc-tab-content {
-	font-size: 14px;
-	line-height: 20px;
-}
-[data-tags*="$:/Engine"] p {
-	margin-top: 3px;
-	margin-bottom: 3px;
-}
-
 
 [data-tags*="$:/Window"] > .volant-wrapper {
 display: flex;

@@ -1,17 +1,17 @@
 created: 20190225223359392
-modified: 20190307123219401
+modified: 20190307191223340
 tags: $:/tags/Stylesheet
-title: $:/plugins/admls/mentat/styles/menu-button
+title: $:/plugins/admls/engine/styles/engine-button
 type: text/vnd.tiddlywiki
 
-.mentat-menu-button {
+.engine-button-wrapper, .engine-button {
 position: fixed;
 bottom: 20px;
 right: 20px;
 z-index: 1000;
 }
 
-.mentat-menu-button .menu-list {
+.engine-button-list {
 position: absolute;
 bottom: 20px;
 right: 20px;
@@ -26,7 +26,7 @@ width: 0px;
 height: 0px;
 }
 
-.mentat-menu-button:hover .menu-list {
+.engine-button-wrapper:hover .engine-button-list {
 opacity: 1;
 height: auto;
 transition-delay: .7s;
@@ -35,11 +35,11 @@ right: 0px;
 bottom: 40px;
 }
 
-.mentat-menu-button .menu-list * {
+.engine-button-list * {
 text-align: right;
 }
 
-.default-mentat-menu-button {
+.default-engine-button {
 background-color: rgba(200,0,0,1);
 border-radius: 50%;
 height: 40px;

@@ -1,17 +1,16 @@
 created: 20190212174511720
-modified: 20190228183850391
+modified: 20190307191633723
 tags: $:/tags/Stylesheet tampered
-title: $:/plugins/admls/mentat/styles/fixed-mentat
+title: $:/plugins/admls/engine/styles/engine-tiddlers
 type: text/vnd.tiddlywiki
 
 \define backup(value)
-<$view tiddler={{{ [all[current]get[draft.of]] ~[all[current]] +[addprefix[$:/config/Mentat/]] }}} field=<<__value__>>>
+<$view tiddler={{{ [all[current]get[draft.of]] ~[all[current]] +[addprefix[$:/config/Engine/]] }}} field=<<__value__>>>
 	<$view tiddler="$:/plugins/admls/volant/config/backup-values" field="""backup-$value$""">
 	</$view>
 </$view>
 \end
 
-<$reveal type="match" state="$:/view" text="mentat">
 <$list filter="[list[$:/StoryList]tag[$:/Engine]]">
 
 [data-tiddler-title="<<currentTiddler>>"] {
@@ -27,4 +26,3 @@ font-size: 1.6em;
 }
 
 </$list>
-</$reveal>
