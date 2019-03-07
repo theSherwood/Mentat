@@ -1,0 +1,30 @@
+created: 20190225203539938
+modified: 20190307103014393
+tags: $:/MentatMenu
+title: $:/Topbar
+type: text/vnd.tiddlywiki
+
+@@display: inline-block;
+<div>
+{{$:/core/ui/PageTemplate/pagecontrols}}
+</div>
+@@
+
+@@display: inline-block;
+<div>
+{{$:/core/ui/SideBarSegments/search}}
+</div>
+@@
+
+@@display: inline-block;
+<div>
+{{$:/plugins/admls/mentat/ui/Buttons/layout-archive}}{{$:/plugins/admls/mentat/ui/Buttons/session-archive}}{{$:/plugins/admls/mentat/ui/Buttons/window-archive}}{{$:/plugins/admls/volant/ui/Buttons/reclaim}}
+</div>
+@@
+
+<!-- The "/" in "$:/Topbar" must be escaped -->
+<style>
+[data-tiddler-title="$:\/Topbar"] .tc-page-controls {
+margin-top: 0px;
+}
+</style>
