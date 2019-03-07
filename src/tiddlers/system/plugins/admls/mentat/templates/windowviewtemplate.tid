@@ -1,7 +1,7 @@
 created: 20190218214000677
-modified: 20190227184235872
+modified: 20190304163602708
 tags: $:/tags/ViewTemplate
-title: $:/plugins/admls/mentat/templates/windowviewtemplate
+title: $:/plugins/admls/mentat/templates/WindowViewTemplate
 type: text/vnd.tiddlywiki
 
 <$list filter="[all[current]tag[$:/Window]]">
