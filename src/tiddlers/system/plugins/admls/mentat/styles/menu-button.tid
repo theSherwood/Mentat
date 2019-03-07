@@ -1,5 +1,5 @@
 created: 20190225223359392
-modified: 20190306234424433
+modified: 20190307123219401
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/menu-button
 type: text/vnd.tiddlywiki
@@ -18,7 +18,7 @@ right: 20px;
 opacity: 0;
 z-index: -1;
 box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-background-color: white;
+background-color: <<colour background>>;
 border-radius: 4px;
 padding: 5px;
 transition: 0s;
