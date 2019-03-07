@@ -1,11 +1,12 @@
 created: 20190218191609036
-modified: 20190307103201061
+modified: 20190307174433888
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/general
 type: text/vnd.tiddlywiki
 
 <$reveal type="match" state="$:/view" text="mentat">
 
+/* Hide the native topbar and sidebar */
 .tc-topbar, .tc-sidebar-scrollable {
 display: none;
 }
@@ -38,10 +39,7 @@ padding: 10px 15px 10px 15px;
 	margin-top: 3px;
 	margin-bottom: 3px;
 }
-[data-tags*="$:/MentatMenu"] .tc-tab-content button, 
-[data-tags*="$:/MentatMenu"] .tc-tab-buttons {
-	font-size: 12px;
-}
+
 
 [data-tags*="$:/Window"] > .volant-wrapper {
 display: flex;
@@ -97,24 +95,17 @@ padding: 2px 2px 2px 2px;
 	vertical-align: baseline;
 	margin-left:5px;
 }
-.window-tiddler-controls button svg, .window-tiddler-controls button img,
-.window-search button svg, .tc-search a svg {
+.window-tiddler-controls button svg, 
+.window-tiddler-controls button img {
 	fill: <<colour tiddler-controls-foreground>>;
 }
 .window-tiddler-controls button svg, .window-tiddler-controls button img { 
 	height: 0.75em; 
 }
-.window-search button svg, .window-search a svg {
-    height: 1.2em;
-    width: 1.2em;
-    margin: 0 0.25em;
-}
-.window-tiddler-controls button.tc-selected svg,
-.window-page-controls button.tc-selected svg  {
+.window-tiddler-controls button.tc-selected svg  {
 	fill: <<colour tiddler-controls-foreground-selected>>;
 }
-.window-tiddler-controls button.tc-btn-invisible:hover svg,
-.window-search button:hover svg, .tc-search a:hover svg {
+.window-tiddler-controls button.tc-btn-invisible:hover svg {
 	fill: <<colour tiddler-controls-foreground-hover>>;
 }
 @media print {
