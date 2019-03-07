@@ -1,5 +1,5 @@
 created: 20190225180426874
-modified: 20190305225328474
+modified: 20190305234101512
 tags: $:/MentatMenu
 title: Bottombar
 type: text/vnd.tiddlywiki
@@ -10,15 +10,10 @@ type: text/vnd.tiddlywiki
 <$set name="listItemTitle" value={{!!title}}>
 <$reveal type="match" default=<<topWindow>> text=<<listItemTitle>>>
 <$link to={{!!title}} tooltip={{!!title}} class="window-tab window-tab-selected">
-<span>
-<$view field="title"/>
-</span><$button message="tm-delete-tiddler" tooltip="Close window" aria-label="Close window" class="tc-btn-invisible tc-btn-mini">&times;</$button> 
-</$link></$reveal>
-<$reveal type="nomatch" default=<<topWindow>> text=<<listItemTitle>>>
+<span><$view field="title"/></span><$button message="tm-delete-tiddler" tooltip="Close window" aria-label="Close window" class="tc-btn-invisible tc-btn-mini">&times;</$button> 
+</$link></$reveal><$reveal type="nomatch" default=<<topWindow>> text=<<listItemTitle>>>
 <$link to={{!!title}} tooltip={{!!title}} class="window-tab">
-<span>
-<$view field="title"/>
-</span><$button message="tm-delete-tiddler" tooltip="Close window" aria-label="Close window" class="tc-btn-invisible tc-btn-mini">&times;</$button> 
+<span><$view field="title"/></span><$button message="tm-delete-tiddler" tooltip="Close window" aria-label="Close window" class="tc-btn-invisible tc-btn-mini">&times;</$button> 
 </$link></$reveal>
 </$set></$wikify>
 </$list>
