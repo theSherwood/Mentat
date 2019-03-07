@@ -100,19 +100,15 @@ Adds a few hooks, too.
             tiddler.style.width = "";
         },
 
-        pushTiddlerToZStack: function (tiddler) {
+        pushTiddlerToZStack: function (tiddlerElement) {
             // Adds tiddler to click and navigation history stored as $tw.Volant.zStack
             const Volant = $tw.Volant;
-            if (!tiddler) {
+            if (!tiddlerElement) {
                 return;
             };
-            const zStack = Volant.zStack;
-            let index = zStack.indexOf(tiddler);
-            while (index !== -1) {
-                zStack.splice(index, 1);
-                index = zStack.indexOf(tiddler);
-            }
-            zStack.push(tiddler);
+            const title = tiddlerElement.dataset.tiddlerTitle;
+            Volant.zStack = Volant.zStack.filter(tiddlerElement => tiddlerElement.dataset.tiddlerTitle !== title)
+            Volant.zStack.push(tiddlerElement);
             Volant.evaluateZStack();
         },
 
@@ -122,7 +118,7 @@ Adds a few hooks, too.
 
             const zStack = Volant.zStack;
             // Log zStack to the list of $:/state/zStack
-            const zList = zStack.map(tiddler => tiddler.dataset.tiddlerTitle).slice(-20);
+            const zList = zStack.map(tiddlerElement => tiddlerElement.dataset.tiddlerTitle).slice(-20);
             const zStackTiddler = $tw.wiki.getTiddler("$:/state/zStack");
             $tw.wiki.addTiddler(new $tw.Tiddler(
                 { title: "$:/state/zStack" },
