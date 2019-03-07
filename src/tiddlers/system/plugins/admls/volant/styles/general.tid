@@ -27,17 +27,21 @@ padding: 25px 15px 15px 15px;
 width: 12px;
 height: 12px;
 background-color: {{$:/plugins/admls/volant/config/values!!resizer-color}};
+position: absolute;
+bottom: 0px;
 z-index: 100;
 }
 
 .resizer-left {
 cursor: ne-resize;
 border-radius: 0% 70% 0% 0%;
+left: 0px;
 }
 
 .resizer-right {
 cursor: se-resize;
 border-radius: 70% 0% 0% 0%;
+right: 0px;
 }
 
 /* Tiddler Scrollbars */

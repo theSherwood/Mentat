@@ -42,8 +42,6 @@ Adds a few hooks, too.
                 // style tiddler element
                 tiddler.style.top = (top - Volant.pos2) + "px";
                 tiddler.style.left = (left - Volant.pos1) + "px";
-
-                Volant.updateResizerPositions(tiddler);
             });
 
         },
@@ -148,8 +146,6 @@ Adds a few hooks, too.
                     tiddler.style.left = (window.scrollX + e.clientX - 5) + 'px';
                     tiddler.style.width = (tiddler.offsetWidth + viewportOffset.left - e.clientX + 5) + 'px';
                 }
-
-                $tw.Volant.updateResizerPositions(tiddler);
             });
         },
 
@@ -164,8 +160,6 @@ Adds a few hooks, too.
             window.requestAnimationFrame(() => {
                 tiddler.style.width = (e.clientX - viewportOffset.left + 5) + 'px';
                 tiddler.style.height = (e.clientY - viewportOffset.top + 5) + 'px';
-
-                $tw.Volant.updateResizerPositions(tiddler);
             });
         },
 
@@ -195,42 +189,6 @@ Adds a few hooks, too.
             e.stopPropagation();
             const tiddler = elmnt;
             return tiddler;
-        },
-
-        updateResizerPositions: function (tiddler) {
-            const resizerLeft = tiddler.querySelector(".resizer-left");
-            const resizerRight = tiddler.querySelector(".resizer-right");
-            const viewportOffset = tiddler.getBoundingClientRect();
-
-            if (tiddler.style.position === "absolute") {
-                resizerLeft.style.top = (viewportOffset.top + tiddler.offsetHeight - resizerLeft.offsetHeight) + "px";
-                resizerLeft.style.left = (viewportOffset.left) + "px";
-                resizerRight.style.top = (viewportOffset.top + tiddler.offsetHeight - resizerRight.offsetHeight) + "px";
-                resizerRight.style.left = (viewportOffset.left + tiddler.offsetWidth - resizerRight.offsetWidth) + "px";
-            } else {
-                resizerLeft.style.cssText += `left:${viewportOffset.left}px;`;
-                resizerLeft.style.cssText += `top:calc(${viewportOffset.top}px + ${viewportOffset.height}px - ${resizerLeft.offsetHeight}px);`;
-                resizerRight.style.cssText += `left:calc(${viewportOffset.left}px + ${viewportOffset.width}px - ${resizerRight.offsetWidth}px);`;
-                resizerRight.style.cssText += `top:calc(${viewportOffset.top}px + ${viewportOffset.height}px - ${resizerRight.offsetHeight}px);`;
-            }
-
-        },
-
-        repositionResizers: function () {
-            document.querySelectorAll(".resizer-left").forEach(function (resizer) {
-                let elmnt = resizer;
-                while (!(elmnt.matches('.volant'))) {
-                    // Stop if you get to the root element
-                    if (elmnt.tagName === "HTML") {
-                        return;
-                    }
-                    elmnt = elmnt.parentElement;
-                }
-                const tiddler = elmnt;
-                window.requestAnimationFrame(() => {
-                    $tw.Volant.updateResizerPositions(tiddler);
-                });
-            });
         },
 
         snapToGrid: function (tiddler) {
@@ -263,8 +221,6 @@ Adds a few hooks, too.
                 tiddler.style.height = (Volant.convertToGridValue(tiddler.offsetHeight, positionIsFixed, "height") - (2 * gridgap)) + "px";
                 tiddler.style.width = (Volant.convertToGridValue(tiddler.offsetWidth, positionIsFixed, "width") - (2 * gridgap)) + "px";
             }
-
-            Volant.updateResizerPositions(tiddler);
         },
 
         getGrid: function () {

@@ -34,7 +34,7 @@ module-type: widget
 
         const position = this.position;
         let elmnt = this.parentDomNode;
-        // Get the tiddler element that this macro runs in
+        // Get the tiddler element that this widget runs in
         while (!(elmnt.dataset.tiddlerTitle)) {
             if (elmnt.tagName === "HTML") {
                 return;
@@ -48,10 +48,8 @@ module-type: widget
         tiddler.style.position = position;
         const resizerLeft = document.createElement("div");
         resizerLeft.className = "resizer resizer-left";
-        resizerLeft.style.position = "fixed";
         const resizerRight = document.createElement("div");
         resizerRight.className = "resizer resizer-right";
-        resizerRight.style.position = "fixed";
 
         tiddler.appendChild(resizerLeft);
         tiddler.appendChild(resizerRight);
@@ -104,9 +102,6 @@ module-type: widget
         tiddler.addEventListener("mousedown", startDrag);
         tiddler.addEventListener("mousedown", this.boundPushEventToZStack);
         tiddler.addEventListener("mousedown", startResize);
-        ["fullscreenchange", "webkitfullscreenchange", "mozfullscreenchange", "msfullscreenchange", "scroll", "resize"].forEach(
-            eventType => window.addEventListener(eventType, $tw.Volant.repositionResizers, false)
-        );
 
         $tw.Volant.snapToGrid(tiddler);
         $tw.Volant.logNewDimensions(tiddler, configTiddlerTitle);
