@@ -1,7 +1,7 @@
 created: 20190218190731297
-modified: 20190225222113330
+modified: 20190307102003700
 tags: $:/MentatMenu
-title: Sidebar
+title: $:/Sidebar
 type: text/vnd.tiddlywiki
 
 \define config-title()
