@@ -66,13 +66,15 @@ revealWidget.prototype.positionPopup = function(domNode) {
     }
     
     function getTotalPosition(node) {
-    	// Updates position with the most extreme of the children's positions
-    	if(!node || node.hidden) {
+        // Updates position with the most extreme of the children's positions
+        
+        // Ignore node if hidden
+    	if(!node || node.hidden || getComputedStyle(node).display === "none") {
         	return;
         }
     	const nodePosition = node.getBoundingClientRect();
         if(nodePosition.left < position.left) {
-        	position.left = nodePosition.left;
+            position.left = nodePosition.left;
         }
         if(nodePosition.top < position.top) {
         	position.top = nodePosition.top;
@@ -93,42 +95,27 @@ revealWidget.prototype.positionPopup = function(domNode) {
     
     position.right = position.left + position.width;
     position.bottom = position.top + position.height;
-    
-    // Shift away from overflowing the screen in height
-    if(position.top < 10) { // At the top
-    	position.top = 10;
-        position.bottom += 10;
-    }
-    if(position.bottom > viewportHeight - 10) { // At the bottom
-    	let newHeight = position.height;
-    	if(position.height > viewportHeight - 20) {
-        	newHeight = viewportHeight - 20;
-        	domNode.style.height = newHeight + "px";
-            // If the popup is too big, make it scrollable
-            domNode.style.overflowY = "auto";
-        }
-        if(position.top + newHeight > viewportHeight - 10) {
-        	const oldTop = Number(domNode.style.top.slice(0,-2));
-            const differenceTop = position.top + newHeight - viewportHeight + 10;
-            domNode.style.top = oldTop - differenceTop + "px";
-        }
+
+    const buffer = 20;
+
+    if(position.bottom > viewportHeight - buffer) { // At the bottom
+        let newHeight = viewportHeight - buffer - Number(domNode.style.top.slice(0,-2));
+        domNode.style.height = newHeight + "px";
     }
     // Shift away from overflowing the screen in width 
-    if(position.left < 10) { // At the left
-    	position.left = 10;
-        position.right += 10;
+    if(position.left < buffer) { // At the left
+    	position.left = buffer;
+        position.right += buffer;
     }
-  	if(position.right > viewportWidth - 10) { // At the right
+  	if(position.right > viewportWidth - buffer) { // At the right
     	let newWidth = position.width;
-    	if(position.width > viewportWidth - 20) {
-        	newWdith = viewportWidth - 20;
+    	if(position.width > viewportWidth - 2 * buffer) {
+        	newWdith = viewportWidth - 2 * buffer;
         	domNode.style.width = newWidth + "px";
-            // If the popup is too big, make it scrollable
-            domNode.style.overflowX = "auto";
         }
-        if(position.left + newWidth > viewportWidth - 10) {
+        if(position.left + newWidth > viewportWidth - buffer) {
         	const oldLeft = Number(domNode.style.left.slice(0,-2));
-            const differenceLeft = position.left + newWidth - viewportWidth + 10;
+            const differenceLeft = position.left + newWidth - viewportWidth + buffer;
             domNode.style.left = oldLeft - differenceLeft + "px";
         }
     }   
