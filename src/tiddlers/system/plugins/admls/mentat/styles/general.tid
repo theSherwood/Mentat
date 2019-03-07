@@ -1,5 +1,5 @@
 created: 20190218191609036
-modified: 20190307001156863
+modified: 20190307103201061
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/general
 type: text/vnd.tiddlywiki
@@ -11,7 +11,7 @@ display: none;
 }
 
 [data-tags*="$:/MentatMenu"] .volant-wrapper {
-padding: 15px;
+padding: 10px 15px 10px 15px;
 }
 
 [data-tags*="$:/MentatMenu"] .tc-title, 
