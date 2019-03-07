@@ -1,5 +1,5 @@
 created: 20190306133721143
-modified: 20190306230512381
+modified: 20190307170122090
 tags: $:/Volant
 title: $:/plugins/admls/mentat/config/set-maximized-values
 type: text/vnd.tiddlywiki
@@ -7,5 +7,5 @@ type: text/vnd.tiddlywiki
 Click the button to set the position of this tiddler as the maximized position of story windows.
 
 <$button>Set Maximized Values
-<$action-setfield $tiddler="$:/plugins/admls/mentat/config/maximized-values" maximized-height={{$:/config/Mentat/$:/plugins/admls/mentat/config/set-maximized-values!!height}} maximized-width={{$:/config/Mentat/$:/plugins/admls/mentat/config/set-maximized-values!!width}} maximized-top={{$:/config/Mentat/$:/plugins/admls/mentat/config/set-maximized-values!!top}} maximized-left={{$:/config/Mentat/$:/plugins/admls/mentat/config/set-maximized-values!!left}}/>
+<$action-setfield $tiddler="$:/plugins/admls/mentat/config/maximized-values" maximized-height={{$:/config/Volant/$:/plugins/admls/mentat/config/set-maximized-values!!height}} maximized-width={{$:/config/Volant/$:/plugins/admls/mentat/config/set-maximized-values!!width}} maximized-top={{$:/config/Volant/$:/plugins/admls/mentat/config/set-maximized-values!!top}} maximized-left={{$:/config/Volant/$:/plugins/admls/mentat/config/set-maximized-values!!left}}/>
 </$button>
