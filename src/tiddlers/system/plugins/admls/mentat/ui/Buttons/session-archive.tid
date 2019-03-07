@@ -1,7 +1,7 @@
 created: 20190228002217473
-modified: 20190305233226809
+modified: 20190306234005428
 tags: 
-title: Sessions Button
+title: $:/plugins/admls/mentat/ui/Buttons/session-archive
 type: text/vnd.tiddlywiki
 
 \define getSessionPrefix(currentTiddler)
