@@ -1,7 +1,7 @@
 created: 20190225223248466
-modified: 20190306134246487
+modified: 20190306234402013
 tags: $:/tags/PageTemplate
-title: mentat-menu-button
+title: $:/plugins/admls/mentat/ui/Buttons/menu
 type: text/vnd.tiddlywiki
 
 <$reveal type="match" state="$:/view" text="mentat">

@@ -1,7 +1,7 @@
 created: 20190225223359392
-modified: 20190306124331136
+modified: 20190306234424433
 tags: $:/tags/Stylesheet
-title: mentat-menu-button stylesheet
+title: $:/plugins/admls/mentat/styles/menu-button
 type: text/vnd.tiddlywiki
 
 .mentat-menu-button {

@@ -1,7 +1,7 @@
 created: 20190225185537487
-modified: 20190305215741049
+modified: 20190307000631338
 tags: $:/tags/AboveWindow
-title: $:/plugins/admls/mentat/window-tabs
+title: $:/plugins/admls/mentat/ui/tabs/window-tabs
 type: text/vnd.tiddlywiki
 
 \define drop-actions()
