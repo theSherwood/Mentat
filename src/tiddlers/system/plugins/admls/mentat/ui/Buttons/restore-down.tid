@@ -1,7 +1,7 @@
 caption: {{$:/plugins/admls/mentat/images/restore-down-button}} restore down
 created: 20190301110214324
-description: Maximize window toggle
-modified: 20190301233054656
+description: Restore window instance to its previous size
+modified: 20190307163237061
 tags: tampered $:/tags/WindowViewToolbar
 title: $:/plugins/admls/mentat/ui/Buttons/restore-down
 type: text/vnd.tiddlywiki

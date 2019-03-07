@@ -1,7 +1,7 @@
 caption: {{$:/plugins/admls/mentat/images/minimize}} minimize
 created: 20190111235001893
-description: Minimize this window
-modified: 20190301221756198
+description: Minimize (close) window instance
+modified: 20190307163336266
 tags: tampered $:/tags/WindowViewToolbar
 title: $:/plugins/admls/mentat/ui/Buttons/minimize
 type: text/vnd.tiddlywiki

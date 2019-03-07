@@ -1,7 +1,7 @@
 caption: {{$:/core/images/full-screen-button}} maximize
 created: 20190112131343903
-description: Maximize window toggle
-modified: 20190301232647752
+description: Maximize window instance
+modified: 20190307163318028
 tags: tampered $:/tags/WindowViewToolbar
 title: $:/plugins/admls/mentat/ui/Buttons/maximize
 type: text/vnd.tiddlywiki
