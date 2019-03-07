@@ -16,7 +16,7 @@ Adds methods and hooks for navigation in mentat storyview
     "use strict";
 
     const Mentat = {
-        allowedTags: ["$:/Engine", "$:/Window"],
+        allowedTags: ["$:/Window"],
 
         getTopWindow: function (windowTitles, storyList) {
             // Filter zStack by windowTitles
@@ -98,8 +98,8 @@ Adds methods and hooks for navigation in mentat storyview
         updateAllowedTags: function () {
             const M = $tw.Mentat;
             // Determine if default volant tagged tiddlers should be allowed on $:/StoryList
-            const volantDefaultFunctions = ($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields["default-functionality"] === "on") ? true : false;
-            if (volantDefaultFunctions) {
+            const volantEnabled = ($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields["default-functionality"] === "on") ? true : false;
+            if (volantEnabled) {
                 const defaultTag = "$:/Volant";
                 const absoluteTag = "$:/VolantAbsolute";
                 if (!M.allowedTags.includes(defaultTag)) {
@@ -107,6 +107,13 @@ Adds methods and hooks for navigation in mentat storyview
                 }
                 if (!M.allowedTags.includes(absoluteTag)) {
                     M.allowedTags.push(absoluteTag);
+                }
+            }
+            const engineEnabled = ($tw.wiki.getTiddler("$:/plugins/admls/engine/config/options").fields["enabled"] === "yes") ? true : false;
+            if (engineEnabled) {
+                const engineTag = "$:/Engine";
+                if (!M.allowedTags.includes(engineTag)) {
+                    M.allowedTags.push(engineTag);
                 }
             }
         }

@@ -1,5 +1,5 @@
 created: 20190212174511720
-modified: 20190307191633723
+modified: 20190307202143047
 tags: $:/tags/Stylesheet tampered
 title: $:/plugins/admls/engine/styles/engine-tiddlers
 type: text/vnd.tiddlywiki
@@ -11,6 +11,7 @@ type: text/vnd.tiddlywiki
 </$view>
 \end
 
+<$reveal type="match" state="$:/plugins/admls/engine/config/options!!enabled" text="yes">
 <$list filter="[list[$:/StoryList]tag[$:/Engine]]">
 
 [data-tiddler-title="<<currentTiddler>>"] {
@@ -26,3 +27,4 @@ font-size: 1.6em;
 }
 
 </$list>
+</$reveal>

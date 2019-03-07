@@ -1,8 +1,10 @@
 created: 20190307190924303
-modified: 20190307191112597
+modified: 20190307202522326
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/engine/styles/general
 type: text/vnd.tiddlywiki
+
+<$reveal type="match" state="$:/plugins/admls/engine/config/options!!enabled" text="yes">
 
 /* Hide the native topbar and sidebar */
 .tc-topbar, .tc-sidebar-scrollable {
@@ -37,3 +39,5 @@ padding: 10px 15px 10px 15px;
 	margin-top: 3px;
 	margin-bottom: 3px;
 }
+
+</$reveal>
