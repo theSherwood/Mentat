@@ -1,8 +1,12 @@
 created: 20190218191609036
-modified: 20190307191029716
+modified: 20190307232002346
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/general
 type: text/vnd.tiddlywiki
+
+.window-tiddler-controls {
+	display: none;
+}
 
 <$reveal type="match" state="$:/view" text="mentat">
 
@@ -43,6 +47,7 @@ padding: 2px 2px 2px 2px;
 </$reveal>
 
 .window-tiddler-controls {
+	display: block;
 	float: right;
     position: absolute;
     top: 0px;
