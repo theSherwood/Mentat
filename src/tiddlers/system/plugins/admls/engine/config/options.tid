@@ -1,6 +1,12 @@
 created: 20190307202354971
 enabled: yes
-modified: 20190307210730490
+modified: 20190311211649622
 title: $:/plugins/admls/engine/config/options
 type: text/vnd.tiddlywiki
 
+Engine Button functionality:
+
+{{$:/plugins/admls/engine/ui/Buttons/enable}}
+
+Checked $:/Engine tiddlers also get tagged with [[$:/tags/EngineGroup]]:
+{{$:/plugins/admls/engine/ui/engine-group}}

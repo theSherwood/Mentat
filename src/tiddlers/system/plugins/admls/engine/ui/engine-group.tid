@@ -1,0 +1,26 @@
+created: 20190311190418482
+modified: 20190311191235336
+tags: 
+title: $:/plugins/admls/engine/ui/engine-group
+type: text/vnd.tiddlywiki
+
+<$list filter="[tag[$:/Engine]]">
+
+<div>
+@@white-space: nowrap;
+<$button><$text text={{!!title}}/>
+<$list filter="[list[$:/StoryList]is[current]]" variable="isOpen">
+<$reveal type="match" default=<<isOpen>> text=<<currentTiddler>>>
+<$action-listops $tiddler="$:/StoryList" $subfilter="-[title{!!title}]"/>
+</$reveal>
+</$list>
+<$list filter="[!list[$:/StoryList]is[current]]" variable="isClosed">
+<$reveal type="match" default=<<isClosed>> text=<<currentTiddler>>>
+<$action-listops $tiddler="$:/StoryList" $subfilter="+[insertbefore:''{!!title}]"/>
+</$reveal>
+</$list>
+</$button>
+<$checkbox tag="$:/tags/EngineGroup"></$checkbox>
+@@
+</div>
+</$list>
