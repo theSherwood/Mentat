@@ -1,9 +1,0 @@
-created: 20190111190317831
-modified: 20190125235736143
-tags: tampered
-title: tagged with $:/tags/WindowViewTemplate
-type: text/vnd.tiddlywiki
-
-<$list filter="[all[shadows+tiddlers]tag[$:/tags/WindowViewTemplate]!has[draft.of]]">
-
-</$list>
