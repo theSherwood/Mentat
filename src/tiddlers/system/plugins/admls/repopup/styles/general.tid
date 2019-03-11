@@ -1,10 +1,11 @@
 created: 20190309233413725
-modified: 20190309234128739
+modified: 20190310132235148
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/repopup/styles/general
 type: text/vnd.tiddlywiki
 
 .tc-drop-down {
+min-width: 200px;
 margin: 0px;
 height: 100%;
 width: 100%;
