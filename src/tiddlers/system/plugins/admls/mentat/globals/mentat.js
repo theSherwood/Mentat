@@ -100,10 +100,10 @@ Adds methods and hooks for navigation in mentat storyview
             // Determine if default volant tagged tiddlers should be allowed on $:/StoryList
             const volantEnabled = ($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields["default-functionality"] === "on") ? true : false;
             if (volantEnabled) {
-                const defaultTag = "$:/Volant";
+                const fixedTag = "$:/Volant";
                 const absoluteTag = "$:/VolantAbsolute";
-                if (!M.allowedTags.includes(defaultTag)) {
-                    M.allowedTags.push(defaultTag);
+                if (!M.allowedTags.includes(fixedTag)) {
+                    M.allowedTags.push(fixedTag);
                 }
                 if (!M.allowedTags.includes(absoluteTag)) {
                     M.allowedTags.push(absoluteTag);
@@ -147,7 +147,7 @@ Adds methods and hooks for navigation in mentat storyview
                         const fromTiddler = $tw.wiki.getTiddler(event.navigateFromTitle);
                         if(fromTiddler && fromTiddler.fields.tags && fromTiddler.fields.tags.includes("$:/Window")) {
                             // Get the window storyList
-                            let storyList = fromTiddler.fields.list.slice();
+                            let storyList = fromTiddler.fields.list ? fromTiddler.fields.list.slice() : [];
                             // Remove toTitle from the window storyList
                             let p = storyList.indexOf(toTitle);
                             while(p !== -1) {

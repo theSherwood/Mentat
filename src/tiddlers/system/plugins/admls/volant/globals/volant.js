@@ -2,8 +2,8 @@
 created: 20190201185751112
 type: application/javascript
 title: $:/plugins/admls/volant/globals/volant.js
-tags: unfinished tampered
-modified: 20190221170445591
+tags: 
+modified: 20190311213957925
 module-type: global
 
 Methods and eventListeners for tiddlers that can be repositioned and resized with ease.
@@ -202,7 +202,7 @@ Adds a few hooks, too.
             const positionIsFixed = (tiddler.style.position === "fixed");
             let gridgap;
             if (positionIsFixed) {
-                gridgap = Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.defaultgridgap) || 0;
+                gridgap = Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.fixedgridgap) || 0;
 
                 const top = Volant.convertToGridValue(tiddler.offsetTop - gridgap, positionIsFixed, "height");
                 const left = Volant.convertToGridValue(tiddler.offsetLeft - gridgap, positionIsFixed, "width");
@@ -228,8 +228,8 @@ Adds a few hooks, too.
             $tw.Volant.grid = {
                 viewportWidth: document.documentElement.clientWidth, // excludes scrollbars
                 viewportHeight: document.documentElement.clientHeight,
-                // Different grids for fixed (default) and absolute tiddlers
-                defaultGridSize: Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.defaultgridsize) || 1,
+                // Different grids for fixed and absolute tiddlers
+                fixedGridSize: Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.fixedgridsize) || 1,
                 absoluteGridSize: Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.absolutegridsize) || 1
             }
         },
@@ -241,7 +241,7 @@ Adds a few hooks, too.
             if (positionIsFixed) { // fixed grid uses a percentage of the viewport
                 const viewportValue = (direction === "width") ? grid.viewportWidth : grid.viewportHeight;
                 let percentage = (number / viewportValue) * 100;
-                return Math.round(percentage / grid.defaultGridSize) * grid.defaultGridSize;
+                return Math.round(percentage / grid.fixedGridSize) * grid.fixedGridSize;
             } else { // absolute grid is a number of pixels
                 const quotient = number / grid.absoluteGridSize;
                 return Math.round(Math.round(quotient) * grid.absoluteGridSize);

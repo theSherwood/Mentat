@@ -1,12 +1,12 @@
 created: 20190220151403137
-modified: 20190307203717773
-tags: $:/tags/Stylesheet tampered
+modified: 20190311213957822
+tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/window-tiddlers
 type: text/vnd.tiddlywiki
 
-\define backup(value)
+\define backupWithDefault(value)
 <$view tiddler={{{ [all[current]get[draft.of]] ~[all[current]]}}} field=<<__value__>>>
-	<$view tiddler="$:/plugins/admls/volant/config/backup-values" field="""backup-$value$""">
+	<$view tiddler="$:/plugins/admls/volant/config/default-values" field="""default-$value$""">
 	</$view>
 </$view>
 \end
@@ -15,11 +15,11 @@ type: text/vnd.tiddlywiki
 <$list filter="[list[$:/StoryList]tag[$:/Window]]">
 
 [data-tiddler-title="<<currentTiddler>>"] {
-top: <<backup top>>;
-left: <<backup left>>;
-width: <<backup width>>;
-height: <<backup height>>;
-z-index: <<backup z-index>>;
+top: <<backupWithDefault top>>;
+left: <<backupWithDefault left>>;
+width: <<backupWithDefault width>>;
+height: <<backupWithDefault height>>;
+z-index: <<backupWithDefault z-index>>;
 }
 
 [data-tiddler-title="<<currentTiddler>>"] .tc-titlebar {

@@ -1,15 +1,10 @@
-backup-height: 50vh
-backup-left: 25vw
-backup-top: 25vh
-backup-width: 50vw
+default-height: calc(50% - 10px)
+default-left: calc(5% + 5px)
+default-top: calc(15% + 5px)
+default-width: calc(40% - 10px)
 created: 20190131221331828
-height: 94px
-left: 395px
-modified: 20190216220111916
-tags: tampered
-title: $:/plugins/admls/volant/config/backup-values
-top: 469px
+modified: 20190311170928548
+title: $:/plugins/admls/volant/config/default-values
 type: text/vnd.tiddlywiki
-width: 296px
 z-index: 700
 

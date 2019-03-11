@@ -1,6 +1,6 @@
 created: 20190225180426874
-modified: 20190307185043187
-tags: $:/Engine $:/EngineGroup
+modified: 20190311190710718
+tags: $:/Engine $:/tags/EngineGroup
 title: $:/Windowbar
 type: text/vnd.tiddlywiki
 
@@ -17,5 +17,9 @@ type: text/vnd.tiddlywiki
 </$link></$reveal>
 </$set></$wikify>
 </$list>
+@@display: inline-block;
+<div class="tc-page-controls">
 {{$:/plugins/admls/mentat/ui/Buttons/new-story-window}}
+</div>
+@@
 </div>

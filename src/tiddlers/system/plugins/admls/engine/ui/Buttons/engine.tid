@@ -1,5 +1,5 @@
 created: 20190225223248466
-modified: 20190307211010499
+modified: 20190311192713309
 tags: $:/tags/PageTemplate
 title: $:/plugins/admls/engine/ui/Buttons/engine
 type: text/vnd.tiddlywiki
@@ -8,41 +8,21 @@ type: text/vnd.tiddlywiki
 <$reveal type="match" default=<<currentTiddler>> text="">
 <div class="engine-button-wrapper">
 <$button class="engine-button tc-btn-invisible">
-<$list filter="[tag[$:/EngineButtonTemplate]first[]]" emptyMessage="<div class='default-engine-button'></div>">{{!!text}}</$list>
-<$reveal type="match" default={{{ [tag[$:/EngineGroup]count[]] }}} text={{{ [list[$:/StoryList]tag[$:/EngineGroup]count[]] }}}>
+<$list filter="[tag[$:/tags/EngineButtonTemplate]first[]]" emptyMessage="<div class='default-engine-button'></div>">{{!!text}}</$list>
+<$reveal type="match" default={{{ [tag[$:/tags/EngineGroup]count[]] }}} text={{{ [list[$:/StoryList]tag[$:/tags/EngineGroup]count[]] }}}>
 <$action-listops $tiddler="$:/StoryList" $subfilter="-[tag[$:/Engine]]"/>
 </$reveal>
-<$reveal type="nomatch" default={{{ [tag[$:/EngineGroup]count[]] }}} text={{{ [list[$:/StoryList]tag[$:/EngineGroup]count[]] }}}>
-<$action-listops $tiddler="$:/StoryList" $subfilter="[tag[$:/EngineGroup]]"/>
+<$reveal type="nomatch" default={{{ [tag[$:/tags/EngineGroup]count[]] }}} text={{{ [list[$:/StoryList]tag[$:/tags/EngineGroup]count[]] }}}>
+<$action-listops $tiddler="$:/StoryList" $subfilter="[tag[$:/tags/EngineGroup]]"/>
 </$reveal>
 </$button>
 
 <div class="engine-button-list">
 @@margin-left: auto;
-<div>
-<$reveal type="nomatch" state="$:/plugins/admls/engine/config/options!!enabled" text="yes">
-<$button>On
-<$action-setfield $tiddler="$:/plugins/admls/engine/config/options" $field="enabled" $value="yes"/>
-<$action-listops $tiddler="$:/StoryList" $subfilter="[tag[$:/EngineGroup]]"/>
-</$button>
-</$reveal>
-<$reveal type="match" state="$:/plugins/admls/engine/config/options!!enabled" text="yes">
-<$button>Off
-<$action-setfield $tiddler="$:/plugins/admls/engine/config/options" $field="enabled" $value="no"/>
-<$list filter="[tag[$:/Engine]]">
-<$action-sendmessage $message="tm-close-tiddler" param=<<currentTiddler>>/>
-</$list>
-</$button>
-</$reveal>
-</div>
+{{$:/plugins/admls/engine/ui/Buttons/enable}}
 @@
 <hr>
-<$list filter="[tag[$:/Engine]]">
-
-<div>
-<$link to=<<currentTiddler>>>{{!!title}}</$link>&nbsp;<$checkbox tag="$:/EngineGroup"></$checkbox>
-</div>
-</$list>
+{{$:/plugins/admls/engine/ui/engine-group}}
 </div>
 </div>
 </$reveal>
