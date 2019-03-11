@@ -1,7 +1,7 @@
-created: 20190205002625047
-modified: 20190205002637253
-tags: unfinished tampered
+created: 20190311214442885
+modified: 20190311215803789
+tags: 
 title: $:/plugins/admls/volant/readme
 type: text/vnd.tiddlywiki
 
-Tell your users about your plugin: what is it good for? How can it be used? And so on...
+A plugin to give your tiddlers wings. The default functionality allows tiddlers appropriately tagged with $:/Volant or $:/VolantAbsolute to be dragged and resized. [[Volant|$:/plugins/admls/volant]] makes use of [[Repopup|$:/plugins/admls/repopup]] to keep popups that emerge from volant tiddlers from running off-screen.

@@ -1,7 +1,7 @@
-created: 20190205002625045
-modified: 20190205002645918
-tags: tampered unfinished
+created: 20190311214442884
+modified: 20190311220301414
+tags: 
 title: $:/plugins/admls/volant/license
 type: text/vnd.tiddlywiki
 
-This plugin is licensed under the ...
+{{$:/plugins/admls/repopup/license}}

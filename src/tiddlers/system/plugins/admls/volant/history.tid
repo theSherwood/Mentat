@@ -1,7 +1,7 @@
-created: 20190205002625042
-modified: 20190205002652640
-tags: unfinished tampered
+created: 20190311214442882
+modified: 20190311215404636
+tags: 
 title: $:/plugins/admls/volant/history
 type: text/vnd.tiddlywiki
 
-* ''0.0.1'' -- my first plugin.
+* ''0.0.1'' -- initial release
