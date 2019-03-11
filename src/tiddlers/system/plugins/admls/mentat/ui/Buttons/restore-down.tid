@@ -1,8 +1,8 @@
 caption: {{$:/plugins/admls/mentat/images/restore-down-button}} restore down
 created: 20190301110214324
 description: Restore window instance to its previous size
-modified: 20190307221059804
-tags: tampered $:/tags/WindowViewToolbar
+modified: 20190311213957957
+tags: $:/tags/WindowViewToolbar
 title: $:/plugins/admls/mentat/ui/Buttons/restore-down
 type: text/vnd.tiddlywiki
 

@@ -1,7 +1,7 @@
 created: 20190112131230817
-list: $:/plugins/admls/mentat/ui/Buttons/minimize-window $:/plugins/admls/mentat/ui/Buttons/fullscreen-window $:/plugins/admls/mentat/ui/Buttons/close-window-tiddler
-modified: 20190126002738163
-tags: tampered
+list: $:/plugins/admls/mentat/ui/Buttons/minimize $:/plugins/admls/mentat/ui/Buttons/maximize $:/plugins/admls/mentat/ui/Buttons/restore-down $:/plugins/admls/mentat/ui/Buttons/close-window-tiddler
+modified: 20190311213957907
+tags: 
 title: $:/tags/WindowViewToolbar
 type: text/vnd.tiddlywiki
 
