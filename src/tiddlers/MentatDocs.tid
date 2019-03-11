@@ -1,0 +1,19 @@
+created: 20190311202541340
+modified: 20190311212709111
+tags: Docs
+title: MentatDocs
+type: text/vnd.tiddlywiki
+
+!!Configuration Settings
+[[$:/plugins/admls/mentat/config/options]]
+
+!!Story and History Lists
+Each window's list field contains its story list. Each window's text field contains its history list. The history of each window tiddler is cleared on startup by [[$:/plugins/admls/mentat/startup-actions]]. Layout, session, and window archives do not store history data. Though, session and window archives do store story data.
+
+!!Configuration Tiddler
+Window tiddlers are also volant tiddlers. As such, each window tiddler has a volant configuration tiddler. However, the window tiddler is its own configuration tiddler, and is therefore tagged $:/config/Volant and has fields that contain information about its position.
+
+However, each window also stores its story list in its list field. Volant configuration tiddlers usually use the list field to keep track of the tiddler being configured. If a volant tiddler is its own configuration tiddler, however, this becomes unnecessary. The list field is free to be used as a story list.
+
+!!Maximized Tiddler
+There can only be one maximized tiddler. The position values for the maximized tiddler are stored at [[$:/plugins/admls/mentat/config/maximized-values]]. These values can be set graphically at [[$:/plugins/admls/mentat/config/set-maximized-values]] if the default functionality of the Volant Plugin is engaged.

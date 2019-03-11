@@ -1,0 +1,31 @@
+created: 20190308003928782
+modified: 20190308215800359
+tags: Demo
+title: VolantDemo
+type: text/vnd.tiddlywiki
+
+For starters, the animations native to Tiddlywiki don't play nicely with volant tiddlers. So I'd recommend turning the animation duration down, or even to 0. It won't hurt anything if you leave it as is. It just won't be pretty.
+
+|<$link to="$:/config/AnimationDuration">Animation duration:</$link> |<$edit-text tiddler="$:/config/AnimationDuration" default="" tag="input"/> |
+
+!!~$:/Volant
+
+Check out a couple of these tiddlers tagged $:/Volant:
+<$list filter="[tag[$:/Volant]] +[tag[VolantDemo]]">
+
+*<$link to={{!!title}}><$text text={{!!title}}/></$link>
+</$list>
+
+!!~$:/VolantAbsolute
+
+Check out these ones tagged $:/VolantAbsolute:
+<$list filter="[tag[$:/VolantAbsolute]] +[tag[VolantDemo]]">
+
+*<$link to={{!!title}}><$text text={{!!title}}/></$link>
+</$list>
+
+!!Create Your Own!
+
+Try creating some tiddlers and adding $:/Volant or $:/VolantAbsolute as a tag.
+
+That's it in a nutshell. For more info, check out the [[Docs|VolantDocs]].

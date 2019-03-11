@@ -1,0 +1,13 @@
+created: 20190308220032393
+modified: 20190311201712465
+tags: Demo
+title: MentatDemo
+type: text/vnd.tiddlywiki
+
+!!Mentat Storyview
+
+I recommend you have the Engine Button engaged for this. Open $:/Topbar and [[$:/Windowbar]]. Maybe go fullscreen too.
+
+You see the button in the $:/Windowbar (that's the one on the bottom of your screen) that says "~$:/Window 1"?
+
+Change the storyview to "mentat". Open "~$:/Window 1" when you get to the other side.

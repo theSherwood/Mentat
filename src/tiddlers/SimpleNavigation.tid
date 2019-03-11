@@ -1,0 +1,15 @@
+created: 20190308223919503
+modified: 20190308224455823
+tags: Demo
+title: SimpleNavigation
+type: text/vnd.tiddlywiki
+
+Try clicking a link that is already open in another window.
+
+*MentatDemoContinued
+
+Simply clicking a link without any modifier keys will open that tiddler in whatever window contains it, open or closed.
+
+Try clicking a link that isn't already open in another window.
+
+*NotOpenElsewhere

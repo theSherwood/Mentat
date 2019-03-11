@@ -1,0 +1,27 @@
+created: 20190308221432991
+modified: 20190311202156404
+tags: Demo
+title: MentatDemoContinued
+type: text/vnd.tiddlywiki
+
+!!Welcome to Mentat!
+
+This tiddler is inside a window or story window tiddler. Window tiddlers are tagged $:/Window, but you needn't worry about tagging new ones yourself. Think of it as a browser instance. They're disposable and the only information they contain is their position and the titles of the tiddlers they show.
+
+Though not tagged $:/Volant, mentat story windows behave as if they were. That means you can reposition and resize them. If you're having trouble getting the hang of the narrow margins don't forget about easy-drag mode {{$:/plugins/admls/volant/ui/Buttons/easy-drag}}.
+
+!!Window Controls
+
+If you look at the top-right corner of this window you'll see three buttons. The one that's shaped like an {{$:/plugins/admls/mentat/ui/Buttons/close-window-tiddler}} actually deletes the window. They're disposable, remember? The {{$:/plugins/admls/mentat/ui/Buttons/minimize}} closes the tiddler. You will still be able to see it in the [[$:/Windowbar]]. The {{$:/plugins/admls/mentat/ui/Buttons/maximize}} button does about what you'd expect, though with a few differences. (To set the dimensions of maximized windows, go to [[$:/plugins/admls/mentat/config/set-maximized-values]]).
+
+!!New Window
+
+Try opening a new window by clicking the {{$:/plugins/admls/mentat/ui/Buttons/new-story-window}} either here, in the [[$:/Windowbar]], or in the [[$:/Topbar]].
+
+Try creating a new tiddler from the window tabs at the top of this window or from the new tiddler button in the [[$:/Topbar]].
+
+!!Navigation
+
+Click on the following link: 
+
+*[[AltNavigation]]

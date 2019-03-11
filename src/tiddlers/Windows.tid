@@ -1,0 +1,16 @@
+created: 20190308231812743
+modified: 20190308234553764
+tags: Demo
+title: Windows
+type: text/vnd.tiddlywiki
+
+The Windows tab is like Sessions except for two things:
+
+*Windows allows you to archive the content and position of individual windows rather than an entire session.
+*Restoring a window archive won't end all of your current window instances.
+
+Which window will it archive if you have multiple windows in use? It will take the "topWindow" (more or less, the last open window you clicked on or navigated to), which at this moment is: 
+
+*{{$:/plugins/admls/mentat/state/top-window}}
+
+You can tell because the window has a shadow and because its tab is hightlighted in the [[$:/Windowbar]].

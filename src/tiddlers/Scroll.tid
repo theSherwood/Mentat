@@ -1,0 +1,9 @@
+created: 20190204183734151
+modified: 20190308010522558
+tags: VolantDemo $:/VolantAbsolute
+title: Scroll
+type: text/vnd.tiddlywiki
+
+Notice any difference?
+
+Whereas tiddlers tagged $:/Volant will stay stuck to the screen when scrolling, tiddlers marked $:/VolantAbsolute remain stuck to the background.

@@ -1,0 +1,7 @@
+created: 20190308232014761
+modified: 20190308232411465
+tags: Demo
+title: Reset
+type: text/vnd.tiddlywiki
+
+The Reset tab is actually from [[Volant|$:/plugins/admls/volant]]. It lists all open volant tiddlers (even window instances are volant tiddlers) as buttons. Pressing a button will restore its tiddler to the default position. This is in case you have some volant tiddler go haywire and get itself lost to civilization somehow. The Reset tab will get it back for you.

@@ -1,0 +1,9 @@
+created: 20190308230355446
+modified: 20190308231804853
+tags: Demo
+title: Layouts
+type: text/vnd.tiddlywiki
+
+You're about to lose all your open windows. So remember the Recent tab. Let it get you back to [[MentatTab]] when the time comes.
+
+Layouts archives the configuration of your ''open'' windows without any of the information about what tiddlers those windows contain. You can save new layouts by name and restore layouts from the archive. But be careful. Restoring a layout from the archive will end all the window instances you have, open or closed. Have fun, and return to [[MentatTab]] when you're ready. I've saved a couple layouts for you to get started.

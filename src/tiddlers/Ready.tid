@@ -1,0 +1,7 @@
+created: 20190308230208241
+modified: 20190308230347216
+tags: Demo
+title: Ready
+type: text/vnd.tiddlywiki
+
+The Ready tab is a bit like the Open tab, only instead of keeping a list of every tiddler in the $:/StoryList, it keeps a list of every window open or closed, and every tiddler in those windows.

@@ -1,0 +1,12 @@
+created: 20190308231325720
+modified: 20190308231737388
+tags: Demo
+title: Sessions
+type: text/vnd.tiddlywiki
+
+The Sessions is much like the Layouts tab except for two things:
+
+*Sessions will save windows ''both open and closed''.
+*Sessions will save the contents of your windows, in addition to their position.
+
+Like Layouts, Sessions will end all your current window instances when you restore something from the archive. I've saved a session or two for you already. Have fun and return [[MentatTab]] when you're ready.
