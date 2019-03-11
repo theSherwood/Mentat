@@ -38,15 +38,10 @@ Views the story as a collection of story windows
 					return;
 				}
 			}
-
 			if (tiddler) {
 				domNode.style.display = "none";
 			}
-
-
-
 		});
-
 	};
 
 	MentatStoryView.prototype.navigateTo = function (historyInfo) {
