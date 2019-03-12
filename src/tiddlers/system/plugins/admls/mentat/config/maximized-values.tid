@@ -1,10 +1,10 @@
 created: 20190301102210668
-maximized-height: 90vh
-maximized-left: 5vw
-maximized-top: 5vh
-maximized-width: 90vw
-modified: 20190301232448887
-tags: tampered
+maximized-height: calc(100% - 10px)
+maximized-left: calc(0% + 5px)
+maximized-top: calc(0% + 5px)
+maximized-width: calc(100% - 10px)
+modified: 20190311213957862
+tags: 
 title: $:/plugins/admls/mentat/config/maximized-values
 type: text/vnd.tiddlywiki
 z-index: 700

@@ -1,0 +1,13 @@
+created: 20190305215950183
+modified: 20190305220634788
+tags: $:/tags/Stylesheet
+title: $:/plugins/admls/mentat/styles/window-bar
+type: text/vnd.tiddlywiki
+
+.window-bar > .tc-reveal {
+display: inline-block;
+}
+
+.window-bar .window-tab:hover {
+text-decoration: none;
+}

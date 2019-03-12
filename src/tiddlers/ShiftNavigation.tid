@@ -1,0 +1,13 @@
+created: 20190308224926221
+modified: 20190308225116348
+tags: Demo
+title: ShiftNavigation
+type: text/vnd.tiddlywiki
+
+Try clicking a link that is already open in another window, but this time hold the shift key as you do.
+
+*MentatDemoContinued
+
+Shift-clicking a link that isn't already open in another window doesn't do anything that interesting, but it's still worth a try.
+
+*MentatTab

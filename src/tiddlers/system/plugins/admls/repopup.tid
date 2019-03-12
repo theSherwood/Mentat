@@ -1,0 +1,10 @@
+core-version: >=5.1.19
+created: 20190307161530987
+description: reposition popups
+modified: 20190307161705913
+plugin-type: plugin
+tags: 
+title: $:/plugins/admls/repopup
+type: application/json
+
+{"tiddlers": {}}

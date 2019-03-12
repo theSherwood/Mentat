@@ -1,0 +1,50 @@
+caption: Sessions
+created: 20190228002217473
+modified: 20190307171517418
+tags: $:/tags/MentatTab
+title: $:/plugins/admls/mentat/ui/tabs/session-archive
+type: text/vnd.tiddlywiki
+
+\define getSessionPrefix(currentTiddler)
+$:/config/Mentat/sessions/$(currentTiddler)$/
+\end
+
+\define newSessionPrefix()
+$:/config/Mentat/sessions/{{$:/state/new-mentat-session}}/
+\end
+
+<$list filter="[removeprefix[$:/config/Mentat/sessions/]splitbefore[/]removesuffix[/]]">
+
+<$wikify name="sessionPrefix" text=<<getSessionPrefix>>>
+
+<$button>{{$:/core/images/delete-button}}
+<$list filter="[prefix<sessionPrefix>]">
+<$action-sendmessage $message="tm-delete-tiddler" param=<<currentTiddler>>/>
+</$list>
+</$button>
+<$button>Restore
+<$action-listops $tiddler="$:/state/delete-window-cache" $field="list" $filter="[tag[$:/Window]]"/>
+<$action-listops $tiddler="$:/StoryList" $field="list" $subfilter=" -[tag[$:/Window]]"/>
+<$list filter="[prefix<sessionPrefix>]">
+<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="$:/Window  $:/config/Volant" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
+<$action-navigate $to={{$:/temp/windowTitle}}/>
+</$list>
+<$action-deletetiddler $filter="[list[$:/state/delete-window-cache]]"/>
+</$button>
+<$view field="title"/>
+</$wikify>
+</$list>
+
+Name new session save:
+
+<$edit-text tiddler="$:/state/new-mentat-session" tag="input" default=""/>
+<$button>Save Current Session
+<$wikify name="sessionPrefix" text=<<newSessionPrefix>>>
+<$action-deletetiddler $filter="[prefix<sessionPrefix>]"/>
+<$list filter="[tag[$:/Window]]">
+<$list filter="[all[current]] +[addprefix<sessionPrefix>]" variable="listItem">
+<$action-createtiddler $basetitle=<<listItem>> tags="$:/config/Window" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
+</$list>
+</$list>
+</$wikify>
+</$button>

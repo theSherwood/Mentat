@@ -1,7 +1,7 @@
 created: 20190125233306365
-modified: 20190125235527959
-tags: tampered unfinished
+modified: 20190311220156416
+tags: 
 title: $:/plugins/admls/mentat/readme
 type: text/vnd.tiddlywiki
 
-Fill in later...
+A plugin built on the backs of [[Repopup|$:/plugins/admls/repopup]], [[Volant|$:/plugins/admls/volant]], [[Engine|$:/plugins/admls/engine]]; providing a fully customizable workspace built out of tiddlers that can be reshaped, placed, replaced, archived, and restored. Something between a desktop and an intrawiki browser; it's quick and intuitive to use, and the basic building block is the tiddler.

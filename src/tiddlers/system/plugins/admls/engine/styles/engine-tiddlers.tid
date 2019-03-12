@@ -1,0 +1,30 @@
+created: 20190212174511720
+modified: 20190311213957869
+tags: $:/tags/Stylesheet
+title: $:/plugins/admls/engine/styles/engine-tiddlers
+type: text/vnd.tiddlywiki
+
+\define backupWithDefault(value)
+<$view tiddler={{{ [all[current]get[draft.of]] ~[all[current]] +[addprefix[$:/config/Engine/]] }}} field=<<__value__>>>
+	<$view tiddler="$:/plugins/admls/volant/config/default-values" field="""default-$value$""">
+	</$view>
+</$view>
+\end
+
+<$reveal type="match" state="$:/plugins/admls/engine/config/options!!enabled" text="yes">
+<$list filter="[list[$:/StoryList]tag[$:/Engine]]">
+
+[data-tiddler-title="<<currentTiddler>>"] {
+top: <<backupWithDefault top>>;
+left: <<backupWithDefault left>>;
+width: <<backupWithDefault width>>;
+height: <<backupWithDefault height>>;
+z-index: <<backupWithDefault z-index>>;
+}
+
+[data-tiddler-title="<<currentTiddler>>"] .tc-titlebar {
+font-size: 1.6em;
+}
+
+</$list>
+</$reveal>

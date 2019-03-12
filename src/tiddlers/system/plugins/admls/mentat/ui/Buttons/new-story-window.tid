@@ -1,5 +1,5 @@
 created: 20190111210715655
-modified: 20190301223333009
+modified: 20190305225159886
 tags: $:/tags/PageControls
 title: $:/plugins/admls/mentat/ui/Buttons/new-story-window
 type: text/vnd.tiddlywiki
@@ -9,6 +9,7 @@ type: text/vnd.tiddlywiki
 <$action-navigate $to={{$:/temp/windowTitle}}/>
 \end
 
+<$reveal type="match" state="$:/view" text="mentat">
 <$button actions=<<actions>> class="tc-btn-box tc-tiddlylink" tooltip="Create a new story window" aria-label="new window tiddler" class=<<tv-config-toolbar-class>>>
 <$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
 {{$:/plugins/admls/mentat/images/new-story-window}}
@@ -17,3 +18,4 @@ type: text/vnd.tiddlywiki
 <span class="tc-btn-text"><$text text="new story window"/></span>
 </$list>
 </$button>
+</$reveal>

@@ -1,0 +1,15 @@
+created: 20190212173030711
+modified: 20190308013204814
+tags: $:/tags/ViewTemplate $:/tags/EditTemplate
+title: $:/plugins/admls/engine/templates/engine
+type: text/vnd.tiddlywiki
+
+<!-- Only make volant if engine plugin functionality is enabled... -->
+<$reveal type="match" state="$:/plugins/admls/engine/config/options!!enabled" text="yes">
+<!-- ...and the tiddler is rendering out of the main $:/StoryList -->
+<$reveal type="match" default=<<tv-story-list>> text="$:/StoryList">
+<$list filter="[all[current]tag[$:/Engine]]">
+<$volant separateConfig="yes" configTiddlerPrefix="$:/config/Engine/"/>
+</$list>
+</$reveal>
+</$reveal>

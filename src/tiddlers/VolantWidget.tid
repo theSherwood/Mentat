@@ -1,0 +1,15 @@
+created: 20190311162730776
+modified: 20190311164308407
+tags: Docs
+title: VolantWidget
+type: text/vnd.tiddlywiki
+
+$:/plugins/admls/volant/widgets/volant.js
+
+The VolantWidget works by affecting the behavior of the tiddler //inside// of which it is placed. It also potentially creates a configuration tiddler to keep track of the position and dimensions of the tiddler affected. The VolantWidget takes three optional parameters.
+
+|''position''|//Optional. Accepts "fixed" or "absolute". Defaults to "fixed"//|
+|''separateConfig''|//Optional. Accepts "yes" or "no". Defaults to "no" (storing the configuration data in the tiddler containing the widget).//|
+|''configTiddlerPrefix''|//Optional. Designate the prefix for the configuration tiddler. The suffix will be the name of the tiddler containing the widget. Defaults to "$:/config/Volant/".//|
+
+''Remember'', in addition to enclosing the widget, every volant tiddler needs to be styled, in order for the position data in the configuration tiddler to affect the position of the tiddler.

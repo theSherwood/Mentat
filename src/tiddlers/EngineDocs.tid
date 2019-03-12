@@ -1,0 +1,9 @@
+created: 20190311192920082
+modified: 20190311193342518
+tags: Docs
+title: EngineDocs
+type: text/vnd.tiddlywiki
+
+There's little enough to Engine. You can configure settings here: [[$:/plugins/admls/engine/config/options]].
+
+Restyle the default engine button with css. To replace the default engine button with one of your preference, tag a tiddler with [[$:/tags/EngineButtonTemplate]]. After doing that, it may become necessary to adjust where the engine button menu appears so that it is accessible when you hover over the Engine Button.

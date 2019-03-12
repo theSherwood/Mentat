@@ -1,9 +1,0 @@
-created: 20190125235212989
-modified: 20190125235422640
-tags: tampered unfinished
-title: TaggedUnfinished
-type: text/vnd.tiddlywiki
-
-<$list filter="[tag[unfinished]!has[draft.of]]">
-
-</$list>

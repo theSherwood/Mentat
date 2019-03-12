@@ -1,0 +1,15 @@
+created: 20190111185937723
+modified: 20190311213957982
+tags: $:/tags/WindowViewTemplate
+title: $:/plugins/admls/mentat/templates/WindowViewTemplate/plugin
+type: text/vnd.tiddlywiki
+
+<$list filter="[all[current]has[plugin-type]] -[all[current]field:plugin-type[import]]">
+<$set name="plugin-type" value={{!!plugin-type}}>
+<$set name="default-popup-state" value="yes">
+<$set name="qualified-state" value=<<qualify "$:/state/plugin-info">>>
+{{||$:/core/ui/Components/plugin-info}}
+</$set>
+</$set>
+</$set>
+</$list>

@@ -1,0 +1,7 @@
+created: 20190308224241839
+modified: 20190308224449060
+tags: Demo
+title: NotOpenElsewhere
+type: text/vnd.tiddlywiki
+
+Simply clicking on a link to a tiddler that isn't in another window will open that tiddler in the window from which you navigated. Unless you didn't navigate from a window but from an Engine tiddler. Then it's complicated, but intuitive.

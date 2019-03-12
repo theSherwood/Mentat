@@ -1,0 +1,15 @@
+created: 20190308223416293
+modified: 20190308225139454
+tags: Demo
+title: AltNavigation
+type: text/vnd.tiddlywiki
+
+Try clicking on these links while holding the Alt key.
+
+*[[SimpleNavigation]]
+*[[ShiftNavigation]]
+*[[WindowTabs]]
+
+You should see 3 new windows in the [[$:/Windowbar]]. Holding the Alt key while following a link will open that link in a new window.
+
+

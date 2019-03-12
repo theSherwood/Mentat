@@ -1,0 +1,48 @@
+created: 20190225223359392
+modified: 20190307191223340
+tags: $:/tags/Stylesheet
+title: $:/plugins/admls/engine/styles/engine-button
+type: text/vnd.tiddlywiki
+
+.engine-button-wrapper, .engine-button {
+position: fixed;
+bottom: 20px;
+right: 20px;
+z-index: 1000;
+}
+
+.engine-button-list {
+position: absolute;
+bottom: 20px;
+right: 20px;
+opacity: 0;
+z-index: -1;
+box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+background-color: <<colour background>>;
+border-radius: 4px;
+padding: 5px;
+transition: 0s;
+width: 0px;
+height: 0px;
+}
+
+.engine-button-wrapper:hover .engine-button-list {
+opacity: 1;
+height: auto;
+transition-delay: .7s;
+width: auto;
+right: 0px;
+bottom: 40px;
+}
+
+.engine-button-list * {
+text-align: right;
+}
+
+.default-engine-button {
+background-color: rgba(200,0,0,1);
+border-radius: 50%;
+height: 40px;
+width: 40px;
+box-shadow: 2px 2px 12px 2px rgba(0,0,0,.5);
+}

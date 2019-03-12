@@ -1,0 +1,30 @@
+created: 20190220151403137
+modified: 20190311213957822
+tags: $:/tags/Stylesheet
+title: $:/plugins/admls/mentat/styles/window-tiddlers
+type: text/vnd.tiddlywiki
+
+\define backupWithDefault(value)
+<$view tiddler={{{ [all[current]get[draft.of]] ~[all[current]]}}} field=<<__value__>>>
+	<$view tiddler="$:/plugins/admls/volant/config/default-values" field="""default-$value$""">
+	</$view>
+</$view>
+\end
+
+<$reveal type="match" state="$:/view" text="mentat">
+<$list filter="[list[$:/StoryList]tag[$:/Window]]">
+
+[data-tiddler-title="<<currentTiddler>>"] {
+top: <<backupWithDefault top>>;
+left: <<backupWithDefault left>>;
+width: <<backupWithDefault width>>;
+height: <<backupWithDefault height>>;
+z-index: <<backupWithDefault z-index>>;
+}
+
+[data-tiddler-title="<<currentTiddler>>"] .tc-titlebar {
+font-size: 1.6em;
+}
+
+</$list>
+</$reveal>

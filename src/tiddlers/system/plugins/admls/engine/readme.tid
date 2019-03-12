@@ -1,0 +1,7 @@
+created: 20190308235541766
+modified: 20190311220210091
+tags: 
+title: $:/plugins/admls/engine/readme
+type: text/vnd.tiddlywiki
+
+A plugin that builds off of [[Repopup|$:/plugins/admls/repopup]] and [[Volant|$:/plugins/admls/volant]] to provide a customizable console: a sort of HUD display made out of tiddlers that you can swap in or out and reposition to your heart's content. Have the tools and tiddlers you need, when and where you need them.

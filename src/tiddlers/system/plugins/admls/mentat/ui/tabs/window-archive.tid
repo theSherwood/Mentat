@@ -1,0 +1,42 @@
+caption: Windows
+created: 20190228014435887
+modified: 20190307160238568
+tags: $:/tags/MentatTab
+title: $:/plugins/admls/mentat/ui/tabs/window-archive
+type: text/vnd.tiddlywiki
+
+\define newWindowPrefix()
+$:/config/Mentat/windows/{{$:/state/new-window}}
+\end
+
+<$set name="windowPrefix" value="$:/config/Mentat/windows/">
+
+<$list filter="[prefix<windowPrefix>]">
+<$button>{{$:/core/images/delete-button}}
+<$action-sendmessage $message="tm-delete-tiddler" param=<<currentTiddler>>/>
+</$button>
+<$button>Restore
+<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="$:/Window" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
+<$action-navigate $to={{$:/temp/windowTitle}}/>
+</$button>
+<$list filter="[all[current]] +[removeprefix[$:/config/Mentat/windows/]]">
+<$view field="title"/>
+</$list>
+</$list>
+
+
+Name new window save:
+
+<$edit-text tiddler="$:/state/new-window" tag="input" default=""/>
+<$button>Save Selected Window
+<$wikify name="newWindowPrefix" text=<<newWindowPrefix>>>
+<$action-deletetiddler $filter="[prefix<newWindowPrefix>]"/>
+<$wikify name="topWindow" text={{$:/plugins/admls/mentat/state/top-window}}>
+<$list filter="[title<topWindow>]">
+<$action-createtiddler $basetitle=<<newWindowPrefix>> tags="$:/config/Window" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
+</$list>
+</$wikify>
+</$wikify>
+</$button>
+
+</$set>

@@ -1,0 +1,23 @@
+created: 20190218190731297
+modified: 20190307185623063
+tags: $:/Engine
+title: $:/Sidebar
+type: text/vnd.tiddlywiki
+
+\define config-title()
+$:/config/SideBarSegments/Visibility/$(listItem)$
+\end
+
+<div class="tc-sidebar-header">
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/SideBarSegment]!has[draft.of]]" variable="listItem">
+
+<$reveal type="nomatch" state=<<config-title>> text="hide"  tag="div">
+
+<$transclude tiddler=<<listItem>> mode="block"/>
+
+</$reveal>
+
+</$list>
+
+</div>

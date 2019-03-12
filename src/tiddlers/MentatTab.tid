@@ -1,0 +1,16 @@
+created: 20190308225434030
+modified: 20190308232847994
+tags: Demo
+title: MentatTab
+type: text/vnd.tiddlywiki
+
+Check out the Mentat tab in the $:/Topbar or [[$:/Sidebar]]. You will notice that it contains a whole lot of tabs. Here's some info on each.
+
+*[[Ready]]
+*[[Layouts]]
+*[[Sessions]]
+*[[Windows]]
+*[[Reset]]
+*[[Config]]
+
+When you're done with that, check out the [[Docs|MentatDocs]]!

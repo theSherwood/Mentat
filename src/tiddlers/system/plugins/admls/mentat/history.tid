@@ -1,7 +1,7 @@
 created: 20190125233306363
-modified: 20190125235448524
-tags: tampered unfinished
+modified: 20190311215449012
+tags: 
 title: $:/plugins/admls/mentat/history
 type: text/vnd.tiddlywiki
 
-* ''0.0.1'' -- my first plugin.
+* ''0.0.1'' -- initial release

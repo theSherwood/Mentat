@@ -1,8 +1,8 @@
 caption: {{$:/plugins/admls/mentat/images/restore-down-button}} restore down
 created: 20190301110214324
-description: Maximize window toggle
-modified: 20190301233054656
-tags: tampered $:/tags/WindowViewToolbar
+description: Restore window instance to its previous size
+modified: 20190311213957957
+tags: $:/tags/WindowViewToolbar
 title: $:/plugins/admls/mentat/ui/Buttons/restore-down
 type: text/vnd.tiddlywiki
 
@@ -15,6 +15,7 @@ type: text/vnd.tiddlywiki
 <$action-setfield $tiddler={{!!title}} top={{$:/plugins/admls/mentat/state/maximized-tiddler!!top}} height={{$:/plugins/admls/mentat/state/maximized-tiddler!!height}} left={{$:/plugins/admls/mentat/state/maximized-tiddler!!left}} width={{$:/plugins/admls/mentat/state/maximized-tiddler!!width}}/>
 <$action-setfield $tiddler="$:/plugins/admls/mentat/state/maximized-tiddler" text="" top="" height="" left="" width=""/>
 </$list>
+<$action-listops $tiddler="$:/StoryList" $subfilter=" [list[$:/plugins/admls/mentat/state/maximized-tiddler]]"/>
 <$action-navigate $to=<<maximizedTiddler>>/>
 </$set>
 

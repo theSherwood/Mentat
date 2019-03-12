@@ -1,0 +1,21 @@
+created: 20190305103358375
+modified: 20190307145537681
+tags: $:/tags/Stylesheet
+title: $:/plugins/admls/volant/styles/dropdown
+type: text/vnd.tiddlywiki
+
+.volant .tc-block-dropdown {
+position: absolute;
+}
+
+.volant .tc-block-dropdown-wrapper {
+position: static;
+}
+
+.volant .tc-search + .tc-block-dropdown-wrapper {
+position: absolute;
+}
+
+.volant .tc-search-drop-down {
+position: absolute;
+}

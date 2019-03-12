@@ -1,0 +1,26 @@
+created: 20190301104910328
+modified: 20190306234611120
+tags: $:/tags/Stylesheet
+title: $:/plugins/admls/mentat/styles/maximized
+type: text/vnd.tiddlywiki
+
+\define maximized(value)
+<$view tiddler="$:/plugins/admls/mentat/config/maximized-values" field="""maximized-$value$""">
+</$view>
+\end
+
+<$list filter="[title{$:/plugins/admls/mentat/state/maximized-tiddler}]">
+
+[data-tiddler-title="<<currentTiddler>>"] {
+top: <<maximized top>> !important;
+left: <<maximized left>> !important;
+width: <<maximized width>> !important;
+height: <<maximized height>> !important;
+z-index: 1000 !important;
+}
+
+[data-tiddler-title="<<currentTiddler>>"] .resizer {
+display: none;
+}
+
+</$list>

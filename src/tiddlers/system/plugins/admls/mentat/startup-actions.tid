@@ -1,0 +1,10 @@
+created: 20190301101101387
+modified: 20190311213957834
+tags: $:/tags/StartupAction
+title: $:/plugins/admls/mentat/startup-actions
+type: text/vnd.tiddlywiki
+
+<!-- Clears the history from story windows -->
+<$list filter="[tag[$:/Window]]">
+<$action-setfield $tiddler=<<currentTiddler>> text=""/>
+</$list>

@@ -1,0 +1,20 @@
+created: 20190311192452886
+modified: 20190311192559506
+tags: 
+title: $:/plugins/admls/engine/ui/Buttons/enable
+type: text/vnd.tiddlywiki
+
+<div>
+<$reveal type="nomatch" state="$:/plugins/admls/engine/config/options!!enabled" text="yes">
+<$button>On
+<$action-setfield $tiddler="$:/plugins/admls/engine/config/options" $field="enabled" $value="yes"/>
+<$action-listops $tiddler="$:/StoryList" $subfilter="[tag[$:/tags/EngineGroup]]"/>
+</$button>
+</$reveal>
+<$reveal type="match" state="$:/plugins/admls/engine/config/options!!enabled" text="yes">
+<$button>Off
+<$action-setfield $tiddler="$:/plugins/admls/engine/config/options" $field="enabled" $value="no"/>
+<$action-listops $tiddler="$:/StoryList" $subfilter="-[tag[$:/Engine]]"/>
+</$button>
+</$reveal>
+</div>

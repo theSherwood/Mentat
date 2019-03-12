@@ -1,0 +1,7 @@
+created: 20190311214856289
+modified: 20190311215613274
+tags: 
+title: $:/plugins/admls/repopup/readme
+type: text/vnd.tiddlywiki
+
+A quick hack of a plugin that attempts to reposition tiddlywiki popups so that they don't run off the screen. It's not perfect and it doesn't seem to do much to normal dropdowns. But it's an okay fix until the popup mechanism can get a comprehensive overhaul. This plugin has been designed with the Volant, Engine, and Mentat Plugins in mind. So if you use it for something else, your mileage may vary.

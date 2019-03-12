@@ -1,0 +1,13 @@
+created: 20190129234844552
+modified: 20190308005954021
+tags: VolantDemo $:/Volant
+title: Reposition
+type: text/vnd.tiddlywiki
+
+Drag me around by the narrow margin of my border!
+
+If the margin is too narrow to get a good grip, enable Easy-Drag Mode by clicking {{$:/plugins/admls/volant/ui/Buttons/easy-drag}}.
+
+You can find the same button in the Page Controls on the ~SideBar.
+
+With Easy-Drag enabled, you won't be able to select text or the like. Click the same button again to turn it off.

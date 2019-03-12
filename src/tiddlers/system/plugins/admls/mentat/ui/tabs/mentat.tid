@@ -1,0 +1,13 @@
+caption: Mentat
+created: 20190223031911509
+list-before: $:/core/ui/SideBar/Open
+modified: 20190311213957951
+tags: $:/tags/SideBar
+title: $:/plugins/admls/mentat/ui/tabs/mentat
+type: text/vnd.tiddlywiki
+
+\define drop-actions()
+<$action-listops $tiddler=$(windowTiddler)$ $subfilter="+[insertbefore:currentTiddler<actionTiddler>]"/>
+\end
+
+{{$:/plugins/admls/mentat/ui/tabs/mentat-tabs}}

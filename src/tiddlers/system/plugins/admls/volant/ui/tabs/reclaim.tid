@@ -1,0 +1,25 @@
+caption: Reset
+created: 20190228182617289
+modified: 20190307161431383
+tags: $:/tags/MentatTab
+title: $:/plugins/admls/volant/ui/reset
+type: text/vnd.tiddlywiki
+
+\define getDefault(value)
+<$view tiddler="$:/plugins/admls/volant/config/default-values" field="""default-$value$""">
+</$view>
+\end
+
+Click to reset the tiddler to the default position:
+
+<$list filter="[list[$:/StoryList]]" variable="openTiddler">
+
+<$fieldmangler>
+<$button><$text text=<<openTiddler>>/>
+<$list filter="[tag[$:/config/Volant]suffix<openTiddler>]">
+<$action-setfield $tiddler={{!!title}} top={{$:/plugins/admls/volant/config/default-values!!default-top}} height={{$:/plugins/admls/volant/config/default-values!!default-height}} left={{$:/plugins/admls/volant/config/default-values!!default-left}} width={{$:/plugins/admls/volant/config/default-values!!default-width}}/>
+</$list>
+<$action-navigate $to=<<openTiddler>>/>
+</$button>
+</$fieldmangler>
+</$list>

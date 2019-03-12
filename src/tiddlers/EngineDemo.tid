@@ -1,0 +1,19 @@
+created: 20190308012242517
+modified: 20190311212920519
+tags: Demo
+title: EngineDemo
+type: text/vnd.tiddlywiki
+
+!!The Engine Button
+
+You may have noticed the red dot in the bottom-right corner. That is the Engine Button. Hover your mouse over it. Click the "On" button. You should see the ~SideBar and icon that opens and closes it disappear. In it's place is the $:/Sidebar tiddler.
+
+If you hover over the Engine Button, you will notice that there are other tiddlers listed there, too. They're from [[Mentat|$:/plugins/admls/mentat]], which we haven't gotten to yet. But feel free to click on them, experiment with the checkmarks, and click the Engine Button.
+
+!!Create Your Own!
+
+Try creating some tiddlers and adding $:/Engine to them as a tag. You should now see them listed if you hover over the Engine Button.
+
+If you open them while the Engine functionality is enabled (the "On" button within the Engine Button popup), you'll notice that the titles are not displayed. Engine tiddlers are designed to be low-overhead and high-impact. Just supply your Engine tiddlers with the tools you always need to hand to keep your wiki up and running.
+
+That's it in a nutshell. For more info, check out the [[Docs|EngineDocs]].

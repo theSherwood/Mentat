@@ -1,0 +1,11 @@
+created: 20190306135134414
+modified: 20190311170920318
+tags: $:/Volant
+title: $:/plugins/admls/volant/config/set-default-values
+type: text/vnd.tiddlywiki
+
+Click the button to set the position of this tiddler as the default position for volant tiddlers.
+
+<$button>Set Default Values
+<$action-setfield $tiddler="$:/plugins/admls/volant/config/default-values" default-height={{$:/config/Volant/$:/plugins/admls/volant/config/set-default-values!!height}} default-width={{$:/config/Volant/$:/plugins/admls/volant/config/set-default-values!!width}} default-top={{$:/config/Volant/$:/plugins/admls/volant/config/set-default-values!!top}} default-left={{$:/config/Volant/$:/plugins/admls/volant/config/set-default-values!!left}}/>
+</$button>

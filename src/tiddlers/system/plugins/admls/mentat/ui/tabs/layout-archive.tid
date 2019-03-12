@@ -1,0 +1,50 @@
+caption: Layouts
+created: 20190227225752561
+modified: 20190307160325449
+tags: $:/tags/MentatTab
+title: $:/plugins/admls/mentat/ui/tabs/layout-archive
+type: text/vnd.tiddlywiki
+
+\define getLayoutPrefix(currentTiddler)
+$:/config/Mentat/layouts/$(currentTiddler)$/
+\end
+
+\define newLayoutPrefix()
+$:/config/Mentat/layouts/{{$:/state/new-mentat-layout}}/
+\end
+
+<$list filter="[removeprefix[$:/config/Mentat/layouts/]splitbefore[/]removesuffix[/]]">
+
+<$wikify name="layoutPrefix" text=<<getLayoutPrefix>>>
+
+<$button>{{$:/core/images/delete-button}}
+<$list filter="[prefix<layoutPrefix>]">
+<$action-sendmessage $message="tm-delete-tiddler" param=<<currentTiddler>>/>
+</$list>
+</$button>
+<$button>Restore
+<$action-listops $tiddler="$:/state/delete-window-cache" $field="list" $filter="[tag[$:/Window]]"/>
+<$action-listops $tiddler="$:/StoryList" $field="list" $subfilter=" -[tag[$:/Window]]"/>
+<$list filter="[prefix<layoutPrefix>]">
+<$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="$:/Window  $:/config/Volant" height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
+<$action-navigate $to={{$:/temp/windowTitle}}/>
+</$list>
+<$action-deletetiddler $filter="[list[$:/state/delete-window-cache]]"/>
+</$button>
+<$view field="title"/>
+</$wikify>
+</$list>
+
+Name new layout save:
+
+<$edit-text tiddler="$:/state/new-mentat-layout" tag="input" default=""/>
+<$button>Save Current Layout
+<$wikify name="layoutPrefix" text=<<newLayoutPrefix>>>
+<$action-deletetiddler $filter="[prefix<layoutPrefix>]"/>
+<$list filter="[list[$:/StoryList]tag[$:/Window]]">
+<$list filter="[all[current]] +[addprefix<layoutPrefix>]" variable="listItem">
+<$action-createtiddler $basetitle=<<listItem>> tags="$:/config/Window" height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
+</$list>
+</$list>
+</$wikify>
+</$button>
