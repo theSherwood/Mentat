@@ -1,0 +1,11 @@
+$: /core/ui/ViewTemplate
+additional-tiddlers: [prefix[$:/plugins/admls/volant]]
+$:/core/ui/EditTemplate
+$:/core/ui/ViewTemplate
+created: 20190312130930683
+modified: 20190315191418211
+release: yes
+title: $:/config/ThirdFlow/plugins/$:/plugins/admls/volant
+type: text/vnd.tiddlywiki
+
+volant.tid

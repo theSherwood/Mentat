@@ -1,5 +1,9 @@
-created: 20190125233145814
-modified: 20190125233147421
+additional-tiddlers: [prefix[$:/plugins/admls/mentat]]
+$:/core/images/storyview-mentat
+$:/Topbar
+$:/Windowbar
+created: 20190312130848384
+modified: 20190315191500031
 release: yes
 title: $:/config/ThirdFlow/plugins/$:/plugins/admls/mentat
 type: text/vnd.tiddlywiki
