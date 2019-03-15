@@ -12,13 +12,13 @@ type: text/vnd.tiddlywiki
 <$reveal type="nomatch" state="$:/plugins/admls/mentat/state/maximized-tiddler!!text" text={{!!title}}>
 <$button tooltip="Maximize" aria-label="maximize" class=<<tv-config-toolbar-class>>>
 <$set name="maximizedTiddler" value={{$:/plugins/admls/mentat/state/maximized-tiddler!!text}}>
-<$list filter="[tag[$:/config/Volant]suffix<maximizedTiddler>]">
+<$list filter="[all[shadows+tiddlers]tag[$:/config/Volant]suffix<maximizedTiddler>]">
 <$action-setfield $tiddler={{!!title}} top={{$:/plugins/admls/mentat/state/maximized-tiddler!!top}} height={{$:/plugins/admls/mentat/state/maximized-tiddler!!height}} left={{$:/plugins/admls/mentat/state/maximized-tiddler!!left}} width={{$:/plugins/admls/mentat/state/maximized-tiddler!!width}}/>
 </$list>
 </$set>
 
 <$set name="otherOpenWindows" filter="[list[$:/StoryList]tag[$:/Window]!is[current]]">
-<$list filter="[tag[$:/config/Volant]suffix<currentTiddler>]">
+<$list filter="[all[shadows+tiddlers]tag[$:/config/Volant]suffix<currentTiddler>]">
 <$action-setfield $tiddler="$:/plugins/admls/mentat/state/maximized-tiddler" text=<<currentTiddler>> top={{!!top}} height={{!!height}} left={{!!left}} width={{!!width}} list=<<otherOpenWindows>>/>
 </$list>
 <$action-listops $tiddler="$:/StoryList" $subfilter=" -[list[$:/plugins/admls/mentat/state/maximized-tiddler]]"/>

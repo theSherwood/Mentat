@@ -5,6 +5,6 @@ title: $:/plugins/admls/mentat/startup-actions
 type: text/vnd.tiddlywiki
 
 <!-- Clears the history from story windows -->
-<$list filter="[tag[$:/Window]]">
+<$list filter="[all[shadows+tiddlers]tag[$:/Window]]">
 <$action-setfield $tiddler=<<currentTiddler>> text=""/>
 </$list>

@@ -1,11 +1,11 @@
 created: 20190225180426874
-modified: 20190311190710718
-tags: $:/Engine $:/tags/EngineGroup
+modified: 20190315193506275
+tags: $:/Engine
 title: $:/Windowbar
 type: text/vnd.tiddlywiki
 
 <div class="window-bar">
-<$list filter="[tag[$:/Window]]" storyview="pop">
+<$list filter="[all[shadows+tiddlers]tag[$:/Window]]" storyview="pop">
 <$wikify name="topWindow" text={{$:/plugins/admls/mentat/state/top-window!!text}}>
 <$set name="listItemTitle" value={{!!title}}>
 <$reveal type="match" default=<<topWindow>> text=<<listItemTitle>>>

@@ -13,19 +13,19 @@ $:/config/Mentat/sessions/$(currentTiddler)$/
 $:/config/Mentat/sessions/{{$:/state/new-mentat-session}}/
 \end
 
-<$list filter="[removeprefix[$:/config/Mentat/sessions/]splitbefore[/]removesuffix[/]]">
+<$list filter="[all[shadows+tiddlers]removeprefix[$:/config/Mentat/sessions/]splitbefore[/]removesuffix[/]]">
 
 <$wikify name="sessionPrefix" text=<<getSessionPrefix>>>
 
 <$button>{{$:/core/images/delete-button}}
-<$list filter="[prefix<sessionPrefix>]">
+<$list filter="[all[shadows+tiddlers]prefix<sessionPrefix>]">
 <$action-sendmessage $message="tm-delete-tiddler" param=<<currentTiddler>>/>
 </$list>
 </$button>
 <$button>Restore
-<$action-listops $tiddler="$:/state/delete-window-cache" $field="list" $filter="[tag[$:/Window]]"/>
-<$action-listops $tiddler="$:/StoryList" $field="list" $subfilter=" -[tag[$:/Window]]"/>
-<$list filter="[prefix<sessionPrefix>]">
+<$action-listops $tiddler="$:/state/delete-window-cache" $field="list" $filter="[all[shadows+tiddlers]tag[$:/Window]]"/>
+<$action-listops $tiddler="$:/StoryList" $field="list" $subfilter=" -[all[shadows+tiddlers]tag[$:/Window]]"/>
+<$list filter="[all[shadows+tiddlers]prefix<sessionPrefix>]">
 <$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="$:/Window  $:/config/Volant" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
 <$action-navigate $to={{$:/temp/windowTitle}}/>
 </$list>
@@ -40,8 +40,8 @@ Name new session save:
 <$edit-text tiddler="$:/state/new-mentat-session" tag="input" default=""/>
 <$button>Save Current Session
 <$wikify name="sessionPrefix" text=<<newSessionPrefix>>>
-<$action-deletetiddler $filter="[prefix<sessionPrefix>]"/>
-<$list filter="[tag[$:/Window]]">
+<$action-deletetiddler $filter="[all[shadows+tiddlers]prefix<sessionPrefix>]"/>
+<$list filter="[all[shadows+tiddlers]tag[$:/Window]]">
 <$list filter="[all[current]] +[addprefix<sessionPrefix>]" variable="listItem">
 <$action-createtiddler $basetitle=<<listItem>> tags="$:/config/Window" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
 </$list>

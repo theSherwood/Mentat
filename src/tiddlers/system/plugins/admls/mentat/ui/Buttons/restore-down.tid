@@ -11,7 +11,7 @@ type: text/vnd.tiddlywiki
 <$reveal type="match" state="$:/plugins/admls/mentat/state/maximized-tiddler!!text" text={{!!title}}>
 <$button tooltip="Restore down" aria-label="restore down" class=<<tv-config-toolbar-class>>>
 <$set name="maximizedTiddler" value={{$:/plugins/admls/mentat/state/maximized-tiddler!!text}}>
-<$list filter="[tag[$:/config/Volant]suffix<maximizedTiddler>]">
+<$list filter="[all[shadows+tiddlers]tag[$:/config/Volant]suffix<maximizedTiddler>]">
 <$action-setfield $tiddler={{!!title}} top={{$:/plugins/admls/mentat/state/maximized-tiddler!!top}} height={{$:/plugins/admls/mentat/state/maximized-tiddler!!height}} left={{$:/plugins/admls/mentat/state/maximized-tiddler!!left}} width={{$:/plugins/admls/mentat/state/maximized-tiddler!!width}}/>
 <$action-setfield $tiddler="$:/plugins/admls/mentat/state/maximized-tiddler" text="" top="" height="" left="" width=""/>
 </$list>
