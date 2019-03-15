@@ -1,7 +1,8 @@
 created: 20190308235541763
-modified: 20190311215438151
+modified: 20190315191809004
 tags: 
 title: $:/plugins/admls/engine/history
 type: text/vnd.tiddlywiki
 
 * ''0.0.1'' -- initial release
+* ''0.0.2'' -- includes $:/Sidebar

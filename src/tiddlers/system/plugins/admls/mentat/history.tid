@@ -1,7 +1,8 @@
 created: 20190125233306363
-modified: 20190311215449012
+modified: 20190315193124798
 tags: 
 title: $:/plugins/admls/mentat/history
 type: text/vnd.tiddlywiki
 
 * ''0.0.1'' -- initial release
+* ''0.0.2'' -- includes $:/Topbar and $:/Windowbar. Switches function of modifiers for nav: shift opens in new window tiddler, alt opens in top-window
