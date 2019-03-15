@@ -1,0 +1,7 @@
+created: 20190315211234616
+list: $:/core/ui/ViewTemplate $:/core/ui/EditTemplate $:/plugins/admls/volant $:/plugins/admls/volant/config/default-values $:/plugins/admls/volant/config/options $:/plugins/admls/volant/config/set-default-values $:/plugins/admls/volant/config/values $:/plugins/admls/volant/globals/volant.js $:/plugins/admls/volant/history $:/plugins/admls/volant/images/easy-drag $:/plugins/admls/volant/license $:/plugins/admls/volant/readme $:/plugins/admls/volant/startup-actions $:/plugins/admls/volant/styles/dropdown $:/plugins/admls/volant/styles/general $:/plugins/admls/volant/styles/tagged-tiddlers $:/plugins/admls/volant/styles/zstacktop $:/plugins/admls/volant/templates/tags $:/plugins/admls/volant/ui/Buttons/easy-drag $:/plugins/admls/volant/ui/reset $:/plugins/admls/volant/widgets/volant.js
+modified: 20190315211335349
+tags: [[package plugin]]
+title: VolantPluginList
+type: text/vnd.tiddlywiki
+
