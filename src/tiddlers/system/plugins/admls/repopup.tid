@@ -1,10 +1,13 @@
+author: Adam Sherwood
 core-version: >=5.1.19
 created: 20190307161530987
-description: reposition popups
-modified: 20190307161705913
+description: Repopup: repositions popups
+list: readme license history
+modified: 20190311214858339
 plugin-type: plugin
 tags: 
 title: $:/plugins/admls/repopup
 type: application/json
+version: 0.0.1
 
-{"tiddlers": {}}
+{"tiddlers":{}}

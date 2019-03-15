@@ -1,5 +1,8 @@
-created: 20190125233145814
-modified: 20190125233147421
+$: /Windowbar
+[[$: /Windowbar]]
+additional-tiddlers: [list[MentatPluginList]]
+created: 20190312130848384
+modified: 20190315211457346
 release: yes
 title: $:/config/ThirdFlow/plugins/$:/plugins/admls/mentat
 type: text/vnd.tiddlywiki

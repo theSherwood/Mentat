@@ -1,0 +1,10 @@
+$: /core/ui/ViewTemplate
+[[$: /core/ui/EditTemplate]]
+additional-tiddlers: [list[VolantPluginList]]
+created: 20190312130930683
+modified: 20190315211224477
+release: yes
+title: $:/config/ThirdFlow/plugins/$:/plugins/admls/volant
+type: text/vnd.tiddlywiki
+
+volant.tid

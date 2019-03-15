@@ -1,9 +1,9 @@
 /*\
 created: 20190301234816184
-type: application/javascript
 title: $:/plugins/admls/mentat/globals/mentat.js
+type: application/javascript
 tags: 
-modified: 20190306190136948
+modified: 20190315192300663
 module-type: global
 
 Adds methods and hooks for navigation in mentat storyview
@@ -213,8 +213,8 @@ Adds methods and hooks for navigation in mentat storyview
                     windowTitle = elmnt.dataset.tiddlerTitle;
                 }
 
-                // if windowTitle isn't a tiddler or the altKey was pressed
-                if (!$tw.wiki.tiddlerExists(windowTitle) || !windowTitle || event.altKey) {
+                // if windowTitle isn't a tiddler or the shiftKey was pressed
+                if (!$tw.wiki.tiddlerExists(windowTitle) || !windowTitle || event.shiftKey) {
                     // Add a window to the tiddler store to put the toTitle tiddler in
                     windowTitle = M.createWindow();
                 }
