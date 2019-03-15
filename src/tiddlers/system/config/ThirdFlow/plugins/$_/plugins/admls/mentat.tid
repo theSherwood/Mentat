@@ -1,9 +1,8 @@
-additional-tiddlers: [prefix[$:/plugins/admls/mentat]]
-$:/core/images/storyview-mentat
-$:/Topbar
-$:/Windowbar
+$: /Windowbar
+[[$: /Windowbar]]
+additional-tiddlers: [list[MentatPluginList]]
 created: 20190312130848384
-modified: 20190315191500031
+modified: 20190315211457346
 release: yes
 title: $:/config/ThirdFlow/plugins/$:/plugins/admls/mentat
 type: text/vnd.tiddlywiki

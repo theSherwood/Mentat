@@ -1,6 +1,6 @@
-additional-tiddlers: [prefix[$:/plugins/admls/repopup]]
+additional-tiddlers: [list[RepopupPluginList]]
 created: 20190312130905448
-modified: 20190312131121723
+modified: 20190315211631666
 release: yes
 title: $:/config/ThirdFlow/plugins/$:/plugins/admls/repopup
 type: text/vnd.tiddlywiki
