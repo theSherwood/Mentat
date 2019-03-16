@@ -1,6 +1,8 @@
+caption: Volant
 created: 20190205194739396
-modified: 20190311213957936
-tags: 
+list-before: $:/plugins/admls/engine/config/options
+modified: 20190315233806450
+tags: $:/tags/ControlPanel/SettingsTab
 title: $:/plugins/admls/volant/config/options
 type: text/vnd.tiddlywiki
 
@@ -14,3 +16,5 @@ type: text/vnd.tiddlywiki
 |<$link to=<<configValues>>>$:/VolantAbsolute grid gap</$link> |//Approximate distance of tiddler edge from the grid edge it is snapping to// |<$edit-text tiddler=<<configValues>> field="absolutegridgap" default="5" tag="input"/> |
 
 </$set>
+
+{{$:/plugins/admls/volant/ui/reset}}
