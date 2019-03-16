@@ -4,7 +4,7 @@ tags:
 title: $:/plugins/admls/engine/ui/engine-group
 type: text/vnd.tiddlywiki
 
-<$list filter="[tag[$:/Engine]]">
+<$list filter="[all[shadows+tiddlers]tag[$:/Engine]]">
 
 <div>
 @@white-space: nowrap;

@@ -16,7 +16,7 @@ Click to reset the tiddler to the default position:
 
 <$fieldmangler>
 <$button><$text text=<<openTiddler>>/>
-<$list filter="[tag[$:/config/Volant]suffix<openTiddler>]">
+<$list filter="[all[shadows+tiddlers]tag[$:/config/Volant]suffix<openTiddler>]">
 <$action-setfield $tiddler={{!!title}} top={{$:/plugins/admls/volant/config/default-values!!default-top}} height={{$:/plugins/admls/volant/config/default-values!!default-height}} left={{$:/plugins/admls/volant/config/default-values!!default-left}} width={{$:/plugins/admls/volant/config/default-values!!default-width}}/>
 </$list>
 <$action-navigate $to=<<openTiddler>>/>
