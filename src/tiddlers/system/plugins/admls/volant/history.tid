@@ -1,8 +1,8 @@
 created: 20190311214442882
-modified: 20190315193027091
+modified: 20190315231055209
 tags: 
 title: $:/plugins/admls/volant/history
 type: text/vnd.tiddlywiki
 
 * ''0.0.1'' -- initial release
-* ''0.0.2'' -- overwrites $:/core/ui/EditTemplate and $:/core/ui/ViewTemplate to include wrapper
+* ''0.0.2'' -- overwrites $:/core/ui/EditTemplate and $:/core/ui/ViewTemplate to include wrapper.  Numerous styling and filter fixes.
