@@ -1,5 +1,5 @@
 created: 20190311190418482
-modified: 20190311191235336
+modified: 20190316014117243
 tags: 
 title: $:/plugins/admls/engine/ui/engine-group
 type: text/vnd.tiddlywiki
@@ -9,15 +9,11 @@ type: text/vnd.tiddlywiki
 <div>
 @@white-space: nowrap;
 <$button><$text text={{!!title}}/>
-<$list filter="[list[$:/StoryList]is[current]]" variable="isOpen">
-<$reveal type="match" default=<<isOpen>> text=<<currentTiddler>>>
+<$list filter="[[$:/StoryList]contains<currentTiddler>]" variable="isOpen">
 <$action-listops $tiddler="$:/StoryList" $subfilter="-[title{!!title}]"/>
-</$reveal>
 </$list>
-<$list filter="[!list[$:/StoryList]is[current]]" variable="isClosed">
-<$reveal type="match" default=<<isClosed>> text=<<currentTiddler>>>
+<$list filter="[[$:/StoryList]!contains<currentTiddler>]" variable="isClosed">
 <$action-listops $tiddler="$:/StoryList" $subfilter="+[insertbefore:''{!!title}]"/>
-</$reveal>
 </$list>
 </$button>
 <$checkbox tag="$:/tags/EngineGroup"></$checkbox>

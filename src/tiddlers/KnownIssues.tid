@@ -1,0 +1,10 @@
+created: 20190316015820463
+modified: 20190316020226697
+tags: Issues
+title: KnownIssues
+type: text/vnd.tiddlywiki
+
+* Won't navigate to $:/Windowbar from Engine Button. It opens and closes but doesn't recieve navigation
+* Demo needs fixing
+* Volant startup-actions will delete the configTiddlers of tiddlers that haven't been named yet (e.g., "New Tiddler (x)").
+* Set-default and set-maximize don't work until they're saved, which suggests a filter problem? The volant widget is not getting transcluded in until they enter draft mode.

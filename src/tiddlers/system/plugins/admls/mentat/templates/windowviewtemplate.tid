@@ -1,10 +1,10 @@
 created: 20190218214000677
-modified: 20190307232650689
+modified: 20190316024621772
 tags: $:/tags/ViewTemplate
 title: $:/plugins/admls/mentat/templates/WindowViewTemplate
 type: text/vnd.tiddlywiki
 
-<$list filter="[all[current]tag[$:/Window]]">
+<$list filter="[title<currentTiddler>] +[tag[$:/Window]] -[!list[$:/StoryList]]">
 <$list filter="[all[shadows+tiddlers]tag[$:/tags/WindowViewTemplate]!has[draft.of]]" variable="listItem">
 <$transclude tiddler=<<listItem>> mode="block"/>
 </$list>

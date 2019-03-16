@@ -1,6 +1,6 @@
 created: 20190315211552404
-list: $:/plugins/admls/repopup $:/plugins/admls/repopup/history $:/plugins/admls/repopup/license $:/plugins/admls/repopup/readme $:/plugins/admls/repopup/startup/repopup.js $:/plugins/admls/repopup/styles/general
-modified: 20190315211602748
+list: $:/plugins/admls/repopup/history $:/plugins/admls/repopup/license $:/plugins/admls/repopup/readme $:/plugins/admls/repopup/startup/repopup.js $:/plugins/admls/repopup/styles/general
+modified: 20190316010911802
 tags: [[package plugin]]
 title: RepopupPluginList
 type: text/vnd.tiddlywiki

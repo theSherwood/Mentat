@@ -1,6 +1,6 @@
 created: 20190112131230817
-list: $:/plugins/admls/mentat/ui/Buttons/minimize $:/plugins/admls/mentat/ui/Buttons/maximize $:/plugins/admls/mentat/ui/Buttons/restore-down $:/plugins/admls/mentat/ui/Buttons/close-window-tiddler
-modified: 20190311213957907
+list: $:/plugins/admls/mentat/ui/Buttons/minimize $:/plugins/admls/mentat/ui/Buttons/restore-down $:/plugins/admls/mentat/ui/Buttons/maximize $:/plugins/admls/mentat/ui/Buttons/close-window-tiddler
+modified: 20190315230711768
 tags: 
 title: $:/tags/WindowViewToolbar
 type: text/vnd.tiddlywiki

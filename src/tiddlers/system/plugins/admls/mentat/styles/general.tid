@@ -1,5 +1,5 @@
 created: 20190218191609036
-modified: 20190307232002346
+modified: 20190315221824913
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/general
 type: text/vnd.tiddlywiki
@@ -29,9 +29,13 @@ margin-top: 0px;
 margin-bottom: 0px;
 }
 
-[data-tags*="$:/Window"] .volant-wrapper > .window-body .tc-storyview-zoomin-tiddler {
+[data-tags*="$:/Window"] > .volant-wrapper > .window-body .tc-storyview-zoomin-tiddler {
 position: relative;
 width: auto;
+}
+
+[data-tags*="$:/Window"] .tc-tiddler-frame {
+width: 100%;
 }
 
 .window-body, .window-scrollable {

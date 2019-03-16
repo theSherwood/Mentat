@@ -1,5 +1,5 @@
 created: 20190307190924303
-modified: 20190311165204798
+modified: 20190315222021710
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/engine/styles/general
 type: text/vnd.tiddlywiki
@@ -11,7 +11,7 @@ type: text/vnd.tiddlywiki
 display: none;
 }
 
-[data-tags*="$:/Engine"] .volant-wrapper {
+[data-tags*="$:/Engine"].volant > .volant-wrapper {
 padding: 10px 12px 10px 12px;
 }
 
