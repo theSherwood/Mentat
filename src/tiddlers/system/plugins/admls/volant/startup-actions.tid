@@ -1,5 +1,5 @@
 created: 20190306215927531
-modified: 20190311210901863
+modified: 20190316030914193
 tags: $:/tags/StartupAction
 title: $:/plugins/admls/volant/startup-actions
 type: text/vnd.tiddlywiki
@@ -7,11 +7,9 @@ type: text/vnd.tiddlywiki
 <!-- Deletes all configuration tiddlers that no longer have a volant tiddler to configure -->
 
 <$navigator story='$:/StoryList'>
-<$list filter="[all[shadows+tiddlers]tag[$:/config/Volant]]">
-<$set name="currentPrefix" value={{!!prefix}}>
-<$list filter="[all[current]] +[removeprefix<currentPrefix>] +[is[missing]]" variable="listItem">
+<$list filter="[all[shadows+tiddlers]tag[$:/config/Volant]has[prefix]]">
+<$list filter="[{!!list}!has[title]]" variable="nonexistentTiddler">
 <$action-sendmessage $message="tm-delete-tiddler" param={{!!title}}/>
 </$list>
-</$set>
 </$list>
 </$navigator>
