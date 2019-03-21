@@ -244,7 +244,7 @@ Adds a few hooks, too.
                 viewportWidth: document.documentElement.clientWidth, // excludes scrollbars
                 viewportHeight: document.documentElement.clientHeight,
                 // Different grids for fixed and absolute tiddlers
-                fixedGridSize: Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.fixedgridsize) || 1,
+                fixedGridSize: Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.fixedgridsize) || 0.1,
                 absoluteGridSize: Number($tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.absolutegridsize) || 1
             }
         },
