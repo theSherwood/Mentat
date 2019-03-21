@@ -23,19 +23,24 @@ Adds a few hooks, too.
         pos3: 0,
         pos4: 0,
         configTiddlerTag: "$:/config/Volant",
+        // touchIsEnabled: true,
 
         tiddlerDrag: function (e) {
-            e.stopPropagation();
+            // debugger;
+            if(!$tw.Volant.touchIsEnabled) {
+                e.stopPropagation();
+            }
             e.preventDefault();
             const Volant = $tw.Volant;
             const tiddler = Volant.eventTiddler
             const title = tiddler.dataset.tiddlerTitle;
             window.requestAnimationFrame(() => {
+                // console.log('TIDDLERDRAG', e);
                 // calculate the new cursor position:
-                Volant.pos1 = Volant.pos3 - e.clientX;
-                Volant.pos2 = Volant.pos4 - e.clientY;
-                Volant.pos3 = e.clientX;
-                Volant.pos4 = e.clientY;
+                Volant.pos1 = Volant.pos3 - (e.clientX || e.touches[0].clientX);
+                Volant.pos2 = Volant.pos4 - (e.clientY || e.touches[0].clientY);
+                Volant.pos3 = (e.clientX || e.touches[0].clientX);
+                Volant.pos4 = (e.clientY || e.touches[0].clientY);
                 // get dimensions
                 const top = tiddler.offsetTop;
                 const left = tiddler.offsetLeft;
@@ -46,17 +51,26 @@ Adds a few hooks, too.
 
         },
 
-        endDrag: function () {
+        endDrag: function (e) {
             // stop moving when mouse button is released:
             const Volant = $tw.Volant;
+
+            // console.log('ENDDRAG', e);
 
             window.requestAnimationFrame(() => {
                 Volant.snapToGrid();
                 Volant.logNewDimensions();
             });
 
-            window.removeEventListener('mousemove', Volant.tiddlerDrag);
-            window.removeEventListener('mouseup', Volant.endDrag, false);
+            // Volant.detachEventListener(window, 'touchmove panmove drag pointermove mousemove', Volant.tiddlerDrag);
+            // Volant.detachEventListener(window, 'panend pancancel touchend mouseup dragend draginitup pointerup', Volant.endDrag);
+            // const Hammer = window.Hammer;
+            // Hammer.off(window, 'mousemove', Volant.tiddlerDrag);
+            // Hammer.off(window, 'mouseup', Volant.endDrag, false);
+            window.removeEventListener('touchmove', Volant.tiddlerDrag);
+            window.removeEventListener('touchend', Volant.endDrag, false);
+            // window.removeEventListener('mousemove', Volant.tiddlerDrag);
+            // window.removeEventListener('mouseup', Volant.endDrag, false);
         },
 
         logNewDimensions: function (tiddler, configTiddlerTitle) {
@@ -85,9 +99,10 @@ Adds a few hooks, too.
                 window.requestAnimationFrame(() => {
                     $tw.Volant.removeStyle(tiddler);
                 });
+                this.eventTiddler = undefined;
+                this.configTiddlerTitle = undefined;
             }, 500);
-            this.eventTiddler = undefined;
-            this.configTiddlerTitle = undefined;
+
         },
 
         removeStyle: function (tiddler) {
@@ -132,19 +147,22 @@ Adds a few hooks, too.
         resizeLeft: function (e) {
             // Resize the tiddler by the left resizer
             e.preventDefault();
-            e.stopPropagation();
+            if(!$tw.Volant.touchIsEnabled) {
+                e.stopPropagation();
+            }
             const tiddler = $tw.Volant.eventTiddler;
-
+            let posx = (e.clientX || e.touches[0].clientX);
+            let posy = (e.clientY || e.touches[0].clientY);
             const viewportOffset = tiddler.getBoundingClientRect();
 
             window.requestAnimationFrame(() => {
-                tiddler.style.height = (e.clientY - viewportOffset.top + 5) + 'px';
+                tiddler.style.height = (posy - viewportOffset.top + 5) + 'px';
                 if (tiddler.style.position === "fixed") {
-                    tiddler.style.width = (tiddler.offsetWidth + tiddler.offsetLeft - e.clientX + 5) + 'px';
-                    tiddler.style.left = (e.clientX - 5) + 'px';
+                    tiddler.style.width = (tiddler.offsetWidth + tiddler.offsetLeft - posx + 5) + 'px';
+                    tiddler.style.left = (posx - 5) + 'px';
                 } else {
-                    tiddler.style.left = (window.scrollX + e.clientX - 5) + 'px';
-                    tiddler.style.width = (tiddler.offsetWidth + viewportOffset.left - e.clientX + 5) + 'px';
+                    tiddler.style.left = (window.scrollX + posx - 5) + 'px';
+                    tiddler.style.width = (tiddler.offsetWidth + viewportOffset.left - posx + 5) + 'px';
                 }
             });
         },
@@ -152,14 +170,16 @@ Adds a few hooks, too.
         resizeRight: function (e) {
             // Resize the tiddler by the right resizer
             e.preventDefault();
-            e.stopPropagation();
+            if(!$tw.Volant.touchIsEnabled) {
+                e.stopPropagation();
+            }
             const tiddler = $tw.Volant.eventTiddler;
 
             const viewportOffset = tiddler.getBoundingClientRect();
 
             window.requestAnimationFrame(() => {
-                tiddler.style.width = (e.clientX - viewportOffset.left + 5) + 'px';
-                tiddler.style.height = (e.clientY - viewportOffset.top + 5) + 'px';
+                tiddler.style.width = ((e.clientX || e.touches[0].clientX) - viewportOffset.left + 5) + 'px';
+                tiddler.style.height = ((e.clientY || e.touches[0].clientY) - viewportOffset.top + 5) + 'px';
             });
         },
 
@@ -171,12 +191,23 @@ Adds a few hooks, too.
                 Volant.logNewDimensions()
             });
 
-            window.removeEventListener('mousemove', Volant.resizeLeft);
-            window.removeEventListener('mousemove', Volant.resizeRight);
-            window.removeEventListener('mouseup', Volant.endResize, false);
+            // Volant.detachEventListener(window, 'mousemove', Volant.resizeLeft);
+            // Volant.detachEventListener(window, 'mousemove', Volant.resizeRight);
+            // Volant.detachEventListener(window, 'mouseup', Volant.endResize);
+            // const Hammer = window.Hammer;
+            // Hammer.off(window, 'mousemove', Volant.resizeLeft);
+            // Hammer.off(window, 'mousemove', Volant.resizeRight);
+            // Hammer.off(window, 'mouseup', Volant.endResize, false);
+            window.removeEventListener('touchmove', Volant.resizeLeft);
+            window.removeEventListener('touchmove', Volant.resizeRight);
+            window.removeEventListener('touchend', Volant.endResize, false);
+            // window.removeEventListener('mousemove', Volant.resizeLeft);
+            // window.removeEventListener('mousemove', Volant.resizeRight);
+            // window.removeEventListener('mouseup', Volant.endResize, false);
         },
 
         getEventTiddler: function (e) {
+            // console.log(e);
             let elmnt = e.target;
             // Get the volant tiddler that the event happened in
             while (!(elmnt.matches('.volant'))) {
@@ -186,7 +217,9 @@ Adds a few hooks, too.
                 }
                 elmnt = elmnt.parentElement;
             }
-            e.stopPropagation();
+            if(!$tw.Volant.touchIsEnabled) {
+                e.stopPropagation();
+            }
             const tiddler = elmnt;
             return tiddler;
         },
@@ -245,6 +278,93 @@ Adds a few hooks, too.
             } else { // absolute grid is a number of pixels
                 const quotient = number / grid.absoluteGridSize;
                 return Math.round(Math.round(quotient) * grid.absoluteGridSize);
+            }
+        },
+
+        attachEventListener(element, eventType, callback, thisArg) {
+            let eventString;
+            if ($tw.Volant.touchIsEnabled) {  
+                switch (eventType) {
+                    case 'start':
+                    eventString = 'panstart dragstart draginit touchstart pointerdown';
+                    break;
+                    case 'move':
+                    eventString = 'touchmove panmove drag pointermove mousemove';
+                    break;
+                    case 'end':
+                    eventString = 'panend pancancel touchend mouseup dragend draginitup pointerup';
+                    break;
+                }
+                if ($tw.browser && !window.Hammer) {
+                    window.Hammer = require("$:/plugins/tiddlywiki/hammerjs/hammer.js");
+                }
+                const Hammer = window.Hammer;
+                if (element === window) {
+                    Hammer.on(window, eventString, callback);
+                    return;
+                }
+                if (thisArg) {
+                    if (!thisArg.hammer) {
+                        thisArg.hammer = new Hammer.Manager(element);
+                        thisArg.hammer.add(new Hammer.Pan({
+                            event: 'pan',
+                            pointers: 1,
+                            threshold: 0,
+                            direction: Hammer.DIRECTION_ALL
+                        }));
+                    }
+                    thisArg.hammer.on(eventString, callback);
+                } else {
+                    const Hammer = window.Hammer;
+                    Hammer.on(eventString, callback);
+                }
+            } else {
+                switch (eventType) {
+                    case 'start':
+                    eventString = 'mousedown';
+                    break;
+                    case 'move':
+                    eventString = 'mousemove';
+                    break;
+                    case 'end':
+                    eventString = 'mouseup';
+                    break;
+                }
+                
+                element.addEventListener(eventString, callback, false);
+                
+            }
+        },
+
+        detachEventListener(element, eventTypes, callback, thisArg) {
+            if ($tw.Volant.touchIsEnabled) {
+                if ($tw.browser && !window.Hammer) {
+                    window.Hammer = require("$:/plugins/tiddlywiki/hammerjs/hammer.js");
+                }
+                const Hammer = window.Hammer;
+                if (element === window) {
+                    Hammer.off(window, eventTypes, callback);
+                    return;
+                }
+                if (thisArg) {
+                    if (!thisArg.hammer) {
+                        thisArg.hammer = new Hammer.Manager(element);
+                        thisArg.hammer.add(new Hammer.Pan({
+                            event: 'pan',
+                            pointers: 1,
+                            threshold: 0,
+                            direction: Hammer.DIRECTION_ALL
+                        }));
+                    }
+                    thisArg.hammer.off(eventTypes, callback);
+                } else {
+                    const Hammer = window.Hammer;
+                    Hammer.off(eventTypes, callback);
+                }
+            } else {
+                eventTypes.split(' ').forEach(eventType => {
+                    element.removeEventListener(eventTypes, callback, false);
+                });
             }
         }
     };

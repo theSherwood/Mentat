@@ -13,11 +13,15 @@ module-type: widget
     /*global $tw: false */
     "use strict";
 
-    var Widget = require("$:/core/modules/widgets/widget.js").widget;
+    var Widget = require("$:/core/modules/widgets/widget.js").widget
 
     var VolantWidget = function (parseTreeNode, options) {
         this.initialise(parseTreeNode, options);
     };
+
+    // if ($tw.browser && !window.Hammer) {
+    //     window.Hammer = require("$:/plugins/tiddlywiki/hammerjs/hammer.js");
+    // }
 
     /* 
     Inherit from the base widget class
@@ -32,6 +36,8 @@ module-type: widget
         this.computeAttributes();
         this.execute();
 
+        const V = $tw.Volant;
+
         const position = this.position;
         let elmnt = this.parentDomNode;
         // Get the tiddler element that this widget runs in
@@ -44,6 +50,31 @@ module-type: widget
         const tiddler = elmnt;
         this.tiddler = tiddler;
 
+
+
+        window.addEventListener('touchstart', this.isTouchEnabled);
+        // Create a new Hammer object on the tiddler element.
+        // This will handle the start of events.
+        // const Hammer = window.Hammer
+        // this.hammer = new Hammer.Manager(tiddler);
+        // this.hammer.add(new Hammer.Pan({
+        //     event: 'pan',
+        //     pointers: 1,
+        //     threshold: 0,
+        //     direction: Hammer.DIRECTION_ALL
+        // }));
+        // Create a new Hammer object on the window element.
+        // This will handle the middle and end of events.
+        // window.hammer = new Hammer.Manager(window);
+        // window.hammer.add(new Hammer.Pan({
+        //     event: 'pan',
+        //     pointers: 1,
+        //     threshold: 0,
+        //     direction: Hammer.DIRECTION_ALL
+        // }));
+
+
+        // Configure the tiddler element
         tiddler.className += " volant";
         tiddler.style.position = position;
         const resizerLeft = document.createElement("div");
@@ -62,21 +93,34 @@ module-type: widget
             const dragModeIsOn = $tw.wiki.getTiddler("$:/plugins/admls/volant/config/values").fields.dragmode === "on";
             const targetIsChildElement = !(e.target.matches(".volant") || e.target.matches(".volant-wrapper")); // This will be problematic if you have nested volant tiddlers
             const targetIsResizer = e.target.matches(".resizer"); // Stops drag if target is a resizer
-            if ((e.button !== 0) || targetIsResizer || (!dragModeIsOn && targetIsChildElement)) {
+            if ((e.button && e.button !== 0) || targetIsResizer || (!dragModeIsOn && targetIsChildElement)) {
                 return;
             }
-            e.stopPropagation();
+            if(!$tw.Volant.touchIsEnabled) {
+                e.stopPropagation();
+            }
             e.preventDefault();
+
             const Volant = $tw.Volant;
             Volant.eventTiddler = tiddler;
             Volant.configTiddlerTitle = configTiddlerTitle;
 
             // get the mouse cursor position at startup:
-            Volant.pos3 = e.clientX;
-            Volant.pos4 = e.clientY;
+            Volant.pos3 = e.clientX || e.touches[0].clientX;
+            Volant.pos4 = e.clientY || e.touches[0].clientY;
             // call a function whenever the cursor moves:
-            window.addEventListener('mousemove', Volant.tiddlerDrag);
-            window.addEventListener('mouseup', Volant.endDrag, false);
+
+            // console.log('STARTDRAG', e);
+
+            // V.attachEventListener(window, 'touchmove panmove drag pointermove mousemove', Volant.tiddlerDrag, this);
+            // V.attachEventListener(window, 'panend pancancel touchend mouseup dragend draginitup pointerup', Volant.endDrag, this);
+            //panend pancancel touchend mouseup dragend draginitup
+            // Hammer.on(window, 'mousemove', Volant.tiddlerDrag);
+            // Hammer.on(window, 'mouseup', Volant.endDrag, false);
+            window.addEventListener('touchmove', Volant.tiddlerDrag);
+            window.addEventListener('touchend', Volant.endDrag, false);
+            // window.addEventListener('mousemove', Volant.tiddlerDrag);
+            // window.addEventListener('mouseup', Volant.endDrag, false);
         };
 
         const startResize = function (e) {
@@ -84,31 +128,61 @@ module-type: widget
                 return;
             }
             e.preventDefault();
-            e.stopPropagation();
+            if(!$tw.Volant.touchIsEnabled) {
+                e.stopPropagation();
+            }
 
             const Volant = $tw.Volant;
             Volant.eventTiddler = tiddler;
             Volant.configTiddlerTitle = configTiddlerTitle;
 
             if (e.target.classList.contains("resizer-left")) {
-                window.addEventListener('mousemove', Volant.resizeLeft);
+
+                // V.attachEventListener(window, 'touchmove panmove drag pointermove mousemove', Volant.resizeLeft, this);
+                // Hammer.on(window, 'mousemove', Volant.resizeLeft);
+                window.addEventListener('touchmove', Volant.resizeLeft);
+                // window.addEventListener('mousemove', Volant.resizeLeft);
             } else if (e.target.classList.contains("resizer-right")) {
-                window.addEventListener('mousemove', Volant.resizeRight);
+
+                // V.attachEventListener(window, 'touchmove panmove drag pointermove mousemove', Volant.resizeRight, this);
+                // Hammer.on(window, 'mousemove', Volant.resizeRight);
+                window.addEventListener('touchmove', Volant.resizeRight);
+                // window.addEventListener('mousemove', Volant.resizeRight);
             }
-            window.addEventListener('mouseup', Volant.endResize, false);
+
+            // V.attachEventListener(window, 'panend pancancel touchend mouseup dragend draginitup pointerup', Volant.endResize, this);
+            // Hammer.on(window, 'mouseup', Volant.endResize, false);
+            window.addEventListener('touchend', Volant.endResize, false);
+            // window.addEventListener('mouseup', Volant.endResize, false);
         };
 
         this.boundPushEventToZStack = this.pushEventToZStack.bind(this);
-        tiddler.addEventListener("mousedown", startDrag);
-        tiddler.addEventListener("mousedown", this.boundPushEventToZStack);
-        tiddler.addEventListener("mousedown", startResize);
+        
+
+        // V.attachEventListener(tiddler, 'panstart dragstart draginit touchstart pointerdown', startDrag, this);
+        // V.attachEventListener(tiddler, 'mousedown touchstart', this.boundPushEventToZStack, this);
+        // V.attachEventListener(tiddler, 'touchmove panstart panmove dragstart draginit drag', startResize, this);
+
+        // this.hammer.on('touchmove panstart panmove dragstart draginit drag mousedown', startDrag);
+        // this.hammer.on('touchmove panstart panmove dragstart draginit drag mousedown', this.boundPushEventToZStack);
+        // this.hammer.on('touchmove panstart panmove dragstart draginit drag mousedown', startResize);
+        tiddler.addEventListener("touchstart", startDrag);
+        tiddler.addEventListener("touchstart", this.boundPushEventToZStack);
+        tiddler.addEventListener("touchstart", startResize);
+        // tiddler.addEventListener("mousedown", startDrag);
+        // tiddler.addEventListener("mousedown", this.boundPushEventToZStack);
+        // tiddler.addEventListener("mousedown", startResize);
 
         $tw.Volant.snapToGrid(tiddler);
         $tw.Volant.logNewDimensions(tiddler, configTiddlerTitle);
         $tw.Volant.pushTiddlerToZStack(tiddler);
     };
 
-    VolantWidget.prototype.getConfigTiddler = function(title) {
+    VolantWidget.prototype.isTouchEnabled = function(e) {
+        $tw.Volant.touchIsEnabled = true;
+    };
+
+    VolantWidget.prototype.getConfigTiddler = function (title) {
         let tiddlerTitle = title;
         this.configTiddlerTitle = tiddlerTitle;
         if (!(this.separateConfig === "no")) {
@@ -139,14 +213,14 @@ module-type: widget
 
     VolantWidget.prototype.pushEventToZStack = function (e) {
         const eventTiddler = $tw.Volant.getEventTiddler(e);
-
+  
         // Edge case: clicking on a link to "$:/state/zStack"
-        if ((e.button === 0) && e.target.matches(".tc-tiddlylink")) {
+        if ((!e.button || e.button === 0) && e.target.matches(".tc-tiddlylink")) {
             const link = e.target.href;
             const titleStart = link.indexOf("#");
             const tiddlerTitle = decodeURIComponent(link.slice(titleStart + 1));
 
-            if(tiddlerTitle === "$:/state/zStack") {
+            if (tiddlerTitle === "$:/state/zStack") {
                 // Send the click on its way as a navigate event
                 const bounds = e.target.getBoundingClientRect();
                 this.dispatchEvent({
@@ -157,7 +231,7 @@ module-type: widget
                     navigateFromClientRect: {
                         top: bounds.top, left: bounds.left, width: bounds.width, right: bounds.right, bottom: bounds.bottom, height: bounds.height
                     },
-                    navigateSuppressNavigation: e.metaKey || e.ctrlKey || (e.button !== 0),
+                    navigateSuppressNavigation: e.metaKey || e.ctrlKey || (e.button && e.button !== 0),
                     metaKey: e.metaKey,
                     ctrlKey: e.ctrlKey,
                     altKey: e.altKey,
@@ -166,7 +240,9 @@ module-type: widget
                 if (e.target.hasAttribute("href")) {
                     e.preventDefault();
                 }
-                e.stopPropagation();
+                if(!$tw.Volant.touchIsEnabled) {
+                    e.stopPropagation();
+                }
 
                 return false;
             }
