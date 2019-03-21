@@ -178,8 +178,6 @@ Does not affect the search bar for some reason.
                     domNode.style.width = newWidth + "px";
                 }
                 if (position.left + newWidth > viewportWidth - buffer) {
-                    console.log(Number(domNode.style.left.slice(0, -2)));
-                    console.log(position.left);
                     const oldLeft = Number(domNode.style.left.slice(0, -2));
                     const differenceLeft = position.left + newWidth - viewportWidth + buffer;
                     domNode.style.left = oldLeft - differenceLeft + "px";
@@ -198,6 +196,9 @@ Does not affect the search bar for some reason.
             domNode.style.position = "fixed";
             domNode.style.top = viewportOffset.top + "px";
             domNode.style.left = viewportOffset.left + "px";
+            // Set fail-safes
+            domNode.style.maxHeight = viewportHeight - viewportOffset.top - buffer + 'px';
+            domNode.style.maxWidth = viewportWidth - viewportOffset.left - buffer + 'px';
         }
     };
 
