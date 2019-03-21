@@ -19,10 +19,6 @@ module-type: widget
         this.initialise(parseTreeNode, options);
     };
 
-    // if ($tw.browser && !window.Hammer) {
-    //     window.Hammer = require("$:/plugins/tiddlywiki/hammerjs/hammer.js");
-    // }
-
     /* 
     Inherit from the base widget class
      */
@@ -49,30 +45,6 @@ module-type: widget
         }
         const tiddler = elmnt;
         this.tiddler = tiddler;
-
-
-
-        window.addEventListener('touchstart', this.isTouchEnabled);
-        // Create a new Hammer object on the tiddler element.
-        // This will handle the start of events.
-        // const Hammer = window.Hammer
-        // this.hammer = new Hammer.Manager(tiddler);
-        // this.hammer.add(new Hammer.Pan({
-        //     event: 'pan',
-        //     pointers: 1,
-        //     threshold: 0,
-        //     direction: Hammer.DIRECTION_ALL
-        // }));
-        // Create a new Hammer object on the window element.
-        // This will handle the middle and end of events.
-        // window.hammer = new Hammer.Manager(window);
-        // window.hammer.add(new Hammer.Pan({
-        //     event: 'pan',
-        //     pointers: 1,
-        //     threshold: 0,
-        //     direction: Hammer.DIRECTION_ALL
-        // }));
-
 
         // Configure the tiddler element
         tiddler.className += " volant";
@@ -108,19 +80,11 @@ module-type: widget
             // get the mouse cursor position at startup:
             Volant.pos3 = e.clientX || e.touches[0].clientX;
             Volant.pos4 = e.clientY || e.touches[0].clientY;
-            // call a function whenever the cursor moves:
-
-            // console.log('STARTDRAG', e);
-
-            // V.attachEventListener(window, 'touchmove panmove drag pointermove mousemove', Volant.tiddlerDrag, this);
-            // V.attachEventListener(window, 'panend pancancel touchend mouseup dragend draginitup pointerup', Volant.endDrag, this);
-            //panend pancancel touchend mouseup dragend draginitup
-            // Hammer.on(window, 'mousemove', Volant.tiddlerDrag);
-            // Hammer.on(window, 'mouseup', Volant.endDrag, false);
+            // call a function whenever the cursor/pointer moves:
             window.addEventListener('touchmove', Volant.tiddlerDrag);
             window.addEventListener('touchend', Volant.endDrag, false);
-            // window.addEventListener('mousemove', Volant.tiddlerDrag);
-            // window.addEventListener('mouseup', Volant.endDrag, false);
+            window.addEventListener('mousemove', Volant.tiddlerDrag);
+            window.addEventListener('mouseup', Volant.endDrag, false);
         };
 
         const startResize = function (e) {
@@ -137,41 +101,24 @@ module-type: widget
             Volant.configTiddlerTitle = configTiddlerTitle;
 
             if (e.target.classList.contains("resizer-left")) {
-
-                // V.attachEventListener(window, 'touchmove panmove drag pointermove mousemove', Volant.resizeLeft, this);
-                // Hammer.on(window, 'mousemove', Volant.resizeLeft);
                 window.addEventListener('touchmove', Volant.resizeLeft);
-                // window.addEventListener('mousemove', Volant.resizeLeft);
+                window.addEventListener('mousemove', Volant.resizeLeft);
             } else if (e.target.classList.contains("resizer-right")) {
-
-                // V.attachEventListener(window, 'touchmove panmove drag pointermove mousemove', Volant.resizeRight, this);
-                // Hammer.on(window, 'mousemove', Volant.resizeRight);
                 window.addEventListener('touchmove', Volant.resizeRight);
-                // window.addEventListener('mousemove', Volant.resizeRight);
+                window.addEventListener('mousemove', Volant.resizeRight);
             }
-
-            // V.attachEventListener(window, 'panend pancancel touchend mouseup dragend draginitup pointerup', Volant.endResize, this);
-            // Hammer.on(window, 'mouseup', Volant.endResize, false);
             window.addEventListener('touchend', Volant.endResize, false);
-            // window.addEventListener('mouseup', Volant.endResize, false);
+            window.addEventListener('mouseup', Volant.endResize, false);
         };
 
         this.boundPushEventToZStack = this.pushEventToZStack.bind(this);
-        
 
-        // V.attachEventListener(tiddler, 'panstart dragstart draginit touchstart pointerdown', startDrag, this);
-        // V.attachEventListener(tiddler, 'mousedown touchstart', this.boundPushEventToZStack, this);
-        // V.attachEventListener(tiddler, 'touchmove panstart panmove dragstart draginit drag', startResize, this);
-
-        // this.hammer.on('touchmove panstart panmove dragstart draginit drag mousedown', startDrag);
-        // this.hammer.on('touchmove panstart panmove dragstart draginit drag mousedown', this.boundPushEventToZStack);
-        // this.hammer.on('touchmove panstart panmove dragstart draginit drag mousedown', startResize);
         tiddler.addEventListener("touchstart", startDrag);
         tiddler.addEventListener("touchstart", this.boundPushEventToZStack);
         tiddler.addEventListener("touchstart", startResize);
-        // tiddler.addEventListener("mousedown", startDrag);
-        // tiddler.addEventListener("mousedown", this.boundPushEventToZStack);
-        // tiddler.addEventListener("mousedown", startResize);
+        tiddler.addEventListener("mousedown", startDrag);
+        tiddler.addEventListener("mousedown", this.boundPushEventToZStack);
+        tiddler.addEventListener("mousedown", startResize);
 
         $tw.Volant.snapToGrid(tiddler);
         $tw.Volant.logNewDimensions(tiddler, configTiddlerTitle);
@@ -261,7 +208,6 @@ module-type: widget
         this.position = this.getAttribute("position", "fixed");
         this.separateConfig = this.getAttribute("separateConfig", "no");
         this.configTiddlerPrefix = this.getAttribute("configTiddlerPrefix", "$:/config/Volant/");
-        //this.makeChildWidgets();
     };
 
     /*
