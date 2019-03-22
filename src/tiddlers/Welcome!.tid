@@ -1,5 +1,5 @@
 created: 20190308001315627
-modified: 20190311220518625
+modified: 20190322153820751
 tags: Demo
 title: Welcome!
 type: text/vnd.tiddlywiki
@@ -21,4 +21,6 @@ This wiki is home to a collection of UI/UX plugins for [[Tiddlywiki|https://tidd
 #* [[Demo|MentatDemo]]
 #* [[Docs|MentatDocs]]
 
-[[Acknowledgements]]
+[[Acknowledgements]]<br>
+[[KnownIssues]]<br>
+[[ChangeLog]]

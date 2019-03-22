@@ -1,0 +1,12 @@
+created: 20190322153701669
+modified: 20190322154853156
+tags: 
+title: ChangeLog
+type: text/vnd.tiddlywiki
+
+<$list filter="[prefix[$:/plugins/admls/]suffix[/history]]">
+<$list filter="[all[current]] +[removesuffix[/history]]" variable="plugin">
+<$link to=<<plugin>>>''<$text text=<<plugin>>/>''</$link>
+</$list>
+<$transclude tiddler=<<currentTiddler>> mode="block"/>
+</$list>
