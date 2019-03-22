@@ -1,10 +1,12 @@
 /*\
 created: 20190322091422151
 type: application/javascript
-title: $:/plugins/admls/volant-snap/globals/snap.js
+title: $:/plugins/admls/volant-rapid/globals/rapid.js
 tags: 
-modified: 20190322091756388
+modified: 20190322160843162
 module-type: global
+
+Rapidly reposition volant tiddlers.
 
 \*/
 (function () {
