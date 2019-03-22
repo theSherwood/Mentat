@@ -1,8 +1,8 @@
 caption: Volant
 created: 20190205194739396
 list-before: $:/plugins/admls/engine/config/options
-modified: 20190315233806450
-tags: $:/tags/ControlPanel/SettingsTab
+modified: 20190321223933570
+tags: [[ $:/tags/ControlPanel/Settings]] $:/tags/ControlPanel/SettingsTab
 title: $:/plugins/admls/volant/config/options
 type: text/vnd.tiddlywiki
 
@@ -15,6 +15,9 @@ type: text/vnd.tiddlywiki
 |<$link to=<<configValues>>>$:/Volant grid gap</$link> |//Approximate distance of tiddler edge from the grid edge it is snapping to// |<$edit-text tiddler=<<configValues>> field="fixedgridgap" default="5" tag="input"/> |
 |<$link to=<<configValues>>>$:/VolantAbsolute grid gap</$link> |//Approximate distance of tiddler edge from the grid edge it is snapping to// |<$edit-text tiddler=<<configValues>> field="absolutegridgap" default="5" tag="input"/> |
 
+<$checkbox tiddler=<<configValues>> field="show-resizers" checked="yes" unchecked="no"> Show resizers</$checkbox>
+
 </$set>
+<hr>
 
 {{$:/plugins/admls/volant/ui/reset}}
