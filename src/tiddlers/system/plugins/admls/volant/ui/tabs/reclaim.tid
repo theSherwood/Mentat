@@ -1,6 +1,6 @@
 caption: Reset
 created: 20190228182617289
-modified: 20190315233821648
+modified: 20190320234329830
 tags: $:/tags/MentatTab
 title: $:/plugins/admls/volant/ui/reset
 type: text/vnd.tiddlywiki
@@ -10,7 +10,8 @@ type: text/vnd.tiddlywiki
 </$view>
 \end
 
-Use $:/plugins/admls/volant/config/set-default-values to set the default position of volant tiddlers.
+
+|<$link to="$:/plugins/admls/volant/config/set-default-values">Set default/reset values</$link> |//Set the position and dimensions of new and default volant tiddlers.// |[[Click Here|$:/plugins/admls/volant/config/set-default-values]] |
 
 Click to reset the tiddler to the default position:
 

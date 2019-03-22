@@ -1,7 +1,12 @@
 created: 20190311214856287
-modified: 20190311215334518
+modified: 20190321000031353
 tags: 
 title: $:/plugins/admls/repopup/history
 type: text/vnd.tiddlywiki
 
-* ''0.0.1'' -- initial release
+* ''0.0.1''
+** initial release
+* ''0.0.2''
+** bug fix: offsetParent = null
+** bug fix: enormous tag dropdown
+** adds maxWidth and maxHeight fail-safes to stylsheet and startup module

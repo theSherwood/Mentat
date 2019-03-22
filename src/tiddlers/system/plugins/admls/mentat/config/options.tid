@@ -1,15 +1,21 @@
 caption: Config
 created: 20190307103415086
 list-after: $:/plugins/admls/volant/ui/reset
-modified: 20190315234022752
+modified: 20190321224801900
 tags: $:/tags/MentatTab
 title: $:/plugins/admls/mentat/config/options
 type: text/vnd.tiddlywiki
 
+[[Volant Config|$:/plugins/admls/volant/config/options]]<br>
+[[Engine Config|$:/plugins/admls/engine/config/options]]
+
 <$set name="configValues" value="$:/plugins/admls/mentat/config/values">
 
+|<$link to="$:/plugins/admls/mentat/config/set-maximized-values">Set maximized values</$link> |//Set the position and dimensions of maximized window tiddlers.// |[[Click Here|$:/plugins/admls/mentat/config/set-maximized-values]] |
 |<$link to=<<configValues>>>Default window storyview</$link> |//Choose the default storyview for windows. Don't choose mentat.// |<$edit-text tiddler=<<configValues>> field="default-window-storyview" default="classic" tag="input"/> |
+|<$link to=<<configValues>>>Layout Archive All</$link> |//Layouts will be archived of all tiddlers currently in [[$:/StoryList]] and all window tiddlers (open only). Restoring a layout will close all tiddlers currently in [[$:/StoryList]], while opening those in the archived list. If Layout Archive All is not enabled, layouts will archive only window tiddlers. // |<$checkbox tiddler=<<configValues>> field="layout-archive-all" checked="yes" unchecked="no" default="yes"></$checkbox> |
+|<$link to=<<configValues>>>Session Archive All</$link> |//Sessions will be archived of all tiddlers currently in [[$:/StoryList]] and all window tiddlers (open or closed). Restoring a session will close all tiddlers currently in [[$:/StoryList]], while opening those in the archived list. If Session Archive All is not enabled, sessions will archive only window tiddlers. // |<$checkbox tiddler=<<configValues>> field="session-archive-all" checked="yes" unchecked="no" default="yes"></$checkbox> |
+
+<$checkbox tiddler="$:/plugins/admls/mentat/ui/tabs/window-tabs" tag="$:/tags/AboveWindow"> Enable window tabs</$checkbox>
 
 </$set>
-
-Use $:/plugins/admls/mentat/config/set-maximized-values to set the maximized position of window tiddlers.

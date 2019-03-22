@@ -30,53 +30,55 @@ Does not affect the search bar for some reason.
 
             // Find the button that triggered the popup
             const offsetParent = domNode.offsetParent;
-            let popupButton;
-            offsetParent.querySelectorAll("button").forEach(button => {
-                if (button.offsetHeight === this.popup.height &&
-                    button.offsetWidth === this.popup.width &&
-                    button.offsetTop === this.popup.top &&
-                    button.offsetLeft === this.popup.left) {
-                    popupButton = button;
+            if (offsetParent) {
+                let popupButton;
+                offsetParent.querySelectorAll("button").forEach(button => {
+                    if (button.offsetHeight === this.popup.height &&
+                        button.offsetWidth === this.popup.width &&
+                        button.offsetTop === this.popup.top &&
+                        button.offsetLeft === this.popup.left) {
+                        popupButton = button;
+                    }
+                });
+                if (!popupButton) {
+                    popupButton = domNode.previousElementSibling;
                 }
-            });
-            if (!popupButton) {
-                popupButton = domNode.previousElementSibling;
-            }
 
-            // Find the nearest common ancestor of the domNode and popupButton
-            const domNodeAncestors = [];
-            let domNodeAncestor = domNode.parentElement;
-            while (domNodeAncestor !== offsetParent.parentElement) {
-                domNodeAncestors.push(domNodeAncestor);
-                domNodeAncestor = domNodeAncestor.parentElement;
-                if (!domNodeAncestor) {
-                    break;
+                // Find the nearest common ancestor of the domNode and popupButton
+                const domNodeAncestors = [];
+                let domNodeAncestor = domNode.parentElement;
+                while (domNodeAncestor !== offsetParent.parentElement) {
+                    domNodeAncestors.push(domNodeAncestor);
+                    domNodeAncestor = domNodeAncestor.parentElement;
+                    if (!domNodeAncestor) {
+                        break;
+                    }
                 }
-            }
-            let buttonAncestor = popupButton;
-            while (!domNodeAncestors.includes(buttonAncestor)) {
-                buttonAncestor = buttonAncestor.parentElement;
-                if (!buttonAncestor) {
-                    break;
+                let buttonAncestor = popupButton;
+                while (!domNodeAncestors.includes(buttonAncestor)) {
+                    buttonAncestor = buttonAncestor.parentElement;
+                    if (!buttonAncestor) {
+                        break;
+                    }
                 }
-            }
-            const nearestCommonAncestor = buttonAncestor;
+                const nearestCommonAncestor = buttonAncestor;
 
-            /* 
-            Position the domNode relative to the nearestCommonAncestor (by setting ancestor
-            position to "relative").
-            */
-            const ancestorPosition = getComputedStyle(nearestCommonAncestor).position;
-            if (ancestorPosition !== "absolute" && ancestorPosition !== "fixed") {
-                nearestCommonAncestor.style.position = "relative";
-            }
+                /* 
+                Position the domNode relative to the nearestCommonAncestor (by setting ancestor
+                position to "relative").
+                */
+                const ancestorPosition = getComputedStyle(nearestCommonAncestor).position;
+                if (ancestorPosition !== "absolute" && ancestorPosition !== "fixed") {
+                    nearestCommonAncestor.style.position = "relative";
+                }
 
-            /* 
-            this.popup is the location of the popupButton relative to the original offsetParent.
-            The new offsetParent is now the nearestCommonAncestor. So this.popup needs to be updated.
-            */
-            this.popup.left = popupButton.offsetLeft;
-            this.popup.top = popupButton.offsetTop;
+                /* 
+                this.popup is the location of the popupButton relative to the original offsetParent.
+                The new offsetParent is now the nearestCommonAncestor. So this.popup needs to be updated.
+                */
+                this.popup.left = popupButton.offsetLeft;
+                this.popup.top = popupButton.offsetTop;
+            }
 
             /* 
             This is unchanged from the native version of the revealWidget. Though we have
@@ -176,8 +178,6 @@ Does not affect the search bar for some reason.
                     domNode.style.width = newWidth + "px";
                 }
                 if (position.left + newWidth > viewportWidth - buffer) {
-                    console.log(Number(domNode.style.left.slice(0, -2)));
-                    console.log(position.left);
                     const oldLeft = Number(domNode.style.left.slice(0, -2));
                     const differenceLeft = position.left + newWidth - viewportWidth + buffer;
                     domNode.style.left = oldLeft - differenceLeft + "px";
@@ -196,6 +196,9 @@ Does not affect the search bar for some reason.
             domNode.style.position = "fixed";
             domNode.style.top = viewportOffset.top + "px";
             domNode.style.left = viewportOffset.left + "px";
+            // Set fail-safes
+            domNode.style.maxHeight = viewportHeight - viewportOffset.top - buffer + 'px';
+            domNode.style.maxWidth = viewportWidth - viewportOffset.left - buffer + 'px';
         }
     };
 

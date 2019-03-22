@@ -3,11 +3,11 @@ core-version: >=5.1.19
 created: 20190307185955996
 description: Engine: a customizable control console
 list: readme license history
-modified: 20190315193354198
+modified: 20190322010334509
 plugin-type: plugin
 tags: 
 title: $:/plugins/admls/engine
 type: application/json
-version: 0.0.2
+version: 0.0.3
 
 {"tiddlers":{}}

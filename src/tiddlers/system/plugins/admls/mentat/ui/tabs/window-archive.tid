@@ -1,6 +1,6 @@
 caption: Windows
 created: 20190228014435887
-modified: 20190307160238568
+modified: 20190321220030669
 tags: $:/tags/MentatTab
 title: $:/plugins/admls/mentat/ui/tabs/window-archive
 type: text/vnd.tiddlywiki
@@ -25,7 +25,7 @@ $:/config/Mentat/windows/{{$:/state/new-window}}
 </$list>
 
 
-Name new window save:
+Name new window archive:
 
 <$edit-text tiddler="$:/state/new-window" tag="input" default=""/>
 <$button>Save Selected Window

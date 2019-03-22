@@ -15,8 +15,11 @@
 !*index.html
 !.gitignore
 
-src/tiddlers/system/config/Volant/**
-src/tiddlers/system/config/Mentat/**
+!*EditTemplate.tid
+!*ViewTemplate.tid
+
+# src/tiddlers/system/config/Volant/**
+# src/tiddlers/system/config/Mentat/**
 
 # Run the following in the terminal after the change:
 # git rm -r --cached .
