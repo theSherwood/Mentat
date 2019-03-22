@@ -1,8 +1,11 @@
 created: 20190308235541763
-modified: 20190315231104696
+modified: 20190320211726879
 tags: 
 title: $:/plugins/admls/engine/history
 type: text/vnd.tiddlywiki
 
-* ''0.0.1'' -- initial release
-* ''0.0.2'' -- includes [[$:/Sidebar]]. Numerous styling and filter fixes.
+* ''0.0.1''
+** initial release
+* ''0.0.2''
+** includes [[$:/Sidebar]]
+** numerous styling and filter fixes.
