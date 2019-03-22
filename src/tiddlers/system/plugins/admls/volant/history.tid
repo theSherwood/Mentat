@@ -1,5 +1,5 @@
 created: 20190311214442882
-modified: 20190322005937383
+modified: 20190322155759679
 tags: 
 title: $:/plugins/admls/volant/history
 type: text/vnd.tiddlywiki
@@ -13,3 +13,5 @@ type: text/vnd.tiddlywiki
 ** adds configuration options
 ** adds touch events
 ** adds event hooks
+* ''0.0.4'' 
+** bug fix: "Cannot read property of '0' of undefined" when tiddler moved above viewport top
