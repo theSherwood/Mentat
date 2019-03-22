@@ -1,5 +1,5 @@
 created: 20190131224855059
-modified: 20190311170733292
+modified: 20190320235403652
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/volant/styles/general
 type: text/vnd.tiddlywiki
@@ -23,7 +23,7 @@ padding: 25px 15px 15px 15px;
 
 /* Resizer Handles */
 
-.resizer-left, .resizer-right {
+.resizer {
 width: 12px;
 height: 12px;
 background-color: rgba(200,0,0,1);
@@ -43,6 +43,17 @@ cursor: se-resize;
 border-radius: 70% 0% 0% 0%;
 right: 0px;
 }
+
+.resizer:hover {
+width: 20px;
+height: 20px;
+}
+
+<$reveal type="match" state="$:/plugins/admls/volant/config/values!!show-resizers" text="no">
+.resizer {
+background-color: transparent;
+}
+</$reveal>
 
 /* Tiddler Scrollbars */
 
