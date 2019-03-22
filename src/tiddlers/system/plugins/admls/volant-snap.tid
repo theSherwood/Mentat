@@ -1,0 +1,12 @@
+author: Adam Sherwood
+core-version:  >=5.1.19
+created: 20190322091129976
+description: Volant-Snap: adds snapping to viewport edges (add-on)
+modified: 20190322091349459
+plugin-type: plugin
+tags: 
+title: $:/plugins/admls/volant-snap
+type: application/json
+version: 0.01
+
+{"tiddlers": {}}
