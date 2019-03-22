@@ -1,5 +1,5 @@
 created: 20190309233413725
-modified: 20190320211945764
+modified: 20190321222524055
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/repopup/styles/general
 type: text/vnd.tiddlywiki
@@ -9,5 +9,9 @@ min-width: 200px;
 margin: 0px;
 max-height: 100%;
 max-width: 100%;
+overflow: auto;
+}
+
+.tc-reveal.tc-popup {
 overflow: auto;
 }
