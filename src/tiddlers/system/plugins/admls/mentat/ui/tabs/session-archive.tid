@@ -1,6 +1,6 @@
 caption: Sessions
 created: 20190228002217473
-modified: 20190307171517418
+modified: 20190322005812588
 tags: $:/tags/MentatTab
 title: $:/plugins/admls/mentat/ui/tabs/session-archive
 type: text/vnd.tiddlywiki
@@ -18,33 +18,56 @@ $:/config/Mentat/sessions/{{$:/state/new-mentat-session}}/
 <$wikify name="sessionPrefix" text=<<getSessionPrefix>>>
 
 <$button>{{$:/core/images/delete-button}}
+<!-- delete all tiddlers with the session prefix -->
 <$list filter="[all[shadows+tiddlers]prefix<sessionPrefix>]">
 <$action-sendmessage $message="tm-delete-tiddler" param=<<currentTiddler>>/>
 </$list>
 </$button>
 <$button>Restore
+<!-- cache names of windows to be deleted -->
 <$action-listops $tiddler="$:/state/delete-window-cache" $field="list" $filter="[all[shadows+tiddlers]tag[$:/Window]]"/>
+<!-- close windows -->
+<$reveal stateTitle="$:/plugins/admls/mentat/config/values" stateField="session-archive-all" type="nomatch" text="yes">
 <$action-listops $tiddler="$:/StoryList" $field="list" $subfilter=" -[all[shadows+tiddlers]tag[$:/Window]]"/>
-<$list filter="[all[shadows+tiddlers]prefix<sessionPrefix>]">
+</$reveal>
+<!-- if Session Archive All, close all tiddlers -->
+<$reveal stateTitle="$:/plugins/admls/mentat/config/values" stateField="session-archive-all" type="match" text="yes">
+<$action-listops $tiddler="$:/StoryList" $field="list" $filter="[[]]"/>
+</$reveal>
+<!-- open tiddlers from archived storylist (if one exists) -->
+<$list filter="[all[shadows+tiddlers]prefix<sessionPrefix>suffix[storylist]]" variable="storylist">
+<$action-listops $tiddler="$:/StoryList" $field="list" $subfilter=" +[list<storylist>]"/>
+</$list>
+<!-- create windows from archive and navigate to them -->
+<$list filter="[all[shadows+tiddlers]prefix<sessionPrefix>!suffix[storylist]]">
 <$action-createtiddler $basetitle="$:/Window" $savetitle="$:/temp/windowTitle" tags="$:/Window  $:/config/Volant" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
 <$action-navigate $to={{$:/temp/windowTitle}}/>
 </$list>
+<!-- delete all windows in the cache -->
 <$action-deletetiddler $filter="[list[$:/state/delete-window-cache]]"/>
 </$button>
 <$view field="title"/>
 </$wikify>
 </$list>
 
-Name new session save:
+Name new session archive:
 
 <$edit-text tiddler="$:/state/new-mentat-session" tag="input" default=""/>
 <$button>Save Current Session
 <$wikify name="sessionPrefix" text=<<newSessionPrefix>>>
+<!-- overwrite any previous session by the same name -->
 <$action-deletetiddler $filter="[all[shadows+tiddlers]prefix<sessionPrefix>]"/>
+<!-- archive all the current windows (whether open or not) -->
 <$list filter="[all[shadows+tiddlers]tag[$:/Window]]">
 <$list filter="[all[current]] +[addprefix<sessionPrefix>]" variable="listItem">
 <$action-createtiddler $basetitle=<<listItem>> tags="$:/config/Window" list={{!!list}} height={{!!height}} width={{!!width}} top={{!!top}} left={{!!left}} view={{!!view}}/>
 </$list>
 </$list>
+<!-- if Session Archive All is enabled, archive list of open non-window tiddlers -->
+<$reveal stateTitle="$:/plugins/admls/mentat/config/values" stateField="session-archive-all" type="match" text="yes">
+<$list filter="[title[storylist]] +[addprefix<sessionPrefix>]" variable="sessionList">
+<$action-listops $tiddler=<<sessionList>> $filter="[list[$:/StoryList]!tag[$:/Window]]">
+</$list>
+</$reveal>
 </$wikify>
 </$button>
