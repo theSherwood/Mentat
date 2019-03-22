@@ -1,5 +1,5 @@
 created: 20190315202609015
-modified: 20190315211346105
+modified: 20190322161449876
 tags: [[package plugin]]
 title: Create Plugin List
 type: text/vnd.tiddlywiki
@@ -41,6 +41,9 @@ List of tiddlers to append to list:
 <$list filter=<<filter>>>
 <$action-listops $tiddler={{$:/state/plugin-package-tiddler-edit}} $subfilter="+[insertbefore:''<currentTiddler>]"/>
 </$list>
+</$button>
+<$button>Remove Contents from List
+<$action-listops $tiddler={{$:/state/plugin-package-tiddler-edit}} $subfilter="+[remove<filter>]"/>
 </$button>
 <hr>
 <$list filter=<<filter>>>
