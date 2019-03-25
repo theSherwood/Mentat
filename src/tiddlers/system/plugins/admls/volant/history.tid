@@ -1,5 +1,5 @@
 created: 20190311214442882
-modified: 20190322155759679
+modified: 20190325162157922
 tags: 
 title: $:/plugins/admls/volant/history
 type: text/vnd.tiddlywiki
@@ -15,3 +15,4 @@ type: text/vnd.tiddlywiki
 ** adds event hooks
 * ''0.0.4'' 
 ** bug fix: "Cannot read property of '0' of undefined" when tiddler moved above viewport top
+** easy-drag-mode button gets a border when engaged

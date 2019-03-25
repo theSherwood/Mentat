@@ -1,5 +1,5 @@
 created: 20190308001315627
-modified: 20190322153820751
+modified: 20190325162258306
 tags: Demo
 title: Welcome!
 type: text/vnd.tiddlywiki
@@ -12,6 +12,8 @@ This wiki is home to a collection of UI/UX plugins for [[Tiddlywiki|https://tidd
 #* {{$:/plugins/admls/volant/readme}}
 #* [[Demo|VolantDemo]]
 #* [[Docs|VolantDocs]]
+#* Add-ons:
+#** [[Volant-Rapid|$:/plugins/admls/volant-rapid]] -- {{$:/plugins/admls/volant-rapid/readme}}
 # [[Engine|$:/plugins/admls/engine]]
 #* {{$:/plugins/admls/engine/readme}}
 #* [[Demo|EngineDemo]]

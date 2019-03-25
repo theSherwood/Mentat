@@ -1,5 +1,5 @@
 created: 20190316015820463
-modified: 20190321000405651
+modified: 20190325162419193
 tags: Issues
 title: KnownIssues
 type: text/vnd.tiddlywiki
@@ -7,3 +7,4 @@ type: text/vnd.tiddlywiki
 * Won't navigate to $:/Windowbar from Engine Button. It opens and closes but doesn't recieve navigation
 * Volant startup-actions will delete the configTiddlers of tiddlers that haven't been named yet (e.g., "New Tiddler (x)").
 * Buttons can disappear in various palettes.
+* Navigation from $:/Sidebar sometimes won't work on the first try.

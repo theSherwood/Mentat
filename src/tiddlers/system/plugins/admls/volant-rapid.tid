@@ -3,11 +3,11 @@ core-version: >=5.1.19
 created: 20190322091129976
 description: Volant-Rapid: adds snapping to viewport edges (add-on)
 list: readme license history
-modified: 20190322160656709
+modified: 20190322165653087
 plugin-type: plugin
 tags: 
 title: $:/plugins/admls/volant-rapid
 type: application/json
-version: 0.01
+version: 0.0.1
 
 {"tiddlers": {}}
