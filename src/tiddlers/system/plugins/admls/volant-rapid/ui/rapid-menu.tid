@@ -1,9 +1,0 @@
-created: 20190322233123826
-modified: 20190323002551627
-tags: $:/Engine
-title: $:/plugins/admls/volant-rapid/ui/rapid-menu
-type: text/vnd.tiddlywiki
-
-<$set name="currentTiddler" tiddler="$:/state/rapid-menu/currentTiddler" field="text">
-<<currentTiddler>>
-</$set>
