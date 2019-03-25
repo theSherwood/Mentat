@@ -1,0 +1,7 @@
+created: 20190322155842989
+modified: 20190322165556132
+tags: 
+title: $:/plugins/admls/volant-rapid/readme
+type: text/vnd.tiddlywiki
+
+Volant-Rapid is an add-on to the [[Volant Plugin|$:/plugins/admls/volant]]. It allows for rapid resizing of volant tiddlers by moving them so that an edge overhangs an edge of the viewport. Use it to quickly redefine your layout.

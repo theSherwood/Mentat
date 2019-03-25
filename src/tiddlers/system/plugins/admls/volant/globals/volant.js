@@ -36,10 +36,10 @@ Adds a few hooks, too.
 			const tiddler = Volant.eventTiddler
 			window.requestAnimationFrame(() => {
 				// calculate the new cursor/pointer position:
-				Volant.pos1 = Volant.pos3 - (e.clientX || e.touches[0].clientX);
-				Volant.pos2 = Volant.pos4 - (e.clientY || e.touches[0].clientY);
-				Volant.pos3 = (e.clientX || e.touches[0].clientX);
-				Volant.pos4 = (e.clientY || e.touches[0].clientY);
+				Volant.pos1 = Volant.pos3 - (e.clientX || (e.touches && e.touches[0].clientX) || 0);
+				Volant.pos2 = Volant.pos4 - (e.clientY || (e.touches && e.touches[0].clientY) || 0);
+				Volant.pos3 = (e.clientX || (e.touches && e.touches[0].clientX) || Volant.pos3);
+				Volant.pos4 = (e.clientY || (e.touches && e.touches[0].clientY) || Volant.pos4);
 				// get dimensions
 				const top = tiddler.offsetTop;
 				const left = tiddler.offsetLeft;

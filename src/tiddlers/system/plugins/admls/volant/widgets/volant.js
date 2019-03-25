@@ -77,8 +77,8 @@ module-type: widget
 			if ((e.button && e.button !== 0) || targetIsResizer || (!dragModeIsOn && targetIsChildElement)) {
 				return;
 			}
-			// e.stopPropagation();
-			// e.preventDefault();
+			e.stopPropagation();
+			e.preventDefault();
 
 			const Volant = $tw.Volant;
 			Volant.eventTiddler = tiddler;
@@ -98,8 +98,8 @@ module-type: widget
 			if (!e.target.classList.contains("resizer")) {
 				return;
 			}
-			// e.preventDefault();
-			// e.stopPropagation();
+			e.preventDefault();
+			e.stopPropagation();
 
 			const Volant = $tw.Volant;
 			Volant.eventTiddler = tiddler;

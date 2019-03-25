@@ -1,5 +1,5 @@
 created: 20190308235541763
-modified: 20190320211726879
+modified: 20190325164139457
 tags: 
 title: $:/plugins/admls/engine/history
 type: text/vnd.tiddlywiki
@@ -9,3 +9,5 @@ type: text/vnd.tiddlywiki
 * ''0.0.2''
 ** includes [[$:/Sidebar]]
 ** numerous styling and filter fixes.
+* ''0.0.3''
+** tiddler controls hidden until hover

@@ -1,5 +1,5 @@
 created: 20190131224855059
-modified: 20190320235403652
+modified: 20190325162048979
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/volant/styles/general
 type: text/vnd.tiddlywiki
@@ -54,6 +54,18 @@ height: 20px;
 background-color: transparent;
 }
 </$reveal>
+
+/* Easy-Drag-Mode Button */
+
+<$reveal type="match" state="$:/plugins/admls/volant/config/values!!dragmode" text="on">
+
+[aria-label*="easy drag"] > svg {
+border: solid 1px;
+border-radius: 2px;
+}
+
+</$reveal>
+
 
 /* Tiddler Scrollbars */
 

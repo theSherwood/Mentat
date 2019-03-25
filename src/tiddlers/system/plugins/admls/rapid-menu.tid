@@ -1,0 +1,12 @@
+author: Adam Sherwood
+core-version: >=5.1.19
+created: 20190325160010385
+description: Rapid-Menu: a customizable menu available on double-tap
+modified: 20190325160108227
+plugin-type: plugin
+tags: 
+title: $:/plugins/admls/rapid-menu
+type: application/json
+version: 0.0.1
+
+{"tiddlers": {}}

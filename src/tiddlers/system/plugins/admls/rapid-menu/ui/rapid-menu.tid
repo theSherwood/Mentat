@@ -1,0 +1,8 @@
+created: 20190322233123826
+modified: 20190325160205222
+title: $:/plugins/admls/rapid-menu/ui/rapid-menu
+type: text/vnd.tiddlywiki
+
+<$set name="currentTiddler" tiddler="$:/state/rapid-menu/currentTiddler" field="text">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/RapidMenu]!has[draft.of]]" variable="listItem">
+<$transclude tiddler=<<listItem>> mode="block"/>

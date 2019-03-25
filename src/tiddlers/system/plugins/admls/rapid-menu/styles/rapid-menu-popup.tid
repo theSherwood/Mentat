@@ -1,0 +1,18 @@
+created: 20190323002256211
+modified: 20190325160529455
+title: $:/plugins/admls/rapid-menu/styles/rapid-menu-popup
+type: text/vnd.tiddlywiki
+
+[data-tiddler-title="$:/plugins/admls/rapid-menu/ui/rapid-menu-popup"] {
+display: none;
+}
+
+.rapid-menu-popup {
+width: auto !important;
+height: auto !important;
+}
+
+.rapid-menu-popup p {
+margin-top: 0px;
+margin-bottom: 0px;
+}
