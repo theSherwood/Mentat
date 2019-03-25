@@ -1,5 +1,5 @@
 created: 20190307190924303
-modified: 20190315222021710
+modified: 20190325163956743
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/engine/styles/general
 type: text/vnd.tiddlywiki
@@ -25,6 +25,11 @@ padding: 10px 12px 10px 12px;
     position: absolute;
     top: 0px;
     right: 4px;
+    visibility: hidden;
+}
+
+[data-tags*="$:/Engine"]:hover .tc-tiddler-controls {
+    visibility: visible;
 }
 
 [data-tags*="$:/Engine"] .tc-tiddler-controls button svg, [data-tags*="$:/Engine"] .tc-tiddler-controls button img { 
