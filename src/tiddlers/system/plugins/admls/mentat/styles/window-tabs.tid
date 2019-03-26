@@ -1,12 +1,13 @@
 created: 20190225184551271
-modified: 20190311213957828
+modified: 20190326141347670
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/window-tabs
 type: text/vnd.tiddlywiki
 
-.window-body .story-backdrop {
+.window-tab-wrapper {
 display: flex;
 flex-direction: row;
+width: 100%;
 }
 
 .window-tabs {
@@ -89,7 +90,7 @@ width: auto;
 display: block;
 }
 
-.window-body .story-backdrop button[title*="Create a new tiddler"] {
+.window-tab-wrapper button[title*="Create a new tiddler"] {
 width: 22px;
 height: 22px;
 background-color: <<colour tab-background>>;

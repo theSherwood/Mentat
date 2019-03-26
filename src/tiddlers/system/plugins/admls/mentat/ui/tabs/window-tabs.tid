@@ -1,6 +1,5 @@
 created: 20190225185537487
-modified: 20190307000631338
-tags: $:/tags/AboveWindow
+modified: 20190326141404695
 title: $:/plugins/admls/mentat/ui/tabs/window-tabs
 type: text/vnd.tiddlywiki
 
@@ -12,6 +11,7 @@ type: text/vnd.tiddlywiki
 <$action-listops $tiddler=<<tv-story-list>> $subfilter="-[<actionTiddler>]"/>
 \end
 
+<div class="window-tab-wrapper">
 <$tiddler tiddler=""><$transclude tiddler="$:/core/ui/Buttons/new-tiddler" mode="inline"/></$tiddler>
 <div class="window-tabs">
 <$tiddler tiddler="">
@@ -40,4 +40,4 @@ type: text/vnd.tiddlywiki
 </$link><div class="tc-droppable-placeholder">
 &nbsp;
 </div></$droppable></$reveal></$set>
-</$list></div>
+</$list></div></div>
