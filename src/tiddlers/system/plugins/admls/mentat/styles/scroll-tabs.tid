@@ -1,0 +1,101 @@
+created: 20190326085555745
+modified: 20190326144608874
+tags: $:/tags/Stylesheet
+title: $:/plugins/admls/mentat/styles/scroll-tabs
+type: text/vnd.tiddlywiki
+
+.scroll-tab-wrapper {
+display: flex;
+flex-direction: row;
+width: 100%;
+}
+
+.scroll-tabs {
+flex: 1 1 auto;
+display: inline;
+overflow-x: auto;
+overflow-y: hidden;
+white-space: nowrap;
+height: 30px;
+}
+
+.scroll-tab * {
+color: black;
+font-weight: normal;
+}
+
+.scroll-tab {
+position: relative;
+background-color: <<colour tab-background>>;
+border: solid <<colour tab-border>> 1px;
+border-radius: 2px 2px 2px 2px;
+padding: 0px 3px 0px 3px;
+white-space: nowrap;
+overflow: hidden;
+width: 150px;
+display: inline-block;
+margin: 0px -2px 0px -2px;
+}
+
+.scroll-tab-selected {
+background-color: <<colour background>>;
+}
+
+.scroll-tabs .scroll-tab:hover {
+text-decoration: none;
+}
+
+.scroll-tab > span {
+white-space: nowrap;
+overflow: hidden;
+width: 50px;
+}
+
+.scroll-tabs > .tc-reveal {
+position: relative;
+white-space: nowrap;
+margin: 0px 1px 0px 1px;
+overflow: hidden;
+width: 50px;
+}
+
+.scroll-tabs .tc-droppable > .tc-droppable-placeholder {
+position: absolute;
+visibility: hidden;
+width: 0px;
+height: 100%;
+}
+
+.scroll-tabs .tc-droppable.tc-dragover > .tc-droppable-placeholder {
+visibility: visible;
+background-color: rgba(0,0,0,.5);
+border: none;
+width: 20px;
+top: 0%;
+left: -10px;
+}
+
+.scroll-tab button {
+background-color: inherit;
+padding: 2px 0px 0px 3px;
+height: 100%;
+display: none;
+position: absolute;
+right: 3px;
+}
+
+.scroll-tab:hover button {
+width: auto;
+display: block;
+}
+
+.scroll-tab-wrapper button[title*="Create a new tiddler"] {
+width: 22px;
+height: 22px;
+background-color: <<colour tab-background>>;
+margin: 0px 2px 0px 2px;
+border-radius: 2px 2px 0px 0px;
+border: solid <<colour tab-border>> 1px;
+padding-left: 2px;
+flex: 0 0 22px;
+}
