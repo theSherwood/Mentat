@@ -1,5 +1,5 @@
 created: 20190326085555745
-modified: 20190326144608874
+modified: 20190327092536647
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/scroll-tabs
 type: text/vnd.tiddlywiki
@@ -32,7 +32,7 @@ border-radius: 2px 2px 2px 2px;
 padding: 0px 3px 0px 3px;
 white-space: nowrap;
 overflow: hidden;
-width: 150px;
+width: {{$:/plugins/admls/mentat/config/values!!scroll-tab-width}}px;
 display: inline-block;
 margin: 0px -2px 0px -2px;
 }

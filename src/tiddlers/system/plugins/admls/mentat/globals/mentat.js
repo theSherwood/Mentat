@@ -178,6 +178,7 @@ Adds methods and hooks for navigation in mentat storyview
   /* Add some eventListeners */
   if ($tw.browser) {
     function handleScrollInWindowTabs(e) {
+      // console.log(e);
       let elmnt = e.target;
       while (elmnt && !elmnt.matches(".scroll-tabs")) {
         elmnt = elmnt.parentElement;
@@ -185,10 +186,27 @@ Adds methods and hooks for navigation in mentat storyview
       if (!elmnt) {
         return;
       }
-      if (event.deltaY != 0) {
-        elmnt.scroll(elmnt.scrollLeft + event.deltaY * 10, elmnt.scrollTop);
+      // If not shiftKey, scroll throught the tabs
+      if (!e.shiftKey && e.deltaY != 0) {
+        elmnt.scroll(elmnt.scrollLeft + e.deltaY * 10, elmnt.scrollTop);
         // prevent vertical scroll
-        event.preventDefault();
+        e.preventDefault();
+      }
+      // If shiftKey, change width of tab
+      if (e.shiftKey && e.deltaY != 0) {
+        const tabWidthIncrease = e.deltaY * -3;
+        const configTitle = "$:/plugins/admls/mentat/config/values";
+        const tiddler = $tw.wiki.getTiddler(configTitle);
+        const newTabWidth =
+          Number(tiddler.getFieldString("scroll-tab-width")) + tabWidthIncrease;
+        $tw.wiki.setText(
+          configTitle,
+          "scroll-tab-width",
+          undefined,
+          newTabWidth,
+          undefined
+        );
+        e.preventDefault();
       }
       return;
     }
