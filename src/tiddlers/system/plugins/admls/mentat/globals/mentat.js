@@ -180,7 +180,7 @@ Adds methods and hooks for navigation in mentat storyview
     function handleScrollInWindowTabs(e) {
       // console.log(e);
       let elmnt = e.target;
-      while (elmnt && !elmnt.matches(".scroll-tabs")) {
+      while (elmnt && !elmnt.matches(".window-tabs")) {
         elmnt = elmnt.parentElement;
       }
       if (!elmnt) {

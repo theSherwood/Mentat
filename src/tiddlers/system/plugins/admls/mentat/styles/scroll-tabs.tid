@@ -1,16 +1,16 @@
 created: 20190326085555745
-modified: 20190327092536647
+modified: 20190327165840215
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/scroll-tabs
 type: text/vnd.tiddlywiki
 
-.scroll-tab-wrapper {
+.window-tab-wrapper {
 display: flex;
 flex-direction: row;
 width: 100%;
 }
 
-.scroll-tabs {
+.window-tabs {
 flex: 1 1 auto;
 display: inline;
 overflow-x: auto;
@@ -19,12 +19,12 @@ white-space: nowrap;
 height: 30px;
 }
 
-.scroll-tab * {
+.window-tab * {
 color: black;
 font-weight: normal;
 }
 
-.scroll-tab {
+.window-tab {
 position: relative;
 background-color: <<colour tab-background>>;
 border: solid <<colour tab-border>> 1px;
@@ -37,21 +37,21 @@ display: inline-block;
 margin: 0px -2px 0px -2px;
 }
 
-.scroll-tab-selected {
+.window-tab-selected {
 background-color: <<colour background>>;
 }
 
-.scroll-tabs .scroll-tab:hover {
+.window-tabs .window-tab:hover {
 text-decoration: none;
 }
 
-.scroll-tab > span {
+.window-tab > span {
 white-space: nowrap;
 overflow: hidden;
 width: 50px;
 }
 
-.scroll-tabs > .tc-reveal {
+.window-tabs > .tc-reveal {
 position: relative;
 white-space: nowrap;
 margin: 0px 1px 0px 1px;
@@ -59,14 +59,14 @@ overflow: hidden;
 width: 50px;
 }
 
-.scroll-tabs .tc-droppable > .tc-droppable-placeholder {
+.window-tabs .tc-droppable > .tc-droppable-placeholder {
 position: absolute;
 visibility: hidden;
 width: 0px;
 height: 100%;
 }
 
-.scroll-tabs .tc-droppable.tc-dragover > .tc-droppable-placeholder {
+.window-tabs .tc-droppable.tc-dragover > .tc-droppable-placeholder {
 visibility: visible;
 background-color: rgba(0,0,0,.5);
 border: none;
@@ -75,7 +75,7 @@ top: 0%;
 left: -10px;
 }
 
-.scroll-tab button {
+.window-tab button {
 background-color: inherit;
 padding: 2px 0px 0px 3px;
 height: 100%;
@@ -84,12 +84,12 @@ position: absolute;
 right: 3px;
 }
 
-.scroll-tab:hover button {
+.window-tab:hover button {
 width: auto;
 display: block;
 }
 
-.scroll-tab-wrapper button[title*="Create a new tiddler"] {
+.window-tab-wrapper button[title*="Create a new tiddler"] {
 width: 22px;
 height: 22px;
 background-color: <<colour tab-background>>;
