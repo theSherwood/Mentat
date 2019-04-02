@@ -1,6 +1,6 @@
 created: 20190225184551271
-modified: 20190326141347670
-tags: $:/tags/Stylesheet
+modified: 20190402002636027
+tags: 
 title: $:/plugins/admls/mentat/styles/window-tabs
 type: text/vnd.tiddlywiki
 
@@ -29,9 +29,7 @@ position: relative;
 background-color: <<colour tab-background>>;
 border: solid <<colour tab-border>> 1px;
 border-radius: 2px 2px 2px 2px;
-display: flex;
-flex-direction: row;
-justify-content: space-between;
+display: inline-block;
 padding: 0px 3px 0px 3px;
 white-space: nowrap;
 width: 100%;
@@ -46,9 +44,8 @@ text-decoration: none;
 }
 
 .window-tab > span {
-white-space: nowrap;
-overflow: hidden;
-flex: 1 1 auto;
+display: block;
+
 }
 
 .window-tabs > .tc-reveal {
@@ -78,11 +75,12 @@ left: -10px;
 
 .window-tab button {
 background-color: inherit;
-padding: 2px 0px 0px 3px;
+padding: 2px 0px 0px 2px;
 height: 100%;
 display: none;
 position: absolute;
-right: 3px;
+right: 0px;
+top: 0px;
 }
 
 .window-tab:hover button {
@@ -90,7 +88,7 @@ width: auto;
 display: block;
 }
 
-.window-tab-wrapper button[title*="Create a new tiddler"] {
+.window-tab-wrapper button[title*="Create a new tiddler"], .window-tab-wrapper button[title*="More actions"] {
 width: 22px;
 height: 22px;
 background-color: <<colour tab-background>>;
@@ -99,4 +97,8 @@ border-radius: 2px 2px 0px 0px;
 border: solid <<colour tab-border>> 1px;
 padding-left: 2px;
 flex: 0 0 22px;
+}
+
+.window-tab-wrapper button[title*="More actions"]{
+margin: 0px 2px 0px 0px;
 }

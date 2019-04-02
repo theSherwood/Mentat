@@ -1,5 +1,5 @@
 created: 20190326085555745
-modified: 20190327165840215
+modified: 20190402002652946
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/scroll-tabs
 type: text/vnd.tiddlywiki
@@ -10,6 +10,21 @@ flex-direction: row;
 width: 100%;
 }
 
+.window-tab-wrapper button[title*="Create a new tiddler"], .window-tab-wrapper button[title*="More actions"] {
+width: 22px;
+height: 22px;
+background-color: <<colour tab-background>>;
+margin: 0px 0px 0px 2px;
+border-radius: 2px 2px 0px 0px;
+border: solid <<colour tab-border>> 1px;
+padding-left: 2px;
+flex: 0 0 22px;
+}
+
+.window-tab-wrapper button[title*="More actions"]{
+margin: 0px 2px 0px 0px;
+}
+
 .window-tabs {
 flex: 1 1 auto;
 display: inline;
@@ -17,6 +32,7 @@ overflow-x: auto;
 overflow-y: hidden;
 white-space: nowrap;
 height: 30px;
+vertical-align: top;
 }
 
 .window-tab * {
@@ -29,34 +45,44 @@ position: relative;
 background-color: <<colour tab-background>>;
 border: solid <<colour tab-border>> 1px;
 border-radius: 2px 2px 2px 2px;
-padding: 0px 3px 0px 3px;
 white-space: nowrap;
 overflow: hidden;
-width: {{$:/plugins/admls/mentat/config/values!!scroll-tab-width}}px;
 display: inline-block;
-margin: 0px -2px 0px -2px;
+margin: 0px -1px 0px -1px;
+width: {{$:/plugins/admls/mentat/config/values!!scroll-tab-width}}px;
+padding: 0px 2px 0px 2px;
 }
 
 .window-tab-selected {
 background-color: <<colour background>>;
 }
 
+.window-tab > span {
+display: block;
+float: right;
+}
+
 .window-tabs .window-tab:hover {
 text-decoration: none;
 }
 
-.window-tab > span {
-white-space: nowrap;
-overflow: hidden;
-width: 50px;
+.window-tab button {
+background-color: inherit;
+padding: 2px 0px 0px 2px;
+height: 100%;
+display: none;
+position: absolute;
+right: 0px;
+top: 0px;
+}
+
+.window-tab:hover button {
+width: auto;
+display: inline-block;
 }
 
 .window-tabs > .tc-reveal {
 position: relative;
-white-space: nowrap;
-margin: 0px 1px 0px 1px;
-overflow: hidden;
-width: 50px;
 }
 
 .window-tabs .tc-droppable > .tc-droppable-placeholder {
@@ -71,31 +97,7 @@ visibility: visible;
 background-color: rgba(0,0,0,.5);
 border: none;
 width: 20px;
-top: 0%;
-left: -10px;
-}
-
-.window-tab button {
-background-color: inherit;
-padding: 2px 0px 0px 3px;
-height: 100%;
-display: none;
-position: absolute;
-right: 3px;
-}
-
-.window-tab:hover button {
-width: auto;
+top: 0px;
+left: -11px;
 display: block;
-}
-
-.window-tab-wrapper button[title*="Create a new tiddler"] {
-width: 22px;
-height: 22px;
-background-color: <<colour tab-background>>;
-margin: 0px 2px 0px 2px;
-border-radius: 2px 2px 0px 0px;
-border: solid <<colour tab-border>> 1px;
-padding-left: 2px;
-flex: 0 0 22px;
 }
