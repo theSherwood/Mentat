@@ -1,5 +1,5 @@
 created: 20190326085555745
-modified: 20190402002652946
+modified: 20190403085229606
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/scroll-tabs
 type: text/vnd.tiddlywiki
@@ -10,7 +10,7 @@ flex-direction: row;
 width: 100%;
 }
 
-.window-tab-wrapper button[title*="Create a new tiddler"], .window-tab-wrapper button[title*="More actions"] {
+.window-tab-wrapper button[title*="Create a new tiddler"], .window-tab-wrapper button[title*="List tabs"] {
 width: 22px;
 height: 22px;
 background-color: <<colour tab-background>>;
@@ -21,23 +21,21 @@ padding-left: 2px;
 flex: 0 0 22px;
 }
 
-.window-tab-wrapper button[title*="More actions"]{
+.window-tab-wrapper button[title*="List tabs"]{
 margin: 0px 2px 0px 0px;
 }
 
 .window-tabs {
 flex: 1 1 auto;
-display: inline;
+display: inline-block;
 overflow-x: auto;
 overflow-y: hidden;
 white-space: nowrap;
 height: 30px;
-vertical-align: top;
 }
 
-.window-tab * {
-color: black;
-font-weight: normal;
+.window-tabs * {
+vertical-align: top;
 }
 
 .window-tab {
@@ -50,7 +48,12 @@ overflow: hidden;
 display: inline-block;
 margin: 0px -1px 0px -1px;
 width: {{$:/plugins/admls/mentat/config/values!!scroll-tab-width}}px;
-padding: 0px 2px 0px 2px;
+padding: 0px 14px 0px 2px;
+}
+
+.window-tab * {
+color: black;
+font-weight: normal;
 }
 
 .window-tab-selected {
@@ -78,7 +81,7 @@ top: 0px;
 
 .window-tab:hover button {
 width: auto;
-display: inline-block;
+display: block;
 }
 
 .window-tabs > .tc-reveal {
@@ -88,16 +91,16 @@ position: relative;
 .window-tabs .tc-droppable > .tc-droppable-placeholder {
 position: absolute;
 visibility: hidden;
+background-color: rgba(0,0,0,.5);
+border: none;
+border-radius: 100%;
+left: -12px;
+height: 20px;
 width: 0px;
-height: 100%;
 }
 
 .window-tabs .tc-droppable.tc-dragover > .tc-droppable-placeholder {
 visibility: visible;
-background-color: rgba(0,0,0,.5);
-border: none;
 width: 20px;
-top: 0px;
-left: -11px;
 display: block;
 }
