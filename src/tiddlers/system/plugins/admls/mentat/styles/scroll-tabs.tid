@@ -1,16 +1,16 @@
 created: 20190326085555745
-modified: 20190403085229606
+modified: 20190403165007555
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/scroll-tabs
 type: text/vnd.tiddlywiki
 
-.window-tab-wrapper {
+.window-tab-wrapper.scroll {
 display: flex;
 flex-direction: row;
 width: 100%;
 }
 
-.window-tab-wrapper button[title*="Create a new tiddler"], .window-tab-wrapper button[title*="List tabs"] {
+.window-tab-wrapper.scroll button[title*="Create a new tiddler"], .window-tab-wrapper.scroll button[title*="List tabs"] {
 width: 22px;
 height: 22px;
 background-color: <<colour tab-background>>;
@@ -21,11 +21,11 @@ padding-left: 2px;
 flex: 0 0 22px;
 }
 
-.window-tab-wrapper button[title*="List tabs"]{
+.window-tab-wrapper.scroll button[title*="List tabs"]{
 margin: 0px 2px 0px 0px;
 }
 
-.window-tabs {
+.window-tabs.scroll {
 flex: 1 1 auto;
 display: inline-block;
 overflow-x: auto;
@@ -34,11 +34,11 @@ white-space: nowrap;
 height: 30px;
 }
 
-.window-tabs * {
+.window-tabs.scroll * {
 vertical-align: top;
 }
 
-.window-tab {
+.window-tab.scroll {
 position: relative;
 background-color: <<colour tab-background>>;
 border: solid <<colour tab-border>> 1px;
@@ -51,25 +51,24 @@ width: {{$:/plugins/admls/mentat/config/values!!scroll-tab-width}}px;
 padding: 0px 14px 0px 2px;
 }
 
-.window-tab * {
+.window-tab.scroll * {
 color: black;
 font-weight: normal;
 }
 
-.window-tab-selected {
+.window-tab-selected.scroll {
 background-color: <<colour background>>;
 }
 
-.window-tab > span {
+.window-tab.scroll > span {
 display: block;
-float: right;
 }
 
-.window-tabs .window-tab:hover {
+.window-tabs.scroll .window-tab.scroll:hover {
 text-decoration: none;
 }
 
-.window-tab button {
+.window-tab.scroll button {
 background-color: inherit;
 padding: 2px 0px 0px 2px;
 height: 100%;
@@ -79,16 +78,16 @@ right: 0px;
 top: 0px;
 }
 
-.window-tab:hover button {
+.window-tab.scroll:hover button {
 width: auto;
 display: block;
 }
 
-.window-tabs > .tc-reveal {
+.window-tabs.scroll > .tc-reveal {
 position: relative;
 }
 
-.window-tabs .tc-droppable > .tc-droppable-placeholder {
+.window-tabs.scroll .tc-droppable > .tc-droppable-placeholder {
 position: absolute;
 visibility: hidden;
 background-color: rgba(0,0,0,.5);
@@ -99,7 +98,7 @@ height: 20px;
 width: 0px;
 }
 
-.window-tabs .tc-droppable.tc-dragover > .tc-droppable-placeholder {
+.window-tabs.scroll .tc-droppable.tc-dragover > .tc-droppable-placeholder {
 visibility: visible;
 width: 20px;
 display: block;
