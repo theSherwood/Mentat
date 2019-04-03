@@ -1,6 +1,6 @@
 created: 20190327172424552
 description: Minimize (close) window instance
-modified: 20190401230741023
+modified: 20190403083200737
 title: $:/plugins/admls/mentat/ui/Buttons/list-tabs
 type: text/vnd.tiddlywiki
 
@@ -11,17 +11,18 @@ type: text/vnd.tiddlywiki
 <$action-listops $tiddler=<<tv-story-list>> $subfilter="+[insertbefore:currentTiddler<actionTiddler>]"/>
 \end
 
-<$button popup=<<qualify "$:/state/popup/list-tabs">> tooltip={{$:/language/Buttons/More/Hint}} aria-label={{$:/language/Buttons/More/Caption}} class=<<tv-config-toolbar-class>> selectedClass="tc-selected">
+<$button popup=<<qualify "$:/state/popup/list-tabs">> tooltip="List tabs"  aria-label="list tabs" class=<<tv-config-toolbar-class>> selectedClass="tc-selected">
 <$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
 {{$:/core/images/down-arrow}}
 </$list>
 <$list filter="[<tv-config-toolbar-text>prefix[yes]]">
 <span class="tc-btn-text">
 <$text text=" "/>
-<$text text={{$:/language/Buttons/More/Caption}}/>
+<$text text="list tabs"/>
 </span>
 </$list>
 </$button>
+
 <$reveal state=<<qualify "$:/state/popup/list-tabs">> type="popup" position="below" animate="yes">
 
 <div class="tc-drop-down">
