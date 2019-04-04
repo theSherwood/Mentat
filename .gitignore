@@ -24,4 +24,8 @@
 # Run the following in the terminal after the change:
 # git rm -r --cached .
 # git add .
+<<<<<<< HEAD
 # git commit -m "fixed untracked files"
+=======
+# git commit -m "fixed untracked files"
+>>>>>>> d16163c35f06eb1518d198c571e32bd946b67d1c

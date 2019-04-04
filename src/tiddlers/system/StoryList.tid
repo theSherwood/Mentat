@@ -1,6 +1,6 @@
-created: 20190212155714046
-list: [[Test Tiddler 1]] [[Test Tiddler Absolute 3]] $:/plugins/admls/volant/config/options $:/plugins/admls/volant/config/values $:/plugins/admls/volant/styles/tagged-tiddlers $:/plugins/admls/volant/commands/macro.js $:/plugins/admls/volant/globals/volant.js $:/plugins/admls/volant/templates/absolute-tag $:/plugins/admls/volant/config/tags $:/plugins/admls/mentat/storyviews/mentat.js $:/plugins/admls/volant/config/backup-values [[Plugin Kickstarter]]
-modified: 20190212155714046
+created: 20190404115205721
+list: [[Plugin Kickstarter]] $:/Topbar $:/Windowbar
+modified: 20190404115211581
 title: $:/StoryList
 type: text/vnd.tiddlywiki
 
