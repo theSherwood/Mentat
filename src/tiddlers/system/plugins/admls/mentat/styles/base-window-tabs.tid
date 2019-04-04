@@ -1,21 +1,17 @@
 created: 20190225184551271
-modified: 20190311213957828
+modified: 20190403165028257
 tags: $:/tags/Stylesheet
-title: $:/plugins/admls/mentat/styles/window-tabs
+title: $:/plugins/admls/mentat/styles/base-window-tabs
 type: text/vnd.tiddlywiki
 
-.window-body .story-backdrop {
+.window-tab-wrapper {
 display: flex;
 flex-direction: row;
+width: 100%;
 }
 
 .window-tabs {
 flex: 1 1 auto;
-display: inline-grid;
-grid-auto-flow: column;
-grid-template-columns: auto;
-grid-auto-columns: 1fr;
-justify-items: stretch;
 }
 
 .window-tab * {
@@ -28,12 +24,8 @@ position: relative;
 background-color: <<colour tab-background>>;
 border: solid <<colour tab-border>> 1px;
 border-radius: 2px 2px 2px 2px;
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-padding: 0px 3px 0px 3px;
+display: inline-block;
 white-space: nowrap;
-width: 100%;
 }
 
 .window-tab-selected {
@@ -45,43 +37,38 @@ text-decoration: none;
 }
 
 .window-tab > span {
-white-space: nowrap;
-overflow: hidden;
-flex: 1 1 auto;
+display: block;
+<$reveal type="match" default={{$:/plugins/admls/mentat/config/values!!show-tab-title}} text="end">
+float: right;
+</$reveal>
 }
 
 .window-tabs > .tc-reveal {
 position: relative;
-grid-column-start: auto;
-grid-column-end: span 1;
-white-space: nowrap;
-margin: 0px 1px 0px 1px;
-overflow: hidden;
 }
 
 .window-tabs .tc-droppable > .tc-droppable-placeholder {
 position: absolute;
 visibility: hidden;
+background-color: rgba(0,0,0,.5);
+border: none;
 width: 0px;
 height: 100%;
 }
 
 .window-tabs .tc-droppable.tc-dragover > .tc-droppable-placeholder {
 visibility: visible;
-background-color: rgba(0,0,0,.5);
-border: none;
 width: 20px;
-top: 0%;
-left: -10px;
 }
 
 .window-tab button {
 background-color: inherit;
-padding: 2px 0px 0px 3px;
+padding: 2px 0px 0px 2px;
 height: 100%;
 display: none;
 position: absolute;
-right: 3px;
+right: 0px;
+top: 0px;
 }
 
 .window-tab:hover button {
@@ -89,7 +76,7 @@ width: auto;
 display: block;
 }
 
-.window-body .story-backdrop button[title*="Create a new tiddler"] {
+.window-tab-wrapper button[title*="Create a new tiddler"], .window-tab-wrapper button[title*="List tabs"] {
 width: 22px;
 height: 22px;
 background-color: <<colour tab-background>>;
@@ -98,4 +85,8 @@ border-radius: 2px 2px 0px 0px;
 border: solid <<colour tab-border>> 1px;
 padding-left: 2px;
 flex: 0 0 22px;
+}
+
+.window-tab-wrapper button[title*="List tabs"]{
+margin: 0px 2px 0px 0px;
 }
