@@ -1,5 +1,5 @@
 created: 20190125233306363
-modified: 20190327164023870
+modified: 20190405193654188
 tags: 
 title: $:/plugins/admls/mentat/history
 type: text/vnd.tiddlywiki
@@ -16,3 +16,4 @@ type: text/vnd.tiddlywiki
 *** enable/disable window tabs
 * ''0.0.4''
 ** adds scrollable window tabs with config options
+** numerous styling fixes

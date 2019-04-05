@@ -3,11 +3,11 @@ core-version: >=5.1.19
 created: 20190125233145815
 description: Mentat: a customizable workspace
 list: readme license history
-modified: 20190322010342093
+modified: 20190405195957164
 plugin-type: plugin
 tags: 
 title: $:/plugins/admls/mentat
 type: application/json
-version: 0.0.3
+version: 0.0.4
 
 {"tiddlers":{}}
