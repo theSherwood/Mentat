@@ -187,19 +187,22 @@ Adds methods and hooks for navigation in mentat storyview
         return;
       }
       // If not shiftKey, scroll throught the tabs
-      if (!e.shiftKey && e.deltaY != 0) {
-        const scrollInterval = e.deltaY > 0 ? 40 : -40;
+      if (!e.shiftKey && (e.deltaY != 0 || e.deltaX != 0)) {
+        const scrollInterval = e.deltaY > 0 || e.deltaX > 0 ? 40 : -40;
         elmnt.scroll(elmnt.scrollLeft + scrollInterval, elmnt.scrollTop);
         // prevent vertical scroll
         e.preventDefault();
       }
       // If shiftKey, change width of tab
-      if (e.shiftKey && e.deltaY != 0) {
-        const tabWidthIncrease = e.deltaY > 0 ? -10 : 10;
+      if (e.shiftKey && (e.deltaY != 0 || e.deltaX != 0)) {
+        const tabWidthIncrease = e.deltaY > 0 || e.deltaX > 0 ? -10 : 10;
         const configTitle = "$:/plugins/admls/mentat/config/values";
         const tiddler = $tw.wiki.getTiddler(configTitle);
-        const newTabWidth =
-          Number(tiddler.getFieldString("scroll-tab-width")) + tabWidthIncrease;
+        // Tabs should be at least 20px in width
+        const newTabWidth = Math.max(
+          Number(tiddler.getFieldString("scroll-tab-width")) + tabWidthIncrease,
+          20
+        );
         $tw.wiki.setText(
           configTitle,
           "scroll-tab-width",
