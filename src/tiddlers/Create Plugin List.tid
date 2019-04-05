@@ -1,9 +1,14 @@
 created: 20190315202609015
-modified: 20190322161449876
+modified: 20190405202748224
 tags: [[package plugin]]
 title: Create Plugin List
 type: text/vnd.tiddlywiki
 
+\define filterCount()
+$(filter)$ +[count[]]
+\end
+
+<$set name="filter" value={{$:/state/plugin-package-list}}>
 <table>
 <tr>
 <td>
@@ -12,8 +17,7 @@ Tiddler whose list is incomplete:
 <td>
 List of tiddlers to append to list:
 </td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <$edit-text tiddler="$:/state/plugin-package-tiddler-edit" placeholder="tiddler title..." default=""/>
 <$link to={{$:/state/plugin-package-tiddler-edit}}>Link</$link>
@@ -21,19 +25,13 @@ List of tiddlers to append to list:
 <td>
 <$edit-text tiddler="$:/state/plugin-package-list-edit" placeholder="filter expression..." default=""/>
 </td>
-</tr>
-<tr>
+</tr><tr>
 <td>
 <$button>Empty List Contents
 <$action-setfield $tiddler={{$:/state/plugin-package-tiddler-edit}} list=""/>
 </$button>
-<hr>
-<$list filter="[list{$:/state/plugin-package-tiddler-edit}]">
-
-</$list>
 </td>
 <td>
-<$set name="filter" value={{$:/state/plugin-package-list}}>
 <$button>See Filter Contents
 <$action-setfield $tiddler="$:/state/plugin-package-list" text={{$:/state/plugin-package-list-edit}}/>
 </$button>
@@ -45,11 +43,24 @@ List of tiddlers to append to list:
 <$button>Remove Contents from List
 <$action-listops $tiddler={{$:/state/plugin-package-tiddler-edit}} $subfilter="+[remove<filter>]"/>
 </$button>
+</td>
+</tr><tr>
+<td>
+<$list filter="[list{$:/state/plugin-package-tiddler-edit}count[]]" variable="count">
+<$text text=<<count>>/> Titles</$list>
+<hr>
+<$list filter="[list{$:/state/plugin-package-tiddler-edit}]">
+<$link to=<<currentTiddler>>><$text text=<<currentTiddler>>/></$link><br>
+</$list>
+</td>
+<td>
+<$list filter=<<filterCount>> variable="count">
+<$text text=<<count>>/> Titles</$list>
 <hr>
 <$list filter=<<filter>>>
-
+<$link to=<<currentTiddler>>><$text text=<<currentTiddler>>/></$link><br>
 </$list>
-</$set>
 </td>
 </tr>
 </table>
+</$set>
