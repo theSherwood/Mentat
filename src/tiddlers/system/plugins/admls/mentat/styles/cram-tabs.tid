@@ -1,0 +1,31 @@
+created: 20190403163849826
+modified: 20190405103827286
+tags: $:/tags/Stylesheet
+title: $:/plugins/admls/mentat/styles/cram-tabs
+type: text/vnd.tiddlywiki
+
+.window-tabs.cram {
+display: inline-grid;
+grid-auto-flow: column;
+grid-template-columns: auto;
+grid-auto-columns: 1fr;
+justify-items: stretch;
+}
+
+.window-tab.cram {
+padding: 0px 3px 0px 3px;
+width: 100%;
+}
+
+.window-tabs.cram > .tc-reveal {
+grid-column-start: auto;
+grid-column-end: span 1;
+white-space: nowrap;
+margin: 0px 1px 0px 1px;
+overflow: hidden;
+}
+
+.window-tabs.cram .tc-droppable.tc-dragover > .tc-droppable-placeholder {
+top: 0%;
+left: -10px;
+}

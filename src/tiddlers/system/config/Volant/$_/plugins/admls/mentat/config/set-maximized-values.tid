@@ -1,0 +1,12 @@
+created: 20190306230501711
+height: calc(100% - 10px)
+left: calc(0% + 5px)
+list: $:/plugins/admls/mentat/config/set-maximized-values
+modified: 20190326085046975
+prefix: $:/config/Volant/
+tags: $:/config/Volant
+title: $:/config/Volant/$:/plugins/admls/mentat/config/set-maximized-values
+top: calc(0% + 5px)
+type: text/vnd.tiddlywiki
+width: calc(100% - 10px)
+

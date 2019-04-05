@@ -1,10 +1,9 @@
 /*\
 created: 20190325160716778
+type: text/plain
 title: $:/plugins/admls/rapid-menu/startup/rapid.js
-type: application/javascript
 tags: 
-modified: 20190325160803469
-module-type: startup
+modified: 20190405200351180
 
 Rapidly reposition volant tiddlers.
 

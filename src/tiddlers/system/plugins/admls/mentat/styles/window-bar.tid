@@ -1,5 +1,5 @@
 created: 20190305215950183
-modified: 20190305220634788
+modified: 20190405093347830
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/window-bar
 type: text/vnd.tiddlywiki
@@ -10,4 +10,12 @@ display: inline-block;
 
 .window-bar .window-tab:hover {
 text-decoration: none;
+}
+
+.window-bar * {
+vertical-align: top;
+}
+
+.window-bar button, .window-bar button > svg {
+height: 24px;
 }

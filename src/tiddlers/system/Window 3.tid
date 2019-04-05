@@ -1,0 +1,160 @@
+created: 20190403080418643
+current-tiddler: $:/plugins/admls/mentat/styles/scroll-tabs
+height: calc(100% - 10px)
+left: calc(50% + 5px)
+list: $:/plugins/admls/mentat/config/options $:/plugins/admls/mentat/styles/scroll-tabs
+modified: 20190403165007524
+tags: $:/Window $:/config/Volant
+title: $:/Window 3
+top: calc(0% + 5px)
+type: application/json
+view: classic
+width: calc(50% - 10px)
+
+[
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options"
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options"
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options"
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options"
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options"
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options"
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options"
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options"
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options"
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options"
+    },
+    {
+        "title": "$:/ControlPanel",
+        "fromPageRect": {
+            "top": 19,
+            "left": 77.91667175292969,
+            "width": 22.5,
+            "right": 100.41667175292969,
+            "bottom": 47.133331298828125,
+            "height": 28.133331298828125
+        }
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/styles/scroll-tabs",
+        "fromPageRect": {
+            "top": 94.19999694824219,
+            "left": 793.5,
+            "width": 209.5,
+            "right": 1003,
+            "bottom": 116.19999694824219,
+            "height": 22
+        }
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/styles/scroll-tabs'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/styles/scroll-tabs"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options",
+        "fromPageRect": {
+            "top": 94.19999694824219,
+            "left": 582,
+            "width": 190,
+            "right": 772,
+            "bottom": 116.19999694824219,
+            "height": 22
+        }
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'"
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/styles/scroll-tabs'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/styles/scroll-tabs"
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'",
+        "fromPageRect": {
+            "top": 31,
+            "left": 752,
+            "width": 190,
+            "right": 942,
+            "bottom": 53,
+            "height": 22
+        }
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/styles/scroll-tabs",
+        "fromPageRect": {
+            "top": 31,
+            "left": 943,
+            "width": 190,
+            "right": 1133,
+            "bottom": 53,
+            "height": 22
+        }
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/styles/scroll-tabs'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/styles/scroll-tabs"
+    }
+]

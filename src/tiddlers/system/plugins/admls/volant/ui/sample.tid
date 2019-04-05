@@ -1,0 +1,9 @@
+created: 20190325154346567
+modified: 20190325155814489
+tags: $:/tags/RapidMenu
+title: $:/plugins/admls/volant/ui/sample
+type: text/vnd.tiddlywiki
+
+Sample.
+<$link to=<<currentTiddler>>><$text text=<<currentTiddler>>/></$link>
+{{$:/core/ui/Buttons/new-tiddler}}

@@ -1,0 +1,23 @@
+created: 20190405194010056
+modified: 20190405194846245
+tags: Docs
+title: VolantRapidDocs
+type: text/vnd.tiddlywiki
+
+!!Basic Instructions
+
+Position a volant tiddler with an edge overhanging the edge of the viewport. The tiddler will snap into a new position when the drag is released. 
+
+| ''Overhang Viewport Edge'' | ''New Tiddler Position'' |
+| left | fills left half of the viewport |
+| top | fills top half of the viewport |
+| right | fills right half of the viewport |
+| bottom | fills bottom half of the viewport |
+| left + top | fills top left quarter of the viewport |
+| right + top | fills top right quarter of the viewport |
+| right + bottom | fills bottom right quarter of the viewport |
+| left + bottom | fills bottom left quarter of the viewport |
+
+!!Buffer
+
+The buffer is the number of pixels by which a volant tiddler edge must overhang the viewport edge in order to snap. $:/plugins/admls/volant-rapid/config/buffer contains this number.

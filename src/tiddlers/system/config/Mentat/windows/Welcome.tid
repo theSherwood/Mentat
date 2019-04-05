@@ -1,0 +1,12 @@
+created: 20190308233731557
+height: calc(65% - 10px)
+left: calc(30% + 5px)
+list: Welcome! VolantDemo EngineDemo MentatDemo
+modified: 20190308233732999
+tags: $:/config/Window
+title: $:/config/Mentat/windows/Welcome
+top: calc(15% + 5px)
+type: text/vnd.tiddlywiki
+view: classic
+width: calc(45% - 10px)
+

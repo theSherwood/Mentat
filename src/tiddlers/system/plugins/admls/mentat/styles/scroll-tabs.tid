@@ -1,0 +1,28 @@
+created: 20190326085555745
+modified: 20190405181123777
+tags: $:/tags/Stylesheet
+title: $:/plugins/admls/mentat/styles/scroll-tabs
+type: text/vnd.tiddlywiki
+
+.window-tabs.scroll {
+display: inline-block;
+overflow-x: hidden;
+overflow-y: hidden;
+white-space: nowrap;
+}
+
+.window-tabs.scroll * {
+vertical-align: top;
+}
+
+.window-tab.scroll {
+overflow: hidden;
+margin: 0px -1px 0px -1px;
+width: {{$:/plugins/admls/mentat/config/values!!scroll-tab-width}}px;
+padding: 0px 14px 0px 2px;
+}
+
+.window-tabs.scroll .tc-droppable > .tc-droppable-placeholder {
+top: -1px;
+left: -12px; 
+}

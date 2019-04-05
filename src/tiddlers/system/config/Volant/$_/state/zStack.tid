@@ -1,0 +1,12 @@
+created: 20190219180737880
+height: calc(30% - 0px)
+left: calc(45% + 0px)
+list: $:/state/zStack
+modified: 20190220024554038
+prefix: $:/config/Volant/
+tags: $:/config/Volant
+title: $:/config/Volant/$:/state/zStack
+top: calc(25% + 0px)
+type: text/vnd.tiddlywiki
+width: calc(20% - 0px)
+

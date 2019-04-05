@@ -1,21 +1,30 @@
 caption: Config
 created: 20190307103415086
 list-after: $:/plugins/admls/volant/ui/reset
-modified: 20190321224801900
+modified: 20190403163556901
 tags: $:/tags/MentatTab
 title: $:/plugins/admls/mentat/config/options
 type: text/vnd.tiddlywiki
+
+''Dependency Config''
 
 [[Volant Config|$:/plugins/admls/volant/config/options]]<br>
 [[Engine Config|$:/plugins/admls/engine/config/options]]
 
 <$set name="configValues" value="$:/plugins/admls/mentat/config/values">
 
-|<$link to="$:/plugins/admls/mentat/config/set-maximized-values">Set maximized values</$link> |//Set the position and dimensions of maximized window tiddlers.// |[[Click Here|$:/plugins/admls/mentat/config/set-maximized-values]] |
-|<$link to=<<configValues>>>Default window storyview</$link> |//Choose the default storyview for windows. Don't choose mentat.// |<$edit-text tiddler=<<configValues>> field="default-window-storyview" default="classic" tag="input"/> |
+''Window Tiddlers''
+
+|<$link to="$:/plugins/admls/mentat/config/set-maximized-values">Set Maximized Values</$link> |//Set the position and dimensions of maximized window tiddlers.// |[[Click Here|$:/plugins/admls/mentat/config/set-maximized-values]] |
+|<$link to=<<configValues>>>Default Window Storyview</$link> |//Choose the default storyview for windows. Don't choose mentat.// |<$edit-text tiddler=<<configValues>> field="default-window-storyview" default="classic" tag="input"/> |
 |<$link to=<<configValues>>>Layout Archive All</$link> |//Layouts will be archived of all tiddlers currently in [[$:/StoryList]] and all window tiddlers (open only). Restoring a layout will close all tiddlers currently in [[$:/StoryList]], while opening those in the archived list. If Layout Archive All is not enabled, layouts will archive only window tiddlers. // |<$checkbox tiddler=<<configValues>> field="layout-archive-all" checked="yes" unchecked="no" default="yes"></$checkbox> |
 |<$link to=<<configValues>>>Session Archive All</$link> |//Sessions will be archived of all tiddlers currently in [[$:/StoryList]] and all window tiddlers (open or closed). Restoring a session will close all tiddlers currently in [[$:/StoryList]], while opening those in the archived list. If Session Archive All is not enabled, sessions will archive only window tiddlers. // |<$checkbox tiddler=<<configValues>> field="session-archive-all" checked="yes" unchecked="no" default="yes"></$checkbox> |
 
-<$checkbox tiddler="$:/plugins/admls/mentat/ui/tabs/window-tabs" tag="$:/tags/AboveWindow"> Enable window tabs</$checkbox>
+''Window Tabs''
+
+|<$link to="$:/plugins/admls/mentat/ui/tabs/window-tabs">Enable Window Tabs</$link> |//Enable a tab bar in each window. (Alternatively, custom tiddlers can be transcluded above each window using the tag "$:/tags/AboveWindow").// |<$checkbox tiddler="$:/plugins/admls/mentat/ui/tabs/window-tabs" tag="$:/tags/AboveWindow"></$checkbox> |
+|<$link to=<<configValues>>>Window Tabs Type</$link> |//''cram'' - the tabs fill the width of the window tiddler and shrink as more tabs are added.<br>''scroll'' - scroll the tab bar to see more tabs. Hold shift while scrolling to change the size of the tabs.// |<$select tiddler=<<configValues>> field="window-tabs-type" default="cram"><option>cram</option><option>scroll</option></$select>|
+|<$link to=<<configValues>>>Scroll Tab Width</$link> |//How wide should your tabs be in scrolling mode. You can also change this setting by holding shift when scrolling in the window tabs.// |<$edit-text tiddler=<<configValues>> field="scroll-tab-width" default="150" tag="input"/> |
+|<$link to=<<configValues>>>Show Tab Title</$link> |//If the entire tiddler title cannot be shown in a tab, which end of the title should be given preference. ''end'' is recommended for working with tiddlers with long path names.// |<$select tiddler=<<configValues>> field="show-tab-title" default="end"><option>beginning</option><option>end</option></$select>|
 
 </$set>

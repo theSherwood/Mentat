@@ -163,8 +163,10 @@ Adds a few hooks, too.
 			e.preventDefault();
 			e.stopPropagation();
 			const tiddler = $tw.Volant.eventTiddler;
-			let posx = (e.clientX || e.touches[0].clientX);
-			let posy = (e.clientY || e.touches[0].clientY);
+			let posx =
+        e.clientX || (e.touches && e.touches[0].clientX) || undefined;
+			let posy =
+        e.clientY || (e.touches && e.touches[0].clientY) || undefined;
 			const viewportOffset = tiddler.getBoundingClientRect();
 
 			window.requestAnimationFrame(() => {
@@ -185,12 +187,15 @@ Adds a few hooks, too.
 			e.stopPropagation();
 
 			const tiddler = $tw.Volant.eventTiddler;
-
+			let posx =
+				e.clientX || (e.touches && e.touches[0].clientX) || undefined;
+			let posy =
+				e.clientY || (e.touches && e.touches[0].clientY) || undefined;
 			const viewportOffset = tiddler.getBoundingClientRect();
 
 			window.requestAnimationFrame(() => {
-				tiddler.style.width = ((e.clientX || e.touches[0].clientX) - viewportOffset.left + 5) + 'px';
-				tiddler.style.height = ((e.clientY || e.touches[0].clientY) - viewportOffset.top + 5) + 'px';
+				tiddler.style.width = (posx - viewportOffset.left + 5) + 'px';
+				tiddler.style.height = (posy - viewportOffset.top + 5) + 'px';
 			});
 		},
 

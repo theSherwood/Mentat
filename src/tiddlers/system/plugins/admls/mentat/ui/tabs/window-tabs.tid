@@ -1,5 +1,5 @@
 created: 20190225185537487
-modified: 20190307000631338
+modified: 20190405195319794
 tags: $:/tags/AboveWindow
 title: $:/plugins/admls/mentat/ui/tabs/window-tabs
 type: text/vnd.tiddlywiki
@@ -12,8 +12,15 @@ type: text/vnd.tiddlywiki
 <$action-listops $tiddler=<<tv-story-list>> $subfilter="-[<actionTiddler>]"/>
 \end
 
+\define tabClasses(class)
+$(tabsType)$ $class$
+\end
+
+<$set name="tabsType" value={{$:/plugins/admls/mentat/config/values!!window-tabs-type}}>
+<div class=<<tabClasses "window-tab-wrapper">>>
 <$tiddler tiddler=""><$transclude tiddler="$:/core/ui/Buttons/new-tiddler" mode="inline"/></$tiddler>
-<div class="window-tabs">
+<$tiddler tiddler=""><$transclude tiddler="$:/plugins/admls/mentat/ui/Buttons/list-tabs" mode="inline"/></$tiddler>
+<div class=<<tabClasses "window-tabs">>>
 <$tiddler tiddler="">
 <$droppable actions=<<drop-actions>>>
 <div class="tc-droppable-placeholder">&nbsp;
@@ -24,7 +31,7 @@ type: text/vnd.tiddlywiki
 <$set name="listItemTitle" value={{!!title}}>
 <$reveal type="match" stateTitle=<<tv-story-list>> stateField="current-tiddler" text=<<listItemTitle>>>
 <$droppable actions=<<drop-actions>>>
-<$link to={{!!title}} tooltip={{!!title}} class="window-tab window-tab-selected" startactions=<<start-actions>>>
+<$link to={{!!title}} tooltip={{!!title}} class=<<tabClasses "window-tab window-tab-selected">> startactions=<<start-actions>>>
 <span>
 <$view field="title"/>
 </span><$button message="tm-close-tiddler" tooltip={{$:/language/Buttons/Close/Hint}} aria-label={{$:/language/Buttons/Close/Caption}} class="tc-btn-invisible tc-btn-mini">&times;</$button> 
@@ -33,11 +40,12 @@ type: text/vnd.tiddlywiki
 </div></$droppable></$reveal>
 <$reveal type="nomatch" stateTitle=<<tv-story-list>> stateField="current-tiddler" text=<<listItemTitle>>>
 <$droppable actions=<<drop-actions>>>
-<$link to={{!!title}} tooltip={{!!title}} class="window-tab">
+<$link to={{!!title}} tooltip={{!!title}} class=<<tabClasses "window-tab">>>
 <span>
 <$view field="title"/>
 </span><$button message="tm-close-tiddler" tooltip={{$:/language/Buttons/Close/Hint}} aria-label={{$:/language/Buttons/Close/Caption}} class="tc-btn-invisible tc-btn-mini">&times;</$button> 
 </$link><div class="tc-droppable-placeholder">
 &nbsp;
 </div></$droppable></$reveal></$set>
-</$list></div>
+</$list></div></div>
+</$set>
