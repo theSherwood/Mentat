@@ -1,0 +1,12 @@
+created: 20190227184321425
+height: calc(80% - 10px)
+left: calc(75% + 5px)
+list: $:/Sidebar
+modified: 20190403083404363
+prefix: $:/config/Engine/
+tags: $:/config/Volant
+title: $:/config/Engine/$:/Sidebar
+top: calc(10% + 5px)
+type: text/vnd.tiddlywiki
+width: calc(25% - 10px)
+

@@ -1,5 +1,5 @@
 created: 20190311214442882
-modified: 20190325162157922
+modified: 20190327164213894
 tags: 
 title: $:/plugins/admls/volant/history
 type: text/vnd.tiddlywiki
@@ -16,3 +16,6 @@ type: text/vnd.tiddlywiki
 * ''0.0.4'' 
 ** bug fix: "Cannot read property of '0' of undefined" when tiddler moved above viewport top
 ** easy-drag-mode button gets a border when engaged
+* ''0.0.5'' 
+** bug fix: resizing the tiddler into the negative would produce an error
+** bug fix: resizing outside the viewport to the left would produce an error with Volant-Rapid

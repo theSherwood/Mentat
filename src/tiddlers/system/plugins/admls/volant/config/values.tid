@@ -9,7 +9,8 @@ gridgap: 5
 gridsize: 100
 height: 188px
 left: 0px
-modified: 20190311213957931
+modified: 20190325162209112
+show-resizers: yes
 tags: 
 title: $:/plugins/admls/volant/config/values
 top: 94px

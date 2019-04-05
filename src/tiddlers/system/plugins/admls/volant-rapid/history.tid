@@ -1,8 +1,10 @@
 created: 20190322155842984
-modified: 20190322160954989
+modified: 20190327172002824
 tags: 
 title: $:/plugins/admls/volant-rapid/history
 type: text/vnd.tiddlywiki
 
 * ''0.0.1''
 ** initial release
+* ''0.0.2''
+** adds buffer

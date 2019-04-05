@@ -1,8 +1,8 @@
 caption: Mentat
 created: 20190223031911509
 list-before: $:/core/ui/SideBar/Open
-modified: 20190315233452629
-tags: $:/tags/ControlPanel/SettingsTab $:/tags/SideBar
+modified: 20190321223925128
+tags: [[ $:/tags/ControlPanel/Settings]] $:/tags/ControlPanel/SettingsTab $:/tags/SideBar
 title: $:/plugins/admls/mentat/ui/tabs/mentat
 type: text/vnd.tiddlywiki
 
