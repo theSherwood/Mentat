@@ -1,37 +1,14 @@
 created: 20190326085555745
-modified: 20190403165007555
+modified: 20190405103855006
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/scroll-tabs
 type: text/vnd.tiddlywiki
 
-.window-tab-wrapper.scroll {
-display: flex;
-flex-direction: row;
-width: 100%;
-}
-
-.window-tab-wrapper.scroll button[title*="Create a new tiddler"], .window-tab-wrapper.scroll button[title*="List tabs"] {
-width: 22px;
-height: 22px;
-background-color: <<colour tab-background>>;
-margin: 0px 0px 0px 2px;
-border-radius: 2px 2px 0px 0px;
-border: solid <<colour tab-border>> 1px;
-padding-left: 2px;
-flex: 0 0 22px;
-}
-
-.window-tab-wrapper.scroll button[title*="List tabs"]{
-margin: 0px 2px 0px 0px;
-}
-
 .window-tabs.scroll {
-flex: 1 1 auto;
 display: inline-block;
 overflow-x: auto;
 overflow-y: hidden;
 white-space: nowrap;
-height: 30px;
 }
 
 .window-tabs.scroll * {
@@ -39,67 +16,13 @@ vertical-align: top;
 }
 
 .window-tab.scroll {
-position: relative;
-background-color: <<colour tab-background>>;
-border: solid <<colour tab-border>> 1px;
-border-radius: 2px 2px 2px 2px;
-white-space: nowrap;
 overflow: hidden;
-display: inline-block;
 margin: 0px -1px 0px -1px;
 width: {{$:/plugins/admls/mentat/config/values!!scroll-tab-width}}px;
 padding: 0px 14px 0px 2px;
 }
 
-.window-tab.scroll * {
-color: black;
-font-weight: normal;
-}
-
-.window-tab-selected.scroll {
-background-color: <<colour background>>;
-}
-
-.window-tab.scroll > span {
-display: block;
-}
-
-.window-tabs.scroll .window-tab.scroll:hover {
-text-decoration: none;
-}
-
-.window-tab.scroll button {
-background-color: inherit;
-padding: 2px 0px 0px 2px;
-height: 100%;
-display: none;
-position: absolute;
-right: 0px;
-top: 0px;
-}
-
-.window-tab.scroll:hover button {
-width: auto;
-display: block;
-}
-
-.window-tabs.scroll > .tc-reveal {
-position: relative;
-}
-
 .window-tabs.scroll .tc-droppable > .tc-droppable-placeholder {
-position: absolute;
-visibility: hidden;
-background-color: rgba(0,0,0,.5);
-border: none;
-border-radius: 100%;
-left: -12px;
-height: 20px;
-width: 0px;
-}
-
-.window-tabs.scroll .tc-droppable.tc-dragover > .tc-droppable-placeholder {
-visibility: visible;
-width: 20px;
-display: block;
+top: -1px;
+left: -12px; 
 }

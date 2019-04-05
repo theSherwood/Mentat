@@ -1,5 +1,5 @@
 created: 20190225184551271
-modified: 20190403165028257
+modified: 20190405103845904
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/base-window-tabs
 type: text/vnd.tiddlywiki
@@ -59,11 +59,13 @@ height: 100%;
 .window-tabs .tc-droppable.tc-dragover > .tc-droppable-placeholder {
 visibility: visible;
 width: 20px;
+border-radius: 100%; 
+height: 20px;
 }
 
 .window-tab button {
 background-color: inherit;
-padding: 2px 0px 0px 2px;
+padding: 0px 3px 2px 3px;
 height: 100%;
 display: none;
 position: absolute;

@@ -1,17 +1,10 @@
 created: 20190403163849826
-modified: 20190403164246367
+modified: 20190405103827286
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/cram-tabs
 type: text/vnd.tiddlywiki
 
-.window-tab-wrapper.cram {
-display: flex;
-flex-direction: row;
-width: 100%;
-}
-
 .window-tabs.cram {
-flex: 1 1 auto;
 display: inline-grid;
 grid-auto-flow: column;
 grid-template-columns: auto;
@@ -19,36 +12,12 @@ grid-auto-columns: 1fr;
 justify-items: stretch;
 }
 
-.window-tab.cram * {
-color: black;
-font-weight: normal;
-}
-
 .window-tab.cram {
-position: relative;
-background-color: <<colour tab-background>>;
-border: solid <<colour tab-border>> 1px;
-border-radius: 2px 2px 2px 2px;
-display: inline-block;
 padding: 0px 3px 0px 3px;
-white-space: nowrap;
 width: 100%;
 }
 
-.window-tab-selected.cram {
-background-color: <<colour background>>;
-}
-
-.window-tabs.cram .window-tab.cram:hover {
-text-decoration: none;
-}
-
-.window-tab.cram > span {
-display: block;
-}
-
 .window-tabs.cram > .tc-reveal {
-position: relative;
 grid-column-start: auto;
 grid-column-end: span 1;
 white-space: nowrap;
@@ -56,48 +25,7 @@ margin: 0px 1px 0px 1px;
 overflow: hidden;
 }
 
-.window-tabs.cram .tc-droppable > .tc-droppable-placeholder {
-position: absolute;
-visibility: hidden;
-width: 0px;
-height: 100%;
-}
-
 .window-tabs.cram .tc-droppable.tc-dragover > .tc-droppable-placeholder {
-visibility: visible;
-background-color: rgba(0,0,0,.5);
-border: none;
-width: 20px;
 top: 0%;
 left: -10px;
-}
-
-.window-tab.cram button {
-background-color: inherit;
-padding: 2px 0px 0px 2px;
-height: 100%;
-display: none;
-position: absolute;
-right: 0px;
-top: 0px;
-}
-
-.window-tab.cram:hover button {
-width: auto;
-display: block;
-}
-
-.window-tab-wrapper.cram button[title*="Create a new tiddler"], .window-tab-wrapper.cram button[title*="List tabs"] {
-width: 22px;
-height: 22px;
-background-color: <<colour tab-background>>;
-margin: 0px 0px 0px 2px;
-border-radius: 2px 2px 0px 0px;
-border: solid <<colour tab-border>> 1px;
-padding-left: 2px;
-flex: 0 0 22px;
-}
-
-.window-tab-wrapper.cram button[title*="List tabs"]{
-margin: 0px 2px 0px 0px;
 }
