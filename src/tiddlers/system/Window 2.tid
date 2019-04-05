@@ -1,0 +1,91 @@
+created: 20190327163929909
+current-tiddler: $:/ControlPanel
+height: calc(100% - 10px)
+left: calc(0% + 5px)
+list: DevToDo $:/plugins/admls/mentat/ui/Buttons/minimize $:/plugins/admls/mentat/ui/Buttons/list-tabs $:/plugins/admls/volant/history $:/plugins/admls/mentat/history
+modified: 20190403161713101
+tags: $:/Window $:/config/Volant
+title: $:/Window 2
+top: calc(0% + 5px)
+type: application/json
+view: classic
+width: calc(50% - 10px)
+
+[
+    {
+        "title": "$:/plugins/admls/mentat/config/options",
+        "fromPageRect": {
+            "top": 222.35000610351562,
+            "left": 837.9166870117188,
+            "width": 46,
+            "right": 883.9166870117188,
+            "bottom": 241.35000610351562,
+            "height": 19
+        }
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options"
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options"
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/history'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/history"
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options"
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options"
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options"
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options"
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options"
+    },
+    {
+        "title": "Draft of '$:/plugins/admls/mentat/config/options'"
+    },
+    {
+        "title": "$:/plugins/admls/mentat/config/options"
+    },
+    {
+        "title": "$:/ControlPanel",
+        "fromPageRect": {
+            "top": 19,
+            "left": 77.91667175292969,
+            "width": 22.5,
+            "right": 100.41667175292969,
+            "bottom": 47.133331298828125,
+            "height": 28.133331298828125
+        }
+    }
+]

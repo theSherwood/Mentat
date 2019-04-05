@@ -1,0 +1,12 @@
+created: 20190308004843764
+height: calc(50% - 10px)
+left: calc(65% + 5px)
+list: LoremIpsum
+modified: 20190316023139010
+prefix: $:/config/Volant/
+tags: $:/config/Volant
+title: $:/config/Volant/LoremIpsum
+top: calc(5% + 5px)
+type: text/vnd.tiddlywiki
+width: calc(30% - 10px)
+

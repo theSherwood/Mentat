@@ -1,0 +1,12 @@
+created: 20190322235831467
+height: calc(100% - 10px)
+left: calc(50% + 5px)
+list: $:/plugins/admls/volant-rapid/ui/rapid-menu
+modified: 20190325151050323
+prefix: $:/config/Volant/
+tags: $:/config/Volant
+title: $:/config/Volant/$:/plugins/admls/volant-rapid/ui/rapid-menu
+top: calc(0% + 5px)
+type: text/vnd.tiddlywiki
+width: calc(50% - 10px)
+

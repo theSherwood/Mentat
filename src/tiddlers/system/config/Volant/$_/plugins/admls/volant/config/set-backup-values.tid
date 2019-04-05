@@ -1,0 +1,12 @@
+created: 20190306135221117
+height: calc(50% - 10px)
+left: calc(5% + 5px)
+list: $:/plugins/admls/volant/config/set-backup-values
+modified: 20190311170949171
+prefix: $:/config/Volant/
+tags: $:/config/Volant
+title: $:/config/Volant/$:/plugins/admls/volant/config/set-backup-values
+top: calc(15% + 5px)
+type: text/vnd.tiddlywiki
+width: calc(40% - 10px)
+

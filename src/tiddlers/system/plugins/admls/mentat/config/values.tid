@@ -1,10 +1,12 @@
 created: 20190222005038036
 default-window-storyview: classic
 layout-archive-all: yes
-modified: 20190327092822107
-scroll-tab-width: 168
+modified: 20190403165234400
+scroll-tab-width: 190
 session-archive-all: yes
+show-tab-title: end
 tags: 
 title: $:/plugins/admls/mentat/config/values
 type: text/vnd.tiddlywiki
+window-tabs-type: scroll
 
