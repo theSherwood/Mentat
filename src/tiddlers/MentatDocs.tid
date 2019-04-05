@@ -1,5 +1,5 @@
 created: 20190311202541340
-modified: 20190311212709111
+modified: 20190405195759466
 tags: Docs
 title: MentatDocs
 type: text/vnd.tiddlywiki
@@ -17,3 +17,10 @@ However, each window also stores its story list in its list field. Volant config
 
 !!Maximized Tiddler
 There can only be one maximized tiddler. The position values for the maximized tiddler are stored at [[$:/plugins/admls/mentat/config/maximized-values]]. These values can be set graphically at [[$:/plugins/admls/mentat/config/set-maximized-values]] if the default functionality of the Volant Plugin is engaged.
+
+!!Window Tabs
+Window tabs appear at the top of each window and comprise a list of the tiddlers that appear in that window's story. They can be switched off at [[$:/plugins/admls/mentat/config/options]]. There are also two kinds of window tabs: ''cram'' and ''scroll''. The ''cram'' window tab bar shows all the tabs at once. The ''scroll'' window tab bar is, you guessed it, scrollable. With ''scroll'' enabled, hold shift while scrolling in the window tab bar to change the tab width.
+
+There are also two buttons in the window tab bar. The "new tiddler" button should be familiar. Additionally, there is a "list tabs" button. This button is like the "Open" tab in the Sidebar, but specific to that window.
+
+Window tabs can be dragged and dropped to rearrange them. They can also be dragged from one window tab bar to another.
