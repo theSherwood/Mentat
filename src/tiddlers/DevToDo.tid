@@ -4,15 +4,15 @@ tags: Issues
 title: DevToDo
 type: text/vnd.tiddlywiki
 
-* Window tabs in bottom bar shouldn't be the same as window tabs above the window
+* ~~Window tabs in bottom bar shouldn't be the same as window tabs above the window~~
 * ~~Styling of window tabs~~???
 ** ~~styling bug where the tabs are too high~~???
 ** ~~close button~~
 ** ~~show end of title rather than beginning?~~
 * ~~Window tab dropdown~~
 ** ~~tooltips and the like need fixed~~
-* Config for window tabs
-** including option for seeing end of title vs beginning of title
+* ~~Config for window tabs~~
+** ~~including option for seeing end of title vs beginning of title~~
 * repackage plugin
 * mentat history update
 * refactor and restructure
