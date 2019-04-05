@@ -1,5 +1,5 @@
 created: 20190225184551271
-modified: 20190405103845904
+modified: 20190405182020212
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/base-window-tabs
 type: text/vnd.tiddlywiki
@@ -12,6 +12,7 @@ width: 100%;
 
 .window-tabs {
 flex: 1 1 auto;
+block-size: 22px;
 }
 
 .window-tab * {

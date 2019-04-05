@@ -1,12 +1,12 @@
 created: 20190326085555745
-modified: 20190405103855006
+modified: 20190405181123777
 tags: $:/tags/Stylesheet
 title: $:/plugins/admls/mentat/styles/scroll-tabs
 type: text/vnd.tiddlywiki
 
 .window-tabs.scroll {
 display: inline-block;
-overflow-x: auto;
+overflow-x: hidden;
 overflow-y: hidden;
 white-space: nowrap;
 }
