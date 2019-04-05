@@ -32,13 +32,13 @@ Adds hook that snaps volant tiddlers to the edges of the viewport if an edge the
         : 0;
 
     function expandHeight() {
-      if (top - buffer > 0 && bottom + buffer < viewportHeight) {
+      if (top >= -buffer && bottom - buffer <= viewportHeight) {
         tiddler.style.cssText += `top: 0%;`;
         tiddler.style.cssText += `height: 100%;`;
       }
     }
     function expandWidth() {
-      if (left - buffer > 0 && right + buffer < viewportWidth) {
+      if (left >= -buffer && right - buffer <= viewportWidth) {
         tiddler.style.cssText += `left: 0%;`;
         tiddler.style.cssText += `width: 100%;`;
       }
