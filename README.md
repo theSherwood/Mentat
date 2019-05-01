@@ -4,7 +4,7 @@ This wiki is home to a collection of UI/UX plugins for TiddlyWiki. They're suite
 
 Check out TiddlyWiki at https://tiddlywiki.com/
 
-Check out the Mentat demo at https://admls.github.io/Mentat/
+Check out the Mentat demo at https://thesherwood.github.io/Mentat/
 
     Repopup
         A quick hack of a plugin that attempts to reposition tiddlywiki popups so that they don't run off the screen. It's not perfect and it doesn't seem to do much to normal dropdowns. But it's an okay fix until the popup mechanism can get a comprehensive overhaul. This plugin has been designed with the Volant, Engine, and Mentat Plugins in mind. So if you use it for something else, your mileage may vary.
