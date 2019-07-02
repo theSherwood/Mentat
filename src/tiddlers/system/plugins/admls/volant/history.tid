@@ -1,5 +1,5 @@
 created: 20190311214442882
-modified: 20190327164213894
+modified: 20190702215155192
 tags: 
 title: $:/plugins/admls/volant/history
 type: text/vnd.tiddlywiki
@@ -19,3 +19,5 @@ type: text/vnd.tiddlywiki
 * ''0.0.5'' 
 ** bug fix: resizing the tiddler into the negative would produce an error
 ** bug fix: resizing outside the viewport to the left would produce an error with Volant-Rapid
+* ''0.0.6'' 
+** bug fix: startup-actions no longer delete config tiddler of Volant tiddlers with multi-word titles
