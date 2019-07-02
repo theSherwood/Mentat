@@ -1,12 +1,12 @@
 created: 20190216194357243
-height: 230px
-left: 60px
+height: 280px
+left: 160px
 list: Scroll
-modified: 20190316023108691
+modified: 20190702215759541
 prefix: $:/config/Volant/
 tags: $:/VolantConfig $:/config/Volant
 title: $:/config/Volant/Scroll
-top: 360px
+top: 410px
 type: text/vnd.tiddlywiki
-width: 380px
+width: 330px
 
