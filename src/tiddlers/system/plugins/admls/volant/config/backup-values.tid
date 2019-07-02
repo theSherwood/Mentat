@@ -1,9 +1,9 @@
+created: 20190131221331828
 default-height: calc(50% - 10px)
 default-left: calc(5% + 5px)
-default-top: calc(15% + 5px)
+default-top: calc(10% + 5px)
 default-width: calc(40% - 10px)
-created: 20190131221331828
-modified: 20190311170928548
+modified: 20190702231017386
 title: $:/plugins/admls/volant/config/default-values
 type: text/vnd.tiddlywiki
 z-index: 700
