@@ -1,10 +1,10 @@
 created: 20190308001315627
-modified: 20190405193913710
+modified: 20190702193209507
 tags: Demo
 title: Welcome!
 type: text/vnd.tiddlywiki
 
-This wiki is home to a collection of UI/UX plugins for [[Tiddlywiki|https://tiddlywiki.com/]]. They're suited to larger screens at this point, though they may get adapted for mobile at some point in the not-so-distant future:
+This wiki is home to a collection of UI/UX plugins for [[Tiddlywiki|https://tiddlywiki.com/]]. If you are unfamiliar with [[Tiddlywiki|https://tiddlywiki.com/]] (by Jeremy Ruston), please check it out first. These plugins are suited to larger screens at this point, though they may get adapted for mobile at some point in the future:
 
 # [[Repopup|$:/plugins/admls/repopup]]
 #* {{$:/plugins/admls/repopup/readme}}

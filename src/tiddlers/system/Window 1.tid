@@ -1,205 +1,26 @@
-created: 20190326085251314
-current-tiddler: $:/plugins/admls/mentat/styles/base-window-tabs
-height: calc(100% - 10px)
-left: calc(0% + 5px)
-list: $:/plugins/admls/mentat/styles/cram-tabs $:/plugins/admls/mentat/ui/tabs/window-tabs $:/plugins/admls/mentat/styles/base-window-tabs [[window tabs base style]]
-modified: 20190403165135139
+created: 20190702231005389
+current-tiddler: Welcome!
+height: calc(80% - 10px)
+left: calc(35% + 5px)
+list: Welcome! ChangeLog KnownIssues Acknowledgements
+modified: 20190702231025769
 tags: $:/Window $:/config/Volant
 title: $:/Window 1
-top: calc(0% + 5px)
+top: calc(10% + 5px)
 type: application/json
 view: classic
-width: calc(50% - 10px)
+width: calc(55% - 10px)
 
 [
     {
-        "title": "Draft of '$:/plugins/admls/mentat/ui/tabs/window-tabs'"
-    },
-    {
-        "title": "$:/plugins/admls/mentat/ui/tabs/window-tabs"
-    },
-    {
-        "title": "Draft of '$:/plugins/admls/mentat/ui/tabs/window-tabs'"
-    },
-    {
-        "title": "$:/plugins/admls/mentat/ui/tabs/window-tabs"
-    },
-    {
-        "title": "Draft of '$:/plugins/admls/mentat/styles/window-tabs'"
-    },
-    {
-        "title": "$:/plugins/admls/mentat/styles/window-tabs"
-    },
-    {
-        "title": "Draft of '$:/plugins/admls/mentat/ui/tabs/window-tabs'"
-    },
-    {
-        "title": "$:/plugins/admls/mentat/ui/tabs/window-tabs"
-    },
-    {
-        "title": "Draft of '$:/plugins/admls/mentat/ui/tabs/window-tabs'"
-    },
-    {
-        "title": "$:/plugins/admls/mentat/ui/tabs/window-tabs"
-    },
-    {
-        "title": "window tabs base style",
+        "title": "Welcome!",
         "fromPageRect": {
-            "top": 285.2833251953125,
-            "left": 115,
-            "width": 163,
-            "right": 278,
-            "bottom": 309.2833251953125,
-            "height": 24
-        }
-    },
-    {
-        "title": "$:/plugins/admls/mentat/ui/tabs/window-tabs",
-        "fromPageRect": {
-            "top": 31,
-            "left": 267.66668701171875,
-            "width": 195.66665649414062,
-            "right": 463.3333435058594,
-            "bottom": 53,
+            "top": 110.89999389648438,
+            "left": 474.3500061035156,
+            "width": 160,
+            "right": 634.3500061035156,
+            "bottom": 132.89999389648438,
             "height": 22
         }
-    },
-    {
-        "title": "Draft of '$:/plugins/admls/mentat/ui/tabs/window-tabs'"
-    },
-    {
-        "title": "Draft of 'New Tiddler'"
-    },
-    {
-        "title": "$:/plugins/admls/mentat/ui/tabs/window-tabs"
-    },
-    {
-        "title": "Draft of 'New Tiddler'"
-    },
-    {
-        "title": "$:/plugins/admls/mentat/ui/tabs/window-tabs",
-        "fromPageRect": {
-            "top": 31,
-            "left": 267.66668701171875,
-            "width": 195.66665649414062,
-            "right": 463.3333435058594,
-            "bottom": 53,
-            "height": 22
-        }
-    },
-    {
-        "title": "$:/plugins/admls/mentat/ui/tabs/window-tabs",
-        "fromPageRect": {
-            "top": 246.1999969482422,
-            "left": 757,
-            "width": 52,
-            "right": 809,
-            "bottom": 310.1999969482422,
-            "height": 64
-        }
-    },
-    {
-        "title": "Draft of '$:/plugins/admls/mentat/ui/tabs/window-tabs'"
-    },
-    {
-        "title": "$:/plugins/admls/mentat/ui/tabs/window-tabs"
-    },
-    {
-        "title": "Draft of '$:/plugins/admls/mentat/ui/tabs/window-tabs'"
-    },
-    {
-        "title": "$:/plugins/admls/mentat/ui/tabs/window-tabs"
-    },
-    {
-        "title": "Draft of 'New Tiddler'"
-    },
-    {
-        "title": "$:/plugins/admls/mentat/styles/cram-tabs"
-    },
-    {
-        "title": "$:/plugins/admls/mentat/styles/window-tabs",
-        "fromPageRect": {
-            "top": 31,
-            "left": 386.25,
-            "width": 103.75,
-            "right": 490,
-            "bottom": 53,
-            "height": 22
-        }
-    },
-    {
-        "title": "Draft of '$:/plugins/admls/mentat/styles/window-tabs'"
-    },
-    {
-        "title": "$:/plugins/admls/mentat/styles/window-tabs"
-    },
-    {
-        "title": "Draft of '$:/plugins/admls/mentat/styles/cram-tabs'"
-    },
-    {
-        "title": "$:/plugins/admls/mentat/styles/cram-tabs"
-    },
-    {
-        "title": "Draft of '$:/plugins/admls/mentat/styles/cram-tabs'"
-    },
-    {
-        "title": "$:/plugins/admls/mentat/styles/cram-tabs"
-    },
-    {
-        "title": "Draft of '$:/plugins/admls/mentat/styles/cram-tabs'"
-    },
-    {
-        "title": "$:/plugins/admls/mentat/styles/cram-tabs"
-    },
-    {
-        "title": "window tabs base style",
-        "fromPageRect": {
-            "top": 31,
-            "left": 263,
-            "width": 190,
-            "right": 453,
-            "bottom": 53,
-            "height": 22
-        }
-    },
-    {
-        "title": "Draft of 'window tabs base style'"
-    },
-    {
-        "title": "window tabs base style"
-    },
-    {
-        "title": "$:/plugins/admls/mentat/ui/tabs/window-tabs",
-        "fromPageRect": {
-            "top": 31,
-            "left": 457,
-            "width": 190,
-            "right": 647,
-            "bottom": 53,
-            "height": 22
-        }
-    },
-    {
-        "title": "$:/plugins/admls/mentat/styles/window-tabs",
-        "fromPageRect": {
-            "top": 31,
-            "left": 472,
-            "width": 190,
-            "right": 662,
-            "bottom": 53,
-            "height": 22
-        }
-    },
-    {
-        "title": "Draft of '$:/plugins/admls/mentat/styles/window-tabs'"
-    },
-    {
-        "title": "$:/plugins/admls/mentat/styles/base-window-tabs"
-    },
-    {
-        "title": "Draft of '$:/plugins/admls/mentat/styles/base-window-tabs'"
-    },
-    {
-        "title": "$:/plugins/admls/mentat/styles/base-window-tabs"
     }
 ]

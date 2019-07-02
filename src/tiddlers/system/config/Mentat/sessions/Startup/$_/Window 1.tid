@@ -1,0 +1,12 @@
+created: 20190702230841066
+height: calc(80% - 10px)
+left: calc(35% + 5px)
+list: Welcome! ChangeLog KnownIssues Acknowledgements
+modified: 20190702230842372
+tags: $:/config/Window
+title: $:/config/Mentat/sessions/Startup/$:/Window 1
+top: calc(10% + 5px)
+type: text/vnd.tiddlywiki
+view: classic
+width: calc(55% - 10px)
+

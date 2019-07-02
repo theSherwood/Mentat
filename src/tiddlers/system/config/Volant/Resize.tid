@@ -1,12 +1,12 @@
 created: 20190308005939968
-height: calc(50% - 10px)
-left: calc(35% + 5px)
+height: calc(30% - 10px)
+left: calc(15% + 5px)
 list: Resize
-modified: 20190308011612497
+modified: 20190702215906147
 prefix: $:/config/Volant/
 tags: $:/config/Volant
 title: $:/config/Volant/Resize
-top: calc(5% + 5px)
+top: calc(60% + 5px)
 type: text/vnd.tiddlywiki
 width: calc(30% - 10px)
 

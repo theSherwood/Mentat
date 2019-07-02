@@ -1,12 +1,12 @@
 created: 20190216194354930
 height: calc(50% - 10px)
-left: calc(5% + 5px)
+left: calc(15% + 5px)
 list: Reposition
-modified: 20190311214427255
+modified: 20190702215904105
 prefix: $:/config/Volant/
 tags: $:/VolantConfig $:/config/Volant
 title: $:/config/Volant/Reposition
-top: calc(5% + 5px)
+top: calc(10% + 5px)
 type: text/vnd.tiddlywiki
 width: calc(30% - 10px)
 

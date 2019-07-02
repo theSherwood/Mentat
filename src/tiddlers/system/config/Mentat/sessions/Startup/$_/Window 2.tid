@@ -1,10 +1,10 @@
-created: 20190702231005392
+created: 20190702230841067
 height: calc(80% - 10px)
 left: calc(0% + 5px)
 list: MentatDemoContinued
-modified: 20190702231006803
-tags: $:/Window $:/config/Volant
-title: $:/Window 2
+modified: 20190702230842353
+tags: $:/config/Window
+title: $:/config/Mentat/sessions/Startup/$:/Window 2
 top: calc(10% + 5px)
 type: text/vnd.tiddlywiki
 view: classic

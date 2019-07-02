@@ -1,9 +1,9 @@
 created: 20190204183734151
-modified: 20190308010522558
+modified: 20190702215623226
 tags: VolantDemo $:/VolantAbsolute
 title: Scroll
 type: text/vnd.tiddlywiki
 
-Notice any difference?
+Notice any difference? If the Mentat plugin is turned on you likely won't, as Mentat keeps the screen fixed. If Mentat is not enabled, try scrolling. If Mentat is enabled. Resize this tiddler until it overhangs the edge of the viewport either down or to the right. Then try scrolling.
 
 Whereas tiddlers tagged $:/Volant will stay stuck to the screen when scrolling, tiddlers marked $:/VolantAbsolute remain stuck to the background.
